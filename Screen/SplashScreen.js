@@ -12,7 +12,7 @@ import {
   Image
 } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+
 
 const SplashScreen = ({navigation}) => {
   //State for ActivityIndicator animation
@@ -28,8 +28,10 @@ const SplashScreen = ({navigation}) => {
         navigation.replace(
           user === null ? 'Auth' : 'DrawerNavigationRoutes'
         ),
-      );
-    }, 5000);
+      ).catch(()=>{
+        navigation.replace('Auth');
+      });
+    }, 1000);
   }, []);
 
   return (

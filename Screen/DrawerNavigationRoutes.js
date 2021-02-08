@@ -13,6 +13,7 @@ import HomeScreen from './DrawerScreens/HomeScreen';
 import SettingsScreen from './DrawerScreens/SettingsScreen';
 import CustomSidebarMenu from './Components/CustomSideBarMenu.js';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
+import TreatScreen from './DrawerScreens/TreatScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,6 +29,23 @@ const homeScreenStack = ({navigation}) => {
         component={HomeScreen}
         options={{
           title: 'Home', //Set Header Title
+          headerLeft: () => (
+            <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: '#307ecc', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+       <Stack.Screen
+        name="TodaysTreat"
+        component={TreatScreen}
+        options={{
+          title: 'Treat', //Set Header Title
           headerLeft: () => (
             <NavigationDrawerHeader navigationProps={navigation} />
           ),

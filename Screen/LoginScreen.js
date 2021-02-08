@@ -51,6 +51,7 @@ const LoginScreen = ({navigation}) => {
      //  navigate('/' + window.location.search);
      //  window.location.reload()
         setLoading(false);
+        navigation.replace('DrawerNavigationRoutes');
      }).catch ((error)=> {
       setErrortext(error.message);
        console.log('error signing up:', error);
