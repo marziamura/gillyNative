@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gillynative-dev-151532-authRole",
+      "UnauthRoleArn": "arn:aws:iam::062400027487:role/amplify-gillynative-dev-151532-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::062400027487:role/amplify-gillynative-dev-151532-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-gillynative-dev-151532-deployment",
+      "UnauthRoleName": "amplify-gillynative-dev-151532-unauthRole",
+      "StackName": "amplify-gillynative-dev-151532",
+      "StackId": "arn:aws:cloudformation:us-east-1:062400027487:stack/amplify-gillynative-dev-151532/73f78720-66f3-11eb-a553-126bf0867249",
+      "AmplifyAppId": "d31qpnqqgh6itq"
+    },
+    "categories": {
+      "auth": {
+        "gillynative": {}
+      }
+    }
+  }
+}
