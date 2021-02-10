@@ -3,7 +3,6 @@
 
 // Import React and Component
 import React, {useState} from 'react';
-import { connect } from 'react-redux';
 import {Text} from 'react-native';
 
 
@@ -16,7 +15,7 @@ import {
 
 
 
-const OnboardingScreen1 = ({navigation}) => {
+const Welcome = ({navigation}) => {
  
   const [animating, setAnimating] = useState(true);
 
@@ -35,7 +34,7 @@ const OnboardingScreen1 = ({navigation}) => {
   );
 };
 
-export default connect() (OnboardingScreen1);
+export default Welcome;
 
 const styles = StyleSheet.create({
   container: {

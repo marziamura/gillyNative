@@ -20,10 +20,11 @@ import getUserInfo from '../state/getUserInfo';
 
 
 const SplashScreen = ({navigation}) => {
- 
+  console.log(" loading SplashScreen ");
   const [animating, setAnimating] = useState(true);
 
   useEffect(() => {
+    console.log("Splash Screen UseEffect");
     setTimeout(() => {
       setAnimating(false);
       //Check if user_id is set or not
@@ -32,20 +33,22 @@ const SplashScreen = ({navigation}) => {
       console.log("Splash Screen UseEffect");
       Auth.currentAuthenticatedUser().then((cognitoUser)=>{
          console.log(" Splash Screen got user info ", cognitoUser);
-         const user = [{
+         const currentUser = [{
             id: cognitoUser.username,
             partnerID: cognitoUser.attributes["custom:partnerID"],
             name: cognitoUser.attributes["name"],
             journey: cognitoUser.attributes["custom:journey"]
+            
           }]
           let store = createStore();
           let initialState = store.getState().authorizationStatus;
-          store.dispatch(actionUserLogin(initialState, user));
-          let promiseResolve = (user)=>{
-            console.log("promise resolve", user);
-            if (!user || user.sex === "xxx"){
+          store.dispatch(actionUserLogin(initialState, currentUser));
+          let promiseResolve = (u)=>{
+            console.log("promise resolve", u);
+            let user = u.data.getUser;
+            if (!user || !user.sex){
               console.log("got user info ", user);
-              navigation.replace('Welcome');
+              navigation.replace('OnboardingNavigationRoutes');
             }else{
               console.log("got user info ", user);
               navigation.replace('DrawerNavigationRoutes');
@@ -59,7 +62,7 @@ const SplashScreen = ({navigation}) => {
           getUserInfo().then(promiseResolve).catch(promiseReject);
           
           
-    }, 1000);
+    }, 300);
   })}, []);
 
   return (

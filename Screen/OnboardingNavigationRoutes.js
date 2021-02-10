@@ -6,14 +6,12 @@ import React from 'react';
 
 // Import Navigators from React Navigation
 import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
-import OnboardingScreen1 from './Onboarding/OnboardingScreen1';
+import Welcome from './Onboarding/Welcome';
 
 
 const Stack = createStackNavigator();
 
-console.log("loading DrawerNavigationRoutes file");
+console.log("loading OnboardingNavigationRoutes file");
 
 
 const OnboardingNavigationRoutes = (props) => {
@@ -24,7 +22,7 @@ const OnboardingNavigationRoutes = (props) => {
     >
       <Stack.Screen
         name="Welcome"
-        component={OnboardingScreen1}
+        component={Welcome}
         options={{
           title: 'Welcome', //Set Header Title
         }}

@@ -86,13 +86,14 @@ const App = () => {
           // Hiding header for Navigation Drawer
           options={{headerShown: false}}
         />
-      </Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
          name="OnboardingNavigationRoutes"
          component={OnboardingNavigationRoutes}
          // Hiding header for Navigation Drawer
          options={{headerShown: false}}
-      />
+        />
+      </Stack.Navigator>
+   
     </NavigationContainer>
     </Provider>
   );
