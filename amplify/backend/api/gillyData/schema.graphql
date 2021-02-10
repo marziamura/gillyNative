@@ -1,0 +1,62 @@
+
+type User  @model @key(fields:["id"]){
+  id: ID!,	
+  partnerID: ID,	
+  userName: String!,	
+  primary: Boolean!,	
+  registered: Boolean,	
+  email: String!,	
+  tel: String!,	
+  activeDays: Int,
+  lastActiveDay: AWSDate,
+  journey: String,
+  sex: String,
+  gender: String,
+  preferences: String,
+  partnerName: String,
+  
+}
+
+type FormSubmission @model @key(fields:["userId", "formId"]){
+  id: ID!,
+  formId:String!,
+  journey: String!,
+  createdAt: AWSDateTime!
+  params: String, 
+  refParams: String,
+  userId: String!,
+  sharedAnswered: sharedAnswered @connection(name: "sharedForm"),
+}
+
+type formId @model @key(fields:["day", "journey"]){
+  day: Int!,
+  formId: String,
+  refFormId: String,
+  sharedFormId: String,
+  journey: String!,
+  partner:String,
+  sameUser: Boolean,
+  hformId: String
+}
+
+type sharedAnswered @model @key(fields:["originFormId"]){
+  originFormId: String!,
+  sharedFormId: String!,
+  question1: String!,
+  answerRef1: String!,
+  answerRef2: String,
+  answerRef3: String,
+  givenAnswers: FormSubmission @connection(name: "sharedForm")
+}
+
+type message @model @key(fields:["author"]){
+  author: String!
+  isFirst: Boolean
+  previousMessage: String
+  questionId: String,
+  read: Boolean,
+}
+
+type dummy @model {
+  boh: String!
+}

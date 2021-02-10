@@ -19,6 +19,10 @@ import LoginScreen from './Screen/LoginScreen';
 import RegisterScreen from './Screen/RegisterScreen';
 import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Provider } from 'react-redux'
+
+import createStore from './state/store';
+import OnboardingNavigationRoutes from './Screen/OnboardingNavigationRoutes';
 
 
 Amplify.configure(config)
@@ -55,8 +59,11 @@ const Auth = () => {
 
 
 const App = () => {
+  let store = createStore();
   return (
+    <Provider store={store}>
     <NavigationContainer>
+    
       <Stack.Navigator initialRouteName="SplashScreen">
         {/* SplashScreen which will come once for 5 Seconds */}
         <Stack.Screen
@@ -80,7 +87,14 @@ const App = () => {
           options={{headerShown: false}}
         />
       </Stack.Navigator>
+      <Stack.Screen
+         name="OnboardingNavigationRoutes"
+         component={OnboardingNavigationRoutes}
+         // Hiding header for Navigation Drawer
+         options={{headerShown: false}}
+      />
     </NavigationContainer>
+    </Provider>
   );
 };
 

@@ -4,6 +4,10 @@
 // Import React and Component
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
+import { connect } from 'react-redux';
+import actionUserLogin from '../state/actionUserLogin';
+import createStore from '../state/store';
+
 import {
   StyleSheet,
   TextInput,
@@ -19,13 +23,15 @@ import {
 
 import Loader from './Components/Loader';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation,dispatch}) => {
+
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
+  const authStatus = createStore().authorizationStatus;
 
   const handleSubmitPress = () => {
     setErrortext('');
@@ -46,17 +52,26 @@ const LoginScreen = ({navigation}) => {
  async function signIn() {
       let dataToSend = {username: userEmail, password: userPassword};
       console.log( "signing in ",dataToSend);
-      Auth.signIn(dataToSend).then((user)=>{
-       console.log(user);
-     //  navigate('/' + window.location.search);
-     //  window.location.reload()
+      Auth.signIn(dataToSend).then((cognitoUser)=>{
+        console.log(cognitoUser);
+        const user = [{
+          id: cognitoUser.username,
+          partnerID: cognitoUser.attributes["custom:partnerID"],
+          name: cognitoUser.attributes["name"],
+          journey: cognitoUser.attributes["custom:journey"]
+        }]
         setLoading(false);
-        navigation.replace('DrawerNavigationRoutes');
+        dispatch(actionUserLogin(authStatus,user));
+        navigation.replace('DrawerNavigationRoutes'); 
      }).catch ((error)=> {
       setErrortext(error.message);
        console.log('error signing up:', error);
    })
  }
+
+   React.useEffect(()=>{
+
+  })
 
   return (
     <View style={styles.mainBody}>
@@ -139,7 +154,7 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 };
-export default LoginScreen;
+export default connect() (LoginScreen);
 
 const styles = StyleSheet.create({
   mainBody: {
