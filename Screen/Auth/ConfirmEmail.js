@@ -5,8 +5,8 @@
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
-import actionUserLogin from '../state/actionUserLogin';
-import createStore from '../state/store';
+import actionUserLogin from '../../state/actionUserLogin';
+import createStore from '../../state/store';
 
 import {
   StyleSheet,
@@ -21,17 +21,15 @@ import {
 } from 'react-native';
 
 
-import Loader from './Components/Loader';
-
-const LoginScreen = ({navigation,dispatch}) => {
+const ConfirmEmail = ({navigation,dispatch}) => {
 
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
-  const authStatus = createStore().authorizationStatus;
+  const userInfo = createStore().getState().userInfo[0];
+  console.log("ConfirmEmail", userInfo);
 
   const handleSubmitPress = () => {
     setErrortext('');
@@ -43,39 +41,25 @@ const LoginScreen = ({navigation,dispatch}) => {
       alert('Please fill Password');
       return;
     }
-    setLoading(true);
 
-    signIn()
+    confirmSignUp()
   
- };
- 
- async function signIn() {
-      let dataToSend = {username: userEmail, password: userPassword};
-      console.log( "signing in ",dataToSend);
-      Auth.signIn(dataToSend).then((cognitoUser)=>{
-        console.log(cognitoUser);
-        const user = [{
-          id: cognitoUser.username,
-          partnerID: cognitoUser.attributes["custom:partnerID"],
-          name: cognitoUser.attributes["name"],
-          journey: cognitoUser.attributes["custom:journey"]
-        }]
-        setLoading(false);
-        dispatch(actionUserLogin(authStatus,user));
-        navigation.replace('DrawerNavigationRoutes'); 
-     }).catch ((error)=> {
-      setErrortext(error.message);
-       console.log('error signing up:', error);
-   })
- }
+  }
 
-   React.useEffect(()=>{
-
-  })
+  async function confirmSignUp() {
+    try {
+        console.log("Confirm sign up", userEmail, userPassword)
+        await Auth.confirmSignUp(userEmail.toLowerCase(), userPassword);
+        navigation.replace('LoginScreen');
+    } catch (error) {
+        console.log('error confirming email:', error);
+        setErrortext(error.message);
+    }
+  }
 
   return (
     <View style={styles.mainBody}>
-      <Loader loading={loading} />
+     
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
@@ -87,7 +71,7 @@ const LoginScreen = ({navigation,dispatch}) => {
           <KeyboardAvoidingView enabled>
             <View style={{alignItems: 'center'}}>
               <Image
-                source={require('../Image/genders.png')}
+                source={require('../../Image/gilly_logo.png')}
                 style={{
                   width: '50%',
                   height: 100,
@@ -102,8 +86,8 @@ const LoginScreen = ({navigation,dispatch}) => {
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
-                placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
+                placeholder={userInfo.Email}
+                placeholderTextColor="#FFF"
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
@@ -141,20 +125,16 @@ const LoginScreen = ({navigation,dispatch}) => {
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>
-              <Text style={styles.buttonTextStyle}>LOGIN</Text>
+              <Text style={styles.buttonTextStyle}>Confirm code</Text>
             </TouchableOpacity>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('RegisterScreen')}>
-              New Here ? Register
-            </Text>
+        
           </KeyboardAvoidingView>
         </View>
       </ScrollView>
     </View>
   );
 };
-export default connect() (LoginScreen);
+export default connect() (ConfirmEmail);
 
 const styles = StyleSheet.create({
   mainBody: {

@@ -8,12 +8,7 @@ import { WebView } from 'react-native-webview';
 import createStore from '../../state/store';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
+
 
 
 console.log("loading HomeScreen");
@@ -78,15 +73,14 @@ const TreatScreen = () => {
   
   return (
     <React.Fragment>
-      <BrowserView>
+     
       <Text>
           {typeformLink}
       </Text>
-      </BrowserView>
-      <MobileView>
+     
         <WebView   source={{ uri: typeformLink }} 
         style={styles.html}/>    
-      </MobileView>
+     
     </React.Fragment>
   );
 };

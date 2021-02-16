@@ -4,6 +4,7 @@
 // Import React and Component
 import React from 'react';
 import {View, Text, Alert, StyleSheet} from 'react-native';
+import { Auth } from 'aws-amplify';
 
 import {
   DrawerContentScrollView,
@@ -37,28 +38,10 @@ const CustomSidebarMenu = (props) => {
             </Text>
           }
           onPress={() => {
-            props.navigation.toggleDrawer();
-            Alert.alert(
-              'Logout',
-              'Are you sure? You want to logout?',
-              [
-                {
-                  text: 'Cancel',
-                  onPress: () => {
-                    return null;
-                  },
-                },
-                {
-                  text: 'Confirm',
-                  onPress: () => {
-                    AsyncStorage.clear();
-                    props.navigation.replace('Auth');
-                  },
-                },
-              ],
-              {cancelable: false},
-            );
-          }}
+             props.navigation.toggleDrawer();
+             Auth.signOut();
+             props.navigation.replace('Auth');
+            }}
         />
       </DrawerContentScrollView>
     </View>

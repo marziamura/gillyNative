@@ -16,15 +16,15 @@ const Stack = createStackNavigator();
 console.log("loading OnboardingNavigationRoutes file");
 
 
-const OnboardingNavigationRoutes = (props) => {
+const TreatNavigationRoutes = (props) => {
   console.log("OnboardingNavigationRoutes")
   return (
     <Stack.Navigator
-      initialRouteName="Welcome"
+      initialRouteName="Treat1"
     >
       <Stack.Screen
-        name="Welcome"
-        component={Welcome}
+        name="Treat1"
+        component={Treat1}
         options={{
           title: 'Welcome', //Set Header Title
         }}
@@ -49,4 +49,4 @@ const OnboardingNavigationRoutes = (props) => {
 
 
 
-export default OnboardingNavigationRoutes;
+export default TreatNavigationRoutes;

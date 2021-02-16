@@ -9,58 +9,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 // Import Screens
-import HomeScreen from './DrawerScreens/HomeScreen';
-import SettingsScreen from './DrawerScreens/SettingsScreen';
+
+import SettingsScreen from './HomeScreens/SettingsScreen';
 import CustomSidebarMenu from './Components/CustomSideBarMenu.js';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
-import TreatScreen from './DrawerScreens/TreatScreen';
+import HomeScreenStack from './HomeScreens/HomeScreenStack';
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 console.log("loading DrawerNavigationRoutes file");
 
-const homeScreenStack = ({navigation}) => {
-  console.log("homeScreenStack")
-  return (
-    <Stack.Navigator initialRouteName="HomeScreen">
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          title: 'Home', //Set Header Title
-          headerLeft: () => (
-            <NavigationDrawerHeader navigationProps={navigation} />
-          ),
-          headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
-          },
-          headerTintColor: '#fff', //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-       <Stack.Screen
-        name="TodaysTreat"
-        component={TreatScreen}
-        options={{
-          title: 'Treat', //Set Header Title
-          headerLeft: () => (
-            <NavigationDrawerHeader navigationProps={navigation} />
-          ),
-          headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
-          },
-          headerTintColor: '#fff', //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
+
 
 const settingScreenStack = ({navigation}) => {
   console.log("settingScreenStack")
@@ -90,8 +51,8 @@ const settingScreenStack = ({navigation}) => {
   );
 };
 
-const DrawerNavigatorRoutes = (props) => {
-  console.log("DrawerNavigatorRoutes")
+const HomeNavigatorRoutes = (props) => {
+  console.log("HomeNavigatorRoutes")
   return (
     <Drawer.Navigator
       drawerContentOptions={{
@@ -108,7 +69,7 @@ const DrawerNavigatorRoutes = (props) => {
       <Drawer.Screen
         name="homeScreenStack"
         options={{drawerLabel: 'Home Screen'}}
-        component={homeScreenStack}
+        component={HomeScreenStack}
       />
       <Drawer.Screen
         name="settingScreenStack"
@@ -121,4 +82,4 @@ const DrawerNavigatorRoutes = (props) => {
 
 
 
-export default DrawerNavigatorRoutes;
+export default HomeNavigatorRoutes;

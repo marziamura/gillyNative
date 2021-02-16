@@ -4,6 +4,8 @@
 // Import React and Component
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
+import actionSetLoginData from '../../state/actionSetLoginData';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   TextInput,
@@ -16,24 +18,15 @@ import {
   ScrollView,
 } from 'react-native';
 
-import Loader from './Components/Loader';
 
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [userAge, setUserAge] = useState('');
-  const [userAddress, setUserAddress] = useState('');
+
   const [userPassword, setUserPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [errortext, setErrorText] = useState('');
-  const [
-    isRegistraionSuccess,
-    setIsRegistraionSuccess
-  ] = useState(false);
 
   const emailInputRef = createRef();
-  const ageInputRef = createRef();
-  const addressInputRef = createRef();
   const passwordInputRef = createRef();
 
   const handleSubmitButton = () => {
@@ -51,28 +44,20 @@ const RegisterScreen = (props) => {
             alert('Please fill Password');
             return;
           }
-          //Show Loader
-          setLoading(true);
+ 
           var dataToSend = {
             username: userEmail,
             email: userEmail,
-            age: userAge,
-            address: userAddress,
             password: userPassword,
-            attributes: {
-              name: userName,
-              'custom:partnerID': "none",
-              'custom:primary': '1',
-              'custom:journey': 'Solo'
-          }
+            attributes:{
+              name: userName
+            }
           };
         
-
           Auth.signUp(dataToSend).then((user)=>{
-            console.log(user);  
-            setLoading(false);
-            setIsRegistraionSuccess(true);
-            
+            console.log("sign up success ", user);  
+            props.dispatch(actionSetLoginData(null, [dataToSend]));
+            props.navigation.replace('ConfirmEmail');
           }).catch ((error)=> {
             setErrorText(error.message);
             console.log('error signing up:', error.message);
@@ -81,7 +66,6 @@ const RegisterScreen = (props) => {
     }
 
   function getView(){
-    if(!isRegistraionSuccess){
       return  <ScrollView
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={{
@@ -90,7 +74,7 @@ const RegisterScreen = (props) => {
       }}>
       <View style={{alignItems: 'center'}}>
         <Image
-          source={require('../Image/gilly_logo.png')}
+          source={require('../../Image/gilly_logo.png')}
           style={{
             width: '50%',
             height: 100,
@@ -151,39 +135,6 @@ const RegisterScreen = (props) => {
             blurOnSubmit={false}
           />
         </View>
-        <View style={styles.SectionStyle}>
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(UserAge) => setUserAge(UserAge)}
-            underlineColorAndroid="#f000"
-            placeholder="Enter Age"
-            placeholderTextColor="#8b9cb5"
-            keyboardType="numeric"
-            ref={ageInputRef}
-            returnKeyType="next"
-            onSubmitEditing={() =>
-              addressInputRef.current &&
-              addressInputRef.current.focus()
-            }
-            blurOnSubmit={false}
-          />
-        </View>
-        <View style={styles.SectionStyle}>
-          <TextInput
-            style={styles.inputStyle}
-            onChangeText={(UserAddress) =>
-              setUserAddress(UserAddress)
-            }
-            underlineColorAndroid="#f000"
-            placeholder="Enter Address"
-            placeholderTextColor="#8b9cb5"
-            autoCapitalize="sentences"
-            ref={addressInputRef}
-            returnKeyType="next"
-            onSubmitEditing={Keyboard.dismiss}
-            blurOnSubmit={false}
-          />
-        </View>
         {errortext != '' ? (
           <Text style={styles.errorTextStyle}>
             {errortext}
@@ -197,46 +148,17 @@ const RegisterScreen = (props) => {
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </ScrollView>
-    }else{
-      return (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#307ecc',
-            justifyContent: 'center',
-          }}>
-          <Image
-            source={require('../Image/gilly_logo.png')}
-            style={{
-              height: 150,
-              resizeMode: 'contain',
-              alignSelf: 'center'
-            }}
-          />
-          <Text style={styles.successTextStyle}>
-            Registration Successful
-          </Text>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            activeOpacity={0.5}
-            onPress={() => props.navigation.navigate('LoginScreen')}>
-            <Text style={styles.buttonTextStyle}>Login Now</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-
   }
   
   return (
-    <View style={{flex: 1, backgroundColor: '#307ecc'}} registrationSuccess={isRegistraionSuccess}>
-      <Loader loading={loading} />
+    <View style={{flex: 1, backgroundColor: '#307ecc'}} >
+  
       {getView()}
      
     </View>
   );
 };
-export default RegisterScreen;
+export default connect() (RegisterScreen);
 
 const styles = StyleSheet.create({
   SectionStyle: {
