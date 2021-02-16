@@ -28,8 +28,7 @@ const SplashScreen = ({navigation}) => {
 
   useEffect(() => {
       console.log("Splash Screen UseEffect");
-      setTimeout(() => {
-          setAnimating(false);
+   
           //Check if user_id is set or not
           //If not then send for Authentication
           //else send to Home Screen
@@ -66,10 +65,9 @@ const SplashScreen = ({navigation}) => {
               
         }).catch((error)=>{
           console.log("user not authenticated", error)
-          //navigation.replace('AboutGillyNavigationRoutes');
+        
         });
-    },5000)}
-  , []);
+    }, []);
 
   return (
     <ImageBackground source={require('../Image/background.png')} style={styles.backgroundImage}>
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
   //  backgroundColor: '#888888',
   },
   gilly:{
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -133,7 +131,7 @@ const styles = StyleSheet.create({
   text:{
    // color: '#FFFFFF',
     fontSize: 21,
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontWeight: "500",
     lineHeight: 28,
     textAlign: 'center',

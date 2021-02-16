@@ -14,10 +14,10 @@ import {
   ImageBackground
 } from 'react-native';
 
-
+console.log("Loading File RelationshipQuestion");
 
 const RelationshipQuestion = (props) => {
-
+  console.log("Loading RelationshipQuestion");
   const { t } = useTranslation("About4");
   const [disclaimer, setDisclaimerText] = React.useState("");
   const [pressedYes, setPressedYes] = React.useState(false);
@@ -27,9 +27,7 @@ const RelationshipQuestion = (props) => {
     <ImageBackground source={require('../../Image/background.png')} style={styles.backgroundImage}>
    <View style={styles.container}>
         <View style={styles.textcontainer}>
-        <Text style={styles.supertitle}>
-                {t("supertitle")}
-            </Text>
+   
             <Text style={styles.title}>
                 {t("title")}
             </Text>
@@ -37,17 +35,17 @@ const RelationshipQuestion = (props) => {
                 {t("text")}
             </Text>
         </View>
-        <View style={styles.buttonscontainer} pressed={pressedNo}>
+        <View style={styles.buttonscontainer}>
           <Pressable  style={({pressed}) => [
                 {
-                  backgroundColor: pressedYes ? '#d5d5d5' : '#F3F3F3',
+                  backgroundColor: pressedYes ? '#d5d5d5' : '#FFFF',
                 },
                 styles.whitebutton,
               ]} 
               onPress={() => {
                 setPressedNo(false)
                 setPressedYes(true)
-                props.navigation.replace(props.next);
+                setDisclaimerText("");
               }}
               >
                 <Text style={styles.buttontext}> 
@@ -156,34 +154,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '90%',
     left:   10,
-    top: "15%",
-    fontFamily: 'Montserrat',
+    top: "10%",
+    fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
-    lineHeight: 30,
+    lineHeight: 40,
     marginTop: 10,
    
   },
 
-  supertitle: {
-    position: 'absolute',
-    width: '80%',
-    left:   10,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: "500",
-    fontSize: 17,
-    lineHeight: 45,
-    
-  },
 
   text: {
     position: 'absolute',
     width: '90%',
     left:   10,
     top: "50%",
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "500",
     fontSize: 18,
@@ -195,8 +182,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '90%',
     left:   10,
-    top: '0',
-    fontFamily: 'Montserrat',
+    top: 0,
+    fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "500",
     fontSize: 18,
