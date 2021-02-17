@@ -3,8 +3,60 @@ import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
+import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
 
+function getJourneyInfo(user){
+  
+  console.log("getting journey Info... ", user.journey)
+  return API.graphql(graphqlOperation(queries.listFormSubmissions, {
+    filter:{
+      userId: {
+        eq: user.id,
+      },
+      journey:{
+        eq: user.journey
+      }
+    },
+    sort: {
+      field : "updatedAt",
+      order: "DESC"
+   }
+  })).then((data)=>{
+    console.log("submissions ", data)
+    var submissions = data.data.listFormSubmissions.items;
+    user.todaysTreatDone = false;
+    if(submissions.length === 0)
+    {
+      user.todaysTreatDone = true;
+      user.lastTreatInJourney = 0;
+      store.dispatch(actionUpdateJourneyStatus(user));
+      return;
+    }
+    console.log("before sorting ", submissions)
+    submissions.sort((a, b)=>{
+       console.log("sorting ",Date.parse(a.updatedAt) ,Date.parse(b.updatedAt), Date.parse(a.updatedAt) - Date.parse(b.updatedAt) )
+       return  Date.parse(a.updatedAt) - Date.parse(b.updatedAt)
+    })
+  
+    var lastSubmittedDate = new Date(submissions[submissions.length -1].updatedAt).toLocaleDateString();
 
+    var today = new Date();
+    var cDay = submissions.length;
+    console.log('Submissions and current Day', submissions.length, cDay,  lastSubmittedDate, today.toLocaleDateString());
+
+    if(lastSubmittedDate === today.toLocaleDateString() && partnerDay <= cDay){
+      user.todaysTreatDone = true;
+    }
+    console.log('Submissions and adjusted current day', submissions.length, cDay);
+    user.lastTreatInJourney = cDay;
+    store.dispatch(actionUpdateJourneyStatus(user));
+    return user;
+    
+  }).catch((e)=>{
+    console.log('partner has no submissions ', e);
+    return user;
+  })
+}
 
 function getUserInfo () { 
     const store = createStore();
@@ -25,8 +77,8 @@ function getUserInfo () {
       if(!user){
         return null;
       }
-      if(user.journey === 'Solo' && user.partnerID !== 'none'){ // I am Partner A
-        if (currentUser.journey !== "Solo"){
+      if(user.journey === 'Solo' && user.partnerID && user.partnerID !== 'none'){ // I am Partner A
+        if (currentUser.journey && currentUser.journey !== "Solo"){
           user.journey =  currentUser.journey + '-A';
         }else{
           user.journey = 'Partnered-A';
@@ -37,7 +89,9 @@ function getUserInfo () {
       const userInfo = createStore().userInfo;
       user.registered = true;
       store.dispatch(actionSetUserInfo(userInfo, [user]));
-      return user;
+
+      return getJourneyInfo(user);
+       
     }).catch((error)=>{
       console.log(error);
       return error;

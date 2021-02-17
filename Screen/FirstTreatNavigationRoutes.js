@@ -6,7 +6,7 @@ import React from 'react';
 
 // Import Navigators from React Navigation
 import {createStackNavigator} from '@react-navigation/stack';
-import FirstTreat1 from './FirstTreat/FirstTreat1'
+import MessageInABottle from './FirstTreat/MessageInABottle'
 
 
 const Stack = createStackNavigator();
@@ -18,13 +18,13 @@ const FirstTreatNavigationRoutes = (props) => {
   console.log("FirstTreatNavigationRoutes")
   return (
     <Stack.Navigator
-      initialRouteName="FirstTreat1"
+      initialRouteName="MessageInABottle"
     >
       <Stack.Screen
-        name="FirstTreat1"
-        component={FirstTreat1}
+        name="MessageInABottle"
+        component={MessageInABottle}
         options={{
-          title: 'FirstTreat1', //Set Header Title
+          title: 'You first gilly treat', //Set Header Title
         }}
       />
     </Stack.Navigator>

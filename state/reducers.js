@@ -4,6 +4,7 @@ import {USER_LOGOUT} from './messages'
 import {SET_USER_INFO} from './messages'
 import {USER_LOGIN_DATA} from './messages'
 import {USER_REGISTERED} from './messages'
+import {UPDATE_JOURNEY_STATUS}  from './messages'
 
 const user = [{
   id: "xxx",
@@ -17,6 +18,8 @@ const user = [{
   password: "xxx",
   primary: true,
   registered: false,
+  todaysTreatDone: false,
+  lastTreatInJourney: 0
 }]
 
 const userInfo = (state = user, action) => {
@@ -27,7 +30,6 @@ const userInfo = (state = user, action) => {
           state[0].partnerID = action.payload.newItem[0].partnerID;
           state[0].userName = action.payload.newItem[0].name;
           state[0].journey = action.payload.newItem[0].journey;
-          state[0].journey = action.payload.newItem[0].email
           console.log("reducer USER_LOGIN ", ...state);
           return [...state];
         case USER_LOGOUT:
@@ -58,6 +60,10 @@ const userInfo = (state = user, action) => {
           return [
             ...state,
           ]
+        case UPDATE_JOURNEY_STATUS:  
+          state[0].registered = true;
+          state[0].lastTreatInJourney = action.payload.newItem[0].currentDayInJourney;
+          state[0].todaysTreatDone = action.payload.newItem[0].todaysTreatDone;
         default:
           return state
       }

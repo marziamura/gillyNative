@@ -28,11 +28,12 @@ const SplashScreen = ({navigation}) => {
 
   useEffect(() => {
       console.log("Splash Screen UseEffect");
-   
+      navigation.replace('FirstTreatNavigationRoutes');
+
           //Check if user_id is set or not
           //If not then send for Authentication
           //else send to Home Screen
-          console.log("Splash Screen UseEffect");
+   /*       console.log("Splash Screen UseEffect");
           Auth.currentAuthenticatedUser().then((cognitoUser)=>{
             console.log(" Splash Screen got user info ", cognitoUser);
             const currentUser = [{
@@ -53,8 +54,13 @@ const SplashScreen = ({navigation}) => {
                   console.log("got user info ", user);
                   navigation.replace('OnboardingNavigationRoutes');
                 }else{
-                  console.log("got user info ", user);
-                 navigation.replace('HomeNavigationRoutes');
+                  if(user.lastTreatInJourney === 0){
+                    console.log("No treats yet ");
+                    navigation.replace('FirstTreatNavigationRoutes');
+                  }else{
+                    console.log("some treats... ", user.lastTreatInJourney);
+                    navigation.replace('HomeNavigationRoutes');
+                  }
                 }
               }
               let promiseReject = (error)=>{
@@ -66,7 +72,7 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
         
-        });
+        });*/
     }, []);
 
   return (
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     textAlign: 'center',
     position: 'absolute',
-    width: 327,
+    width: '100%',
     height: 40,
   
     top: 206,

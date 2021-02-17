@@ -2,9 +2,10 @@
 // https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
-import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import React from 'react';
+import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Button from '../Components/Button'
 
 
 import {
@@ -23,14 +24,16 @@ const AboutBase = (props) => {
   return (
     <ImageBackground source={require('../../Image/background.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
- 
-      <Text style={styles.title}>
-           {t("title")}
-      </Text>
-      <Text style={styles.text}>
-           {t("text")}
-      </Text>
+    <View style={styles.textcontainer}>
+        <Text style={styles.title}>
+            {t("title")}
+        </Text>
+        <Text style={styles.text}>
+            {t("text")}
+        </Text>
+      </View>
       <View style={styles.button}>
+        
           <Pressable
            onPress={() => {
             props.navigation.replace(props.next);
@@ -53,7 +56,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+  },
+  textcontainer:{
+    width: '100%', height: '60%',
   },
   backgroundImage: {
     flex: 1,
@@ -61,27 +67,23 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   buttontext:{
-    
     fontSize: 21,
     color: '#383838'
   },
   button:{
-   display: 'flex',
-    flexDirection: 'column',
-    position: "absolute",
-    width: 327,
-    height: 40,
-    top: "80%",
     backgroundColor: "#FFF",
-    borderRadius: 16,
     alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
+    borderRadius: 16,
+    width: '80%',
+    height: 40,
   },
   title: {
     position: 'absolute',
-    width: 327,
+    width: '100%',
     height: 40,
-    top: "40%",
+    top: "20%",
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
@@ -90,9 +92,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#383838'
   },
+
   text: {
     position: 'absolute',
-    width: 327,
+    width: '100%',
     height: 84,
     top: "60%",
     fontFamily: 'Roboto',

@@ -23,8 +23,10 @@ i18n
           FirstTreat: {
             title: 'Your first treat',
             introduction: 'Message in a bottle',
-            text: "{{name}}, did you know that studies show that couples who share positive memories have happier, more resilient relationships?\
-            No doubt, these current times have been a stressful time for many.",
+            text1: "{{name}}, did you know that studies show that couples who share positive memories have happier, more resilient relationships?",
+            text2: "No doubt, these current times have been a stressful time for many.",
+            text3: "Have a look — what is one positive memory that you will have of your partner from these pandemic times so far?",   
+            button: "Write my memory",
           },
           Splash: {
             splashText: "Intimacy and sexual wellness for the very busy & modern couple",

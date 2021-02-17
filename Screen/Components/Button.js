@@ -13,8 +13,8 @@ function Button(props){
     return (
      
            <Pressable style={styles.button} onPress={props.press}>
-            <Text style={styles.buttontext}> 
-                {props.text}
+            <Text style={{...props.style, ...styles.buttontext}}> 
+                {props.title}
             </Text>
           </Pressable> 
   
@@ -25,14 +25,14 @@ function Button(props){
 const styles = StyleSheet.create({
     buttontext:{
         fontSize: 21,
-        color: '#383838'
+        alignSelf: 'center',
+        justifyContent:'center'
     },
     button:{
-         backgroundColor: "#FFF",
+         backgroundColor: "white",
          alignItems: 'center',
          borderWidth: 1,
          borderRadius: 16,
-         width: '80%',
          height: 40,
     }
 })
