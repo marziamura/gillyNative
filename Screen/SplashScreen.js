@@ -61,7 +61,7 @@ const SplashScreen = ({navigation}) => {
                 console.log("error", error)
               }
               
-        //     getUserInfo().then(promiseResolve).catch(promiseReject);
+            getUserInfo().then(promiseResolve).catch(promiseReject);
               
         }).catch((error)=>{
           console.log("user not authenticated", error)
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 327,
     height: 40,
-    left: 24,
+  
     top: 206,
    // color: '#FFFFFF'
   },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 327,
     height: 84,
-    left: 23,
+
     top: 372,
   },
   buttontext:{
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 327,
     height: 60,
-    left: 24,
+
     top: "80%",
     backgroundColor: "#FFF",
     borderRadius: 16

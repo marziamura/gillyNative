@@ -66,7 +66,7 @@ const LoginScreen = ({navigation,dispatch}) => {
             navigation.replace('OnboardingNavigationRoutes');
           }else{
             console.log("got user info ", user);
-            navigation.replace('DrawerNavigationRoutes');
+            navigation.replace('HomeNavigationRoutes');
           }
         }
         let promiseReject = (error)=>{
@@ -208,13 +208,13 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: '#383838',
     paddingVertical: 10,
     fontSize: 16,
   },
   inputStyle: {
     flex: 1,
-    color: 'white',
+    color: '#383838',
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     borderColor: '#dadae8',
   },
   registerTextStyle: {
-    color: '#FFFFFF',
+    color: '#383838',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,

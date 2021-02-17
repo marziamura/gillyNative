@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   buttontext:{
     color: '#000000',
     fontSize: 21,
-    paddingLeft: 10
+    alignSelf: 'center',
   },
   whitebutton:{
     display: 'flex',
@@ -137,17 +137,13 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   button:{
-     display: 'flex',
-     flexDirection: 'column',
-     alignItems: 'center',
-     padding: 16,
      position: "absolute",
      width: '80%',
-     height: 60,
-     left: 10,
+     height: 40,
      top: "50%",
      backgroundColor: "#FFF",
-     borderRadius: 16
+     borderRadius: 16,
+     borderWidth: 1,
   },
 
   title: {

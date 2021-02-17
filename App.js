@@ -15,15 +15,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // Import Screens
 import SplashScreen from './Screen/SplashScreen';
-import LoginScreen from './Screen/LoginScreen';
-import RegisterScreen from './Screen/RegisterScreen';
-import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
+import LoginScreen from './Screen/Auth/LoginScreen';
+import RegisterScreen from './Screen/Auth/RegisterScreen';
+import ConfirmEmail from './Screen/Auth/ConfirmEmail';
+import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
+import FirstTreatNavigationRoutes from './Screen/FirstTreatNavigationRoutes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux'
 
 import createStore from './state/store';
 import OnboardingNavigationRoutes from './Screen/OnboardingNavigationRoutes';
-
+import AboutGillyNavigationRoutes from './Screen/AboutGillyNavigationRoutes';
+import './i18n';
 
 Amplify.configure(config)
 
@@ -43,6 +46,20 @@ const Auth = () => {
         component={RegisterScreen}
         options={{
           title: 'Register', //Set Header Title
+          headerStyle: {
+            backgroundColor: '#307ecc', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+       <Stack.Screen
+        name="ConfirmEmail"
+        component={ConfirmEmail}
+        options={{
+          title: 'Confirm Email', //Set Header Title
           headerStyle: {
             backgroundColor: '#307ecc', //Set Header color
           },
@@ -81,14 +98,26 @@ const App = () => {
         />
         {/* Navigation Drawer as a landing page */}
         <Stack.Screen
-          name="DrawerNavigationRoutes"
-          component={DrawerNavigationRoutes}
+          name="HomeNavigationRoutes"
+          component={HomeNavigationRoutes}
           // Hiding header for Navigation Drawer
           options={{headerShown: false}}
         />
         <Stack.Screen
          name="OnboardingNavigationRoutes"
          component={OnboardingNavigationRoutes}
+         // Hiding header for Navigation Drawer
+         options={{headerShown: false}}
+        />
+         <Stack.Screen
+         name="FirstTreatNavigationRoutes"
+         component={FirstTreatNavigationRoutes}
+         // Hiding header for Navigation Drawer
+         options={{headerShown: false}}
+        />
+        <Stack.Screen
+         name="AboutGillyNavigationRoutes"
+         component={AboutGillyNavigationRoutes}
          // Hiding header for Navigation Drawer
          options={{headerShown: false}}
         />

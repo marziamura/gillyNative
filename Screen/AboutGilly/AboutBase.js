@@ -61,46 +61,46 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   buttontext:{
-    color: '#000000',
+    
     fontSize: 21,
+    color: '#383838'
   },
   button:{
    display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-
     position: "absolute",
     width: 327,
     height: 40,
-     
     top: "80%",
     backgroundColor: "#FFF",
-    borderRadius: 16
+    borderRadius: 16,
+    alignItems: 'center',
+    borderWidth: 1,
   },
   title: {
     position: 'absolute',
     width: 327,
     height: 40,
-    left:   24,
     top: "40%",
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
     lineHeight: 40,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#383838'
   },
   text: {
     position: 'absolute',
     width: 327,
     height: 84,
-    left:   24,
     top: "60%",
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "500",
     fontSize: 21,
     lineHeight: 28,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#383838'
   }
 });
