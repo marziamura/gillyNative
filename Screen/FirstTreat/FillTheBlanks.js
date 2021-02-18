@@ -7,46 +7,80 @@ import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import Button from '../Components/Button'
+import Button from '../Components/Button';
+import actionUpdateMessage from '../../state/actionUpdateMessage';
+
 
 
 import {
-  ActivityIndicator,
   View,
   StyleSheet,
-  Image
+  TextInput
 } from 'react-native';
 
 
 
-const MessageInABottle = ({navigation}) => {
-  const { t } = useTranslation('FirstTreat');
-  const userInfo = createStore().getState().userInfo[0];
+const FillTheBlanks = ({navigation}) => {
+  const { t } = useTranslation('Memory');
+  const store = createStore();
+  const userInfo = store.getState().userInfo[0];
   console.log("userInfo ", userInfo);
-  function OnPress() {
-    navigation.replace("FillTheBlanks");
+  const [name, setName] = React.useState("");
+  const [text, setText] = React.useState("");
+  const [nameOnText, setNameOnText] = React.useState("_____");
+  const [answer, setAnswer] = React.useState("_____");
+
+
+  function OnChangeName(text){
+    setName(text);
+    setNameOnText(text);
   }
+  
+  function OnChangeText(text){
+    setText(text);
+    setAnswer(text);
+  }
+  
+  function OnPress(){
+    var data= {
+      partnerName: name,
+      answer: answer
+    }
+    store.dispatch(actionUpdateMessage([data]));
+    navigation.replace("ShareMessage");
+  }
+
   return (
     <Background>
       <View style={styles.container}>
 
         <View style={styles.textcontainer}>
           <Text style={styles.title}>
-          {t("introduction")}
+          {t("title")}
           </Text>
-          <View style={{height: '10%'}}/>
+      
           <Text style={styles.textTop}>
-            {t("text1", {name:userInfo.userName})}
-          </Text>
-          <Text style={styles.text}>
-            {t("text2")}
-          </Text>
-        </View>
-        <View style={styles.bottom}>
-          <Text style={styles.textBottom}>
-            {t("text3")}
+            {t("text1", {who: nameOnText, what: answer})}
           </Text>
 
+        </View>
+        <View style={{width: '90%', height: '40%',}}>
+          <TextInput
+             style={styles.textInput}
+             onChangeText={OnChangeName}
+             placeholder={t("name")}
+             value={name}
+          />
+           <TextInput
+             multiline
+             numberOfLines={4}
+             style={styles.textInputBottom}
+             onChangeText={OnChangeText}
+             placeholder={t("suggestion")}
+             value={text}
+          />
+        </View>
+        <View style={styles.bottom}>
           <Button
             press={OnPress}
             title={t('button')}
@@ -60,7 +94,7 @@ const MessageInABottle = ({navigation}) => {
   );
 };
 
-export default MessageInABottle;
+export default FillTheBlanks;
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   textcontainer:{
-    width: '90%', height: '60%',
+    width: '90%', height: '40%',
   },
   title: {
     position: 'absolute',
@@ -101,30 +135,31 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    paddingTop: 40,
+    marginTop: 60,
     fontWeight: "500",
   },
   
-  textBottom: {
-    width: '100%',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontSize: 21,
-    lineHeight: 28,
-    textAlign: 'left',
-    color: '#383838',
-    paddingBottom: 40,
-    fontWeight: "800",
-  },
 
   bottom:{
-    height: '40%',
-    width: '90%'
+    height: '20%',
+    width: '90%',
   },
   button:{
     color:"#841584", 
     fontSize: 40,
-    
+  },
+  textInput:{
+    borderWidth:1,
+    borderRadius: 10,
+    width: '100%',
+    height: '20%'
+  },
+  textInputBottom:{
+    borderWidth:1,
+    height: '100%',
+    borderRadius: 10,
+    marginTop:20,
+    marginBottom: 20,
   }
  
 

@@ -11,19 +11,16 @@ import Button from '../Components/Button'
 
 
 import {
-  ActivityIndicator,
   View,
-  StyleSheet,
-  Image
+  StyleSheet
 } from 'react-native';
 
 
 
-const MessageInABottle = ({navigation}) => {
-  const { t } = useTranslation('FirstTreat');
-  const [animating, setAnimating] = useState(true);
-  const userInfo = createStore().getState().userInfo[0];
-  console.log("userInfo ", userInfo);
+const ShareMessage = ({navigation}) => {
+  const { t } = useTranslation('ShareMessage');
+  const message = createStore().getState().messageInABottle[0];
+  console.log("message ", message);
 
   return (
     <Background>
@@ -31,24 +28,20 @@ const MessageInABottle = ({navigation}) => {
 
         <View style={styles.textcontainer}>
           <Text style={styles.title}>
-          {t("introduction")}
+          {t("title")}
           </Text>
           <View style={{height: '10%'}}/>
           <Text style={styles.textTop}>
-            {t("text1", {name:userInfo.userName})}
+            {t("text1")}
           </Text>
           <Text style={styles.text}>
-            {t("text2")}
+            {t("text2", {who:message.partnerName, what:message.message})}
           </Text>
         </View>
         <View style={styles.bottom}>
-          <Text style={styles.textBottom}>
-            {t("text3")}
-          </Text>
-
           <Button
             press={() => navigation.replace("HomeNavigationRoutes")}
-            title={t('button')}
+            title={t('button', {who: message.partnerName})}
             style={styles.button}
             accessibilityLabel="Home"
           />
@@ -59,7 +52,7 @@ const MessageInABottle = ({navigation}) => {
   );
 };
 
-export default MessageInABottle;
+export default ShareMessage;
 
 const styles = StyleSheet.create({
   container: {
@@ -85,11 +78,14 @@ const styles = StyleSheet.create({
   text: {
     width: '100%',
     fontFamily: 'Roboto',
-    fontStyle: 'normal',
+    fontStyle: 'italic',
+    fontWeight: "600",
     fontSize: 21,
     lineHeight: 28,
     textAlign: 'left',
-    color: '#383838'
+    color: '#383838',
+    marginTop: 20,
+
   },
 
   textTop: {

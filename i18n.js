@@ -21,8 +21,7 @@ i18n
     resources: {
         en: {
           FirstTreat: {
-            title: 'Your first treat',
-            introduction: 'Message in a bottle',
+            title: 'Message in a bottle',
             text1: "{{name}}, did you know that studies show that couples who share positive memories have happier, more resilient relationships?",
             text2: "No doubt, these current times have been a stressful time for many.",
             text3: "Have a look — what is one positive memory that you will have of your partner from these pandemic times so far?",   
@@ -54,7 +53,22 @@ i18n
             text: "Don’t worry, this information is not saved until you've finished creating an account",
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still learn a lot in a solo journey",
             button: "Next"
+          },
+          Memory:{
+            title: "Fill in the blanks",
+            text1: "“{{who}}, years from now when we look back on this time, I will always remember how you {{what}}. Thank you.“",
+            text2: "Thank you", 
+            button: "Looks good, what's next?",
+            name: "You partner's name",
+            suggestion: "E.g., took over meal planning and cooking so that I wasn't overwhelmed with trying to balance the kids and work. "
+          },
+          ShareMessage:{
+            title: "Share your message",
+            text1: "This is how the magic happens — small, doable, regular acts of connection. And there is lots more to come!",
+            text2 : "{{who}}, years from now when we look back on this time, I will always remember how you {{what}}. Thank you.",
+            button: "Send to {{who}}"
           }
+
         },
        
     },

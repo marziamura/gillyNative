@@ -4,6 +4,7 @@ import {USER_LOGOUT} from './messages'
 import {SET_USER_INFO} from './messages'
 import {USER_LOGIN_DATA} from './messages'
 import {USER_REGISTERED} from './messages'
+import {UPDATE_MESSAGE}  from './messages'
 import {UPDATE_JOURNEY_STATUS}  from './messages'
 
 const user = [{
@@ -20,6 +21,11 @@ const user = [{
   registered: false,
   todaysTreatDone: false,
   lastTreatInJourney: 0
+}]
+
+const message =[{
+  partnerName: "Your partner",
+  message: ""
 }]
 
 const userInfo = (state = user, action) => {
@@ -69,7 +75,18 @@ const userInfo = (state = user, action) => {
       }
 }
 
+const messageInABottle = (state = message, action) => {
+  console.log("call to reducer messageInABottle", action.payload);
+  switch (action.type) {
+    case UPDATE_MESSAGE:
+      state[0].partnerName = action.payload.newItem[0].partnerName;
+      state[0].message = action.payload.newItem[0].answer;
+      return [...state,];
+    default:
+      return  state; 
+  }
+}
 
-const rootReducer = combineReducers({userInfo});
+const rootReducer = combineReducers({userInfo, messageInABottle});
 
 export default rootReducer;
