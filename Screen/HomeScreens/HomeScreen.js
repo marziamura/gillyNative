@@ -16,16 +16,26 @@ const HomeScreen = ({navigation}) => {
   function press(){
     console.log("OnPress");
     navigation.replace("TodaysTreat")
+  };
+
+  const button = {
+    color:"#841584", 
+    fontSize: 20,
+  };
+  const pressable ={
+    width : '80%',
   }
+
   return (
     <Background>
     <SafeAreaView style={{flex: 1}}>
-    <View style={styles.container}>
+    <View style={styles.containerView}>
         <View style={styles.buttonView}>
           <Button       
               press={press}
-              text="Daily Treat"
-              color="#841584"
+              title="Daily Treat"
+              styletext={button}
+              styleover={pressable}
               accessibilityLabel="Open your daily Treat"
             />
         </View> 
@@ -38,16 +48,16 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   
   buttonView:{
-       display: 'flex',
-       flexDirection: 'column',
-       alignItems: 'center',
-       justifyContent: 'center',
        width: '100%',
        height: "100%",
+       justifyContent: 'center',
+       alignItems: 'center',
   },
-  container: {
+  containerView: {
     flex: 1,
-    
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 })

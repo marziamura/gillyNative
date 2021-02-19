@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
+import Button from './Components/Button'
 
 
 import {
@@ -28,12 +29,12 @@ const SplashScreen = ({navigation}) => {
 
   useEffect(() => {
       console.log("Splash Screen UseEffect");
-      navigation.replace('FirstTreatNavigationRoutes');
+    //  navigation.replace('FirstTreatNavigationRoutes');
 
           //Check if user_id is set or not
           //If not then send for Authentication
           //else send to Home Screen
-   /*       console.log("Splash Screen UseEffect");
+          console.log("Splash Screen UseEffect");
           Auth.currentAuthenticatedUser().then((cognitoUser)=>{
             console.log(" Splash Screen got user info ", cognitoUser);
             const currentUser = [{
@@ -72,9 +73,18 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
         
-        });*/
+        });
     }, []);
-
+    const button = {
+      color:"#841584", 
+      fontSize: 20,
+      
+    };
+    const button2 = {
+      backgroundColor:"transparent", 
+      width: '100%',
+      borderWidth: 1
+    };
   return (
     <ImageBackground source={require('../Image/background.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
@@ -85,17 +95,17 @@ const SplashScreen = ({navigation}) => {
           {t("splashText")}
         </Text>
         <View style={styles.button}>
-          <Pressable
-           onPress={() => {
-            navigation.replace('AboutGillyNavigationRoutes');
-           }}
-          >
-            <Text style={styles.buttontext}> 
-            {t("button")}
-            </Text>
-          </Pressable> 
+          <Button 
+            press = { () => {
+              navigation.replace('AboutGillyNavigationRoutes');
+                  }}
+            title = {t("button")}
+            styletext={button}
+            styleover={button2}
+          />
         </View>
         <View style={styles.signIn}>
+        
         <Pressable
            onPress={() => {
             navigation.replace('Auth');
@@ -155,11 +165,8 @@ const styles = StyleSheet.create({
    display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 16,
     position: "absolute",
-    width: 327,
-    height: 60,
-
+    width: '80%',
     top: "80%",
     backgroundColor: "#FFF",
     borderRadius: 16
@@ -171,7 +178,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 327,
     height: 84,
-    top: '90%',
+    top: '85%',
   },
   backgroundImage: {
     flex: 1,

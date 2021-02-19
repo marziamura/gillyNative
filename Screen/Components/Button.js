@@ -9,11 +9,29 @@ import {
 } from 'react-native';
 
 function Button(props){
+ 
+    const styles = StyleSheet.create({
+        buttontext: {
+            fontSize: 21,
+            alignSelf: 'center',
+            justifyContent:'center',
+            ...props.styletext
+        },
+        button: {
+         
+            backgroundColor: "white",
+            alignItems: 'center',
+            borderWidth: 1,
+            borderRadius: 16,
+            height: 40,
+            ...props.styleover,
+       }
+    })
     
     return (
      
            <Pressable style={styles.button} onPress={props.press}>
-            <Text style={{...props.style, ...styles.buttontext}}> 
+            <Text style={styles.buttontext}> 
                 {props.title}
             </Text>
           </Pressable> 
@@ -22,19 +40,5 @@ function Button(props){
 
 }
 
-const styles = StyleSheet.create({
-    buttontext:{
-        fontSize: 21,
-        alignSelf: 'center',
-        justifyContent:'center'
-    },
-    button:{
-         backgroundColor: "white",
-         alignItems: 'center',
-         borderWidth: 1,
-         borderRadius: 16,
-         height: 40,
-    }
-})
 
 export default Button

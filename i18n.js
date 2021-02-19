@@ -66,7 +66,8 @@ i18n
             title: "Share your message",
             text1: "This is how the magic happens — small, doable, regular acts of connection. And there is lots more to come!",
             text2 : "{{who}}, years from now when we look back on this time, I will always remember how you {{what}}. Thank you.",
-            button: "Send to {{who}}"
+            button: "Send to {{who}}",
+            button2: "I don't want to send it to {{who}} now"
           }
 
         },

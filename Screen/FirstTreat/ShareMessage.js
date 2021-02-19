@@ -2,7 +2,7 @@
 // https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
-import React, {useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
@@ -12,8 +12,10 @@ import Button from '../Components/Button'
 
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  Share
 } from 'react-native';
+
 
 
 
@@ -22,6 +24,20 @@ const ShareMessage = ({navigation}) => {
   const message = createStore().getState().messageInABottle[0];
   console.log("message ", message);
 
+  const OnShare = async () => {
+   
+  }
+
+  const button = {
+    color:"#841584", 
+    fontSize: 20,
+    
+  };
+  const button2 = {
+    backgroundColor:"transparent", 
+    borderWidth: 0,
+    marginTop: 10,
+  };
   return (
     <Background>
       <View style={styles.container}>
@@ -35,14 +51,21 @@ const ShareMessage = ({navigation}) => {
             {t("text1")}
           </Text>
           <Text style={styles.text}>
-            {t("text2", {who:message.partnerName, what:message.message})}
+            {message.message}
           </Text>
         </View>
         <View style={styles.bottom}>
           <Button
-            press={() => navigation.replace("HomeNavigationRoutes")}
+            press={OnShare}
             title={t('button', {who: message.partnerName})}
-            style={styles.button}
+            styletext={button}
+            accessibilityLabel="Home"
+          />
+          <Button
+            press={()=> navigation.replace("HomeNavigationRoutes")}
+            title={t('button2', {who: message.partnerName})}
+            styletext={button}
+            styleover={button2}
             accessibilityLabel="Home"
           />
         </View>
@@ -115,12 +138,6 @@ const styles = StyleSheet.create({
   bottom:{
     height: '40%',
     width: '90%'
-  },
-  button:{
-    color:"#841584", 
-    fontSize: 40,
-    
   }
- 
 
 });

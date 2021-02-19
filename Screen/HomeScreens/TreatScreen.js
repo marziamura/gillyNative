@@ -73,11 +73,10 @@ const TreatScreen = () => {
   
   return (
     <React.Fragment>
-     
-      <Text>
+     { window.location && <Text>
           {typeformLink}
       </Text>
-     
+     }
         <WebView   source={{ uri: typeformLink }} 
         style={styles.html}/>    
      

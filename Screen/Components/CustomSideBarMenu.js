@@ -20,11 +20,11 @@ const CustomSidebarMenu = (props) => {
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
           <Text style={{fontSize: 25, color: '#307ecc'}}>
-            {'About React'.charAt(0)}
+            {'Gilly Menu'.charAt(0)}
           </Text>
         </View>
         <Text style={stylesSidebar.profileHeaderText}>
-          AboutReact
+          Gilly Menu
         </Text>
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
@@ -33,7 +33,7 @@ const CustomSidebarMenu = (props) => {
         <DrawerItemList {...props} />
         <DrawerItem
           label={({color}) => 
-            <Text style={{color: '#d8d8d8'}}>
+            <Text style={{color: '#1DE7C0'}}>
               Logout
             </Text>
           }

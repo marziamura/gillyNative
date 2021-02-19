@@ -26,6 +26,13 @@ const MessageInABottle = ({navigation}) => {
   function OnPress() {
     navigation.replace("FillTheBlanks");
   }
+
+  const button = {
+    color:"#841584", 
+    fontSize: 20,
+    
+  };
+
   return (
     <Background>
       <View style={styles.container}>
@@ -50,7 +57,7 @@ const MessageInABottle = ({navigation}) => {
           <Button
             press={OnPress}
             title={t('button')}
-            style={styles.button}
+            styletext={button}
             accessibilityLabel="Home"
           />
         </View>
@@ -120,12 +127,7 @@ const styles = StyleSheet.create({
   bottom:{
     height: '40%',
     width: '90%'
-  },
-  button:{
-    color:"#841584", 
-    fontSize: 40,
-    
   }
- 
+  
 
 });

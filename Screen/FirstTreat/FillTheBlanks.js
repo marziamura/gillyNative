@@ -11,7 +11,6 @@ import Button from '../Components/Button';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
 
 
-
 import {
   View,
   StyleSheet,
@@ -44,52 +43,57 @@ const FillTheBlanks = ({navigation}) => {
   function OnPress(){
     var data= {
       partnerName: name,
-      answer: answer
+      answer: t("text1", {who: nameOnText, what: answer})
     }
     store.dispatch(actionUpdateMessage([data]));
     navigation.replace("ShareMessage");
   }
-
+  const button = {
+    color:"#841584", 
+    fontSize: 20,
+    
+  };
+  
   return (
     <Background>
-      <View style={styles.container}>
+          <View style={styles.containerview}>
 
-        <View style={styles.textcontainer}>
-          <Text style={styles.title}>
-          {t("title")}
-          </Text>
-      
-          <Text style={styles.textTop}>
-            {t("text1", {who: nameOnText, what: answer})}
-          </Text>
-
-        </View>
-        <View style={{width: '90%', height: '40%',}}>
-          <TextInput
-             style={styles.textInput}
-             onChangeText={OnChangeName}
-             placeholder={t("name")}
-             value={name}
-          />
-           <TextInput
-             multiline
-             numberOfLines={4}
-             style={styles.textInputBottom}
-             onChangeText={OnChangeText}
-             placeholder={t("suggestion")}
-             value={text}
-          />
-        </View>
-        <View style={styles.bottom}>
-          <Button
-            press={OnPress}
-            title={t('button')}
-            style={styles.button}
-            accessibilityLabel="Home"
-          />
-        </View>
+            <View style={styles.textcontainerview}>
+              <Text style={styles.title}>
+              {t("title")}
+              </Text>
           
-      </View>
+              <Text style={styles.textTop}>
+                {t("text1", {who: nameOnText, what: answer})}
+              </Text>
+
+            </View>
+            <View style={styles.textinputview}>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={OnChangeName}
+                placeholder={t("name")}
+                value={name}
+              />
+              <TextInput
+                multiline
+                numberOfLines={4}
+                style={styles.textInputBottom}
+                onChangeText={OnChangeText}
+                placeholder={t("suggestion")}
+                value={text}
+              />
+            </View>
+            <View style={styles.bottomview}>
+              <Button
+                press={OnPress}
+                title={t('button')}
+                styletext={button}
+                accessibilityLabel="Home"
+              />
+            </View>
+              
+          </View>
     </Background>
   );
 };
@@ -97,18 +101,29 @@ const FillTheBlanks = ({navigation}) => {
 export default FillTheBlanks;
 
 const styles = StyleSheet.create({
-  container: {
+  containerview: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  textcontainer:{
-    width: '90%', height: '40%',
+  textcontainerview:{
+    height: '40%',
+    width: '90%', 
   },
+  textinputview:{
+    height: '50%',
+    width: '90%',
+    
+  },
+
+  bottomview:{
+    height: '10%',
+    width: '90%',
+  },
+
   title: {
     position: 'absolute',
     width: '100%',
-    
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
@@ -116,17 +131,9 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     color: '#383838',
     paddingBottom: 100,
+    marginTop: 20,
   },
-  text: {
-    width: '100%',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontSize: 21,
-    lineHeight: 28,
-    textAlign: 'left',
-    color: '#383838'
-  },
-
+ 
   textTop: {
     width: '100%',
     fontFamily: 'Roboto',
@@ -135,18 +142,8 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    marginTop: 60,
+    marginTop: 80,
     fontWeight: "500",
-  },
-  
-
-  bottom:{
-    height: '20%',
-    width: '90%',
-  },
-  button:{
-    color:"#841584", 
-    fontSize: 40,
   },
   textInput:{
     borderWidth:1,
@@ -156,7 +153,7 @@ const styles = StyleSheet.create({
   },
   textInputBottom:{
     borderWidth:1,
-    height: '100%',
+    height: '60%',
     borderRadius: 10,
     marginTop:20,
     marginBottom: 20,
