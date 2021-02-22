@@ -3,11 +3,11 @@
 
 // Import React and Component
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import {Tex} from 'react-native';
+import Button from '../Components/Button'
 
 
 import {
-  ActivityIndicator,
   View,
   StyleSheet,
   Image
@@ -22,18 +22,12 @@ const Onboarding1 = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../Image/genders.png')}
-        style={{width: '90%', resizeMode: 'contain', margin: 30}}
-      />
-      <Text>
-           Start onboarding now
-      </Text>
       <Button
-        onPress={() => navigation.replace("Onboarding2")}
+        press={() => navigation.replace("Onboarding2")}
         title="Next"
         color="#841584"
         accessibilityLabel="Next"
+
       />
     </View>
   );
@@ -46,6 +40,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#FFFF',
   }
 });

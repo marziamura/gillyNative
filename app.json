@@ -2,14 +2,10 @@
   "expo": {
     "name": "GillyNative",
     "slug": "GillyNative",
-    "version": "1.0.0",
+    "version": "0.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "icon": "./assets/gilly-icon.png",
+
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,16 +13,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.getgilly.gillyapp",
+      "buildNumber": "0.0.2"
     },
     "android": {
+      "package": "com.getgilly.gillyapp",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": ["CAMERA", "CAMERA_ROLL"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
+    
   }
 }

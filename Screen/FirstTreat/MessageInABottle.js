@@ -11,10 +11,8 @@ import Button from '../Components/Button'
 
 
 import {
-  ActivityIndicator,
   View,
   StyleSheet,
-  Image
 } from 'react-native';
 
 
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     
-    fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
   },
   text: {
     width: '100%',
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,
@@ -102,7 +100,7 @@ const styles = StyleSheet.create({
 
   textTop: {
     width: '100%',
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
   
   textBottom: {
     width: '100%',
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,

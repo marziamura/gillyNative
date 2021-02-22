@@ -76,7 +76,6 @@ const userInfo = (state = user, action) => {
 }
 
 const messageInABottle = (state = message, action) => {
-  console.log("call to reducer messageInABottle", action.payload);
   switch (action.type) {
     case UPDATE_MESSAGE:
       state[0].partnerName = action.payload.newItem[0].partnerName;

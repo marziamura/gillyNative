@@ -24,8 +24,19 @@ const ShareMessage = ({navigation}) => {
   const message = createStore().getState().messageInABottle[0];
   console.log("message ", message);
 
-  const OnShare = async () => {
-   
+  const OnShare =() => { 
+    Share.share({
+        message: message.message  + "\nShared with gilly, wwww.getgilly.com"
+      }).then((result) => {
+      
+      if (result.action === Share.sharedAction) {
+        navigation.replace("HomeNavigationRoutes");
+      } else if (result.action === Share.dismissedAction) {
+        
+      }
+    }).catch( (error) => {
+      console.log(error);
+    })
   }
 
   const button = {
@@ -90,7 +101,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -100,7 +111,7 @@ const styles = StyleSheet.create({
   },
   text: {
     width: '100%',
-    fontFamily: 'Roboto',
+ //   fontFamily: 'Roboto',
     fontStyle: 'italic',
     fontWeight: "600",
     fontSize: 21,
@@ -113,7 +124,7 @@ const styles = StyleSheet.create({
 
   textTop: {
     width: '100%',
-    fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,
@@ -125,7 +136,7 @@ const styles = StyleSheet.create({
   
   textBottom: {
     width: '100%',
-    fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,

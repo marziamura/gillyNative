@@ -13,16 +13,17 @@ const Stack = createStackNavigator();
 
 
 const HomeScreenStack = ({navigation}) => {
-  console.log("homeScreenStack")
+  console.log("homeScreenStack", navigation);
+
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen
-        name="HomeScreen"
+        name="Home"
         component={HomeScreen}
         options={{
           title: 'Home', //Set Header Title
           headerLeft: () => (
-            <NavigationDrawerHeader navigationProps={navigation} />
+             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
             backgroundColor: '#1DE7C0', //Set Header color
@@ -32,6 +33,7 @@ const HomeScreenStack = ({navigation}) => {
             fontWeight: 'bold', //Set Header text style
           },
         }}
+       
       />
        <Stack.Screen
         name="TodaysTreat"
@@ -39,7 +41,7 @@ const HomeScreenStack = ({navigation}) => {
         options={{
           title: 'Treat', //Set Header Title
           headerLeft: () => (
-            <NavigationDrawerHeader navigationProps={navigation} />
+             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
             backgroundColor: '#1DE7C0', //Set Header color

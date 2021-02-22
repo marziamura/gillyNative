@@ -26,6 +26,7 @@ const SplashScreen = ({navigation}) => {
   const { t } = useTranslation('Splash');
   console.log(" loading SplashScreen ");
   const [animating, setAnimating] = useState(true);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
       console.log("Splash Screen UseEffect");
@@ -72,6 +73,8 @@ const SplashScreen = ({navigation}) => {
               
         }).catch((error)=>{
           console.log("user not authenticated", error)
+          setShowButton(true);
+          navigation.replace('AboutGillyNavigationRoutes');
         
         });
     }, []);
@@ -94,28 +97,26 @@ const SplashScreen = ({navigation}) => {
         <Text style={styles.text}>
           {t("splashText")}
         </Text>
-        <View style={styles.button}>
-          <Button 
-            press = { () => {
-              navigation.replace('AboutGillyNavigationRoutes');
-                  }}
-            title = {t("button")}
-            styletext={button}
-            styleover={button2}
-          />
-        </View>
-        <View style={styles.signIn}>
-        
-        <Pressable
-           onPress={() => {
+       {  showButton &&   <View style={styles.button}>
+                          <Button 
+                              press = { () => {
+                                navigation.replace('AboutGillyNavigationRoutes');
+                                    }}
+                              title = {t("button")}
+                              styletext={button}
+                              styleover={button2}
+                            />
+                          </View>
+        }
+        {showButton && <View style={styles.signIn}>
+          <Button
+           press={() => {
             navigation.replace('Auth');
            }}
-          >
-          <Text >
-              {t("signIn")}
-          </Text> 
-        </Pressable>
+           title =  {t("signIn")}
+          />
         </View>
+        }
       </View>
     </ImageBackground>
   );
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   //  backgroundColor: '#888888',
   },
   gilly:{
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
   text:{
    // color: '#FFFFFF',
     fontSize: 21,
-    fontFamily: 'Roboto',
+  //  fontFamily: 'Roboto',
     fontWeight: "500",
     lineHeight: 28,
     textAlign: 'center',

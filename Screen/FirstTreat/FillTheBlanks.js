@@ -3,12 +3,13 @@
 
 // Import React and Component
 import React, {useState} from 'react';
-import {Text} from 'react-native';
+import {Text, KeyboardAvoidingView, TouchableWithoutFeedback , Keyboard, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
 import Button from '../Components/Button';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
+
 
 
 import {
@@ -56,8 +57,12 @@ const FillTheBlanks = ({navigation}) => {
   
   return (
     <Background>
-          <View style={styles.containerview}>
-
+       <KeyboardAvoidingView
+            style={styles.container}
+            //behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+    
+          <View>
             <View style={styles.textcontainerview}>
               <Text style={styles.title}>
               {t("title")}
@@ -92,8 +97,10 @@ const FillTheBlanks = ({navigation}) => {
                 accessibilityLabel="Home"
               />
             </View>
-              
-          </View>
+            </View>
+         
+       </KeyboardAvoidingView>
+      
     </Background>
   );
 };
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
   title: {
     position: 'absolute',
     width: '100%',
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
  
   textTop: {
     width: '100%',
-    fontFamily: 'Roboto',
+   // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,
@@ -149,7 +156,8 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderRadius: 10,
     width: '100%',
-    height: '20%'
+    height: '20%',
+    marginTop: 70,
   },
   textInputBottom:{
     borderWidth:1,

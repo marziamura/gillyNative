@@ -3,7 +3,7 @@
 
 // Import React and Component
 import React from 'react';
-import {View, Text, Alert, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import { Auth } from 'aws-amplify';
 
 import {
@@ -12,17 +12,18 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-import AsyncStorage from '@react-native-community/async-storage';
+
 
 const CustomSidebarMenu = (props) => {
   return (
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
-        <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{fontSize: 25, color: '#307ecc'}}>
-            {'Gilly Menu'.charAt(0)}
-          </Text>
-        </View>
+    
+        <Image
+          source={require("../../assets/gilly-icon.png")}
+          style={{width: 40, height: 40, marginLeft: 5}}
+        />
+    
         <Text style={stylesSidebar.profileHeaderText}>
           Gilly Menu
         </Text>
@@ -30,10 +31,21 @@ const CustomSidebarMenu = (props) => {
       <View style={stylesSidebar.profileHeaderLine} />
 
       <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
+     
         <DrawerItem
           label={({color}) => 
-            <Text style={{color: '#1DE7C0'}}>
+            <Text style={stylesSidebar.menuText}>
+              Home
+            </Text>
+          }
+          onPress={() => {
+             props.navigation.push('Home');
+             props.navigation.toggleDrawer();
+          }}
+        />
+        <DrawerItem
+          label={({color}) => 
+            <Text style={stylesSidebar.menuText}>
               Logout
             </Text>
           }
@@ -43,6 +55,7 @@ const CustomSidebarMenu = (props) => {
              props.navigation.replace('Auth');
             }}
         />
+        
       </DrawerContentScrollView>
     </View>
   );
@@ -54,30 +67,20 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#1DE7C0',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#1DE7C0',
     padding: 15,
     textAlign: 'center',
   },
-  profileHeaderPicCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 60 / 2,
-    color: 'white',
-    backgroundColor: '#ffffff',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profileHeaderText: {
-    color: 'white',
-    alignSelf: 'center',
-    paddingHorizontal: 10,
+
+  menuText: {
+    color: '#9474FF',
+    alignSelf: 'flex-start',
     fontWeight: 'bold',
   },
   profileHeaderLine: {

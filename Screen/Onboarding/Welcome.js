@@ -7,16 +7,46 @@ import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import createStore from '../../state/store';
 import actionSetUserInfo from '../../state/actionSetUserInfo'
-
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 import {
-  ActivityIndicator,
   View,
   StyleSheet,
-  Image
 } from 'react-native';
 
-
+/*const user = [{
+  id: "xxx",
+  partnerID: "zzzz",
+  userName: "xxxxx",
+  journey: "zzzzz",
+  sex: "xxx",
+  gender: "xxx",
+  partnerID: "xxx",
+  email: "xxx",
+  password: "xxx",
+  primary: true,
+  registered: false,
+  todaysTreatDone: false,
+  lastTreatInJourney: 0
+}]
+type User  @model @key(fields:["id"]){
+  id: ID!,	
+  partnerID: ID,	
+  userName: String!,	
+  primary: Boolean!,	
+  registered: Boolean,	
+  email: String!,	
+  tel: String!,	
+  activeDays: Int,
+  lastActiveDay: AWSDate,
+  journey: String,
+  sex: String,
+  gender: String,
+  preferences: String,
+  partnerName: String,
+  
+}*/
 
 const Welcome = ({navigation}) => {
  
@@ -25,9 +55,21 @@ const Welcome = ({navigation}) => {
   const store = createStore();
   function updateUserInfo(){
    let currentInfo = store.getState().userInfo[0];
+   delete currentInfo.todaysTreatDone;
+   delete currentInfo.lastTreatInJourney;
+   delete currentInfo.todaysTreatDone;
+   delete currentInfo.password;
    currentInfo.sex = sex;
    currentInfo.gender = gender;
    store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
+  
+   API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}))
+    .then((u)=>{
+      navigation.replace("HomeNavigationRoutes");
+    }).catch((e)=>{
+      console.log(e);
+      navigation.replace("HomeNavigationRoutes");
+    })
   }
 
   return (
@@ -38,9 +80,12 @@ const Welcome = ({navigation}) => {
         About you
         </Text>
       </View>
+      <Text style={styles.textLabel}>
+        I am a...
+      </Text>
       <Picker
       selectedValue={gender}
-      style={{height: 50, width: 100}}
+      style={styles.dropDown}
       onValueChange={(itemValue, itemIndex) =>
         setGender(itemValue)
       }>
@@ -50,9 +95,12 @@ const Welcome = ({navigation}) => {
       <Picker.Item label="Prefer not to say" value="none" />
 
     </Picker>
+    <Text style={styles.textLabel}>
+        I have a...
+      </Text>
     <Picker
       selectedValue={sex}
-      style={{height: 50, width: 100}}
+      style={styles.dropDown}
       onValueChange={(itemValue, itemIndex) =>{
         console.log("setting sex value", itemValue);
         setSex(itemValue);
@@ -63,13 +111,13 @@ const Welcome = ({navigation}) => {
       <Picker.Item label="More" value="more" />
       <Picker.Item label="Prefer not to say" value="none" />
     </Picker>
-      <Text>
+      <Text style={styles.text}>
           Gilly uses factors like gender and sex to help curate content most relevant to you
       </Text>
       <Button
         onPress={()=>{
            updateUserInfo();
-           navigation.replace("Onboarding1")
+           navigation.replace("HomeNavigationRoutes")
           }}
         title="Next"
         color="#841584"
@@ -89,14 +137,36 @@ const styles = StyleSheet.create({
    // justifyContent: 'center',
     backgroundColor: '#FFF',
   },
+  text: {
+    alignItems: 'center',
+    fontSize: 20,
+    fontWeight: 'normal',
+    alignSelf: 'center',
+    marginBottom: "20"
+  },
+  textLabel: {
+    alignItems: 'center',
+    fontSize: 18,
+    fontWeight: 'normal',
+    alignSelf: 'start-flex',
+    marginBottom: "5",
+    marginTop: "100",
+  },
+
   about:{
    // position: 'fixed',
     //top: 100,
     fontSize: 20,
     fontWeight: 'bold',
   },
-  image:{
-
+  dropDown:{
+    //marginTop: 20,
+    width: '80%',
+    height: '10%',
+    borderRadius: 10,
+  },
+  SectionStyle:{
+    marginBottom: 20,
   }
  
 

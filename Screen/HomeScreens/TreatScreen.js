@@ -11,7 +11,7 @@ import * as queries from '../../graphql/queries';
 
 
 
-console.log("loading HomeScreen");
+console.log("loading TreatScreen");
 
 
 

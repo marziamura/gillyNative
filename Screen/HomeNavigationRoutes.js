@@ -51,6 +51,7 @@ const settingScreenStack = ({navigation}) => {
   );
 };
 
+
 const HomeNavigatorRoutes = (props) => {
   console.log("HomeNavigatorRoutes")
   return (
@@ -66,10 +67,10 @@ const HomeNavigatorRoutes = (props) => {
       }}
       screenOptions={{headerShown: false}}
       drawerContent={CustomSidebarMenu}
+      backBehavior="initialRoute"
       >
       <Drawer.Screen
-        name="homeScreenStack"
-        options={{drawerLabel: 'Home Screen'}}
+        name="Home Screen" 
         component={HomeScreenStack}
       />
       <Drawer.Screen

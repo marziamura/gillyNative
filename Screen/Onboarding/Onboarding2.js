@@ -10,7 +10,6 @@ import createStore from '../../state/store';
 
 
 import {
-  ActivityIndicator,
   View,
   StyleSheet,
   Image
