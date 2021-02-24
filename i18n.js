@@ -50,7 +50,7 @@ i18n
           About4:{
             supertitle: "Before we begin",
             title: "Are you in a relationship?",
-            text: "Don’t worry, this information is not saved until you've finished creating an account",
+            text: "This information is not saved until you've finished creating an account",
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still learn a lot in a solo journey",
             button: "Next"
           },

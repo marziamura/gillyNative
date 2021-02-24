@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Pressable,
   Text,
-  View
 } from 'react-native';
 
 function Button(props){

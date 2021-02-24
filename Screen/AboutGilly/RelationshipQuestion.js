@@ -3,8 +3,9 @@
 
 // Import React and Component
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Button from '../Components/Button'
 
 
 import {
@@ -22,6 +23,17 @@ const RelationshipQuestion = (props) => {
   const [disclaimer, setDisclaimerText] = React.useState("");
   const [pressedYes, setPressedYes] = React.useState(false);
   const [pressedNo, setPressedNo] = React.useState(false);
+ 
+ 
+  
+  const buttonText = {
+    color:"#841584", 
+    fontSize: 20,
+  };
+  const buttonArea = {
+    borderWidth: 1,
+    width: '80%'
+  };
 
   return (
     <ImageBackground source={require('../../Image/background.png')} style={styles.backgroundImage}>
@@ -74,15 +86,14 @@ const RelationshipQuestion = (props) => {
             <Text style={styles.disclaimer}> 
                 {disclaimer}
             </Text>
-            <Pressable style={styles.button}
-              onPress={() => {
-                props.navigation.replace("Auth");
-              }}
-              >
-                <Text style={styles.buttontext}> 
-                {t("button")}
-                </Text>
-            </Pressable> 
+            <Button
+              press={()=>  props.navigation.replace("Auth")}
+              title={t('button')}
+              styletext={buttonText}
+              styleover={buttonArea}
+              accessibilityLabel="Sign In"
+            />
+          
         </View>
     </View>
     </ImageBackground>
@@ -121,8 +132,10 @@ const styles = StyleSheet.create({
   buttontext:{
     color: '#000000',
     fontSize: 21,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 10
   },
+
   whitebutton:{
     display: 'flex',
     flexDirection: 'column',
@@ -131,7 +144,8 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 40,
     left: 10,
-    marginBottom: 20,
+   // marginBottom: 20,
+    marginTop: 15,
     borderColor: "#000000a0",
     borderRadius: 10,
     borderWidth: 1
@@ -150,7 +164,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '90%',
     left:   10,
-    top: "10%",
+  //  top: "5%",
   //  fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",

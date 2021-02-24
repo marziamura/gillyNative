@@ -51,14 +51,15 @@ const LoginScreen = ({navigation,dispatch}) => {
       console.log( "signing in ",dataToSend);
       Auth.signIn(dataToSend).then((cognitoUser)=>{
         console.log(cognitoUser);
-        const user = [{
+        const userData = [{
           id: cognitoUser.username,
           partnerID: cognitoUser.attributes["custom:partnerID"],
           name: cognitoUser.attributes["name"],
           journey: cognitoUser.attributes["custom:journey"]
         }]
    
-        dispatch(actionUserLogin(userInfo,user));
+        dispatch(actionUserLogin(userInfo, userData));
+        
         let promiseResolve = (user)=>{
       
           if (!user || !user.sex){

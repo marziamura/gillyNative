@@ -9,6 +9,8 @@ import createStore from '../../state/store';
 import Background from '../Components/Background';
 import Button from '../Components/Button';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 
 
@@ -40,19 +42,45 @@ const FillTheBlanks = ({navigation}) => {
     setText(text);
     setAnswer(text);
   }
-  
+
+  function saveMessageAsTreat(){
+        let formData = {
+            formId: "00000000001",
+            journey: "Solo",
+            params:"pname=" + name + "&response=" + answer,
+            refParams: "",
+            userId: userInfo.id,
+        };
+
+       return API.graphql(graphqlOperation(mutations.createFormSubmission,{input: formData})).then((data)=>{
+            console.log("Data was saved ", data);
+            return (true)
+          }).catch( error =>{
+            console.log(error);
+            return false;
+          })
+  }
+
   function OnPress(){
     var data= {
       partnerName: name,
       answer: t("text1", {who: nameOnText, what: answer})
     }
     store.dispatch(actionUpdateMessage([data]));
-    navigation.replace("ShareMessage");
+    saveMessageAsTreat().then(()=>{
+         navigation.replace("ShareMessage")
+    }).catch(()=>{})
   }
   const button = {
     color:"#841584", 
     fontSize: 20,
-    
+    alignSelf:"flex-start"
+  };
+  const buttonArea = {
+    alignSelf: 'center',
+    width: '80%',
+    alignContent: 'flex-start',
+    backgroundColor: '#FFFF'
   };
   
   return (
@@ -62,7 +90,7 @@ const FillTheBlanks = ({navigation}) => {
             //behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
     
-          <View>
+          
             <View style={styles.textcontainerview}>
               <Text style={styles.title}>
               {t("title")}
@@ -94,10 +122,11 @@ const FillTheBlanks = ({navigation}) => {
                 press={OnPress}
                 title={t('button')}
                 styletext={button}
+                styleover={buttonArea}
                 accessibilityLabel="Home"
               />
             </View>
-            </View>
+            
          
        </KeyboardAvoidingView>
       
@@ -111,21 +140,24 @@ const styles = StyleSheet.create({
   containerview: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
   },
   textcontainerview:{
     height: '40%',
     width: '90%', 
+    marginLeft: 10
   },
   textinputview:{
     height: '50%',
     width: '90%',
-    
+    marginLeft: 10
   },
 
   bottomview:{
     height: '10%',
     width: '90%',
+    alignContent: 'center',
+    justifyContent: 'center'
   },
 
   title: {
@@ -157,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     height: '20%',
-    marginTop: 70,
+    marginTop: 40,
   },
   textInputBottom:{
     borderWidth:1,
@@ -165,6 +197,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop:20,
     marginBottom: 20,
+    alignSelf: 'flex-start',
+    alignContent: 'flex-start',
+    backgroundColor: '#FFFF'
   }
  
 

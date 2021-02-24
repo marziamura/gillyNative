@@ -65,10 +65,10 @@ const Welcome = ({navigation}) => {
   
    API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}))
     .then((u)=>{
-      navigation.replace("HomeNavigationRoutes");
+      navigation.replace("FirstTreatNavigationRoutes");
     }).catch((e)=>{
       console.log(e);
-      navigation.replace("HomeNavigationRoutes");
+      navigation.replace("FirstTreatNavigationRoutes");
     })
   }
 
@@ -83,6 +83,7 @@ const Welcome = ({navigation}) => {
       <Text style={styles.textLabel}>
         I am a...
       </Text>
+      <View style={styles.dropDownView}>
       <Picker
       selectedValue={gender}
       style={styles.dropDown}
@@ -95,9 +96,11 @@ const Welcome = ({navigation}) => {
       <Picker.Item label="Prefer not to say" value="none" />
 
     </Picker>
+    </View >
     <Text style={styles.textLabel}>
         I have a...
-      </Text>
+    </Text>
+    <View style={styles.dropDownView}>
     <Picker
       selectedValue={sex}
       style={styles.dropDown}
@@ -111,13 +114,13 @@ const Welcome = ({navigation}) => {
       <Picker.Item label="More" value="more" />
       <Picker.Item label="Prefer not to say" value="none" />
     </Picker>
+    </View>
       <Text style={styles.text}>
           Gilly uses factors like gender and sex to help curate content most relevant to you
       </Text>
       <Button
         onPress={()=>{
            updateUserInfo();
-           navigation.replace("HomeNavigationRoutes")
           }}
         title="Next"
         color="#841584"
@@ -142,15 +145,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'normal',
     alignSelf: 'center',
-    marginBottom: "20"
+    marginBottom: 20
   },
   textLabel: {
     alignItems: 'center',
     fontSize: 18,
     fontWeight: 'normal',
-    alignSelf: 'start-flex',
-    marginBottom: "5",
-    marginTop: "100",
+    alignSelf: 'flex-start',
+    marginBottom: 5,
+    marginTop: 50,
   },
 
   about:{
@@ -159,11 +162,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  dropDown:{
-    //marginTop: 20,
+  dropDownView:{
+    borderRadius: 10,
+    borderWidth: 1,
     width: '80%',
     height: '10%',
-    borderRadius: 10,
+  },
+  dropDown:{
+    //marginTop: 20,
+    width: '100%',
+    height: '100%',
+  
   },
   SectionStyle:{
     marginBottom: 20,

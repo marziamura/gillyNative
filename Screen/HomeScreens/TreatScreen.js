@@ -8,6 +8,8 @@ import { WebView } from 'react-native-webview';
 import createStore from '../../state/store';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
+import {getJourneyInfo} from '../../state/getUserInfo';
+
 
 
 
@@ -19,13 +21,17 @@ const TreatScreen = () => {
     const [typeformLink, setTypeFormLink] = React.useState(null);
     const [dailyFormId, setFormId] = React.useState();
     const [refFormId, setRefFormId] = React.useState();
-
     let store = createStore();
     const user = store.getState().userInfo[0];
-    const day = 0;
+    const [day, setDay] = React.useState(user.lastTreatInJourney);
+
+  
+
+    
     console.log("TreatScreen", user);
     console.log("TreatScreen", store.getState());
-
+    
+    getJourneyInfo(user);
     function composeTypeFormLink(formId, previousAnswers){
       var partnerName = "your partner";
       var source = "https://getgilly.typeform.com/to/";

@@ -31,12 +31,11 @@ const message =[{
 const userInfo = (state = user, action) => {
       switch (action.type) {
         case USER_LOGIN:
-          console.log("call to reducer authorizationStatus", action.payload);
+          console.log("USER_LOGIN ", action.payload);
           state[0].id = action.payload.newItem[0].id;
           state[0].partnerID = action.payload.newItem[0].partnerID;
           state[0].userName = action.payload.newItem[0].name;
           state[0].journey = action.payload.newItem[0].journey;
-          console.log("reducer USER_LOGIN ", ...state);
           return [...state];
         case USER_LOGOUT:
             state[0] = user;
@@ -67,9 +66,10 @@ const userInfo = (state = user, action) => {
             ...state,
           ]
         case UPDATE_JOURNEY_STATUS:  
+          console.log("UPDATE_JOURNEY_STATUS", action.payload);
           state[0].registered = true;
-          state[0].lastTreatInJourney = action.payload.newItem[0].currentDayInJourney;
-          state[0].todaysTreatDone = action.payload.newItem[0].todaysTreatDone;
+          state[0].lastTreatInJourney = action.payload.newItem.lastTreatInJourney;
+          state[0].todaysTreatDone = action.payload.newItem.todaysTreatDone;
         default:
           return state
       }

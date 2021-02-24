@@ -74,7 +74,7 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
           setShowButton(true);
-          navigation.replace('AboutGillyNavigationRoutes');
+     //     navigation.replace('AboutGillyNavigationRoutes');
         
         });
     }, []);
@@ -83,11 +83,18 @@ const SplashScreen = ({navigation}) => {
       fontSize: 20,
       
     };
+    
     const button2 = {
       backgroundColor:"transparent", 
       width: '100%',
       borderWidth: 1
+    };  
+    const button3 = {
+      backgroundColor:"transparent", 
+      width: '100%',
+      borderWidth: 0
     };
+
   return (
     <ImageBackground source={require('../Image/background.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
@@ -98,24 +105,26 @@ const SplashScreen = ({navigation}) => {
           {t("splashText")}
         </Text>
        {  showButton &&   <View style={styles.button}>
-                          <Button 
-                              press = { () => {
-                                navigation.replace('AboutGillyNavigationRoutes');
-                                    }}
-                              title = {t("button")}
-                              styletext={button}
-                              styleover={button2}
-                            />
+                              <Button 
+                                  press = { () => {
+                                    navigation.replace('AboutGillyNavigationRoutes');
+                                        }}
+                                  title = {t("button")}
+                                  styletext={button}
+                                  styleover={button2}
+                                />
                           </View>
         }
         {showButton && <View style={styles.signIn}>
-          <Button
-           press={() => {
-            navigation.replace('Auth');
-           }}
-           title =  {t("signIn")}
-          />
-        </View>
+                            <Button
+                            press={() => {
+                              navigation.replace('Auth');
+                            }}
+                            title =  {t("signIn")}
+                            styletext={button}
+                            styleover={button3}
+                            />
+                        </View>
         }
       </View>
     </ImageBackground>
@@ -172,14 +181,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderRadius: 16
   },
+  button2:{
+    borderWidth: 0
+   },
+
   signIn:{
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     position: 'absolute',
-    width: 327,
-    height: 84,
-    top: '85%',
+    width: '80%',
+    top: '87%',
+    borderWidth: 0
   },
   backgroundImage: {
     flex: 1,

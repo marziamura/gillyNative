@@ -5,9 +5,10 @@ import createStore from "./store"
 import * as queries from '../graphql/queries';
 import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
 
-function getJourneyInfo(user){
+export function getJourneyInfo(user){
   
   console.log("getting journey Info... ", user.journey)
+  const store = createStore();
   return API.graphql(graphqlOperation(queries.listFormSubmissions, {
     filter:{
       userId: {
@@ -22,15 +23,18 @@ function getJourneyInfo(user){
       order: "DESC"
    }
   })).then((data)=>{
-    console.log("submissions ", data)
+    console.log("found submissions ", data)
+    console.log("found submissions items ",  data.data.listFormSubmissions.items)
     var submissions = data.data.listFormSubmissions.items;
+    console.log("no submissions returning user", submissions);
     user.todaysTreatDone = false;
     if(submissions.length === 0)
     {
-      user.todaysTreatDone = true;
+      user.todaysTreatDone = false;
       user.lastTreatInJourney = 0;
       store.dispatch(actionUpdateJourneyStatus(user));
-      return;
+      console.log("no submissions returning user", data)
+      return user;
     }
     console.log("before sorting ", submissions)
     submissions.sort((a, b)=>{

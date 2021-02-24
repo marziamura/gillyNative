@@ -11,7 +11,6 @@ import Button from '../Components/Button'
 import {
   View,
   StyleSheet,
-  Pressable,
   ImageBackground
 } from 'react-native';
 
@@ -20,7 +19,15 @@ import {
 const AboutBase = (props) => {
   console.log("AboutBase", props, props.navigation)
   const { t } = useTranslation(props.namespace);
-  
+  const buttonText = {
+    color:"#841584", 
+    fontSize: 20,
+  };
+  const buttonArea = {
+    borderWidth: 1,
+    width: '100%'
+  };
+
   return (
     <ImageBackground source={require('../../Image/background.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
@@ -33,16 +40,13 @@ const AboutBase = (props) => {
         </Text>
       </View>
       <View style={styles.button}>
-        
-          <Pressable
-           onPress={() => {
-            props.navigation.replace(props.next);
-           }}
-          >
-            <Text style={styles.buttontext}> 
-            {t("button")}
-            </Text>
-          </Pressable> 
+           <Button
+            press={()=>  props.navigation.replace(props.next)}
+            title={t('button')}
+            styletext={buttonText}
+            styleover={buttonArea}
+            accessibilityLabel="Next"
+          />
       </View>
       
     </View>
@@ -74,7 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
     borderRadius: 16,
     width: '80%',
     height: 40,
