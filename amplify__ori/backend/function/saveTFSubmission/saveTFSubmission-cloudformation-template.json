@@ -56,7 +56,7 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "TABLENAME": "FormSubmission-pndb4s7kizeynkblq3gwv6c4yi-prod"
+            "TABLENAME": "FormSubmission-okocdpar6fc7fc7xrcbnjtwt54-dev"
           }
         },
         "Role": {
