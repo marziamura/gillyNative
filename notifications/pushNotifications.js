@@ -2,15 +2,24 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 
-
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default async function registerForPushNotificationsAsync() {
     let token;
+    console.log(".......................push notification", );
     if (Constants.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
+      console.log(".......................push notification status", finalStatus);
       if (existingStatus !== 'granted') {
         const { status } = await Notifications.requestPermissionsAsync();
+        console.log(".......................push notification status", status);
         finalStatus = status;
       }
       if (finalStatus !== 'granted') {
@@ -31,6 +40,6 @@ export default async function registerForPushNotificationsAsync() {
         lightColor: '#FF231F7C',
       });
     }
-  
+
     return token;
   }

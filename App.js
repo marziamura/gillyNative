@@ -15,9 +15,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // Import Screens
 import SplashScreen from './Screen/SplashScreen';
-import LoginScreen from './Screen/Auth/LoginScreen';
-import RegisterScreen from './Screen/Auth/RegisterScreen';
-import ConfirmEmail from './Screen/Auth/ConfirmEmail';
+
 import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
 import FirstTreatNavigationRoutes from './Screen/FirstTreatNavigationRoutes';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -29,6 +27,8 @@ import AboutGillyNavigationRoutes from './Screen/AboutGillyNavigationRoutes';
 import AuthNavigationRoutes from './Screen/AuthNatigationRoutes';
 import './i18n';
 import registerForPushNotificationsAsync from './notifications/pushNotifications'
+import * as Notifications from 'expo-notifications';
+import actionSetPushNotificationToken from './state/actionSetPustNotificationToken'
 
 Amplify.configure(config)
 

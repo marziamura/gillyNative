@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "578519004897",
+    "project_id": "gilly-6c57b",
+    "storage_bucket": "gilly-6c57b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578519004897:android:c79898831e00e98161a9a0",
+        "android_client_info": {
+          "package_name": "com.getgilly.gillyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578519004897-qj7qrlcnq1pipm2agbjjd5cpgdvrjltk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoPmjdaRCSCgFNKH0SV0lAnaQD_iv_daE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578519004897-qj7qrlcnq1pipm2agbjjd5cpgdvrjltk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

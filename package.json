@@ -17,10 +17,11 @@
     "@react-navigation/stack": "^5.14.2",
     "aws-amplify": "^3.3.17",
     "expo": "~40.0.0",
-    "expo-cli": "^4.2.1",
+    "expo-notifications": "^0.9.0",
     "expo-status-bar": "~1.0.3",
     "i18next": "^19.8.7",
     "i18next-xhr-backend": "^3.2.2",
+    "metro": "^0.58.0",
     "react": "16.13.1",
     "react-dom": "^17.0.1",
     "react-i18next": "^11.8.6",
@@ -36,8 +37,8 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
-    "metro": "^0.65.2",
-    "metro-core": "^0.65.2"
+    "eslint": "^7.20.0",
+    "eslint-plugin-react": "^7.22.0"
   },
   "private": true
 }

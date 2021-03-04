@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 18,
     fontWeight: 'normal',
-    alignSelf: 'start-flex',
+    alignSelf: 'flex-start',
     marginBottom: "5",
     marginTop: "100",
   },

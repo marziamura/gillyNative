@@ -1,10 +1,13 @@
 
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import LoginScreen from './Auth/LoginScreen';
+import RegisterScreen from './Auth/RegisterScreen';
+import ConfirmEmail from './Auth/ConfirmEmail';
 
 const Stack = createStackNavigator();
 
-export default AuthNavigationRoutes = () => {
+function AuthNavigationRoutes() {
   
     return (
       <Stack.Navigator initialRouteName="LoginScreen">
@@ -44,5 +47,7 @@ export default AuthNavigationRoutes = () => {
       </Stack.Navigator>
     );
   };
+
+  export default AuthNavigationRoutes;
   
   
