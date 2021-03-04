@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^5.14.2",
     "aws-amplify": "^3.3.17",
     "expo": "~40.0.0",
+    "expo-cli": "^4.2.1",
     "expo-status-bar": "~1.0.3",
     "i18next": "^19.8.7",
     "i18next-xhr-backend": "^3.2.2",
@@ -34,7 +35,9 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "metro": "^0.65.2",
+    "metro-core": "^0.65.2"
   },
   "private": true
 }

@@ -3,7 +3,7 @@
 import 'react-native-gesture-handler';
 
 // Import React and Component
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
@@ -26,57 +26,47 @@ import { Provider } from 'react-redux'
 import createStore from './state/store';
 import OnboardingNavigationRoutes from './Screen/OnboardingNavigationRoutes';
 import AboutGillyNavigationRoutes from './Screen/AboutGillyNavigationRoutes';
+import AuthNavigationRoutes from './Screen/AuthNatigationRoutes';
 import './i18n';
+import registerForPushNotificationsAsync from './notifications/pushNotifications'
 
 Amplify.configure(config)
 
 const Stack = createStackNavigator();
 
-const Auth = () => {
-  // Stack Navigator for Login and Sign up Screen
-  return (
-    <Stack.Navigator initialRouteName="LoginScreen">
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterScreen"
-        component={RegisterScreen}
-        options={{
-          title: 'Register', //Set Header Title
-          headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
-          },
-          headerTintColor: '#fff', //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-       <Stack.Screen
-        name="ConfirmEmail"
-        component={ConfirmEmail}
-        options={{
-          title: 'Confirm Email', //Set Header Title
-          headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
-          },
-          headerTintColor: '#fff', //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
-
-
 
 const App = () => {
   let store = createStore();
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+  
+  useEffect(() => {
+    registerForPushNotificationsAsync().then(token =>
+      { 
+        console.log("Push Notifcation Token:", token);
+        setExpoPushToken(token);
+        store.dispatch(actionSetPushNotificationToken(token));
+      });
+
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+
   return (
     <Provider store={store}>
     <NavigationContainer>
@@ -92,8 +82,8 @@ const App = () => {
         
         {/* Auth Navigator: Include Login and Signup */}
         <Stack.Screen
-          name="Auth"
-          component={Auth}
+          name="AuthNavigationRoutes"
+          component={AuthNavigationRoutes}
           options={{headerShown: false}}
         />
         {/* Navigation Drawer as a landing page */}

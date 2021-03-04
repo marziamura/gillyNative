@@ -1,0 +1,114 @@
+Starting project at C:\git\GillyNative
+Expo DevTools is running at http://localhost:19002
+Press d to open DevTools now, or shift-d to always open it automatically.
+loadMetroConfigFromDisk  Error
+    at loadMetroConfigFromDisk (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:220:43)
+    at Object.<anonymous> (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:333:33)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:72:24)
+    at _next (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:92:9)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:97:7
+    at new Promise (<anonymous>)
+    at Object.<anonymous> (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:89:12)
+    at Object._loadConfig (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:361:22)
+    at Object.loadConfig (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:323:22)
+resolveConfig  Error
+    at resolveConfig (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:150:33)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:236:41
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:72:24)
+    at _next (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:92:9)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:97:7
+    at new Promise (<anonymous>)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:89:12
+    at _loadMetroConfigFromDisk (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:251:35)
+    at loadMetroConfigFromDisk (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:222:36)
+search  Error
+    at Explorer.search (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:75:28)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:161:35
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:72:24)
+    at _next (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:92:9)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:97:7
+    at new Promise (<anonymous>)
+    at C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:89:12
+    at _resolveConfig (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:174:25)
+    at resolveConfig (C:\git\GillyNative\node_modules\metro-config\src\loadConfig.js:152:25)
+loadMetroConfigFromDisk end  Promise { <pending> }
+search resolved Error
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:79:38
+searchDirectory  Error
+    at Explorer.searchDirectory (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:126:37)
+    at run (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:87:19)
+    at cacheWrapper (C:\git\GillyNative\node_modules\cosmiconfig\dist\cacheWrapper.js:14:18)
+    at Explorer.searchFromDirectory (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:97:14)
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:80:19
+searchDirectory resolved  Error
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:132:50
+loadSearchPlace  Error
+    at Explorer.loadSearchPlace (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:155:37)
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:134:21
+createCosmiconfigResults  Error
+    at Explorer.createCosmiconfigResult (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:260:46)
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:158:19
+createCosmiconfigResults resolved 
+createExplorer...
+ configfile  Error
+    at Object.<anonymous> (C:\git\GillyNative\metro.config.js:2:29)
+    at Module._compile (internal/modules/cjs/loader.js:1251:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1272:10)
+    at Module.load (internal/modules/cjs/loader.js:1100:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:962:14)
+    at Module.require (internal/modules/cjs/loader.js:1140:19)
+    at require (internal/modules/cjs/helpers.js:75:18)
+    at module.exports (C:\git\GillyNative\node_modules\import-fresh\index.js:28:9)
+    at loadJs (C:\git\GillyNative\node_modules\cosmiconfig\dist\loaders.js:9:18)
+    at Explorer.loadFileContent (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:238:13)
+createExplorer...2 Error
+    at Explorer.loadFileContent (C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:239:39)
+    at C:\git\GillyNative\node_modules\cosmiconfig\dist\createExplorer.js:264:21
+loadMetroConfigFromDisk c resolved
+Starting Metro Bundler
+
+ exp://192.168.43.13:19000
+
+ [47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m
+ [47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[40m  [0m[47m  [0m
+ [47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m[47m  [0m
+
+To run the app, choose one of:
+ › Scan the QR code above with the Expo app (Android) or the Camera app (iOS).
+ › Press a for Android emulator, or w to run on web.
+ › Press e to send a link to your phone with email.
+
+Press ? to show a list of all available commands.
+Logs for your project will appear below. Press Ctrl+C to exit.
+
+Stopping packager...
+› Closing Expo server
+› Stopping Metro bundler
+Packager stopped.
