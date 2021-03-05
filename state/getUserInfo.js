@@ -3,7 +3,9 @@ import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
-import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
+import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus';
+import * as mutations from '../graphql/mutations';
+
 
 function getJourneyInfo(user){
   
@@ -58,7 +60,7 @@ function getJourneyInfo(user){
   })
 }
 
-function getUserInfo () { 
+export function getUserInfo () { 
     const store = createStore();
     const currentUser = store.getState().userInfo[0];
     console.log("retrieving user...", currentUser);
@@ -99,4 +101,17 @@ function getUserInfo () {
 
   };
 
-  export default getUserInfo;
+  export function updateUserInfo(info){
+    let store = createStore();
+    let currentInfo = info ? info : store.getState().userInfo[0];
+    delete currentInfo.todaysTreatDone;
+    delete currentInfo.lastTreatInJourney;
+    delete currentInfo.todaysTreatDone;
+    delete currentInfo.password;
+    
+    store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
+    return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));
+   
+   }
+
+  

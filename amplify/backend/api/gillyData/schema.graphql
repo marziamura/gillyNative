@@ -14,6 +14,7 @@ type User  @model @key(fields:["id"]){
   gender: String,
   preferences: String,
   partnerName: String,
+  pushNotificationToken: String,
   
 }
 

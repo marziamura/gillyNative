@@ -6,14 +6,13 @@ import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import createStore from '../../state/store';
-import actionSetUserInfo from '../../state/actionSetUserInfo'
-import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
+import updateUserInfo from '../../state/getUserInfo'
 
 import {
   View,
   StyleSheet,
 } from 'react-native';
+import actionSetUserInfo from '../../state/actionSetUserInfo';
 
 /*const user = [{
   id: "xxx",
@@ -53,24 +52,7 @@ const Welcome = ({navigation}) => {
   const [gender, setGender] = useState("woman");
   const [sex, setSex] = useState("vulva");
   const store = createStore();
-  function updateUserInfo(){
-   let currentInfo = store.getState().userInfo[0];
-   delete currentInfo.todaysTreatDone;
-   delete currentInfo.lastTreatInJourney;
-   delete currentInfo.todaysTreatDone;
-   delete currentInfo.password;
-   currentInfo.sex = sex;
-   currentInfo.gender = gender;
-   store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
-  
-   API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}))
-    .then((u)=>{
-      navigation.replace("HomeNavigationRoutes");
-    }).catch((e)=>{
-      console.log(e);
-      navigation.replace("HomeNavigationRoutes");
-    })
-  }
+
 
   return (
     <View style={styles.container}>
@@ -116,8 +98,16 @@ const Welcome = ({navigation}) => {
       </Text>
       <Button
         onPress={()=>{
-           updateUserInfo();
-           navigation.replace("HomeNavigationRoutes")
+          
+           userInfo[0].sex = sex;
+           userInfo[0].gender = gender; 
+          
+           updateUserInfo(userInfo[0]).then((u)=>{
+              navigation.replace("HomeNavigationRoutes");
+            }).catch((e)=>{
+              console.log(e);
+              navigation.replace("HomeNavigationRoutes");
+            })
           }}
         title="Next"
         color="#841584"

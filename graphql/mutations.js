@@ -21,6 +21,7 @@ export const createUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -46,6 +47,7 @@ export const updateUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -71,6 +73,7 @@ export const deleteUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -89,16 +92,6 @@ export const createFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -116,16 +109,6 @@ export const updateFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -143,16 +126,6 @@ export const deleteFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -166,7 +139,6 @@ export const createFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -185,7 +157,6 @@ export const updateFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -204,7 +175,6 @@ export const deleteFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -214,169 +184,85 @@ export const deleteFormId = /* GraphQL */ `
     }
   }
 `;
-export const createSharedAnswered = /* GraphQL */ `
-  mutation CreateSharedAnswered(
-    $input: CreateSharedAnsweredInput!
-    $condition: ModelsharedAnsweredConditionInput
+export const createRegisteredEmail = /* GraphQL */ `
+  mutation CreateRegisteredEmail(
+    $input: CreateRegisteredEmailInput!
+    $condition: ModelregisteredEmailConditionInput
   ) {
-    createSharedAnswered(input: $input, condition: $condition) {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateSharedAnswered = /* GraphQL */ `
-  mutation UpdateSharedAnswered(
-    $input: UpdateSharedAnsweredInput!
-    $condition: ModelsharedAnsweredConditionInput
-  ) {
-    updateSharedAnswered(input: $input, condition: $condition) {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteSharedAnswered = /* GraphQL */ `
-  mutation DeleteSharedAnswered(
-    $input: DeleteSharedAnsweredInput!
-    $condition: ModelsharedAnsweredConditionInput
-  ) {
-    deleteSharedAnswered(input: $input, condition: $condition) {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createMessage = /* GraphQL */ `
-  mutation CreateMessage(
-    $input: CreateMessageInput!
-    $condition: ModelmessageConditionInput
-  ) {
-    createMessage(input: $input, condition: $condition) {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateMessage = /* GraphQL */ `
-  mutation UpdateMessage(
-    $input: UpdateMessageInput!
-    $condition: ModelmessageConditionInput
-  ) {
-    updateMessage(input: $input, condition: $condition) {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteMessage = /* GraphQL */ `
-  mutation DeleteMessage(
-    $input: DeleteMessageInput!
-    $condition: ModelmessageConditionInput
-  ) {
-    deleteMessage(input: $input, condition: $condition) {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createDummy = /* GraphQL */ `
-  mutation CreateDummy(
-    $input: CreateDummyInput!
-    $condition: ModeldummyConditionInput
-  ) {
-    createDummy(input: $input, condition: $condition) {
+    createRegisteredEmail(input: $input, condition: $condition) {
       id
-      boh
+      email
+      primary
       createdAt
       updatedAt
     }
   }
 `;
-export const updateDummy = /* GraphQL */ `
-  mutation UpdateDummy(
-    $input: UpdateDummyInput!
-    $condition: ModeldummyConditionInput
+export const updateRegisteredEmail = /* GraphQL */ `
+  mutation UpdateRegisteredEmail(
+    $input: UpdateRegisteredEmailInput!
+    $condition: ModelregisteredEmailConditionInput
   ) {
-    updateDummy(input: $input, condition: $condition) {
+    updateRegisteredEmail(input: $input, condition: $condition) {
       id
-      boh
+      email
+      primary
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteDummy = /* GraphQL */ `
-  mutation DeleteDummy(
-    $input: DeleteDummyInput!
-    $condition: ModeldummyConditionInput
+export const deleteRegisteredEmail = /* GraphQL */ `
+  mutation DeleteRegisteredEmail(
+    $input: DeleteRegisteredEmailInput!
+    $condition: ModelregisteredEmailConditionInput
   ) {
-    deleteDummy(input: $input, condition: $condition) {
+    deleteRegisteredEmail(input: $input, condition: $condition) {
       id
-      boh
+      email
+      primary
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCouple = /* GraphQL */ `
+  mutation CreateCouple(
+    $input: CreateCoupleInput!
+    $condition: ModelcoupleConditionInput
+  ) {
+    createCouple(input: $input, condition: $condition) {
+      id
+      partnerAId
+      partnerBId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCouple = /* GraphQL */ `
+  mutation UpdateCouple(
+    $input: UpdateCoupleInput!
+    $condition: ModelcoupleConditionInput
+  ) {
+    updateCouple(input: $input, condition: $condition) {
+      id
+      partnerAId
+      partnerBId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCouple = /* GraphQL */ `
+  mutation DeleteCouple(
+    $input: DeleteCoupleInput!
+    $condition: ModelcoupleConditionInput
+  ) {
+    deleteCouple(input: $input, condition: $condition) {
+      id
+      partnerAId
+      partnerBId
       createdAt
       updatedAt
     }

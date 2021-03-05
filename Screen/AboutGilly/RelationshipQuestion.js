@@ -76,7 +76,7 @@ const RelationshipQuestion = (props) => {
             </Text>
             <Pressable style={styles.button}
               onPress={() => {
-                props.navigation.replace("Auth");
+                props.navigation.replace("AuthNavigationRoutes");
               }}
               >
                 <Text style={styles.buttontext}> 

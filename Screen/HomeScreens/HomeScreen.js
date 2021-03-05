@@ -6,12 +6,15 @@ import React from 'react';
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import Button from '../Components/Button';
 import Background from '../Components/Background'
+import createStore from '../../state/store';
+import { updateUserInfo } from '../../state/getUserInfo';
+
 console.log("loading HomeScreen");
 
 
 
 const HomeScreen = ({navigation}) => {
-
+  let store = createStore();
   console.log("******** HomeScreen ******** ");
   function press(){
     console.log("OnPress");
@@ -25,6 +28,11 @@ const HomeScreen = ({navigation}) => {
   const pressable ={
     width : '80%',
   }
+  
+  React.useEffect(()=>{
+    updateUserInfo().then(() => console.log("updated pushNotifciation Token"))
+    .catch(error=> console.log(error))
+  }, [])
 
   return (
     <Background>

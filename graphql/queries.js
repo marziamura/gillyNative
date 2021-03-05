@@ -18,6 +18,7 @@ export const getUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -53,6 +54,7 @@ export const listUsers = /* GraphQL */ `
         gender
         preferences
         partnerName
+        pushNotificationToken
         createdAt
         updatedAt
       }
@@ -70,16 +72,6 @@ export const getFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -121,7 +113,6 @@ export const getFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -152,7 +143,6 @@ export const listFormIds = /* GraphQL */ `
         day
         formId
         refFormId
-        sharedFormId
         journey
         partner
         sameUser
@@ -164,120 +154,61 @@ export const listFormIds = /* GraphQL */ `
     }
   }
 `;
-export const getSharedAnswered = /* GraphQL */ `
-  query GetSharedAnswered($originFormId: String!) {
-    getSharedAnswered(originFormId: $originFormId) {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listSharedAnswereds = /* GraphQL */ `
-  query ListSharedAnswereds(
-    $originFormId: String
-    $filter: ModelsharedAnsweredFilterInput
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listSharedAnswereds(
-      originFormId: $originFormId
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getMessage = /* GraphQL */ `
-  query GetMessage($author: String!) {
-    getMessage(author: $author) {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listMessages = /* GraphQL */ `
-  query ListMessages(
-    $author: String
-    $filter: ModelmessageFilterInput
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listMessages(
-      author: $author
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        author
-        isFirst
-        previousMessage
-        questionId
-        read
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getDummy = /* GraphQL */ `
-  query GetDummy($id: ID!) {
-    getDummy(id: $id) {
+export const getRegisteredEmail = /* GraphQL */ `
+  query GetRegisteredEmail($id: ID!) {
+    getRegisteredEmail(id: $id) {
       id
-      boh
+      email
+      primary
       createdAt
       updatedAt
     }
   }
 `;
-export const listDummys = /* GraphQL */ `
-  query ListDummys(
-    $filter: ModeldummyFilterInput
+export const listRegisteredEmails = /* GraphQL */ `
+  query ListRegisteredEmails(
+    $filter: ModelregisteredEmailFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listDummys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listRegisteredEmails(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
-        boh
+        email
+        primary
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getCouple = /* GraphQL */ `
+  query GetCouple($id: ID!) {
+    getCouple(id: $id) {
+      id
+      partnerAId
+      partnerBId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listCouples = /* GraphQL */ `
+  query ListCouples(
+    $filter: ModelcoupleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCouples(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        partnerAId
+        partnerBId
         createdAt
         updatedAt
       }

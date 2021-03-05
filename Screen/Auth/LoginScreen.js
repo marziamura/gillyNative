@@ -7,7 +7,7 @@ import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
 import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
-import getUserInfo from '../../state/getUserInfo';
+import {getUserInfo} from '../../state/getUserInfo';
 
 import {
   StyleSheet,

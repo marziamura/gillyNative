@@ -18,6 +18,7 @@ export const onCreateUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -40,6 +41,7 @@ export const onUpdateUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -62,6 +64,7 @@ export const onDeleteUser = /* GraphQL */ `
       gender
       preferences
       partnerName
+      pushNotificationToken
       createdAt
       updatedAt
     }
@@ -77,16 +80,6 @@ export const onCreateFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -101,16 +94,6 @@ export const onUpdateFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -125,16 +108,6 @@ export const onDeleteFormSubmission = /* GraphQL */ `
       params
       refParams
       userId
-      sharedAnswered {
-        originFormId
-        sharedFormId
-        question1
-        answerRef1
-        answerRef2
-        answerRef3
-        createdAt
-        updatedAt
-      }
       updatedAt
     }
   }
@@ -145,7 +118,6 @@ export const onCreateFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -161,7 +133,6 @@ export const onUpdateFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -177,7 +148,6 @@ export const onDeleteFormId = /* GraphQL */ `
       day
       formId
       refFormId
-      sharedFormId
       journey
       partner
       sameUser
@@ -187,142 +157,67 @@ export const onDeleteFormId = /* GraphQL */ `
     }
   }
 `;
-export const onCreateSharedAnswered = /* GraphQL */ `
-  subscription OnCreateSharedAnswered {
-    onCreateSharedAnswered {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateSharedAnswered = /* GraphQL */ `
-  subscription OnUpdateSharedAnswered {
-    onUpdateSharedAnswered {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteSharedAnswered = /* GraphQL */ `
-  subscription OnDeleteSharedAnswered {
-    onDeleteSharedAnswered {
-      originFormId
-      sharedFormId
-      question1
-      answerRef1
-      answerRef2
-      answerRef3
-      givenAnswers {
-        id
-        formId
-        journey
-        createdAt
-        params
-        refParams
-        userId
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateMessage = /* GraphQL */ `
-  subscription OnCreateMessage {
-    onCreateMessage {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateMessage = /* GraphQL */ `
-  subscription OnUpdateMessage {
-    onUpdateMessage {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteMessage = /* GraphQL */ `
-  subscription OnDeleteMessage {
-    onDeleteMessage {
-      author
-      isFirst
-      previousMessage
-      questionId
-      read
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateDummy = /* GraphQL */ `
-  subscription OnCreateDummy {
-    onCreateDummy {
+export const onCreateRegisteredEmail = /* GraphQL */ `
+  subscription OnCreateRegisteredEmail {
+    onCreateRegisteredEmail {
       id
-      boh
+      email
+      primary
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateDummy = /* GraphQL */ `
-  subscription OnUpdateDummy {
-    onUpdateDummy {
+export const onUpdateRegisteredEmail = /* GraphQL */ `
+  subscription OnUpdateRegisteredEmail {
+    onUpdateRegisteredEmail {
       id
-      boh
+      email
+      primary
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteDummy = /* GraphQL */ `
-  subscription OnDeleteDummy {
-    onDeleteDummy {
+export const onDeleteRegisteredEmail = /* GraphQL */ `
+  subscription OnDeleteRegisteredEmail {
+    onDeleteRegisteredEmail {
       id
-      boh
+      email
+      primary
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateCouple = /* GraphQL */ `
+  subscription OnCreateCouple {
+    onCreateCouple {
+      id
+      partnerAId
+      partnerBId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCouple = /* GraphQL */ `
+  subscription OnUpdateCouple {
+    onUpdateCouple {
+      id
+      partnerAId
+      partnerBId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCouple = /* GraphQL */ `
+  subscription OnDeleteCouple {
+    onDeleteCouple {
+      id
+      partnerAId
+      partnerBId
       createdAt
       updatedAt
     }

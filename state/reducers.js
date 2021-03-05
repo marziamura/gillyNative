@@ -50,6 +50,8 @@ const userInfo = (state = user, action) => {
           state[0].journey = action.payload.newItem[0].journey;
           state[0].partnerID = action.payload.newItem[0].partnerID;
           state[0].registered = action.payload.newItem[0].registered;
+          state[0].sex = action.payload.newItem[0].sex;
+          state[0].gender = action.payload.newItem[0].gender;
           break; 
         case USER_LOGIN_DATA:
             console.log("USER_LOGIN_DATA", action.payload);
