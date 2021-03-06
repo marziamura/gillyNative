@@ -3,11 +3,33 @@ const AWS = require('aws-sdk');
 
 console.log('Loading function');
 var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-var tableName = process.env.TABLENAME
+var tableName = process.env.TABLENAME;
+var userTable = process.env.USERTABLE;
+
+const updateLastActiveDate = async (userId) => {
+
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
+  const newdate =  Date.now();
+
+  const params = {
+    TableName: userTable,
+    Key: {
+      id: userId,
+    },
+    UpdateExpression: 'set lastActiveDay = :r',
+    ExpressionAttributeValues: {
+      ':r': newdate,
+    },
+  };
+
+  await docClient.update(params).promise();
+}
 
 exports.handler = (event, context, callback) => {
     var bodyJson = JSON.parse(event.body);
     console.log(bodyJson)
+    
     console.log("formID = ", bodyJson.form_response.form_id, "USERID = ", bodyJson.form_response.hidden.userid, "ANSWERS = ", bodyJson.form_response.answers)
     
     var answers = bodyJson.form_response.answers;
@@ -75,10 +97,12 @@ exports.handler = (event, context, callback) => {
             else {
                 console.log('great success: '+JSON.stringify(data, null, '  '));
           
-                context.done(null,  {"message":"success"});
+                context.done('Done',  {"message":"success"});
             }
         });
-
+        
+        updateLastActiveDate(bodyJson.form_response.hidden.userid);
+        
     }catch(e){
          console.log('catch exception: ', e);
          context.fail("Caught: " + e);

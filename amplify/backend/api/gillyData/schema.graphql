@@ -8,14 +8,13 @@ type User  @model @key(fields:["id"]){
   email: String!,	
   tel: String!,	
   activeDays: Int,
-  lastActiveDay: AWSDate,
+  lastActiveDay: Int,
   journey: String,
   sex: String,
   gender: String,
   preferences: String,
   partnerName: String,
   pushNotificationToken: String,
-  
 }
 
 
