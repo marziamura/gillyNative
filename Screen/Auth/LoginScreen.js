@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
 import {getUserInfo} from '../../state/getUserInfo';
+import * as colors from '../Style/Style'
 
 import {
   StyleSheet,
@@ -160,7 +161,7 @@ const LoginScreen = ({navigation,dispatch}) => {
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>
-              <Text style={styles.buttonTextStyle}>LOGIN</Text>
+              <Text style={styles.buttonTextStyle}>Login</Text>
             </TouchableOpacity>
             <Text
               style={styles.registerTextStyle}
@@ -171,6 +172,11 @@ const LoginScreen = ({navigation,dispatch}) => {
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('ConfirmEmail')}>
               Confirm Email
+            </Text>
+            <Text
+              style={styles.registerTextStyle}
+              onPress={() => navigation.navigate('ForgotPassword')}>
+              Forgot Password
             </Text>
           </KeyboardAvoidingView>
         </View>
@@ -195,10 +201,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#6042be',
+    backgroundColor: colors.buttonBackground,
     borderWidth: 0,
-    color: '#FFFFFF',
-    borderColor: '#6042be',
+    color: colors.white,
+    borderColor: colors.border,
     height: 40,
     alignItems: 'center',
     borderRadius: 30,
@@ -208,21 +214,21 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   buttonTextStyle: {
-    color: '#383838',
+    color: colors.text,
     paddingVertical: 10,
     fontSize: 16,
   },
   inputStyle: {
     flex: 1,
-    color: '#383838',
+    color: colors.text,
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
     borderRadius: 30,
-    borderColor: '#dadae8',
+    borderColor: colors.border,
   },
   registerTextStyle: {
-    color: '#383838',
+    color: colors.text,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
@@ -230,7 +236,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorTextStyle: {
-    color: 'red',
+    color: colors.TextError,
     textAlign: 'center',
     fontSize: 14,
   },

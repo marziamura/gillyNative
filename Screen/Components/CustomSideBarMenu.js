@@ -52,7 +52,7 @@ const CustomSidebarMenu = (props) => {
           onPress={() => {
              props.navigation.toggleDrawer();
              Auth.signOut();
-             props.navigation.replace('Auth');
+             props.navigation.replace('AuthNavigationRoutes');
             }}
         />
         

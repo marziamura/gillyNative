@@ -18,14 +18,12 @@ import {
   Pressable,
   ImageBackground
 } from 'react-native';
-import getUserInfo from '../state/getUserInfo';
+import {getUserInfo} from '../state/getUserInfo';
 
 
 
 const SplashScreen = ({navigation}) => {
   const { t } = useTranslation('Splash');
-  console.log(" loading SplashScreen ");
-  const [animating, setAnimating] = useState(true);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -68,7 +66,7 @@ const SplashScreen = ({navigation}) => {
               let promiseReject = (error)=>{
                 console.log("error", error)
               }
-              
+              console.log("calling getUserInf");
             getUserInfo().then(promiseResolve).catch(promiseReject);
               
         }).catch((error)=>{

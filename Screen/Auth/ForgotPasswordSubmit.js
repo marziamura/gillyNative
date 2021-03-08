@@ -21,13 +21,15 @@ import {
 } from 'react-native';
 
 
-const ConfirmEmail = ({navigation,dispatch}) => {
+const ForgotPasswordSubmit = ({navigation,dispatch}) => {
 
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [resetCode, setResetCode] = useState('');
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
+  const codeInputRef = createRef();
   const userInfo = createStore().getState().userInfo[0];
   console.log("ConfirmEmail", userInfo);
 
@@ -48,9 +50,12 @@ const ConfirmEmail = ({navigation,dispatch}) => {
 
   async function confirmSignUp() {
     try {
-        console.log("Confirm sign up", userEmail, userPassword)
-        await Auth.confirmSignUp(userEmail.toLowerCase(), userPassword);
-        navigation.replace('LoginScreen');
+        console.log("Confirm sign up", userEmail, resetCode, userPassword)
+        await Auth.forgotPasswordSubmit(userEmail.toLowerCase(), resetCode, userPassword)
+        .then(()=>{;
+              navigation.replace('LoginScreen')
+        })
+        .catch(error=>setErrortext(error.message));
     } catch (error) {
         console.log('error confirming email:', error);
         setErrortext(error.message);
@@ -86,7 +91,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
-                placeholder={userInfo.Email}
+                placeholder={userInfo.Email || 'Email'}
                 placeholderTextColor={colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -102,10 +107,27 @@ const ConfirmEmail = ({navigation,dispatch}) => {
             <View style={styles.SectionStyle}>
               <TextInput
                 style={styles.inputStyle}
+                onChangeText={(resetCode) =>
+                  setResetCode(resetCode)
+                }
+                placeholder="Enter reset code" //12345
+                placeholderTextColor={colors.placeholderText}
+                keyboardType="default"
+                ref={codeInputRef}
+                onSubmitEditing={Keyboard.dismiss}
+                blurOnSubmit={false}
+                secureTextEntry={true}
+                underlineColorAndroid="#f000"
+                returnKeyType="next"
+              />
+            </View>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                style={styles.inputStyle}
                 onChangeText={(UserPassword) =>
                   setUserPassword(UserPassword)
                 }
-                placeholder="Enter Password" //12345
+                placeholder="Enter New Password" //12345
                 placeholderTextColor={colors.placeholderText}
                 keyboardType="default"
                 ref={passwordInputRef}
@@ -134,7 +156,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
     </View>
   );
 };
-export default connect() (ConfirmEmail);
+export default connect() (ForgotPasswordSubmit);
 
 const styles = StyleSheet.create({
   mainBody: {
@@ -154,7 +176,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: colors.buttonBackground,
     borderWidth: 0,
-    color: colors.buttonText,
+    color: colors.white,
     borderColor: colors.border,
     height: 40,
     alignItems: 'center',
@@ -187,7 +209,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorTextStyle: {
-    color: colors.textError,
+    color: colors.errortext,
     textAlign: 'center',
     fontSize: 14,
   },

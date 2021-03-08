@@ -6,11 +6,13 @@ import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import createStore from '../../state/store';
-import updateUserInfo from '../../state/getUserInfo'
+import {updateUserInfo} from '../../state/getUserInfo'
+import * as colors from '../Style/Style'
 
 import {
   View,
   StyleSheet,
+  Pressable
 } from 'react-native';
 import actionSetUserInfo from '../../state/actionSetUserInfo';
 
@@ -79,7 +81,7 @@ const Welcome = ({navigation}) => {
     </Picker>
     <Text style={styles.textLabel}>
         I have a...
-      </Text>
+     </Text>
     <Picker
       selectedValue={sex}
       style={styles.dropDown}
@@ -93,26 +95,31 @@ const Welcome = ({navigation}) => {
       <Picker.Item label="More" value="more" />
       <Picker.Item label="Prefer not to say" value="none" />
     </Picker>
-      <Text style={styles.text}>
+     
+    <Text style={styles.text}>
           Gilly uses factors like gender and sex to help curate content most relevant to you
       </Text>
-      <Button
-        onPress={()=>{
-          
-           userInfo[0].sex = sex;
-           userInfo[0].gender = gender; 
-          
-           updateUserInfo(userInfo[0]).then((u)=>{
-              navigation.replace("HomeNavigationRoutes");
-            }).catch((e)=>{
-              console.log(e);
-              navigation.replace("HomeNavigationRoutes");
-            })
-          }}
-        title="Next"
-        color="#841584"
-        accessibilityLabel="Next"
-      />
+
+      <View style={styles.button}>
+  
+        <Pressable
+          onPress={()=>{
+                  let userInfo = store.getState().userInfo;
+                  userInfo[0].sex = sex;
+                  userInfo[0].gender = gender; 
+                 
+                  updateUserInfo(userInfo[0]).then((u)=>{
+                     navigation.replace("HomeNavigationRoutes");
+                   }).catch((e)=>{
+                     console.log(e);
+                     navigation.replace("HomeNavigationRoutes");
+                   })
+            }}>
+          <Text style={styles.buttontext}> 
+          Next
+          </Text>
+        </Pressable> 
+    </View>
         
     </View>
   );
@@ -125,24 +132,35 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
    // justifyContent: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: colors.background,
   },
   text: {
     alignItems: 'center',
     fontSize: 20,
     fontWeight: 'normal',
     alignSelf: 'center',
-    marginBottom: "20"
+    width: '80%',
+    marginBottom: 20,
+    marginTop: 30
   },
   textLabel: {
     alignItems: 'center',
     fontSize: 18,
     fontWeight: 'normal',
-    alignSelf: 'flex-start',
-    marginBottom: "5",
-    marginTop: "100",
+   
+    marginBottom: "2%",
+    marginTop: 30,
+   
   },
-
+  button:{
+    backgroundColor: colors.buttonBackground,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 16,
+    width: '80%',
+    height: 40,
+  },
   about:{
    // position: 'fixed',
     //top: 100,
@@ -152,12 +170,16 @@ const styles = StyleSheet.create({
   dropDown:{
     //marginTop: 20,
     width: '80%',
-    height: '10%',
+    height: '5%',
     borderRadius: 10,
   },
   SectionStyle:{
     marginBottom: 20,
-  }
+  },
+  buttontext:{
+    fontSize: 21,
+    color: colors.buttonText
+  },
  
 
 });

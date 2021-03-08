@@ -5,7 +5,8 @@
 import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import Button from '../Components/Button'
+import * as colors from '../Style/Style'
+
 
 
 import {
@@ -68,10 +69,10 @@ const styles = StyleSheet.create({
   },
   buttontext:{
     fontSize: 21,
-    color: '#383838'
+    color: colors.buttonText
   },
   button:{
-    backgroundColor: "#FFF",
+    backgroundColor: colors.buttonBackground,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     lineHeight: 40,
     textAlign: 'center',
-    color: '#383838'
+    color: colors.text
   },
 
   text: {
@@ -104,6 +105,6 @@ const styles = StyleSheet.create({
     fontSize: 21,
     lineHeight: 28,
     textAlign: 'center',
-    color: '#383838'
+    color: colors.text
   }
 });

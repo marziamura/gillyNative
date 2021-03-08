@@ -6,6 +6,8 @@ import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import actionSetLoginData from '../../state/actionSetLoginData';
 import { connect } from 'react-redux';
+import * as colors from '../Style/Style'
+
 import {
   StyleSheet,
   TextInput,
@@ -90,7 +92,7 @@ const RegisterScreen = (props) => {
             onChangeText={(UserName) => setUserName(UserName)}
             underlineColorAndroid="#f000"
             placeholder="Enter Name"
-            placeholderTextColor="#8b9cb5"
+            placeholderTextColor={colors.placeholder}
             autoCapitalize="sentences"
             returnKeyType="next"
             onSubmitEditing={() =>
@@ -105,7 +107,7 @@ const RegisterScreen = (props) => {
             onChangeText={(UserEmail) => setUserEmail(UserEmail)}
             underlineColorAndroid="#f000"
             placeholder="Enter Email"
-            placeholderTextColor="#8b9cb5"
+            placeholderTextColor={colors.placeholder}
             keyboardType="email-address"
             ref={emailInputRef}
             returnKeyType="next"
@@ -124,7 +126,7 @@ const RegisterScreen = (props) => {
             }
             underlineColorAndroid="#f000"
             placeholder="Enter Password"
-            placeholderTextColor="#8b9cb5"
+            placeholderTextColor= {colors.placeholder}
             ref={passwordInputRef}
             returnKeyType="next"
             secureTextEntry={true}
@@ -151,7 +153,7 @@ const RegisterScreen = (props) => {
   }
   
   return (
-    <View style={{flex: 1, backgroundColor: '#307ecc'}} >
+    <View style={{flex: 1, backgroundColor: colors.background}} >
   
       {getView()}
      
@@ -170,10 +172,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: '#7DE24E',
+    backgroundColor: colors.buttonBackground,
     borderWidth: 0,
-    color: '#FFFFFF',
-    borderColor: '#7DE24E',
+    color: colors.white,
+    borderColor: colors.border,
     height: 40,
     alignItems: 'center',
     borderRadius: 30,
@@ -183,26 +185,26 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: colors.text,
     paddingVertical: 10,
     fontSize: 16,
   },
   inputStyle: {
     flex: 1,
-    color: 'white',
+    color: colors.text,
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
     borderRadius: 30,
-    borderColor: '#dadae8',
+    borderColor: colors.border,
   },
   errorTextStyle: {
-    color: 'red',
+    color: colors.textError,
     textAlign: 'center',
     fontSize: 14,
   },
   successTextStyle: {
-    color: 'white',
+    color: colors.white,
     textAlign: 'center',
     fontSize: 18,
     padding: 30,

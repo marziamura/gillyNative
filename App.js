@@ -43,6 +43,7 @@ const App = () => {
   const responseListener = useRef();
   
   useEffect(() => {
+    if(!window.location){
     registerForPushNotificationsAsync().then(token =>
       { 
         console.log("Push Notifcation Token:", token);
@@ -64,6 +65,7 @@ const App = () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
+  }
   }, []);
 
 

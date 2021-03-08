@@ -5,6 +5,7 @@
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
+import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
 import * as colors from '../Style/Style'
 
@@ -21,10 +22,9 @@ import {
 } from 'react-native';
 
 
-const ConfirmEmail = ({navigation,dispatch}) => {
+const ForgotPassword = ({navigation,dispatch}) => {
 
   const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
@@ -37,20 +37,19 @@ const ConfirmEmail = ({navigation,dispatch}) => {
       alert('Please fill Email');
       return;
     }
-    if (!userPassword) {
-      alert('Please fill Password');
-      return;
-    }
-
-    confirmSignUp()
+   
+    sendResetRequest()
   
   }
 
-  async function confirmSignUp() {
+  async function sendResetRequest() {
     try {
-        console.log("Confirm sign up", userEmail, userPassword)
-        await Auth.confirmSignUp(userEmail.toLowerCase(), userPassword);
-        navigation.replace('LoginScreen');
+        console.log("request new password", userEmail)
+        await Auth.forgotPassword(userEmail)
+        .then(data => {
+          navigation.replace('ForgotPasswordSubmit');
+        })
+        .catch(err => console.log(err));
     } catch (error) {
         console.log('error confirming email:', error);
         setErrortext(error.message);
@@ -86,8 +85,8 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
-                placeholder={userInfo.Email}
-                placeholderTextColor={colors.placeholderText}
+                placeholder={userInfo.Email || "Email"}
+                placeholderTextColor= {colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
@@ -99,23 +98,6 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 blurOnSubmit={false}
               />
             </View>
-            <View style={styles.SectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserPassword) =>
-                  setUserPassword(UserPassword)
-                }
-                placeholder="Enter Password" //12345
-                placeholderTextColor={colors.placeholderText}
-                keyboardType="default"
-                ref={passwordInputRef}
-                onSubmitEditing={Keyboard.dismiss}
-                blurOnSubmit={false}
-                secureTextEntry={true}
-                underlineColorAndroid="#f000"
-                returnKeyType="next"
-              />
-            </View>
             {errortext != '' ? (
               <Text style={styles.errorTextStyle}>
                 {errortext}
@@ -125,7 +107,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>
-              <Text style={styles.buttonTextStyle}>Confirm code</Text>
+              <Text style={styles.buttonTextStyle}>Send</Text>
             </TouchableOpacity>
         
           </KeyboardAvoidingView>
@@ -134,7 +116,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
     </View>
   );
 };
-export default connect() (ConfirmEmail);
+export default connect() (ForgotPassword);
 
 const styles = StyleSheet.create({
   mainBody: {
@@ -154,7 +136,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: colors.buttonBackground,
     borderWidth: 0,
-    color: colors.buttonText,
+    color: 'red',
     borderColor: colors.border,
     height: 40,
     alignItems: 'center',
@@ -187,7 +169,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorTextStyle: {
-    color: colors.textError,
+    color: 'red',
     textAlign: 'center',
     fontSize: 14,
   },

@@ -5,6 +5,7 @@
 import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import { useTranslation } from 'react-i18next';
+import * as colors from '../Style/Style'
 
 
 import {
@@ -38,7 +39,7 @@ const RelationshipQuestion = (props) => {
         <View style={styles.buttonscontainer}>
           <Pressable  style={({pressed}) => [
                 {
-                  backgroundColor: pressedYes ? '#d5d5d5' : '#FFFF',
+                  backgroundColor: pressedYes ? colors.disabled : colors.white,
                 },
                 styles.whitebutton,
               ]} 
@@ -55,7 +56,7 @@ const RelationshipQuestion = (props) => {
               <Pressable 
                style={({pressed}) => [
                 {
-                  backgroundColor: pressedNo ? '#d5d5d5' : '#FFFF',
+                  backgroundColor: pressedNo ? colors.disabled : colors.white,
                 },
                 styles.whitebutton,
               ]} 
@@ -119,7 +120,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   buttontext:{
-    color: '#000000',
     fontSize: 21,
     alignSelf: 'center',
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     height: 40,
     left: 10,
     marginBottom: 20,
-    borderColor: "#000000a0",
+    borderColor: colors.border,
     borderRadius: 10,
     borderWidth: 1
   },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
      width: '80%',
      height: 40,
      top: "50%",
-     backgroundColor: "#FFF",
+     backgroundColor: colors.buttonBackground,
      borderRadius: 16,
      borderWidth: 1,
   },
