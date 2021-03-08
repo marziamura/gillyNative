@@ -103,13 +103,21 @@ export function getUserInfo () {
 
   export function updateUserInfo(info){
     let store = createStore();
+    console.log("current info", info);
     let currentInfo = info ? info : store.getState().userInfo[0];
+    console.log("current info", currentInfo);
+    
+    store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
+
     delete currentInfo.todaysTreatDone;
     delete currentInfo.lastTreatInJourney;
     delete currentInfo.todaysTreatDone;
     delete currentInfo.password;
+ 
     
-    store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
+    
+    
+    
     return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));
    
    }

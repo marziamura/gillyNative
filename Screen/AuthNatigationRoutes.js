@@ -6,6 +6,7 @@ import RegisterScreen from './Auth/RegisterScreen';
 import ConfirmEmail from './Auth/ConfirmEmail';
 import ForgotPassword from './Auth/ForgotPassword';
 import ForgotPasswordSubmit from './Auth/ForgotPasswordSubmit';
+import * as colors from './Style/Style'
 
 const Stack = createStackNavigator();
 
@@ -24,9 +25,9 @@ function AuthNavigationRoutes() {
           options={{
             title: 'Register', //Set Header Title
             headerStyle: {
-              backgroundColor: '#307ecc', //Set Header color
+              backgroundColor: colors.header, //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: colors.text, //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
@@ -38,9 +39,9 @@ function AuthNavigationRoutes() {
           options={{
             title: 'Forgot Password', //Set Header Title
             headerStyle: {
-              backgroundColor: '#307ecc', //Set Header color
+              backgroundColor: colors.header, //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: colors.text, //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
@@ -52,9 +53,9 @@ function AuthNavigationRoutes() {
           options={{
             title: 'Forgot Password', //Set Header Title
             headerStyle: {
-              backgroundColor: '#307ecc', //Set Header color
+              backgroundColor: colors.header, //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: colors.text, //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
@@ -66,9 +67,9 @@ function AuthNavigationRoutes() {
           options={{
             title: 'Confirm Email', //Set Header Title
             headerStyle: {
-              backgroundColor: '#307ecc', //Set Header color
+              backgroundColor: colors.header, //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: colors.text, //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },

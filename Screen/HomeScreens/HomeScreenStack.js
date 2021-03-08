@@ -7,7 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import NavigationDrawerHeader from '../Components/NavigationDrawerHeader';
 import TreatScreen from './TreatScreen';
 import HomeScreen from './HomeScreen';
-
+import * as colors from '../Style/Style'
 
 const Stack = createStackNavigator();
 
@@ -26,9 +26,9 @@ const HomeScreenStack = ({navigation}) => {
              <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: '#1DE7C0', //Set Header color
+            backgroundColor: colors.header, //Set Header color
           },
-          headerTintColor: '#383838', //Set Header text color
+          headerTintColor: colors.text, //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
@@ -44,9 +44,9 @@ const HomeScreenStack = ({navigation}) => {
              <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: '#1DE7C0', //Set Header color
+            backgroundColor: colors.header, //Set Header color
           },
-          headerTintColor: '#383838', //Set Header text color
+          headerTintColor: colors.text, //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },

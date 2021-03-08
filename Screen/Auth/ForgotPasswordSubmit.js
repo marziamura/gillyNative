@@ -26,7 +26,7 @@ const ForgotPasswordSubmit = ({navigation,dispatch}) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [resetCode, setResetCode] = useState('');
-  const [errortext, setErrortext] = useState('');
+  const [textError, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
   const codeInputRef = createRef();
@@ -138,9 +138,9 @@ const ForgotPasswordSubmit = ({navigation,dispatch}) => {
                 returnKeyType="next"
               />
             </View>
-            {errortext != '' ? (
+            {textError != '' ? (
               <Text style={styles.errorTextStyle}>
-                {errortext}
+                {textError}
               </Text>
             ) : null}
             <TouchableOpacity
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorTextStyle: {
-    color: colors.errortext,
+    color: colors.textError,
     textAlign: 'center',
     fontSize: 14,
   },

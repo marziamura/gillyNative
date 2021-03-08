@@ -91,8 +91,8 @@ const RegisterScreen = (props) => {
             style={styles.inputStyle}
             onChangeText={(UserName) => setUserName(UserName)}
             underlineColorAndroid="#f000"
-            placeholder="Enter Name"
-            placeholderTextColor={colors.placeholder}
+            placeholderText="Enter Name"
+            placeholderTextColor={colors.placeholderText}
             autoCapitalize="sentences"
             returnKeyType="next"
             onSubmitEditing={() =>
@@ -106,8 +106,8 @@ const RegisterScreen = (props) => {
             style={styles.inputStyle}
             onChangeText={(UserEmail) => setUserEmail(UserEmail)}
             underlineColorAndroid="#f000"
-            placeholder="Enter Email"
-            placeholderTextColor={colors.placeholder}
+            placeholderText="Enter Email"
+            placeholderTextColor={colors.placeholderText}
             keyboardType="email-address"
             ref={emailInputRef}
             returnKeyType="next"
@@ -125,8 +125,8 @@ const RegisterScreen = (props) => {
               setUserPassword(UserPassword)
             }
             underlineColorAndroid="#f000"
-            placeholder="Enter Password"
-            placeholderTextColor= {colors.placeholder}
+            placeholderText="Enter Password"
+            placeholderTextColor= {colors.placeholderText}
             ref={passwordInputRef}
             returnKeyType="next"
             secureTextEntry={true}

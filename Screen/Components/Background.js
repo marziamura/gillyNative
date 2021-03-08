@@ -9,7 +9,7 @@ import {
 function Background({children}){
 
     return (
-        <ImageBackground source={require('../../Image/background.png')} style={styles.backgroundImage}>
+        <ImageBackground source={require('../../assets/background.png')} style={styles.backgroundImage}>
             {children}
         </ImageBackground>
     )

@@ -105,6 +105,7 @@ const Welcome = ({navigation}) => {
         <Pressable
           onPress={()=>{
                   let userInfo = store.getState().userInfo;
+                  console.log("Updated userInfo", userInfo);
                   userInfo[0].sex = sex;
                   userInfo[0].gender = gender; 
                  

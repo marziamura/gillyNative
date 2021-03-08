@@ -5,6 +5,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import { Auth } from 'aws-amplify';
+import * as colors from '../Style/Style';
 
 import {
   DrawerContentScrollView,
@@ -67,26 +68,26 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#1DE7C0',
+    backgroundColor: colors.buttonBackground,
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#1DE7C0',
+    backgroundColor: colors.buttonBackground,
     padding: 15,
     textAlign: 'center',
   },
 
   menuText: {
-    color: '#9474FF',
+    color: colors.text,
     alignSelf: 'flex-start',
     fontWeight: 'bold',
   },
   profileHeaderLine: {
     height: 1,
     marginHorizontal: 20,
-    backgroundColor: '#e2e2e2',
+    backgroundColor: colors.text,
     marginTop: 15,
   },
 });

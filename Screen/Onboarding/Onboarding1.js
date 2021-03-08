@@ -17,8 +17,6 @@ import {
 
 const Onboarding1 = ({navigation}) => {
  
-  const [animating, setAnimating] = useState(true);
-
 
   return (
     <View style={styles.container}>

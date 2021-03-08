@@ -8,12 +8,13 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-// Import Screens
 
-import SettingsScreen from './HomeScreens/SettingsScreen';
+
+
 import CustomSidebarMenu from './Components/CustomSideBarMenu.js';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 import HomeScreenStack from './HomeScreens/HomeScreenStack';
+import * as colors from './Style/Style'
 
 
 const Stack = createStackNavigator();
@@ -33,20 +34,13 @@ const settingScreenStack = ({navigation}) => {
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#1DE7C0', //Set Header color
+          backgroundColor: colors.header, //Set Header color
         },
-        headerTintColor: '#F7E3CB', //Set Header text color
+        headerTintColor: colors.text, //Set Header text color
         headerTitleStyle: {
           fontWeight: 'bold', //Set Header text style
         },
       }}>
-      <Stack.Screen
-        name="SettingsScreen"
-        component={SettingsScreen}
-        options={{
-          title: 'Settings', //Set Header Title
-        }}
-      />
     </Stack.Navigator>
   );
 };
@@ -57,12 +51,12 @@ const HomeNavigatorRoutes = (props) => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{
-        backgroundColor: '#1DE7C0',
-        activeTintColor: '#1DE7C0',
-        color: '#1DE7C0',
+        backgroundColor: colors.background,
+        activeTintColor: colors.text,
+        color: colors.text,
         itemStyle: {marginVertical: 5, color: 'white'},
         labelStyle: {
-          color: '#1DE7C0',
+          color: colors.text,
         },
       }}
       screenOptions={{headerShown: false}}

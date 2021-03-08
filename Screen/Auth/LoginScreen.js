@@ -166,7 +166,7 @@ const LoginScreen = ({navigation,dispatch}) => {
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('RegisterScreen')}>
-              New Here ? Register
+              New Here? Register
             </Text>
             <Text
               style={styles.registerTextStyle}
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorTextStyle: {
-    color: colors.TextError,
+    color: colors.textError,
     textAlign: 'center',
     fontSize: 14,
   },
