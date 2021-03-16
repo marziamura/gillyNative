@@ -50,8 +50,10 @@ const LoginScreen = ({navigation,dispatch}) => {
  async function signIn() {
       let dataToSend = {username: userEmail, password: userPassword};
       console.log( "signing in ",dataToSend);
+ 
       Auth.signIn(dataToSend).then((cognitoUser)=>{
         console.log(cognitoUser);
+
         const user = [{
           id: cognitoUser.username,
           partnerID: cognitoUser.attributes["custom:partnerID"],
@@ -60,26 +62,40 @@ const LoginScreen = ({navigation,dispatch}) => {
         }]
    
         dispatch(actionUserLogin(userInfo,user));
+
         let promiseResolve = (user)=>{
-      
+    
           if (!user || !user.sex){
+           
             console.log("got user info ", user);
             navigation.replace('OnboardingNavigationRoutes');
           }else{
+    
             console.log("got user info ", user);
             navigation.replace('HomeNavigationRoutes');
           }
         }
         let promiseReject = (error)=>{
-          console.log("error", error)
-          navigation.replace('Auth');
+     
+          console.log("error", error);
+          setErrortext("Error " + error);
         }
-        
+        alert('2');
         getUserInfo().then((u)=>{promiseResolve(u)}).catch((u)=>{promiseReject(u)});
         
      }).catch ((error)=> {
+    
+     // Auth.currentAuthenticatedUser().then((cognitoUser)=>{
+      console.log(error.message);
       setErrortext(error.message);
-       console.log('error signing up:', error);
+  //    navigation.replace('HomeNavigationRoutes');
+     //  alert(String(error));
+      if(error.message.includes('s.default')){
+    //    navigation.replace('HomeNavigationRoutes');
+       }else{
+        setErrortext("not included");
+       }
+    
    })
  }
 

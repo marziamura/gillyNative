@@ -62,6 +62,7 @@ function getJourneyInfo(user){
 
 export function getUserInfo () { 
     const store = createStore();
+
     const currentUser = store.getState().userInfo[0];
     console.log("retrieving user...", currentUser);
     if(currentUser.id === "xxx"){
@@ -69,7 +70,7 @@ export function getUserInfo () {
       promise.reject()
       return promise;
     }
-   
+
     var userId = currentUser.id;
     console.log("retrieving user with id  ", userId);
     return API.graphql(graphqlOperation(queries.getUser, {id: userId})).then((u)=>{
@@ -77,9 +78,11 @@ export function getUserInfo () {
       console.log("Gilly user", u);
       var user =  u.data.getUser;
       if(!user){
+    
         return null;
       }
       if(user.journey === 'Solo' && user.partnerID && user.partnerID !== 'none'){ // I am Partner A
+    
         if (currentUser.journey && currentUser.journey !== "Solo"){
           user.journey =  currentUser.journey + '-A';
         }else{
@@ -88,8 +91,10 @@ export function getUserInfo () {
 
       }
       console.log("User with updated journey info", user);
+
       const userInfo = createStore().userInfo;
       user.registered = true;
+
       store.dispatch(actionSetUserInfo(userInfo, [user]));
 
       return getJourneyInfo(user);

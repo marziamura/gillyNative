@@ -7,7 +7,8 @@ import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import Button from '../Components/Button'
+import Button from '../Components/Button';
+import * as colors from '../Style/Style';
 
 
 import {
@@ -40,7 +41,7 @@ const ShareMessage = ({navigation}) => {
   }
 
   const button = {
-    color:"#841584", 
+    color: colors.button, 
     fontSize: 20,
     
   };

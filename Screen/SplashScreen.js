@@ -72,7 +72,7 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
           setShowButton(true);
-          navigation.replace('AboutGillyNavigationRoutes');
+          navigation.replace('AuthNavigationRoutes');
         
         });
     }, []);
@@ -87,7 +87,7 @@ const SplashScreen = ({navigation}) => {
       borderWidth: 1
     };
   return (
-    <ImageBackground source={require('../Image/background.png')} style={styles.backgroundImage}>
+    <ImageBackground source={require('../assets/background_gradient.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.gilly}>
           Gilly
