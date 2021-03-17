@@ -18,6 +18,7 @@ import {
   Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
+  ImageBackground,
 } from 'react-native';
 
 
@@ -58,6 +59,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
   }
 
   return (
+    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
     <View style={styles.mainBody}>
      
       <ScrollView
@@ -86,7 +88,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
-                placeholder={userInfo.Email}
+                placeholder={userInfo.Email || "Email"}
                 placeholderTextColor={colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -105,7 +107,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 onChangeText={(UserPassword) =>
                   setUserPassword(UserPassword)
                 }
-                placeholder="Enter Password" //12345
+                placeholder="Enter code" //12345
                 placeholderTextColor={colors.placeholderText}
                 keyboardType="default"
                 ref={passwordInputRef}
@@ -132,6 +134,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
         </View>
       </ScrollView>
     </View>
+    </ImageBackground>
   );
 };
 export default connect() (ConfirmEmail);
@@ -140,8 +143,12 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: colors.background,
     alignContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    alignSelf: 'stretch',
   },
   SectionStyle: {
     flexDirection: 'row',
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: colors.buttonBackground,
-    borderWidth: 0,
+    borderWidth: 1,
     color: colors.buttonText,
     borderColor: colors.border,
     height: 40,

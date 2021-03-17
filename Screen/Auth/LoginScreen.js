@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
 import {getUserInfo} from '../../state/getUserInfo';
-import * as colors from '../Style/Style'
+import * as colors from '../Style/Style';
+
 
 import {
   StyleSheet,
@@ -20,7 +21,9 @@ import {
   Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
+  ImageBackground
 } from 'react-native';
+
 
 
 const LoginScreen = ({navigation,dispatch}) => {
@@ -110,6 +113,7 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   }, [])
   return (
+    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
     <View style={styles.mainBody}>
      
       <ScrollView
@@ -139,7 +143,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserEmail(UserEmail)
                 }
                 placeholder="Enter Email" //dummy@abc.com
-                placeholderTextColor="#8b9cb5"
+                placeholderTextColor= {colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
@@ -147,7 +151,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   passwordInputRef.current &&
                   passwordInputRef.current.focus()
                 }
-                underlineColorAndroid="#f000"
+                underlineColorAndroid={colors.underlineColor}
                 blurOnSubmit={false}
               />
             </View>
@@ -158,13 +162,13 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserPassword(UserPassword)
                 }
                 placeholder="Enter Password" //12345
-                placeholderTextColor="#8b9cb5"
+                placeholderTextColor={colors.placeholderText}
                 keyboardType="default"
                 ref={passwordInputRef}
                 onSubmitEditing={Keyboard.dismiss}
                 blurOnSubmit={false}
                 secureTextEntry={true}
-                underlineColorAndroid="#f000"
+                underlineColorAndroid={colors.underlineColor}
                 returnKeyType="next"
               />
             </View>
@@ -198,6 +202,7 @@ const LoginScreen = ({navigation,dispatch}) => {
         </View>
       </ScrollView>
     </View>
+    </ImageBackground>
   );
 };
 export default connect() (LoginScreen);
@@ -242,6 +247,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     borderColor: colors.border,
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    alignSelf: 'stretch',
   },
   registerTextStyle: {
     color: colors.text,

@@ -16,7 +16,7 @@ import {
   Text,
   Image,
   KeyboardAvoidingView,
-  Keyboard,
+  ImageBackground,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
@@ -92,8 +92,8 @@ const RegisterScreen = (props) => {
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserName) => setUserName(UserName)}
-            underlineColorAndroid="#f000"
-            placeholderText="Enter Name"
+            underlineColorAndroid="#AAAA"
+            placeholder="Enter Name"
             placeholderTextColor={colors.placeholderText}
             autoCapitalize="sentences"
             returnKeyType="next"
@@ -107,8 +107,8 @@ const RegisterScreen = (props) => {
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserEmail) => setUserEmail(UserEmail)}
-            underlineColorAndroid="#f000"
-            placeholderText="Enter Email"
+       
+            placeholder="Enter Email"
             placeholderTextColor={colors.placeholderText}
             keyboardType="email-address"
             ref={emailInputRef}
@@ -126,8 +126,8 @@ const RegisterScreen = (props) => {
             onChangeText={(UserPassword) =>
               setUserPassword(UserPassword)
             }
-            underlineColorAndroid="#f000"
-            placeholderText="Enter Password"
+        
+            placeholder="Enter Password"
             placeholderTextColor= {colors.placeholderText}
             ref={passwordInputRef}
             returnKeyType="next"
@@ -148,23 +148,35 @@ const RegisterScreen = (props) => {
           style={styles.buttonStyle}
           activeOpacity={0.5}
           onPress={handleSubmitButton}>
-          <Text style={styles.buttonTextStyle}>REGISTER</Text>
+          <Text style={styles.buttonTextStyle}>Register</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </ScrollView>
   }
   
   return (
-    <View style={{flex: 1, backgroundColor: colors.background}} >
+   <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+    <View style={styles.mainBody} >
   
       {getView()}
      
     </View>
+    </ImageBackground>
   );
 };
 export default connect() (RegisterScreen);
 
 const styles = StyleSheet.create({
+  mainBody: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    alignSelf: 'stretch',
+  },
   SectionStyle: {
     flexDirection: 'row',
     height: 40,
@@ -175,7 +187,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: colors.buttonBackground,
-    borderWidth: 0,
+    borderWidth: 1,
     color: colors.white,
     borderColor: colors.border,
     height: 40,
@@ -193,7 +205,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     flex: 1,
-    color: colors.text,
+  //  color: colors.text,
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,

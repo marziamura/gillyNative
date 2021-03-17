@@ -19,7 +19,7 @@ console.log("loading HomeScreen");
 
 const HomeScreen = ({navigation}) => {
   let store = createStore();
-  const [buttonEnabled, setButtonEnabled] = React.useState(false);
+  const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [treatDescription, setTreatDescription] = React.useState("");
   const user = store.getState().userInfo[0];
 
@@ -61,7 +61,7 @@ const HomeScreen = ({navigation}) => {
         description: data.data.getFormId.description
       }
       store.dispatch(actionSetTreatData([treatData])); 
-      setButtonEnabled(true);
+      setButtonDisabled(false);
       setTreatDescription(treatData.description || "Ready for your next treat?");
    
      }).catch((error)=>{
@@ -84,7 +84,7 @@ const HomeScreen = ({navigation}) => {
           <Button       
               press={press}
               title="Daily Treat"
-              disabled={buttonEnabled}
+              disabled={buttonDisabled}
               styletext={button}
               styleover={pressable}
               accessibilityLabel="Open your daily Treat"

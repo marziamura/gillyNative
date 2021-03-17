@@ -15,7 +15,7 @@ import {
   Text,
   ScrollView,
   Image,
-  Keyboard,
+ ImageBackground,
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
@@ -56,6 +56,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
   }
 
   return (
+    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
     <View style={styles.mainBody}>
      
       <ScrollView
@@ -113,6 +114,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
         </View>
       </ScrollView>
     </View>
+    </ImageBackground>
   );
 };
 export default connect() (ForgotPassword);
@@ -121,8 +123,12 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: colors.background,
     alignContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    alignSelf: 'stretch',
   },
   SectionStyle: {
     flexDirection: 'row',
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: colors.buttonBackground,
-    borderWidth: 0,
+    borderWidth: 1,
     color: 'red',
     borderColor: colors.border,
     height: 40,

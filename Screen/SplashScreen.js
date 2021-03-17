@@ -48,9 +48,14 @@ const SplashScreen = ({navigation}) => {
               console.log(" calling actionUserLogin ", initialState);
               store.dispatch(actionUserLogin(initialState, currentUser));
             
-              let promiseResolve = (user)=>{
-                console.log("promise resolve", user);
-              
+              let promiseResolve = (u)=>{
+                console.log("promise resolve", u);
+                if(!u){
+                  navigation.replace('AboutGillyNavigationRoutes');
+                  return;
+                }
+                let user = u.data ? u.data.getUser : u;
+                
                 if (!user || !user.sex){
                   console.log("got user info ", user);
                   navigation.replace('OnboardingNavigationRoutes');
@@ -73,7 +78,7 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
           setShowButton(true);
-          navigation.replace('AuthNavigationRoutes');
+          navigation.replace('AboutGillyNavigationRoutes');
         
         });
     }, []);

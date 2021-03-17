@@ -22,6 +22,7 @@ function AuthNavigationRoutes() {
         <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
+          options={{headerShown: false}}
           options={{
             title: 'Register', //Set Header Title
             headerStyle: {

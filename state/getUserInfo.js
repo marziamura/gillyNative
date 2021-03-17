@@ -81,7 +81,7 @@ export function getUserInfo () {
     
         return null;
       }
-      if(user.journey === 'Solo' && user.partnerID && user.partnerID !== 'none'){ // I am Partner A
+     /* if(user.journey === 'Solo' && user.partnerID && user.partnerID !== 'none'){ // I am Partner A
     
         if (currentUser.journey && currentUser.journey !== "Solo"){
           user.journey =  currentUser.journey + '-A';
@@ -89,7 +89,7 @@ export function getUserInfo () {
           user.journey = 'Partnered-A';
         }
 
-      }
+      }*/
       console.log("User with updated journey info", user);
 
       user.registered = true;
