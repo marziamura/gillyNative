@@ -6,7 +6,7 @@ import * as queries from '../graphql/queries';
 
 
 
-function getUserInfo () { 
+function getUserJourneyInfo () { 
     const store = createStore();
     const currentUser = store.getState().userInfo[0];
     console.log("retrieving user...", currentUser);
@@ -25,18 +25,17 @@ function getUserInfo () {
       if(!user){
         return null;
       }
-      if(user.journey === 'Solo' && user.partnerID !== 'none'){ // I am Partner A
+    /*  if(user.journey === 'Solo' && user.partnerID !== 'none'){ // I am Partner A
         if (currentUser.journey !== "Solo"){
           user.journey =  currentUser.journey + '-A';
         }else{
           user.journey = 'Partnered-A';
         }
 
-      }
+      }*/
       console.log("User with updated journey info", user);
-      const userInfo = createStore().userInfo;
       user.registered = true;
-      store.dispatch(actionSetUserInfo(userInfo, [user]));
+      store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
       return user;
     }).catch((error)=>{
       console.log(error);
@@ -45,4 +44,4 @@ function getUserInfo () {
 
   };
 
-  export default getUserInfo;
+  export default getUserJourneyInfo;

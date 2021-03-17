@@ -41,7 +41,7 @@ const ShareMessage = ({navigation}) => {
   }
 
   const button = {
-    color: colors.button, 
+    color: colors.buttonBackground, 
     fontSize: 20,
     
   };

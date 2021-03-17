@@ -6,6 +6,7 @@ import * as queries from '../graphql/queries';
 import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus';
 import * as mutations from '../graphql/mutations';
 
+const store = createStore();
 
 function getJourneyInfo(user){
   
@@ -31,7 +32,7 @@ function getJourneyInfo(user){
     {
       user.todaysTreatDone = true;
       user.lastTreatInJourney = 0;
-      store.dispatch(actionUpdateJourneyStatus(user));
+      store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
       return;
     }
     console.log("before sorting ", submissions)
@@ -49,20 +50,19 @@ function getJourneyInfo(user){
     if(lastSubmittedDate === today.toLocaleDateString() && partnerDay <= cDay){
       user.todaysTreatDone = true;
     }
-    console.log('Submissions and adjusted current day', submissions.length, cDay);
+    console.log('Submissions and adjusted current day', store.getState().userInfo[0]);
     user.lastTreatInJourney = cDay;
-    store.dispatch(actionUpdateJourneyStatus(user));
+    store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
     return user;
     
   }).catch((e)=>{
-    console.log('partner has no submissions ', e);
+    console.log('Error retrieving journey info ', e);
     return user;
   })
 }
 
 export function getUserInfo () { 
-    const store = createStore();
-
+    
     const currentUser = store.getState().userInfo[0];
     console.log("retrieving user...", currentUser);
     if(currentUser.id === "xxx"){
@@ -92,10 +92,9 @@ export function getUserInfo () {
       }
       console.log("User with updated journey info", user);
 
-      const userInfo = createStore().userInfo;
       user.registered = true;
 
-      store.dispatch(actionSetUserInfo(userInfo, [user]));
+      store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
 
       return getJourneyInfo(user);
        
@@ -109,19 +108,29 @@ export function getUserInfo () {
   export function updateUserInfo(info){
     let store = createStore();
     console.log("current info", info);
-    let currentInfo = info ? info : store.getState().userInfo[0];
+    let currentInfo = {}
+    if(info){
+      currentInfo = info;
+    }else{
+      const storedInfo = store.getState().userInfo[0];
+      currentInfo.id=storedInfo.id
+      currentInfo.partnerID=storedInfo.partnerID;
+      currentInfo.userName=storedInfo.userName;
+      currentInfo.journey=storedInfo.journey;
+      currentInfo.sex=storedInfo.sex;
+      currentInfo.gender=storedInfo.gender;
+      currentInfo.partnerID=storedInfo.partnerID;
+      currentInfo.email=storedInfo.email;
+      currentInfo.password=storedInfo.password;
+      currentInfo.primary=storedInfo.primary;
+      currentInfo.registered=storedInfo.registered;
+      currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
+    } 
     console.log("current info", currentInfo);
     
-    store.dispatch(actionSetUserInfo(store.getState().userInfo[0], [currentInfo]));
+    store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
 
-    delete currentInfo.todaysTreatDone;
-    delete currentInfo.lastTreatInJourney;
-    delete currentInfo.todaysTreatDone;
-    delete currentInfo.password;
- 
-    
-    
-    
+  
     
     return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));
    

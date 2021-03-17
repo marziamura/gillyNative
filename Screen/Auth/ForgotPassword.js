@@ -5,7 +5,6 @@
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
-import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
 import * as colors from '../Style/Style'
 

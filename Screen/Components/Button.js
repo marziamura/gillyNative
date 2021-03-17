@@ -30,7 +30,7 @@ function Button(props){
     
     return (
      
-           <Pressable style={styles.button} onPress={props.press}>
+           <Pressable style={styles.button} onPress={props.press} disabled={props.disabled}>
             <Text style={styles.buttontext}> 
                 {props.title}
             </Text>

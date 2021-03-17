@@ -45,6 +45,7 @@ const SplashScreen = ({navigation}) => {
               }]
               let store = createStore();
               let initialState = store.getState().userInfo;
+              console.log(" calling actionUserLogin ", initialState);
               store.dispatch(actionUserLogin(initialState, currentUser));
             
               let promiseResolve = (user)=>{

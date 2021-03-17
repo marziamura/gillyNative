@@ -117,6 +117,7 @@ export const getFormId = /* GraphQL */ `
       partner
       sameUser
       hformId
+      description
       createdAt
       updatedAt
     }
@@ -147,6 +148,7 @@ export const listFormIds = /* GraphQL */ `
         partner
         sameUser
         hformId
+        description
         createdAt
         updatedAt
       }

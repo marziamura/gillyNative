@@ -61,7 +61,7 @@ const LoginScreen = ({navigation,dispatch}) => {
           journey: cognitoUser.attributes["custom:journey"]
         }]
    
-        dispatch(actionUserLogin(userInfo,user));
+        dispatch(actionUserLogin(createStore().getState().userInfo,user));
 
         let promiseResolve = (user)=>{
     
@@ -90,11 +90,11 @@ const LoginScreen = ({navigation,dispatch}) => {
       setErrortext(error.message);
   //    navigation.replace('HomeNavigationRoutes');
      //  alert(String(error));
-      if(error.message.includes('s.default')){
-    //    navigation.replace('HomeNavigationRoutes');
+     /* if(error.message.includes('s.default')){
+        navigation.replace('HomeNavigationRoutes');
        }else{
-        setErrortext("not included");
-       }
+        setErrortext(error.message);
+       }*/
     
    })
  }

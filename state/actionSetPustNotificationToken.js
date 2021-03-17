@@ -1,10 +1,11 @@
-import {SET_PUSH_NOTIFICATION_TOKEN} from "./messages";
+import {SET_USER_INFO} from "./messages";
 
-export default function actionSetPushNotificationToken(token){
-  console.log("call to actionSetPushNotificationToken");
+export default function actionSetPushNotificationToken(state, token){
+  console.log("call to actionSetPushNotificationToken", state, token);
   return {
-      type: SET_PUSH_NOTIFICATION_TOKEN,
+      type: SET_USER_INFO,
       payload: {
+        state,
         newItem: token
      }
     

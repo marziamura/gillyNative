@@ -6,7 +6,8 @@ import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import actionSetLoginData from '../../state/actionSetLoginData';
 import { connect } from 'react-redux';
-import * as colors from '../Style/Style'
+import * as colors from '../Style/Style';
+import createStore from '../../state/store';
 
 import {
   StyleSheet,
@@ -22,6 +23,7 @@ import {
 
 
 const RegisterScreen = (props) => {
+  let store = createStore(); 
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
@@ -58,7 +60,7 @@ const RegisterScreen = (props) => {
         
           Auth.signUp(dataToSend).then((user)=>{
             console.log("sign up success ", user);  
-            props.dispatch(actionSetLoginData(null, [dataToSend]));
+            props.dispatch(actionSetLoginData(store.getState().userInfo, [dataToSend]));
             props.navigation.replace('ConfirmEmail');
           }).catch ((error)=> {
             setErrorText(error.message);

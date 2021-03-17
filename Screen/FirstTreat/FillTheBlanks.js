@@ -46,7 +46,7 @@ const FillTheBlanks = ({navigation}) => {
       partnerName: name,
       answer: t("text1", {who: nameOnText, what: answer})
     }
-    store.dispatch(actionUpdateMessage([data]));
+    store.dispatch(actionUpdateMessage(store.getState().messageInABottle, [data]));
     navigation.replace("ShareMessage");
   }
   const button = {

@@ -36,7 +36,8 @@ type formId @model @key(fields:["day", "journey"]){
   journey: String!,
   partner:String,
   sameUser: Boolean,
-  hformId: String
+  hformId: String,
+  description: String,
 }
 
 type registeredEmail @model {

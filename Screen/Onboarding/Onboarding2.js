@@ -36,7 +36,7 @@ const Onboarding2 = ({navigation}) => {
           API.graphql(graphqlOperation(mutations.updateUser, {input: userInfo}))
           .then((u)=>{
             console.log("Updated primary user ", u);
-            store.dispatch(actionSetUserRegistered());
+            store.dispatch(actionSetUserRegistered(store.getState().userInfo));
             navigation.replace("FirstTreatNavigationRoutes");
           }).catch((e)=>{
             console.log(e);

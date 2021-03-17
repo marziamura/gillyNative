@@ -48,7 +48,7 @@ const App = () => {
       { 
         console.log("Push Notifcation Token:", token);
         setExpoPushToken(token);
-        store.dispatch(actionSetPushNotificationToken(token));
+        store.dispatch(actionSetPushNotificationToken(store.getState().userInfo, token));
       });
 
     // This listener is fired whenever a notification is received while the app is foregrounded

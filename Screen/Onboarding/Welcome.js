@@ -14,7 +14,7 @@ import {
   StyleSheet,
   Pressable
 } from 'react-native';
-import actionSetUserInfo from '../../state/actionSetUserInfo';
+
 
 /*const user = [{
   id: "xxx",

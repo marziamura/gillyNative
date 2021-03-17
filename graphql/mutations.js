@@ -143,6 +143,7 @@ export const createFormId = /* GraphQL */ `
       partner
       sameUser
       hformId
+      description
       createdAt
       updatedAt
     }
@@ -161,6 +162,7 @@ export const updateFormId = /* GraphQL */ `
       partner
       sameUser
       hformId
+      description
       createdAt
       updatedAt
     }
@@ -179,6 +181,7 @@ export const deleteFormId = /* GraphQL */ `
       partner
       sameUser
       hformId
+      description
       createdAt
       updatedAt
     }
