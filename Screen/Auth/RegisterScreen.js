@@ -50,8 +50,8 @@ const RegisterScreen = (props) => {
           }
  
           var dataToSend = {
-            username: userEmail,
-            email: userEmail,
+            username: userEmail.toLowerCase(),
+            email: userEmail.toLowerCase(),
             password: userPassword,
             attributes:{
               name: userName

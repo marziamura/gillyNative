@@ -18,7 +18,7 @@ import {
   Pressable,
   ImageBackground
 } from 'react-native';
-import {getUserInfo} from '../state/getUserInfo';
+import {getUserInfo} from '../state/userInfo';
 
 
 
@@ -51,14 +51,14 @@ const SplashScreen = ({navigation}) => {
               let promiseResolve = (u)=>{
                 console.log("promise resolve", u);
                 if(!u){
-                  navigation.replace('AboutGillyNavigationRoutes');
+                  navigation.replace('OnboardingNavigationRoutes');
                   return;
                 }
                 let user = u.data ? u.data.getUser : u;
                 
                 if (!user || !user.sex){
                   console.log("got user info ", user);
-                  navigation.replace('OnboardingNavigationRoutes');
+                  navigation.replace('FirstTreatNavigationRoutes');
                 }else{
                   if(user.lastTreatInJourney === 0){
                     console.log("No treats yet ");
@@ -72,7 +72,7 @@ const SplashScreen = ({navigation}) => {
               let promiseReject = (error)=>{
                 console.log("error", error)
               }
-              console.log("calling getUserInf");
+            console.log("calling getUserInfo");
             getUserInfo().then(promiseResolve).catch(promiseReject);
               
         }).catch((error)=>{

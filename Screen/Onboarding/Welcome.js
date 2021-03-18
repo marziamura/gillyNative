@@ -6,13 +6,14 @@ import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import createStore from '../../state/store';
-import {updateUserInfo} from '../../state/getUserInfo'
+import {saveUserInfo} from '../../state/userInfo'
 import * as colors from '../Style/Style'
 
 import {
   View,
   StyleSheet,
-  Pressable
+  Pressable,
+  ImageBackground
 } from 'react-native';
 
 
@@ -57,6 +58,7 @@ const Welcome = ({navigation}) => {
 
 
   return (
+    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
 
        <View style={styles.SectionStyle}>
@@ -98,19 +100,20 @@ const Welcome = ({navigation}) => {
      
     <Text style={styles.text}>
           Gilly uses factors like gender and sex to help curate content most relevant to you
-      </Text>
+    </Text>
 
       <View style={styles.button}>
   
         <Pressable
           onPress={()=>{
-                  let userInfo = store.getState().userInfo;
+                  let userInfo = store.getState().userInfo[0];
                   console.log("Updated userInfo", userInfo);
-                  userInfo[0].sex = sex;
-                  userInfo[0].gender = gender; 
-                 
-                  updateUserInfo(userInfo[0]).then((u)=>{
-                     navigation.replace("HomeNavigationRoutes");
+                  userInfo.sex = sex;
+                  userInfo.gender = gender; 
+                  
+                  saveUserInfo(userInfo).then((u)=>{
+                     console.log("Navigate to FirstTreatNavigationRoutes", userInfo);
+                     navigation.replace("FirstTreatNavigationRoutes");
                    }).catch((e)=>{
                      console.log(e);
                      navigation.replace("HomeNavigationRoutes");
@@ -123,6 +126,7 @@ const Welcome = ({navigation}) => {
     </View>
         
     </View>
+    </ImageBackground>
   );
 };
 
@@ -131,9 +135,12 @@ export default Welcome;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-   // justifyContent: 'center',
-    backgroundColor: colors.background,
+    alignItems: 'center'
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    alignSelf: 'stretch',
   },
   text: {
     alignItems: 'center',
@@ -173,6 +180,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '5%',
     borderRadius: 10,
+    borderWidth: 1
   },
   SectionStyle:{
     marginBottom: 20,
@@ -184,3 +192,4 @@ const styles = StyleSheet.create({
  
 
 });
+

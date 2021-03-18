@@ -3,7 +3,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
-import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus';
+import actionUpdateJourneyStatus from './actionUpdateJourneyStatus';
 import * as mutations from '../graphql/mutations';
 
 const store = createStore();
@@ -126,14 +126,40 @@ export function getUserInfo () {
       currentInfo.registered=storedInfo.registered;
       currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
     } 
-    console.log("current info", currentInfo);
+    console.log("Updating user info", currentInfo);
     
     store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
-
   
-    
-    return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));
-   
+    return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));  
    }
+
+ export function saveUserInfo(info){
+    let currentInfo;
+    if(info){
+      currentInfo = {...info};
+    }else{
+        const storedInfo = store.getState().userInfo[0];
+        currentInfo.id=storedInfo.id
+        currentInfo.partnerID=storedInfo.partnerID;
+        currentInfo.userName=storedInfo.userName;
+        currentInfo.journey=storedInfo.journey;
+        currentInfo.sex=storedInfo.sex;
+        currentInfo.gender=storedInfo.gender;
+        currentInfo.partnerID=storedInfo.partnerID;
+        currentInfo.email=storedInfo.email;
+        currentInfo.password=storedInfo.password;
+        currentInfo.primary=storedInfo.primary;
+        currentInfo.registered=storedInfo.registered;
+        currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
+    }
+    delete currentInfo.password;
+    delete currentInfo.lastTreatInJourney;
+    delete currentInfo.todaysTreatDone;
+    currentInfo.tel = "0"
+    console.log("Saving User Info", currentInfo, info);
+    store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
+
+    return API.graphql(graphqlOperation(mutations.createUser, {input: currentInfo}));
+}
 
   

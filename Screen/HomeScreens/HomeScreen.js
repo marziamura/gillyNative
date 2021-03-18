@@ -7,7 +7,7 @@ import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import Button from '../Components/Button';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
-import { updateUserInfo } from '../../state/getUserInfo';
+import { updateUserInfo } from '../../state/userInfo';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as colors from '../Style/Style';
@@ -45,7 +45,7 @@ const HomeScreen = ({navigation}) => {
   
   function getFormId(){
 
-    console.log("Getting formId", user.lastTreatInJourney);  
+    console.log("Getting formId", user.lastTreatInJourney + 1);  
     if(!user || !user.journey)
       return;
     

@@ -7,7 +7,7 @@ import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
 import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
-import {getUserInfo} from '../../state/getUserInfo';
+import {getUserInfo} from '../../state/userInfo';
 import * as colors from '../Style/Style';
 
 
@@ -51,7 +51,7 @@ const LoginScreen = ({navigation,dispatch}) => {
  };
  
  async function signIn() {
-      let dataToSend = {username: userEmail, password: userPassword};
+      let dataToSend = {username: userEmail.toLowerCase(), password: userPassword};
       console.log( "signing in ",dataToSend);
  
       Auth.signIn(dataToSend).then((cognitoUser)=>{

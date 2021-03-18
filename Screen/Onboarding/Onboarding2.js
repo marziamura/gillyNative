@@ -20,7 +20,6 @@ import actionSetUserRegistered from '../../state/actionSetUserRegistered';
 
 const Onboarding2 = ({navigation}) => {
  
-  const [animating, setAnimating] = useState(true);
   const store = createStore();
   function saveUserInfo(){
       let userInfo = store.getState().userInfo[0];
