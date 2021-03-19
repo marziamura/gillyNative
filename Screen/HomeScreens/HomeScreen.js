@@ -47,12 +47,12 @@ const HomeScreen = ({navigation}) => {
   
   function getFormId(){
 
-    console.log("Getting formId", user.lastTreatInJourney + 1);  
+    console.log("Getting formId", user.lastTreatInJourney);  
     if(!user || !user.journey)
       return;
     
     API.graphql(graphqlOperation(queries.getFormId,{
-      day: user.lastTreatInJourney + 1,
+      day: user.lastTreatInJourney,
       journey: user.journey,
      })).then((data)=>{
       console.log("getFormId ", data);

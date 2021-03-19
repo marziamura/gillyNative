@@ -47,10 +47,10 @@ function getJourneyInfo(user){
     var cDay = submissions.length;
     console.log('Submissions and current Day', submissions.length, cDay,  lastSubmittedDate, today.toLocaleDateString());
 
-    if(lastSubmittedDate === today.toLocaleDateString() && partnerDay <= cDay){
+    if(lastSubmittedDate === today.toLocaleDateString()){
       user.todaysTreatDone = true;
     }
-    console.log('Submissions and adjusted current day', store.getState().userInfo[0]);
+    console.log('Submissions and adjusted current day', store.getState().userInfo[0], user);
     user.lastTreatInJourney = cDay;
     store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
     return user;
@@ -125,6 +125,7 @@ export function getUserInfo () {
       currentInfo.primary=storedInfo.primary;
       currentInfo.registered=storedInfo.registered;
       currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
+  
     } 
     console.log("Updating user info", currentInfo);
     
