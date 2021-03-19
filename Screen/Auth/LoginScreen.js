@@ -70,11 +70,11 @@ const LoginScreen = ({navigation,dispatch}) => {
     
           if (!user || !user.sex){
            
-            console.log("got user info ", user);
+            console.log("No User Info ", user);
             navigation.replace('OnboardingNavigationRoutes');
           }else{
     
-            console.log("got user info ", user);
+            console.log("User info ", user);
             navigation.replace('HomeNavigationRoutes');
           }
         }

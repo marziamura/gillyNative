@@ -65,7 +65,6 @@ export const listUsers = /* GraphQL */ `
 export const getFormSubmission = /* GraphQL */ `
   query GetFormSubmission($userId: String!, $formId: String!) {
     getFormSubmission(userId: $userId, formId: $formId) {
-      id
       formId
       journey
       createdAt
@@ -94,7 +93,6 @@ export const listFormSubmissions = /* GraphQL */ `
       sortDirection: $sortDirection
     ) {
       items {
-        id
         formId
         journey
         createdAt

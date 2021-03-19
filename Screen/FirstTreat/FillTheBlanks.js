@@ -2,13 +2,15 @@
 // https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, KeyboardAvoidingView, TouchableWithoutFeedback , Keyboard, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
 import Button from '../Components/Button';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 
 
@@ -42,11 +44,37 @@ const FillTheBlanks = ({navigation}) => {
   }
   
   function OnPress(){
+    
     var data= {
       partnerName: name,
       answer: t("text1", {who: nameOnText, what: answer})
-    }
+    };
+    
+    /*type FormSubmission @model @key(fields:["userId", "formId"]){
+      id: ID!,
+      formId:String!,
+      journey: String!,
+      createdAt: AWSDateTime!
+      params: String,
+      refParams: String,
+      userId: String!,
+    }*/
+    var formData = {
+      //id: userInfo.id,
+      formId: "0000001",
+      journey: "Solo",
+      userId: userInfo.id,
+      createdAt: new Date().toISOString(),
+      params: "partnerName=" + data.partnerName + "&message=" + data.answer
+    };
+
+    console.log("FillTheBlanks OnPress", data);
     store.dispatch(actionUpdateMessage(store.getState().messageInABottle, [data]));
+    API.graphql(graphqlOperation(mutations.createFormSubmission, {input: formData})).then((form)=>{
+      console.log("Message In a bottle saved on DB ", form);  
+    }).catch((error)=>{
+      console.log("error saving message in a bottle on gilly's db ", error);
+    });
     navigation.replace("ShareMessage");
   }
   const button = {

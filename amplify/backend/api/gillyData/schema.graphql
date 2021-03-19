@@ -8,7 +8,7 @@ type User  @model @key(fields:["id"]){
   email: String!,	
   tel: String!,	
   activeDays: Int,
-  lastActiveDay: Int,
+  lastActiveDay: AWSTimestamp,
   journey: String,
   sex: String,
   gender: String,
@@ -19,7 +19,6 @@ type User  @model @key(fields:["id"]){
 
 
 type FormSubmission @model @key(fields:["userId", "formId"]){
-  id: ID!,
   formId:String!,
   journey: String!,
   createdAt: AWSDateTime!

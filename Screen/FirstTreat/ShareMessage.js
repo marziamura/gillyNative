@@ -19,7 +19,6 @@ import {
 
 
 
-
 const ShareMessage = ({navigation}) => {
   const { t } = useTranslation('ShareMessage');
   const message = createStore().getState().messageInABottle[0];
@@ -40,8 +39,8 @@ const ShareMessage = ({navigation}) => {
     })
   }
 
-  const button = {
-    color: colors.buttonBackground, 
+  const buttonText = {
+    color: colors.buttonText,
     fontSize: 20,
     
   };
@@ -70,13 +69,13 @@ const ShareMessage = ({navigation}) => {
           <Button
             press={OnShare}
             title={t('button', {who: message.partnerName})}
-            styletext={button}
+            styletext={buttonText}
             accessibilityLabel="Home"
           />
           <Button
             press={()=> navigation.replace("HomeNavigationRoutes")}
             title={t('button2', {who: message.partnerName})}
-            styletext={button}
+            styletext={buttonText}
             styleover={button2}
             accessibilityLabel="Home"
           />

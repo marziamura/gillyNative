@@ -85,7 +85,6 @@ export const createFormSubmission = /* GraphQL */ `
     $condition: ModelFormSubmissionConditionInput
   ) {
     createFormSubmission(input: $input, condition: $condition) {
-      id
       formId
       journey
       createdAt
@@ -102,7 +101,6 @@ export const updateFormSubmission = /* GraphQL */ `
     $condition: ModelFormSubmissionConditionInput
   ) {
     updateFormSubmission(input: $input, condition: $condition) {
-      id
       formId
       journey
       createdAt
@@ -119,7 +117,6 @@ export const deleteFormSubmission = /* GraphQL */ `
     $condition: ModelFormSubmissionConditionInput
   ) {
     deleteFormSubmission(input: $input, condition: $condition) {
-      id
       formId
       journey
       createdAt

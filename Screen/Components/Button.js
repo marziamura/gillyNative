@@ -4,9 +4,9 @@ import React from 'react';
 import {
   StyleSheet,
   Pressable,
-  Text,
-  View
+  Text
 } from 'react-native';
+import * as colors from '../Style/Style';
 
 function Button(props){
  
@@ -15,10 +15,10 @@ function Button(props){
             fontSize: 21,
             alignSelf: 'center',
             justifyContent:'center',
+            color: colors.buttonText,
             ...props.styletext
         },
         button: {
-         
             backgroundColor: "white",
             alignItems: 'center',
             borderWidth: 1,

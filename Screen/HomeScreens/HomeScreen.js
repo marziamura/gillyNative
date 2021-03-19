@@ -38,6 +38,8 @@ const HomeScreen = ({navigation}) => {
     width : '80%',
   }
   
+
+  
   React.useEffect(()=>{
     updateUserInfo().then(() => console.log("updated pushNotifciation Token"))
     .catch(error=> console.log(error))

@@ -33,7 +33,7 @@ function getJourneyInfo(user){
       user.todaysTreatDone = true;
       user.lastTreatInJourney = 0;
       store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
-      return;
+      return user;
     }
     console.log("before sorting ", submissions)
     submissions.sort((a, b)=>{

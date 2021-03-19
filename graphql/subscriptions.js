@@ -73,7 +73,6 @@ export const onDeleteUser = /* GraphQL */ `
 export const onCreateFormSubmission = /* GraphQL */ `
   subscription OnCreateFormSubmission {
     onCreateFormSubmission {
-      id
       formId
       journey
       createdAt
@@ -87,7 +86,6 @@ export const onCreateFormSubmission = /* GraphQL */ `
 export const onUpdateFormSubmission = /* GraphQL */ `
   subscription OnUpdateFormSubmission {
     onUpdateFormSubmission {
-      id
       formId
       journey
       createdAt
@@ -101,7 +99,6 @@ export const onUpdateFormSubmission = /* GraphQL */ `
 export const onDeleteFormSubmission = /* GraphQL */ `
   subscription OnDeleteFormSubmission {
     onDeleteFormSubmission {
-      id
       formId
       journey
       createdAt
