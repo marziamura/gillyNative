@@ -6,7 +6,7 @@ import React from 'react';
 
 // Import Navigators from React Navigation
 import {createStackNavigator} from '@react-navigation/stack';
-import Welcome from './Onboarding/Welcome';
+import Gender from './Onboarding/Gender';
 import Onboarding1 from './Onboarding/Onboarding1';
 import Onboarding2 from './Onboarding/Onboarding2';
 
@@ -20,13 +20,13 @@ const OnboardingNavigationRoutes = (props) => {
   console.log("OnboardingNavigationRoutes")
   return (
     <Stack.Navigator
-      initialRouteName="Welcome"
+      initialRouteName="Gender"
     >
       <Stack.Screen
-        name="Welcome"
-        component={Welcome}
+        name="About you"
+        component={Gender}
         options={{
-          title: 'Welcome', 
+          title: 'About you', 
         }}
       />
      <Stack.Screen

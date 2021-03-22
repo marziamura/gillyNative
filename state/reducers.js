@@ -59,53 +59,6 @@ const treat = [{
   description: ""
 }]
 
-/*const userInfo = (state = user, action) => {
-  switch (action.type) {
-    case USER_LOGIN:
-      console.log("call to reducer authorizationStatus", action.payload);
-      state[0].id = action.payload.newItem[0].id;
-      state[0].partnerID = action.payload.newItem[0].partnerID;
-      state[0].userName = action.payload.newItem[0].name;
-      state[0].journey = action.payload.newItem[0].journey;
-      console.log("reducer USER_LOGIN ", ...state);
-      break;
-    case USER_LOGOUT:
-        state[0] = user;
-       break;   
-    case SET_USER_INFO:
-      console.log("SET_USER_INFO", action.payload);
-      state[0].sex = action.payload.newItem[0].sex;
-      state[0].gender = action.payload.newItem[0].gender;
-      state[0].journey = action.payload.newItem[0].journey;
-      state[0].partnerID = action.payload.newItem[0].partnerID;
-      state[0].registered = action.payload.newItem[0].registered;
-      state[0].sex = action.payload.newItem[0].sex;
-      state[0].gender = action.payload.newItem[0].gender;
-      break; 
-    case USER_LOGIN_DATA:
-        console.log("USER_LOGIN_DATA", action.payload);
-        state[0].email = action.payload.newItem[0].email; 
-        state[0].password = action.payload.newItem[0].password;  
-       break;
-    case USER_REGISTERED:
-      console.log("USER_REGISTERED", action.payload);
-      state[0].registered = true;
-      break;
-    case UPDATE_JOURNEY_STATUS:  
-       console.log("UPDATE_JOURNEY_STATUS", state, action.payload);
-      state[0].registered = true;
-      state[0].lastTreatInJourney = action.payload.newItem.currentDayInJourney;
-      state[0].todaysTreatDone = action.payload.newItem.todaysTreatDone;
-      console.log("UPDATE_JOURNEY_STATUS 2", state);
-      break;
-    case SET_PUSH_NOTIFICATION_TOKEN:
-      state[0].pushNotificationToken = action.payload.newItem;
-      break;
-    default:
-      break;
-  }
-  return [...state];
-}*/
 const userInfo = (state = user, action) => {
    console.log("call to reducer userInfo", state[0], action.payload);
     if(action.type === SET_USER_INFO){

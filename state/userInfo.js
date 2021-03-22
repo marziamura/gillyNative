@@ -31,7 +31,7 @@ function getJourneyInfo(user){
     if(submissions.length === 0)
     {
       user.todaysTreatDone = true;
-      user.lastTreatInJourney = 0;
+      user.lastTreatInJourney = -1;
       store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
       return user;
     }

@@ -6,7 +6,7 @@ import React from 'react';
 
 // Import Navigators from React Navigation
 import {createStackNavigator} from '@react-navigation/stack';
-import Welcome from './Onboarding/Welcome';
+import Gender from './Onboarding/Gender';
 import Onboarding1 from './Onboarding/Onboarding1';
 import Onboarding2 from './Onboarding/Onboarding2';
 
@@ -26,7 +26,7 @@ const TreatNavigationRoutes = (props) => {
         name="Treat1"
         component={Treat1}
         options={{
-          title: 'Welcome', //Set Header Title
+          title: 'About you', //Set Header Title
         }}
       />
      <Stack.Screen

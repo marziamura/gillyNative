@@ -60,7 +60,7 @@ const SplashScreen = ({navigation}) => {
                   console.log("got user info ", user);
                   navigation.replace('FirstTreatNavigationRoutes');
                 }else{
-                  if(user.lastTreatInJourney === 0){
+                  if(user.lastTreatInJourney <= 0){
                     console.log("No treats yet ");
                     navigation.replace('FirstTreatNavigationRoutes');
                   }else{

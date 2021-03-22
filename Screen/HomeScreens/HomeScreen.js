@@ -46,13 +46,13 @@ const HomeScreen = ({navigation}) => {
   }, [])
   
   function getFormId(){
-
-    console.log("Getting formId", user.lastTreatInJourney);  
+    var formIdNb = user.lastTreatInJourney - 1;
+    console.log("Getting formId", formIdNb);  
     if(!user || !user.journey)
       return;
     
     API.graphql(graphqlOperation(queries.getFormId,{
-      day: user.lastTreatInJourney,
+      day: formIdNb,
       journey: user.journey,
      })).then((data)=>{
       console.log("getFormId ", data);
@@ -67,7 +67,7 @@ const HomeScreen = ({navigation}) => {
       setTreatDescription(treatData.description || "Ready for your next treat?");
    
      }).catch((error)=>{
-       console.log("formId error retrieving form information ", error, user.lastTreatInJourney + 1, user.journey);
+       console.log("formId error retrieving form information ", error, formIdNb, user.journey);
       // setFormId(null);
     });
   }

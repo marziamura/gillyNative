@@ -31,6 +31,7 @@ const LoginScreen = ({navigation,dispatch}) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [errortext, setErrortext] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const passwordInputRef = createRef();
   const userInfo = createStore().getState().userInfo[0];
@@ -45,9 +46,8 @@ const LoginScreen = ({navigation,dispatch}) => {
       alert('Please fill Password');
       return;
     }
-
+    setButtonDisabled(true);
     signIn()
-  
  };
  
  async function signIn() {
@@ -79,11 +79,11 @@ const LoginScreen = ({navigation,dispatch}) => {
           }
         }
         let promiseReject = (error)=>{
-     
+          setButtonDisabled(false);
           console.log("error", error);
           setErrortext("Error " + error);
         }
-        alert('2');
+
         getUserInfo().then((u)=>{promiseResolve(u)}).catch((u)=>{promiseReject(u)});
         
      }).catch ((error)=> {
@@ -104,10 +104,10 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   React.useEffect(()=>{
     
-    if(userInfo.email !== "xxx" && userInfo.password !== "xxx"){
+    if(userInfo.email !== "xxx" &&  userInfo.password && userInfo.password !== "xxx"){
       console.log("Signing in automatically...");
-      setUserEmail = userInfo.email;
-      userPassword = userInfo.password;
+      setUserEmail(userInfo.email);
+      userPassword(userInfo.password);
       signIn();
     }
 
@@ -179,6 +179,7 @@ const LoginScreen = ({navigation,dispatch}) => {
             ) : null}
             <TouchableOpacity
               style={styles.buttonStyle}
+              disabled={buttonDisabled}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>
               <Text style={styles.buttonTextStyle}>Login</Text>

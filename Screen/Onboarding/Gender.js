@@ -16,41 +16,7 @@ import {
   ImageBackground
 } from 'react-native';
 
-
-/*const user = [{
-  id: "xxx",
-  partnerID: "zzzz",
-  userName: "xxxxx",
-  journey: "zzzzz",
-  sex: "xxx",
-  gender: "xxx",
-  partnerID: "xxx",
-  email: "xxx",
-  password: "xxx",
-  primary: true,
-  registered: false,
-  todaysTreatDone: false,
-  lastTreatInJourney: 0
-}]
-type User  @model @key(fields:["id"]){
-  id: ID!,	
-  partnerID: ID,	
-  userName: String!,	
-  primary: Boolean!,	
-  registered: Boolean,	
-  email: String!,	
-  tel: String!,	
-  activeDays: Int,
-  lastActiveDay: AWSDate,
-  journey: String,
-  sex: String,
-  gender: String,
-  preferences: String,
-  partnerName: String,
-  
-}*/
-
-const Welcome = ({navigation}) => {
+const Gender = ({navigation}) => {
  
   const [gender, setGender] = useState("woman");
   const [sex, setSex] = useState("vulva");
@@ -130,7 +96,7 @@ const Welcome = ({navigation}) => {
   );
 };
 
-export default Welcome;
+export default Gender;
 
 const styles = StyleSheet.create({
   container: {
