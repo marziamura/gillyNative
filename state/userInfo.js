@@ -8,7 +8,7 @@ import * as mutations from '../graphql/mutations';
 
 const store = createStore();
 
-function getJourneyInfo(user){
+export function getJourneyInfo(user){
   
   console.log("getting journey Info... ", user.journey)
   return API.graphql(graphqlOperation(queries.listFormSubmissions, {
@@ -31,7 +31,7 @@ function getJourneyInfo(user){
     if(submissions.length === 0)
     {
       user.todaysTreatDone = true;
-      user.lastTreatInJourney = -1;
+      user.lastTreatInJourney = 0;
       store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
       return user;
     }

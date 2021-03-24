@@ -15,7 +15,6 @@ import {
   View,
   StyleSheet,
   Text,
-  Pressable,
   ImageBackground
 } from 'react-native';
 import {getUserInfo} from '../state/userInfo';

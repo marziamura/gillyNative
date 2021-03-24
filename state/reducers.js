@@ -1,12 +1,9 @@
 import { combineReducers } from 'redux'
-import {SET_PUSH_NOTIFICATION_TOKEN, USER_LOGOUT} from './messages'
+
 import {SET_USER_INFO} from './messages'
 import {UPDATE_MESSAGE}  from './messages'
 import {SET_TREAT}  from './messages'
-import {USER_LOGIN} from './messages'
-import {USER_LOGIN_DATA} from './messages'
-import {USER_REGISTERED} from './messages'
-import {UPDATE_JOURNEY_STATUS} from './messages'
+import {SET_TREAT_REFRESH} from './messages'
 
 
 const user = [{
@@ -56,14 +53,15 @@ const message =[{
 
 const treat = [{
   id: null,
-  description: ""
+  description: "",
+  toBeRefreshed: true
 }]
 
 const userInfo = (state = user, action) => {
-   console.log("call to reducer userInfo", state[0], action.payload);
+ //  console.log("call to reducer userInfo", state[0], action.payload);
     if(action.type === SET_USER_INFO){
-      console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].lastActiveDay);
-      console.log("call to reducer userInfo 2", action.payload.newItem[0].lastActiveDay);
+ //     console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].lastActiveDay);
+ //     console.log("call to reducer userInfo 2", action.payload.newItem[0].lastActiveDay);
       state[0].id = action.payload.newItem[0].id || state[0].id;
       state[0].partnerID = action.payload.newItem[0].partnerID || state[0].partnerID;
       state[0].userName = action.payload.newItem[0].name || state[0].userName;
@@ -80,7 +78,7 @@ const userInfo = (state = user, action) => {
       state[0].lastActiveDay=action.payload.newItem[0].lastActiveDay || state[0].lastActiveDay;
       state[0].lastTreatInJourney=action.payload.newItem[0].lastTreatInJourney || state[0].lastTreatInJourney;
       const a = [...state];
-      console.log("reducer userInfo ", state[0],  state[0].lastTreatInJourney);
+ //     console.log("reducer userInfo ", state[0],  state[0].lastTreatInJourney);
     }
 
   return [...state];
