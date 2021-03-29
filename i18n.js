@@ -51,7 +51,7 @@ i18n
             supertitle: "Before we begin",
             title: "Are you in a relationship?",
             text: "This information is not saved until you've finished creating an account",
-            disclaimer: "Please note that Gilly is primarily meant for couples, but you can still benefit a lot from our treats",
+            disclaimer: "Please note that Gilly is primarily meant for couples, but you can still enjoy our treats",
             button: "Next"
           },
           Memory:{
