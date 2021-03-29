@@ -23,7 +23,7 @@ const AboutBase = (props) => {
   const { t } = useTranslation(props.namespace);
   
   return (
-    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+   
     <View style={styles.container}>
     <View style={styles.textcontainer}>
         <Text style={styles.title}>
@@ -47,7 +47,7 @@ const AboutBase = (props) => {
       </View>
       
     </View>
-    </ImageBackground>
+  
   );
 };
 

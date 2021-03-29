@@ -38,20 +38,20 @@ i18n
             button: "Next"
           },
           About2:{
-            title: "And life might throw some curveballs",
+            title: "Life might throw some curveballs",
             text: "...like having kids! Gilly helps the “lovers” in your relationship thrive through it all",
             button: "Next"
           },
           About3:{
-            title: "A daily treat",
+            title: "A treat at a time",
             text: "With just one, less than 15 mins, exercise a day — you can cultivate intimacy & pleasure in your relationship",
             button: "Get Started"
           },
           About4:{
             supertitle: "Before we begin",
             title: "Are you in a relationship?",
-            text: "Don’t worry, this information is not saved until you've finished creating an account",
-            disclaimer: "Please note that Gilly is primarily meant for couples, but you can still learn a lot in a solo journey",
+            text: "This information is not saved until you've finished creating an account",
+            disclaimer: "Please note that Gilly is primarily meant for couples, but you can still benefit a lot from our treats",
             button: "Next"
           },
           Memory:{

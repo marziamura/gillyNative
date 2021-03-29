@@ -35083,3 +35083,34 @@ ConfirmEmail Object {
   "todaysTreatDone": true,
   "userName": "nat1@mailinator.com",
 }
+call to reducer userInfo state Object {
+  "email": "xxx",
+  "gender": "woman",
+  "id": "e08c6f99-a737-4aa4-a1e9-57f7b1c06424",
+  "journey": "Solo",
+  "lastActiveDay": 0,
+  "lastTreatInJourney": 1,
+  "partnerID": "xxx",
+  "password": "xxx",
+  "primary": true,
+  "pushNotificationToken": "",
+  "registered": true,
+  "sex": "vulva",
+  "todaysTreatDone": true,
+  "userName": "nat1@mailinator.com",
+}
+call to reducer userInfo action.payload undefined
+call to reducer pushNotificationPreferences state Array [
+  Object {
+    "consent": "None",
+  },
+]
+call to reducer pushNotificationPreferences action.payload Object {
+  "type": "@@redux/INITu.v.6.q.i",
+}
+call to reducer pushNotificationPreferences return default Array [
+  Object {
+    "consent": "None",
+  },
+]
+loading HomeScreen

@@ -42,7 +42,7 @@ const Gender = ({navigation}) => {
         setGender(itemValue)
       }>
       <Picker.Item label="Woman" value="woman" />
-      <Picker.Item label="Men" value="men" />
+      <Picker.Item label="Men" value="man" />
       <Picker.Item label="More" value="more" />
       <Picker.Item label="Prefer not to say" value="none" />
 
