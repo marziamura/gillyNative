@@ -6,7 +6,7 @@ export default function actionSetPushNotificationToken(state, token){
       type: SET_USER_INFO,
       payload: {
         state,
-        newItem: token
+        newItem: [token]
      }
     
 }

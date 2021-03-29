@@ -15,6 +15,7 @@ type User  @model @key(fields:["id"]){
   preferences: String,
   partnerName: String,
   pushNotificationToken: String,
+  timeZoneOffset: Int
 }
 
 

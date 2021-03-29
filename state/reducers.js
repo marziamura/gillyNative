@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import {SET_USER_INFO} from './messages'
 import {UPDATE_MESSAGE}  from './messages'
 import {SET_TREAT}  from './messages'
-import {SET_TREAT_REFRESH} from './messages'
+import {SET_PUSH_NOTIFICATION_PREF} from './messages'
 
 
 const user = [{
@@ -23,29 +23,7 @@ const user = [{
   pushNotificationToken: "",
   lastActiveDay: 0,
 }]
-/*
-email: "xxx"
-gender: "Man"
-id: "0297903d-2406-4af8-a22f-cec087c1791a"
-journey: "Solo"
-partnerID: "a495b570-6342-402c-94b3-5c2e191fc08b"
-primary: true
-pushNotificationToken: ""
-registered: true
-sex: "Vulva"
-userName: "Test1"
-*/
-/*
-gender: "woman"
-id: "4c8911ff-23e4-4a89-a877-36f0f217691b"
-journey: "Solo"
-partnerID: "a21605a8-ba69-4ba5-8193-d02cdd0b15a5"
-primary: true
-pushNotificationToken: ""
-registered: true
-sex: "vulva"
-userName: "t110"
-*/
+
 const message =[{
   partnerName: "Your partner",
   message: ""
@@ -57,8 +35,14 @@ const treat = [{
   toBeRefreshed: true
 }]
 
+const pushPreferences =[{
+  consent : "None"
+}]
+
 const userInfo = (state = user, action) => {
- //  console.log("call to reducer userInfo", state[0], action.payload);
+   console.log("call to reducer userInfo state", state[0]);
+   console.log("call to reducer userInfo action.payload", action.payload);
+    
     if(action.type === SET_USER_INFO){
  //     console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].lastActiveDay);
  //     console.log("call to reducer userInfo 2", action.payload.newItem[0].lastActiveDay);
@@ -107,6 +91,19 @@ const currentTreat = (state = treat, action) => {
   }
 }
 
-const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat});
+const pushNotificationPreferences = (state = pushPreferences, action) => {
+  console.log("call to reducer pushNotificationPreferences state", state)
+  console.log("call to reducer pushNotificationPreferences action.payload", action);
+  switch (action.type) {
+    case SET_PUSH_NOTIFICATION_PREF :
+      state[0].consent = action.payload.newItem[0];
+      return [...state];
+    default:
+      console.log("call to reducer pushNotificationPreferences return default", state);
+      return  state; 
+  }
+}
+
+const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat, pushNotificationPreferences});
 
 export default rootReducer;

@@ -7,7 +7,7 @@ import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import Button from '../Components/Button'
+import Button from '../Components/Button';
 
 
 import {
@@ -39,6 +39,7 @@ const MessageInABottle = ({navigation}) => {
           <Text style={styles.title}>
           {t("introduction")}
           </Text>
+          
           <View style={{height: '10%'}}/>
           <Text style={styles.textTop}>
             {t("text1", {name:userInfo.userName})}

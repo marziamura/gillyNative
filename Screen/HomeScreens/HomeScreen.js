@@ -4,7 +4,6 @@
 // Import React and Component
 import React from 'react';
 import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
-import Button from '../Components/Button';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
@@ -12,20 +11,56 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as colors from '../Style/Style';
 import actionSetTreatData from "../../state/actionSetTreatData";
-import {getJourneyInfo} from "../../state/userInfo"
+import {getJourneyInfo} from "../../state/userInfo";
+import { Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Button as RNPButton} from 'react-native-paper';
+import Button from '../Components/Button';
+import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
+
 
 console.log("loading HomeScreen");
 
 
 
+
 const HomeScreen = ({navigation}) => {
   let store = createStore();
+  const user = store.getState().userInfo[0];
+  const pushNotificationPreferences = store.getState().pushNotificationPreferences;
   const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [treatDescription, setTreatDescription] = React.useState("");
-  const user = store.getState().userInfo[0];
+  const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
+ 
+  
 
+  function ConsentDialog(props){
+  
+ 
+    const onDeny = () => {
+      var pushConsent ={ consent : "Deny"};
+      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setDialogOpen(false);
+    };
 
-  console.log("******** HomeScreen ******** ", store.getState().userInfo, store.getState().currentTreat);
+    const onOkay = () => {
+      var pushConsent ={ consent : "OK"};
+      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setDialogOpen(false);
+    };
+    
+    return <Dialog visible={true} onDismiss={() => setDialogOpen(false)}>
+            <Dialog.Title>Push Notifications</Dialog.Title>
+            <Dialog.Content>
+              <Paragraph>Research shows that small steps taken regularly make the biggest difference. Would you like to receive a gentle reminder from Gilly to "treat" your relationship every other day?</Paragraph>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <RNPButton onPress={onOkay}>Yes</RNPButton>
+              <RNPButton onPress={onDeny}>No</RNPButton>
+            </Dialog.Actions>
+          </Dialog>
+  }
+
+ 
   function press(){
     console.log("OnPress");
     navigation.replace("TodaysTreat")
@@ -42,9 +77,9 @@ const HomeScreen = ({navigation}) => {
 
   
   React.useEffect(()=>{
-    updateUserInfo().then(() => console.log("updated pushNotifciation Token"))
+    updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
     .catch(error=> console.log(error))
-  }, [])
+  }, [dialogOpen])
   
   function getFormId(){
 
@@ -86,7 +121,8 @@ const HomeScreen = ({navigation}) => {
         }
      }).catch((err)=>console.log("cannot get updated journey info",err));
     },[])
-
+  
+  console.log("******** HomeScreen ******** ", user.lastTreatInJourney, pushNotificationPreferences);
   return (
   <Background>
     <SafeAreaView style={{flex: 1}}>
@@ -104,7 +140,9 @@ const HomeScreen = ({navigation}) => {
               accessibilityLabel="Open your daily Treat"
             />
         </View> 
+        { dialogOpen ? <ConsentDialog /> : null}
     </View>
+  
     </SafeAreaView>
     </Background>
   );

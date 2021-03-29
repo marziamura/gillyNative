@@ -5,6 +5,7 @@ import createStore from "./store"
 import * as queries from '../graphql/queries';
 import actionUpdateJourneyStatus from './actionUpdateJourneyStatus';
 import * as mutations from '../graphql/mutations';
+import actionSetInitialPushNotificationPreferences from "./actionSetInitialPushNotificationPreferences";
 
 const store = createStore();
 
@@ -90,11 +91,14 @@ export function getUserInfo () {
         }
 
       }*/
-      console.log("User with updated journey info", user);
+      
 
       user.registered = true;
 
       store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
+      var PNToken = user.pushNotificationToken || "";
+      console.log("User with updated journey info", user, " token#", PNToken,"#");
+      store.dispatch(actionSetInitialPushNotificationPreferences(store.getState().pushNotificationPreferences, [PNToken]));
 
       return getJourneyInfo(user);
        
@@ -105,14 +109,15 @@ export function getUserInfo () {
 
   };
 
-  export function updateUserInfo(info){
-    let store = createStore();
-    console.log("current info", info);
+  function userInfo(info) {
+    console.log(" call to userInfo");
     let currentInfo = {}
+    const storedInfo = store.getState().userInfo[0];
+    const pushPreferences = store.getState().pushNotificationPreferences[0];
     if(info){
       currentInfo = info;
     }else{
-      const storedInfo = store.getState().userInfo[0];
+   
       currentInfo.id=storedInfo.id
       currentInfo.partnerID=storedInfo.partnerID;
       currentInfo.userName=storedInfo.userName;
@@ -125,41 +130,33 @@ export function getUserInfo () {
       currentInfo.primary=storedInfo.primary;
       currentInfo.registered=storedInfo.registered;
       currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
-  
+      currentInfo.pushNotificationToken = "";
+      if(pushPreferences.consent === "OK"){
+        currentInfo.pushNotificationToken= storedInfo.pushNotificationToken;
+      }
+      if(pushPreferences.consent === "Deny"){
+        currentInfo.pushNotificationToken= "Deny";
+      }
+      console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
-    console.log("Updating user info", currentInfo);
-    
+    delete currentInfo.password;
+    delete currentInfo.lastTreatInJourney;
+    delete currentInfo.todaysTreatDone;
+    currentInfo.tel = "0";
+    console.log("Saving User Info 2", currentInfo, pushPreferences, storedInfo.pushNotificationToken);
     store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
-  
+    return currentInfo;
+  }
+
+  export function updateUserInfo(info){
+    console.log("updateUserInfo 0", currentInfo);
+    let currentInfo = userInfo(info);
+    console.log("updateUserInfo 1", currentInfo);
     return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));  
    }
 
  export function saveUserInfo(info){
-    let currentInfo;
-    if(info){
-      currentInfo = {...info};
-    }else{
-        const storedInfo = store.getState().userInfo[0];
-        currentInfo.id=storedInfo.id
-        currentInfo.partnerID=storedInfo.partnerID;
-        currentInfo.userName=storedInfo.userName;
-        currentInfo.journey=storedInfo.journey;
-        currentInfo.sex=storedInfo.sex;
-        currentInfo.gender=storedInfo.gender;
-        currentInfo.partnerID=storedInfo.partnerID;
-        currentInfo.email=storedInfo.email;
-        currentInfo.password=storedInfo.password;
-        currentInfo.primary=storedInfo.primary;
-        currentInfo.registered=storedInfo.registered;
-        currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
-    }
-    delete currentInfo.password;
-    delete currentInfo.lastTreatInJourney;
-    delete currentInfo.todaysTreatDone;
-    currentInfo.tel = "0"
-    console.log("Saving User Info", currentInfo, info);
-    store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
-
+    let currentInfo = userInfo(info);
     return API.graphql(graphqlOperation(mutations.createUser, {input: currentInfo}));
 }
 

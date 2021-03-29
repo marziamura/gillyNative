@@ -29,7 +29,7 @@ import './i18n';
 import registerForPushNotificationsAsync from './notifications/pushNotifications'
 import * as Notifications from 'expo-notifications';
 import actionSetPushNotificationToken from './state/actionSetPustNotificationToken'
-
+import { Provider as PaperProvider } from 'react-native-paper';
 Amplify.configure(config)
 
 const Stack = createStackNavigator();
@@ -71,51 +71,55 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <NavigationContainer>
-    
-      <Stack.Navigator initialRouteName="SplashScreen">
-        {/* SplashScreen which will come once for 5 Seconds */}
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          // Hiding header for Splash Screen
-          options={{headerShown: false}}
-        />
+      <PaperProvider>
+
+        <NavigationContainer>
         
-        {/* Auth Navigator: Include Login and Signup */}
-        <Stack.Screen
-          name="AuthNavigationRoutes"
-          component={AuthNavigationRoutes}
-          options={{headerShown: false}}
-        />
-        {/* Navigation Drawer as a landing page */}
-        <Stack.Screen
-          name="HomeNavigationRoutes"
-          component={HomeNavigationRoutes}
-          // Hiding header for Navigation Drawer
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-         name="OnboardingNavigationRoutes"
-         component={OnboardingNavigationRoutes}
-         // Hiding header for Navigation Drawer
-         options={{headerShown: false}}
-        />
-         <Stack.Screen
-         name="FirstTreatNavigationRoutes"
-         component={FirstTreatNavigationRoutes}
-         // Hiding header for Navigation Drawer
-         options={{headerShown: false}}
-        />
-        <Stack.Screen
-         name="AboutGillyNavigationRoutes"
-         component={AboutGillyNavigationRoutes}
-         // Hiding header for Navigation Drawer
-         options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-   
-    </NavigationContainer>
+          <Stack.Navigator initialRouteName="SplashScreen">
+            {/* SplashScreen which will come once for 5 Seconds */}
+            <Stack.Screen
+              name="SplashScreen"
+              component={SplashScreen}
+              // Hiding header for Splash Screen
+              options={{headerShown: false}}
+            />
+            
+            {/* Auth Navigator: Include Login and Signup */}
+            <Stack.Screen
+              name="AuthNavigationRoutes"
+              component={AuthNavigationRoutes}
+              options={{headerShown: false}}
+            />
+            {/* Navigation Drawer as a landing page */}
+            <Stack.Screen
+              name="HomeNavigationRoutes"
+              component={HomeNavigationRoutes}
+              // Hiding header for Navigation Drawer
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+            name="OnboardingNavigationRoutes"
+            component={OnboardingNavigationRoutes}
+            // Hiding header for Navigation Drawer
+            options={{headerShown: false}}
+            />
+            <Stack.Screen
+            name="FirstTreatNavigationRoutes"
+            component={FirstTreatNavigationRoutes}
+            // Hiding header for Navigation Drawer
+            options={{headerShown: false}}
+            />
+            <Stack.Screen
+            name="AboutGillyNavigationRoutes"
+            component={AboutGillyNavigationRoutes}
+            // Hiding header for Navigation Drawer
+            options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+      
+        </NavigationContainer>
+      
+        </PaperProvider>
     </Provider>
   );
 };

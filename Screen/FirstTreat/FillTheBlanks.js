@@ -11,13 +11,14 @@ import Button from '../Components/Button';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
+import { TextInput } from 'react-native-paper';
 
 
 
 import {
   View,
   StyleSheet,
-  TextInput
+
 } from 'react-native';
 
 
@@ -104,18 +105,22 @@ const FillTheBlanks = ({navigation}) => {
             <View style={styles.textinputview}>
               <TextInput
                 style={styles.textInput}
+                label="Your partner's name"
                 onChangeText={OnChangeName}
                 placeholder={t("name")}
                 value={name}
               />
-              <TextInput
-                multiline
-                numberOfLines={4}
-                style={styles.textInputBottom}
-                onChangeText={OnChangeText}
-                placeholder={t("suggestion")}
-                value={text}
-              />
+            
+            </View>        
+            <View style={styles.textinputview}>
+                <TextInput
+                    multiline
+                    label="Your Message"
+                    placeholder={t("suggestion")}
+                    value={text}
+                    onChangeText={OnChangeText}
+                />
+            
             </View>
             <View style={styles.bottomview}>
               <Button
@@ -142,13 +147,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   textcontainerview:{
-    height: '40%',
-    width: '90%', 
+  
   },
   textinputview:{
-    height: '50%',
-    width: '90%',
-    
+    padding: 3,
   },
 
   bottomview:{
@@ -181,17 +183,16 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   textInput:{
-    borderWidth:1,
+   // borderWidth:1,
     borderRadius: 10,
-    width: '100%',
-    height: '20%',
-    marginTop: 70,
+    height: 60,
+    marginTop: 20,
   },
   textInputBottom:{
-    borderWidth:1,
-    height: '60%',
+ //   borderWidth:1,
+    height: 100,
     borderRadius: 10,
-    marginTop:20,
+    marginTop:0,
     marginBottom: 20,
   }
  

@@ -19,6 +19,7 @@ export const getUser = /* GraphQL */ `
       preferences
       partnerName
       pushNotificationToken
+      timeZoneOffset
       createdAt
       updatedAt
     }
@@ -55,6 +56,7 @@ export const listUsers = /* GraphQL */ `
         preferences
         partnerName
         pushNotificationToken
+        timeZoneOffset
         createdAt
         updatedAt
       }

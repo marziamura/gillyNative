@@ -107,7 +107,7 @@ const LoginScreen = ({navigation,dispatch}) => {
     if(userInfo.email !== "xxx" &&  userInfo.password && userInfo.password !== "xxx"){
       console.log("Signing in automatically...");
       setUserEmail(userInfo.email);
-      userPassword(userInfo.password);
+ //     userPassword(userInfo.password);
       signIn();
     }
 
