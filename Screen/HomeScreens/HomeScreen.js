@@ -14,7 +14,8 @@ import actionSetTreatData from "../../state/actionSetTreatData";
 import {getJourneyInfo} from "../../state/userInfo";
 import { Paragraph, Dialog, Portal } from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
-import Button from '../Components/Button';
+//import Button from '../Components/Button';
+import { Button } from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
 
 
@@ -128,17 +129,21 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1}}>
     <View style={styles.containerView}>
        <View style={styles.textView}>
-            <Text>{treatDescription}</Text>
+            <Text style={styles.textStyle}>Your next treat is about...</Text>
+            <Text style={styles.textStyle}>{treatDescription}</Text>
         </View> 
         <View style={styles.buttonView}>
           <Button       
-              press={press}
-              title="Daily Treat"
+              onPress={press}
               disabled={buttonDisabled}
-              styletext={button}
-              styleover={pressable}
-              accessibilityLabel="Open your daily Treat"
-            />
+              accessibilityLabel="Open my Treat"
+              mode="outlined" 
+              uppercase={false}
+              contentStyle={button}
+              style={styles.buttonStyle}
+          >
+            Open my Treat
+          </Button>
         </View> 
         { dialogOpen ? <ConsentDialog /> : null}
     </View>
@@ -156,13 +161,25 @@ const styles = StyleSheet.create({
        justifyContent: 'center',
        alignItems: 'center',
        color: colors.text,
+       padding: 20,
+       
+  },
+  textStyle:{
+    fontSize: 25,
+    paddingTop: 40,
   },
   buttonView:{
-    width: '100%',
-    height: "40%",
+    width: '60%',
+    height: "20%",
     justifyContent: 'center',
     alignItems: 'center',
-},
+ },
+ buttonStyle:{
+  justifyContent: 'center',
+  width: '100%',
+  height: "40%",
+  borderRadius: 30,
+ },
   containerView: {
     flex: 1,
     flexDirection: 'column',

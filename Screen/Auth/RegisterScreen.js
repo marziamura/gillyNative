@@ -92,7 +92,7 @@ const RegisterScreen = (props) => {
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserName) => setUserName(UserName)}
-            underlineColorAndroid="#AAAA"
+           
             placeholder="Enter Name"
             placeholderTextColor={colors.placeholderText}
             autoCapitalize="sentences"
@@ -155,13 +155,13 @@ const RegisterScreen = (props) => {
   }
   
   return (
-   <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+
     <View style={styles.mainBody} >
   
       {getView()}
      
     </View>
-    </ImageBackground>
+
   );
 };
 export default connect() (RegisterScreen);

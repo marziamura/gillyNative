@@ -8,8 +8,9 @@ import {
 
 function Background({children}){
 
+ // return <React.Fragment> {children} </React.Fragment>
     return (
-        <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+        <ImageBackground  style={styles.backgroundImage}>
             {children}
         </ImageBackground>
     )

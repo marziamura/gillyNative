@@ -92,7 +92,6 @@ const SplashScreen = ({navigation}) => {
       borderWidth: 1
     };
   return (
-    <ImageBackground source={require('../assets/background_gradient.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
         <Text style={styles.gilly}>
           Gilly
@@ -121,7 +120,6 @@ const SplashScreen = ({navigation}) => {
         </View>
         }
       </View>
-    </ImageBackground>
   );
 };
 

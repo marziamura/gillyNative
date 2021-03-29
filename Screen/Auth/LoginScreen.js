@@ -113,7 +113,7 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   }, [])
   return (
-    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+ 
     <View style={styles.mainBody}>
      
       <ScrollView
@@ -203,7 +203,7 @@ const LoginScreen = ({navigation,dispatch}) => {
         </View>
       </ScrollView>
     </View>
-    </ImageBackground>
+
   );
 };
 export default connect() (LoginScreen);
