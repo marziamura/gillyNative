@@ -9,19 +9,20 @@ import actionUserLogin from '../../state/actionUserLogin';
 import createStore from '../../state/store';
 import {getUserInfo} from '../../state/userInfo';
 import * as colors from '../Style/Style';
+import Background from '../Components/Background';
+import { Button,  TextInput } from 'react-native-paper';
 
 
 import {
   StyleSheet,
-  TextInput,
+ 
   View,
   Text,
   ScrollView,
   Image,
   Keyboard,
-  TouchableOpacity,
   KeyboardAvoidingView,
-  ImageBackground
+  Alert 
 } from 'react-native';
 
 
@@ -30,14 +31,14 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [errortext, setErrortext] = useState('');
+ 
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const passwordInputRef = createRef();
   const userInfo = createStore().getState().userInfo[0];
 
   const handleSubmitPress = () => {
-    setErrortext('');
+  
     if (!userEmail) {
       alert('Please fill Email');
       return;
@@ -81,24 +82,18 @@ const LoginScreen = ({navigation,dispatch}) => {
         let promiseReject = (error)=>{
           setButtonDisabled(false);
           console.log("error", error);
-          setErrortext("Error " + error);
+          Alert.alert("Error", error.message);
         }
 
         getUserInfo().then((u)=>{promiseResolve(u)}).catch((u)=>{promiseReject(u)});
         
      }).catch ((error)=> {
     
-     // Auth.currentAuthenticatedUser().then((cognitoUser)=>{
+ 
       console.log(error.message);
-      setErrortext(error.message);
-  //    navigation.replace('HomeNavigationRoutes');
-     //  alert(String(error));
-     /* if(error.message.includes('s.default')){
-        navigation.replace('HomeNavigationRoutes');
-       }else{
-        setErrortext(error.message);
-       }*/
-    
+      Alert.alert("Error", error.message);
+      setButtonDisabled(false);
+  
    })
  }
 
@@ -113,9 +108,9 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   }, [])
   return (
- 
-    <View style={styles.mainBody}>
-     
+ <Background>
+  <View style={styles.mainBody}>
+
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
@@ -123,24 +118,28 @@ const LoginScreen = ({navigation,dispatch}) => {
           justifyContent: 'center',
           alignContent: 'center',
         }}>
-        <View>
-          <KeyboardAvoidingView enabled>
-            <View style={{alignItems: 'center'}}>
+   <View>
+      <KeyboardAvoidingView enabled >
+        
+            <View style={styles.imageView}>
               <Image
                 source={require('../../Image/gilly_logo.png')}
                 style={{
                   width: '50%',
                   height: 100,
                   resizeMode: 'contain',
-                  margin: 30,
+                //  margin: 30,
                 }}
               />
             </View>
-            <View style={styles.SectionStyle}>
+            <View style={styles.textInputView}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={(UserEmail) =>
+                onChangeText={(UserEmail) =>{
+                 
+                  setButtonDisabled(false);
                   setUserEmail(UserEmail)
+                  }
                 }
                 placeholder="Enter Email" //dummy@abc.com
                 placeholderTextColor= {colors.placeholderText}
@@ -155,11 +154,14 @@ const LoginScreen = ({navigation,dispatch}) => {
                 blurOnSubmit={false}
               />
             </View>
-            <View style={styles.SectionStyle}>
+            <View style={styles.textInputView}>
               <TextInput
                 style={styles.inputStyle}
-                onChangeText={(UserPassword) =>
+                onChangeText={(UserPassword) =>{
+
+                  setButtonDisabled(false);
                   setUserPassword(UserPassword)
+                  }
                 }
                 placeholder="Enter Password" //12345
                 placeholderTextColor={colors.placeholderText}
@@ -171,19 +173,21 @@ const LoginScreen = ({navigation,dispatch}) => {
                 underlineColorAndroid={colors.underlineColor}
                 returnKeyType="next"
               />
+              
             </View>
-            {errortext != '' ? (
-              <Text style={styles.errorTextStyle}>
-                {errortext}
-              </Text>
-            ) : null}
-            <TouchableOpacity
-              style={styles.buttonStyle}
+  
+        {   <View style={styles.buttonsView}>
+            <Button       
+              onPress={handleSubmitPress}
               disabled={buttonDisabled}
-              activeOpacity={0.5}
-              onPress={handleSubmitPress}>
-              <Text style={styles.buttonTextStyle}>Login</Text>
-            </TouchableOpacity>
+              accessibilityLabel="Login"
+              mode="outlined" 
+              uppercase={false}
+              contentStyle={styles.button}
+              style={styles.buttonStyle}
+            >
+            Login
+          </Button>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('RegisterScreen')}>
@@ -199,11 +203,15 @@ const LoginScreen = ({navigation,dispatch}) => {
               onPress={() => navigation.navigate('ForgotPassword')}>
               Forgot Password
             </Text>
-          </KeyboardAvoidingView>
+            </View>}
+           
+     
+            </KeyboardAvoidingView>
+
         </View>
       </ScrollView>
-    </View>
-
+    </View>  
+    </Background>
   );
 };
 export default connect() (LoginScreen);
@@ -214,57 +222,65 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  SectionStyle: {
-    flexDirection: 'row',
-    height: 40,
-    marginTop: 20,
-    marginLeft: 35,
-    marginRight: 35,
-    margin: 10,
-  },
-  buttonStyle: {
-    backgroundColor: colors.buttonBackground,
-    borderWidth: 0,
-    color: colors.white,
-    borderColor: colors.border,
-    height: 40,
+  imageView:{
+    //flex: 1,
     alignItems: 'center',
-    borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 20,
-    marginBottom: 25,
+    height: 100,
+    marginBottom: 10,
   },
-  buttonTextStyle: {
-    color: colors.text,
-    paddingVertical: 10,
-    fontSize: 16,
+  textInputView: {
+    alignItems: 'center',
+    height: 100,
   },
-  inputStyle: {
+  textErrorView: {
+    alignItems: 'center',
+    height: 10,
+  },
+  buttonsView:{
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 80,
+    
+  },
+
+  inputStyle: {
+    //flex: 1,
     color: colors.text,
+   // height: 100,
+    width: 300,
     paddingLeft: 15,
-    paddingRight: 15,
+   // paddingRight: 15,
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 10,
     borderColor: colors.border,
   },
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    alignSelf: 'stretch',
-  },
+
   registerTextStyle: {
     color: colors.text,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
     alignSelf: 'center',
-    padding: 10,
+    paddingBottom: 15,
+    paddingTop: 15,
   },
   errorTextStyle: {
     color: colors.textError,
     textAlign: 'center',
     fontSize: 14,
   },
+  button: {
+    color:"#841584", 
+    fontSize: 20,
+  },
+  buttonStyle:{
+    justifyContent: 'center',
+    width: 200,
+    height: 50,
+    borderRadius: 30,
+   },
+
+
 });

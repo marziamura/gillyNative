@@ -6,8 +6,7 @@ import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import { WebView } from 'react-native-webview';
 import createStore from '../../state/store';
-import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
+import Background from '../Components/Background';
 
 
 
@@ -106,14 +105,14 @@ const TreatScreen = ({navigation}) => {
     }
    
   return (
-    <React.Fragment>
+    <Background>
      { window.location && <Text>
           {typeformLink}
       </Text>
      }
        {getPageView()} 
      
-    </React.Fragment>
+    </Background>
   );
 };
 

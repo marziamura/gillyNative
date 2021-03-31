@@ -26,7 +26,8 @@ const user = [{
 
 const message =[{
   partnerName: "Your partner",
-  message: ""
+  name: "",
+  answer: ""
 }]
 
 const treat = [{
@@ -44,11 +45,11 @@ const userInfo = (state = user, action) => {
    console.log("call to reducer userInfo action.payload", action.payload);
     
     if(action.type === SET_USER_INFO){
- //     console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].lastActiveDay);
+      console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].userName);
  //     console.log("call to reducer userInfo 2", action.payload.newItem[0].lastActiveDay);
       state[0].id = action.payload.newItem[0].id || state[0].id;
       state[0].partnerID = action.payload.newItem[0].partnerID || state[0].partnerID;
-      state[0].userName = action.payload.newItem[0].name || state[0].userName;
+      state[0].userName = action.payload.newItem[0].userName || state[0].userName;
       state[0].journey = action.payload.newItem[0].journey || state[0].journey;
       state[0].sex = action.payload.newItem[0].sex || state[0].sex;
       state[0].gender = action.payload.newItem[0].gender || state[0].gender;
@@ -73,7 +74,8 @@ const messageInABottle = (state = message, action) => {
   switch (action.type) {
     case UPDATE_MESSAGE:
       state[0].partnerName = action.payload.newItem[0].partnerName;
-      state[0].message = action.payload.newItem[0].answer;
+      state[0].answer = action.payload.newItem[0].answer;
+      state[0].name = action.payload.newItem[0].name;
       return [...state,];
     default:
       return  state; 

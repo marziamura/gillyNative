@@ -67,14 +67,7 @@ const HomeScreen = ({navigation}) => {
     navigation.replace("TodaysTreat")
   };
 
-  const button = {
-    color:"#841584", 
-    fontSize: 20,
-  };
-  const pressable ={
-    width : '80%',
-  }
-  
+
 
   
   React.useEffect(()=>{
@@ -139,7 +132,7 @@ const HomeScreen = ({navigation}) => {
               accessibilityLabel="Open my Treat"
               mode="outlined" 
               uppercase={false}
-              contentStyle={button}
+              contentStyle={styles.button}
               style={styles.buttonStyle}
           >
             Open my Treat
@@ -187,6 +180,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
    // backgroundColor: colors.background,
   },
+  button : {
+    color:"#841584", 
+    fontSize: 20,
+  },
+ 
 
 })
 

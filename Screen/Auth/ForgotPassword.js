@@ -6,7 +6,8 @@ import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
 import createStore from '../../state/store';
-import * as colors from '../Style/Style'
+import * as colors from '../Style/Style';
+import Background from '../Components/Background';
 
 import {
   StyleSheet,
@@ -56,6 +57,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
   }
 
   return (
+    <Background>
     <View style={styles.mainBody}>
      
       <ScrollView
@@ -113,6 +115,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
         </View>
       </ScrollView>
     </View>
+    </Background>
 
   );
 };

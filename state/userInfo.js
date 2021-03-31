@@ -94,6 +94,7 @@ export function getUserInfo () {
       
 
       user.registered = true;
+      user.userName = currentUser.userName;
 
       store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
       var PNToken = user.pushNotificationToken || "";
@@ -139,6 +140,7 @@ export function getUserInfo () {
       }
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
+    currentInfo.userName = "xxx";
     delete currentInfo.password;
     delete currentInfo.lastTreatInJourney;
     delete currentInfo.todaysTreatDone;

@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
-import Button from './Components/Button'
+//import Button from './Components/Button';
+import { Button}  from 'react-native-paper';
+import Background from './Components/Background';
 
 
 import {
@@ -26,8 +28,10 @@ const SplashScreen = ({navigation}) => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-      console.log("Splash Screen UseEffect");
-    //  navigation.replace('FirstTreatNavigationRoutes');
+    setTimeout(
+          function() {
+          console.log("Splash Screen UseEffect");
+          //  navigation.replace('FirstTreatNavigationRoutes');
 
           //Check if user_id is set or not
           //If not then send for Authentication
@@ -38,13 +42,13 @@ const SplashScreen = ({navigation}) => {
             const currentUser = [{
                 id: cognitoUser.username,
                 partnerID: cognitoUser.attributes["custom:partnerID"],
-                name: cognitoUser.attributes["name"],
+                userName: cognitoUser.attributes["name"],
                 journey: cognitoUser.attributes["custom:journey"]
                 
               }]
               let store = createStore();
               let initialState = store.getState().userInfo;
-              console.log(" calling actionUserLogin ", initialState);
+              console.log(" calling actionUserLogin ", currentUser);
               store.dispatch(actionUserLogin(initialState, currentUser));
             
               let promiseResolve = (u)=>{
@@ -80,6 +84,7 @@ const SplashScreen = ({navigation}) => {
           navigation.replace('AboutGillyNavigationRoutes');
         
         });
+      }, 3000)
     }, []);
     const button = {
       color:"#841584", 
@@ -92,6 +97,7 @@ const SplashScreen = ({navigation}) => {
       borderWidth: 1
     };
   return (
+    <Background>
       <View style={styles.container}>
         <Text style={styles.gilly}>
           Gilly
@@ -112,14 +118,16 @@ const SplashScreen = ({navigation}) => {
         }
         {showButton && <View style={styles.signIn}>
           <Button
-           press={() => {
+           onPress={() => {
             navigation.replace('Auth');
            }}
-           title =  {t("signIn")}
-          />
+           >
+            {t("signIn")}
+          </Button>
         </View>
         }
       </View>
+   </Background>
   );
 };
 

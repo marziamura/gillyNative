@@ -7,18 +7,20 @@ import {Text, KeyboardAvoidingView, TouchableWithoutFeedback , Keyboard, Platfor
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import Button from '../Components/Button';
+
 import actionUpdateMessage from '../../state/actionUpdateMessage';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import { TextInput } from 'react-native-paper';
+import { Button}  from 'react-native-paper';
+
 
 
 
 import {
   View,
   StyleSheet,
-
+  ScrollView,
 } from 'react-native';
 
 
@@ -47,8 +49,9 @@ const FillTheBlanks = ({navigation}) => {
   function OnPress(){
     
     var data= {
-      partnerName: name,
-      answer: t("text1", {who: nameOnText, what: answer})
+      name: userInfo.userName,
+      partnerName: nameOnText, 
+      answer: answer
     };
     
     /*type FormSubmission @model @key(fields:["userId", "formId"]){
@@ -66,7 +69,7 @@ const FillTheBlanks = ({navigation}) => {
       journey: "Solo",
       userId: userInfo.id,
       createdAt: new Date().toISOString(),
-      params: "partnerName=" + data.partnerName + "&message=" + data.answer
+      params: "partnerName=" + data.partnerName + "&message=" + t("text1", {who: nameOnText, what: answer})
     };
 
     console.log("FillTheBlanks OnPress", data);
@@ -78,21 +81,23 @@ const FillTheBlanks = ({navigation}) => {
     });
     navigation.replace("ShareMessage");
   }
-  const button = {
-    color:"#841584", 
-    fontSize: 20,
-    
-  };
+
   
   return (
     <Background>
-       <KeyboardAvoidingView
-            style={styles.container}
-            //behavior={Platform.OS === "ios" ? "padding" : "height"}
+         <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}>
+       <KeyboardAvoidingView enabled
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
     
           <View>
-            <View style={styles.textcontainerview}>
+             <View style={styles.textcontainerview}>
               <Text style={styles.title}>
               {t("title")}
               </Text>
@@ -111,9 +116,9 @@ const FillTheBlanks = ({navigation}) => {
                 value={name}
               />
             
-            </View>        
-            <View style={styles.textinputview}>
+  
                 <TextInput
+                    style={styles.textInputMultiline}
                     multiline
                     label="Your Message"
                     placeholder={t("suggestion")}
@@ -123,17 +128,21 @@ const FillTheBlanks = ({navigation}) => {
             
             </View>
             <View style={styles.bottomview}>
-              <Button
-                press={OnPress}
-                title={t('button')}
-                styletext={button}
-                accessibilityLabel="Home"
-              />
+       
+            <Button       
+              onPress={OnPress}
+              accessibilityLabel={t('button')}
+              mode="outlined" 
+              uppercase={false}
+              style={styles.buttonStyle}
+            >
+            send your message
+          </Button>
             </View>
-            </View>
+        </View>
          
        </KeyboardAvoidingView>
-      
+       </ScrollView>
     </Background>
   );
 };
@@ -147,19 +156,25 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   textcontainerview:{
-  
+    paddingTop: 40,
   },
   textinputview:{
-    padding: 3,
+    padding: 10,
+    height: '20%',
   },
-
+  textinputviewmessage:{
+    padding: 10,
+    height: '30%',
+  },
   bottomview:{
-    height: '10%',
+    height: '40%',
     width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   title: {
-    position: 'absolute',
+  //  position: 'absolute',
     width: '100%',
    // fontFamily: 'Roboto',
     fontStyle: 'normal',
@@ -167,8 +182,8 @@ const styles = StyleSheet.create({
     fontSize: 36,
     lineHeight: 40,
     color: '#383838',
-    paddingBottom: 100,
-    marginTop: 20,
+    paddingTop: 40,
+  //  marginTop: 20,
   },
  
   textTop: {
@@ -179,7 +194,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    marginTop: 80,
+    marginTop: 40,
     fontWeight: "500",
   },
   textInput:{
@@ -188,13 +203,18 @@ const styles = StyleSheet.create({
     height: 60,
     marginTop: 20,
   },
-  textInputBottom:{
- //   borderWidth:1,
-    height: 100,
-    borderRadius: 10,
-    marginTop:0,
-    marginBottom: 20,
-  }
- 
+  textInputMultiline:{
+    // borderWidth:1,
+   //  borderRadius: 10,
+   //  height: 120,
+     marginTop: 10,
+   },
+  
+  buttonStyle:{
+    justifyContent: 'center',
+    width: '60%',
+    height: "20%",
+    borderRadius: 30,
+   },
 
 });

@@ -25,7 +25,7 @@ const RelationshipQuestion = (props) => {
   const [pressedNo, setPressedNo] = React.useState(false);
 
   return (
-    <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
+  
    <View style={styles.container}>
         <View style={styles.textcontainer}>
    
@@ -86,7 +86,6 @@ const RelationshipQuestion = (props) => {
             </Pressable> 
         </View>
     </View>
-    </ImageBackground>
   
   );
 };

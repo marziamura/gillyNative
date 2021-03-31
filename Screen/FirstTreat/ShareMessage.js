@@ -25,8 +25,9 @@ const ShareMessage = ({navigation}) => {
   console.log("message ", message);
 
   const OnShare =() => { 
+   const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${message.name}&partner=${message.partnerName}&partneramessage=${message.answer}`
     Share.share({
-        message: message.message  + "\nShared with gilly, wwww.getgilly.com"
+        message: t('IntroMessage', {who: message.name})  + "\n" + typeformLink
       }).then((result) => {
       
       if (result.action === Share.sharedAction) {

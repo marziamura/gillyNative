@@ -5,7 +5,8 @@
 import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import * as colors from '../Style/Style'
+import * as colors from '../Style/Style';
+import { Button}  from 'react-native-paper';
 
 
 
@@ -34,16 +35,13 @@ const AboutBase = (props) => {
         </Text>
       </View>
       <View style={styles.button}>
-        
-          <Pressable
-           onPress={() => {
-            props.navigation.replace(props.next);
-           }}
-          >
-            <Text style={styles.buttontext}> 
-            {t("button")}
-            </Text>
-          </Pressable> 
+      <Button
+        onPress={() => {
+          props.navigation.replace(props.next);
+         }}
+        >
+        {t("button")}
+      </Button>
       </View>
       
     </View>
@@ -61,6 +59,7 @@ const styles = StyleSheet.create({
   },
   textcontainer:{
     width: '100%', height: '60%',
+    padding: 10,
   },
   backgroundImage: {
     flex: 1,
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     position: 'absolute',
     width: '100%',
-    height: 40,
+    height: 80,
     top: "20%",
   //  fontFamily: 'Roboto',
     fontStyle: 'normal',

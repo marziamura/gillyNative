@@ -8,6 +8,7 @@ import actionSetLoginData from '../../state/actionSetLoginData';
 import { connect } from 'react-redux';
 import * as colors from '../Style/Style';
 import createStore from '../../state/store';
+import Background from '../Components/Background';
 
 import {
   StyleSheet,
@@ -155,13 +156,13 @@ const RegisterScreen = (props) => {
   }
   
   return (
-
+<Background>
     <View style={styles.mainBody} >
   
       {getView()}
      
     </View>
-
+    </Background>
   );
 };
 export default connect() (RegisterScreen);
