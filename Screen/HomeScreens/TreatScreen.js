@@ -22,17 +22,15 @@ const TreatScreen = ({navigation}) => {
     
 
     
-    var partnerName = "your partner";
+    
     var source = "https://getgilly.typeform.com/to/";
-    var params =   'partner=' + partnerName
-                + '&pname=' + "" 
-                + '&userid=' + user.id 
+    var params = '&userid=' + user.id 
                 + '&firstname=' + user.name
                 + '&puserid=' + user.partnerID
                 + "&email=" + user.email
                 + "&journey=" + user.journey;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
-    console.log("TypeFormLink ", typeformLink);
+    console.log("TypeFormLink ->", typeformLink);
  
  /*   function f() {
       let elements = document.querySelectorAll("button" );

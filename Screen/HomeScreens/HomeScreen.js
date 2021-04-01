@@ -31,6 +31,7 @@ const HomeScreen = ({navigation}) => {
   const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [treatDescription, setTreatDescription] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
+  const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
  
   
 
@@ -58,6 +59,30 @@ const HomeScreen = ({navigation}) => {
               <RNPButton onPress={onOkay}>Yes</RNPButton>
               <RNPButton onPress={onDeny}>No</RNPButton>
             </Dialog.Actions>
+          </Dialog>
+  }
+
+  function InfoDialog(props){
+  
+ 
+    const onDeny = () => {
+      var pushConsent ={ consent : "Deny"};
+      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setDialogOpen(false);
+    };
+
+    const onOkay = () => {
+      var pushConsent ={ consent : "OK"};
+      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setDialogOpen(false);
+    };
+    
+    return <Dialog visible={true} onDismiss={() => setInfoDialogOpen(false)}>
+            <Dialog.Title>A treat?</Dialog.Title>
+            <Dialog.Content>
+              <Paragraph>A treat = knowledge + an activity to help you apply and try what you're learning IRL (in real life). In spirit, it is really a treat for yourself; for your relationship.
+                         As a parent, being able to prioritize your well-being and your sacred couple space IS a treat!</Paragraph>
+            </Dialog.Content>
           </Dialog>
   }
 
@@ -121,12 +146,16 @@ const HomeScreen = ({navigation}) => {
   <Background>
     <SafeAreaView style={{flex: 1}}>
     <View style={styles.containerView}>
+        <View style={styles.welcomeView}>
+            <Text style={styles.textStyle}>{"Welcome to your home page " + user.userName}</Text>
+            
+        </View> 
        <View style={styles.textView}>
             <Text style={styles.textStyle}>Your next treat is about...</Text>
             <Text style={styles.textStyle}>{treatDescription}</Text>
         </View> 
         <View style={styles.buttonView}>
-          <Button       
+        <Button       
               onPress={press}
               disabled={buttonDisabled}
               accessibilityLabel="Open my Treat"
@@ -137,8 +166,19 @@ const HomeScreen = ({navigation}) => {
           >
             Open my Treat
           </Button>
+          <Button       
+              onPress={()=>{setInfoDialogOpen(true)}}
+              disabled={buttonDisabled}
+              accessibilityLabel="What's aTreat"
+              uppercase={false}
+              contentStyle={styles.button}
+              style={styles.buttonStyle}
+          >
+            What's a treat?
+          </Button>
         </View> 
         { dialogOpen ? <ConsentDialog /> : null}
+        { infoDialogOpen ? <InfoDialog /> : null}
     </View>
   
     </SafeAreaView>
@@ -154,12 +194,21 @@ const styles = StyleSheet.create({
        justifyContent: 'center',
        alignItems: 'center',
        color: colors.text,
-       padding: 20,
+       padding: 10,
        
   },
+  welcomeView:{
+    width: '100%',
+    height: "5%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: colors.text,
+    //padding: 20,
+    
+},
   textStyle:{
     fontSize: 25,
-    paddingTop: 40,
+    //paddingTop: 20,
   },
   buttonView:{
     width: '60%',
@@ -170,7 +219,7 @@ const styles = StyleSheet.create({
  buttonStyle:{
   justifyContent: 'center',
   width: '100%',
-  height: "40%",
+  height: "30%",
   borderRadius: 30,
  },
   containerView: {
