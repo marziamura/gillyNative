@@ -20,7 +20,15 @@ import {
 const AboutBase = (props) => {
   console.log("AboutBase", props, props.navigation)
   const { t } = useTranslation(props.namespace);
-  
+  const buttonText = {
+    color:"#841584", 
+    fontSize: 20,
+  };
+  const buttonArea = {
+    borderWidth: 1,
+    width: '100%'
+  };
+
   return (
    
     <View style={styles.container}>

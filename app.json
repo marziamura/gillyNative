@@ -5,7 +5,11 @@
     "version": "0.0.6",
     "orientation": "portrait",
     "icon": "./assets/gilly-icon.png",
-
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

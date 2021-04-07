@@ -29,20 +29,6 @@ const OnboardingNavigationRoutes = (props) => {
           title: 'About you', 
         }}
       />
-     <Stack.Screen
-        name="Onboarding1"
-        component={Onboarding1}
-        options={{
-          title: 'Onboarding', 
-        }}
-      />
-      <Stack.Screen
-        name="Onboarding2"
-        component={Onboarding2}
-        options={{
-          title: 'Onboarding', 
-        }}
-      />
     </Stack.Navigator>
   );
 };

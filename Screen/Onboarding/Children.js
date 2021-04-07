@@ -56,7 +56,6 @@ const Children = ({navigation}) => {
   const [sex, setSex] = useState("vulva");
   const store = createStore();
 
-
   return (
     <ImageBackground source={require('../../assets/background_gradient.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
@@ -162,8 +161,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  dropDown:{
-    //marginTop: 20,
+  dropDownView:{
+    borderRadius: 10,
+    borderWidth: 1,
     width: '80%',
     height: '5%',
     borderRadius: 10,

@@ -23,6 +23,17 @@ const RelationshipQuestion = (props) => {
   const [disclaimer, setDisclaimerText] = React.useState("");
   const [pressedYes, setPressedYes] = React.useState(false);
   const [pressedNo, setPressedNo] = React.useState(false);
+ 
+ 
+  
+  const buttonText = {
+    color:"#841584", 
+    fontSize: 20,
+  };
+  const buttonArea = {
+    borderWidth: 1,
+    width: '80%'
+  };
 
   return (
   
@@ -122,8 +133,10 @@ const styles = StyleSheet.create({
   },
   buttontext:{
     fontSize: 21,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 10
   },
+
   whitebutton:{
     display: 'flex',
     flexDirection: 'column',
@@ -151,7 +164,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '90%',
     left:   10,
-    top: "10%",
+  //  top: "5%",
   //  fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
