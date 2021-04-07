@@ -13,8 +13,6 @@ import { Button}  from 'react-native-paper';
 import {
   View,
   StyleSheet,
-  Pressable,
-  ImageBackground
 } from 'react-native';
 
 
@@ -39,6 +37,10 @@ const AboutBase = (props) => {
         onPress={() => {
           props.navigation.replace(props.next);
          }}
+         mode="outlined" 
+         uppercase={false}
+         contentStyle={styles.button}
+         style={styles.buttonStyle}
         >
         {t("button")}
       </Button>
@@ -70,15 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     color: colors.buttonText
   },
-  button:{
-    backgroundColor: colors.buttonBackground,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 16,
-    width: '80%',
-    height: 40,
-  },
+ 
   title: {
     position: 'absolute',
     width: '100%',
@@ -105,5 +99,16 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'center',
     color: colors.text
-  }
+  },
+  buttonStyle:{
+    justifyContent: 'center',
+    width: '100%',
+    height: "30%",
+    borderRadius: 30,
+   },
+    button : {
+      color:"#841584", 
+      fontSize: 20,
+      width: 300
+    },
 });

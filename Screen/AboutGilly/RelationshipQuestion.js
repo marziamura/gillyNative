@@ -3,16 +3,16 @@
 
 // Import React and Component
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style'
+import { Button}  from 'react-native-paper';
 
 
 import {
   View,
   StyleSheet,
-  Pressable,
-  ImageBackground
+  Pressable
 } from 'react-native';
 
 console.log("Loading File RelationshipQuestion");
@@ -75,15 +75,17 @@ const RelationshipQuestion = (props) => {
             <Text style={styles.disclaimer}> 
                 {disclaimer}
             </Text>
-            <Pressable style={styles.button}
-              onPress={() => {
-                props.navigation.replace("AuthNavigationRoutes");
-              }}
-              >
-                <Text style={styles.buttontext}> 
+            <Button
+                onPress={() => {
+                    props.navigation.replace("AuthNavigationRoutes");
+                }}
+                mode="outlined" 
+                uppercase={false}
+                contentStyle={styles.button}
+                style={styles.buttonStyle}
+                >
                 {t("button")}
-                </Text>
-            </Pressable> 
+           </Button>
         </View>
     </View>
   
@@ -185,5 +187,16 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 20,
     color: 'red'
-  }
+  },
+  buttonStyle:{
+    justifyContent: 'center',
+    width: '100%',
+    height: "30%",
+    borderRadius: 30,
+   },
+    button : {
+      color:"#841584", 
+      fontSize: 20,
+    },
+  
 });

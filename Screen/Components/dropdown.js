@@ -28,7 +28,7 @@ const Dropdown = (props) => {
            return <Menu.Item onPress={()=>{
                setValue(value);
                closeMenu();
-            }} title= {title} />    
+            }} key={value} title= {title} />    
           })
           }
 

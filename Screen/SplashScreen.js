@@ -84,7 +84,7 @@ const SplashScreen = ({navigation}) => {
           navigation.replace('AboutGillyNavigationRoutes');
         
         });
-      }, 3000)
+      }, 10)
     }, []);
     const button = {
       color:"#841584", 

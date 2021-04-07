@@ -146,15 +146,15 @@ const HomeScreen = ({navigation}) => {
   <Background>
     <SafeAreaView style={{flex: 1}}>
     <View style={styles.containerView}>
-        <View style={styles.welcomeView}>
+        <View style={[styles.welcomeView, styles.orange]}>
             <Text style={styles.textStyle}>{"Welcome to your home page " + user.userName}</Text>
             
         </View> 
-       <View style={styles.textView}>
+       <View style={[styles.textView, styles.blue]}>
             <Text style={styles.textStyle}>Your next treat is about...</Text>
             <Text style={styles.textStyle}>{treatDescription}</Text>
         </View> 
-        <View style={styles.buttonView}>
+        <View style={[styles.buttonView, styles.orange]}>
         <Button       
               onPress={press}
               disabled={buttonDisabled}
@@ -188,31 +188,31 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   
+  welcomeView:{
+    //  width: '100%',
+    //  height: "5%",
+        justifyContent: 'center',
+        alignItems: 'center',
+      color: colors.text,
+      //padding: 20,  
+  },
+
   textView:{
-       width: '100%',
-       height: "60%",
+    
        justifyContent: 'center',
        alignItems: 'center',
        color: colors.text,
        padding: 10,
        
   },
-  welcomeView:{
-    width: '100%',
-    height: "5%",
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: colors.text,
-    //padding: 20,
-    
-},
+
   textStyle:{
     fontSize: 25,
-    //paddingTop: 20,
+    textAlign: "center",
   },
   buttonView:{
-    width: '60%',
-    height: "20%",
+ //   width: '60%',
+ //   height: "20%",
     justifyContent: 'center',
     alignItems: 'center',
  },
@@ -225,14 +225,23 @@ const styles = StyleSheet.create({
   containerView: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+  //  alignItems: 'center',
+  //  justifyContent: 'center',
    // backgroundColor: colors.background,
   },
   button : {
     color:"#841584", 
     fontSize: 20,
   },
+  orange: {
+    backgroundColor: '#e3aa1a',
+    flex:1
+  },
+  blue: {
+    backgroundColor: '#2196F3',
+    flex:2
+  }
+  
  
 
 })
