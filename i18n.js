@@ -69,6 +69,27 @@ i18n
             button: "Send to {{who}}",
             button2: "I don't want to send it to {{who}} now",
             IntroMessage:"{{who}} has shared a special message with you through gilly. Open the link to read it"
+          },
+          Home:{
+            welcome: "Hi, {{who}}",
+            invite: "Gilly is better in pairs! Invite {{who}} to join",
+            nextTreat: "Your Next Treat",
+            openTreat: "Open treat",
+            exploreJourneys: "Explore Journeys",
+            completeProfile: "Discover your intimacy profile",
+          },
+          Notifications:{
+            title: "Push Notifications",
+            paragraph: 'Research shows that small steps taken regularly make the biggest difference. Would you like to receive a gentle reminder from Gilly to "treat" your relationship every other day?',
+          },
+          infoTreat:{
+            title: "A Treat?",
+            paragraph: "A treat = knowledge + an activity to help you apply and try what you're learning IRL (in real life). In spirit, it is really a treat for yourself; for your relationship. \
+            As a parent, being able to prioritize your well-being and your sacred couple space IS a treat!",
+          },
+          infoJourney:{
+            title: "What's a journey",
+            paragraph: "A journey is a series of related treats"
           }
 
         },

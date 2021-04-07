@@ -3,7 +3,7 @@
 
 // Import React and Component
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Text, Pressable} from 'react-native';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
@@ -14,17 +14,22 @@ import actionSetTreatData from "../../state/actionSetTreatData";
 import {getJourneyInfo} from "../../state/userInfo";
 import { Paragraph, Dialog, Portal } from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
-//import Button from '../Components/Button';
-import { Button } from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
+import FlatList from '../Components/carousel'
+import { LinearGradient } from 'expo-linear-gradient';
+import { IconButton } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 
 console.log("loading HomeScreen");
 
-
+const viewWidth= '90%';
+const margin= 20;
+const viewBorderRadius = 20;
 
 
 const HomeScreen = ({navigation}) => {
+  const { t } = useTranslation('Home');
   let store = createStore();
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
@@ -32,56 +37,56 @@ const HomeScreen = ({navigation}) => {
   const [treatDescription, setTreatDescription] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
+  const [updateInfo, setUpdateInfo] = React.useState(false);
+  const [journeyInfoDialogOpen, setInJourneyInfoDialogOpen] = React.useState(false);
  
   
+  const openTreatInfo = () =>{
+    setInfoDialogOpen(true);
+  }
+  const openJourneyInfo = () =>{
+    setInJourneyInfoDialogOpen(true);
+  }
 
   function ConsentDialog(props){
-  
+    const { t } = useTranslation('Notifications');
  
     const onDeny = () => {
       var pushConsent ={ consent : "Deny"};
       store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setUpdateInfo(true);
       setDialogOpen(false);
     };
 
     const onOkay = () => {
       var pushConsent ={ consent : "OK"};
       store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
+      setUpdateInfo(true);
       setDialogOpen(false);
     };
     
-    return <Dialog visible={true} onDismiss={() => setDialogOpen(false)}>
-            <Dialog.Title>Push Notifications</Dialog.Title>
-            <Dialog.Content>
-              <Paragraph>Research shows that small steps taken regularly make the biggest difference. Would you like to receive a gentle reminder from Gilly to "treat" your relationship every other day?</Paragraph>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <RNPButton onPress={onOkay}>Yes</RNPButton>
-              <RNPButton onPress={onDeny}>No</RNPButton>
-            </Dialog.Actions>
-          </Dialog>
+    return  <Dialog visible={true} onDismiss={() => setDialogOpen(false)}>
+              <Dialog.Title>{t("title")}</Dialog.Title>
+              <Dialog.Content>
+                <Paragraph>{t("paragraph")}</Paragraph>
+              </Dialog.Content>
+              <Dialog.Actions>
+                <RNPButton onPress={onOkay}>Yes</RNPButton>
+                <RNPButton onPress={onDeny}>No</RNPButton>
+              </Dialog.Actions>
+            </Dialog>
   }
 
   function InfoDialog(props){
-  
- 
-    const onDeny = () => {
-      var pushConsent ={ consent : "Deny"};
-      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
-      setDialogOpen(false);
-    };
-
-    const onOkay = () => {
-      var pushConsent ={ consent : "OK"};
-      store.dispatch(actionSetPushNotificationPreferences(pushNotificationPreferences, [pushConsent]));
-      setDialogOpen(false);
-    };
-    
-    return <Dialog visible={true} onDismiss={() => setInfoDialogOpen(false)}>
-            <Dialog.Title>A treat?</Dialog.Title>
+    const { t } = useTranslation(props.text);
+    return <Dialog visible={true} onDismiss={() => {
+                                                    setInfoDialogOpen(false);
+                                                    setInJourneyInfoDialogOpen(false)
+                                                  }
+                                            }>
+            <Dialog.Title>{t("title")}</Dialog.Title>
             <Dialog.Content>
-              <Paragraph>A treat = knowledge + an activity to help you apply and try what you're learning IRL (in real life). In spirit, it is really a treat for yourself; for your relationship.
-                         As a parent, being able to prioritize your well-being and your sacred couple space IS a treat!</Paragraph>
+              <Paragraph>{t("paragraph")}</Paragraph>
             </Dialog.Content>
           </Dialog>
   }
@@ -96,9 +101,11 @@ const HomeScreen = ({navigation}) => {
 
   
   React.useEffect(()=>{
-    updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
-    .catch(error=> console.log(error))
-  }, [dialogOpen])
+    if(updateInfo){
+      updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
+      .catch(error=> console.log(error))
+    }
+  }, [updateInfo])
   
   function getFormId(){
 
@@ -145,41 +152,77 @@ const HomeScreen = ({navigation}) => {
   return (
   <Background>
     <SafeAreaView style={{flex: 1}}>
-    <View style={styles.containerView}>
-        <View style={[styles.welcomeView, styles.orange]}>
-            <Text style={styles.textStyle}>{"Welcome to your home page " + user.userName}</Text>
+    <View style={styles.container}>
+        <View style={[styles.welcomeView, styles.viewPlacement]}>
+        <Text style={styles.title}> {t("welcome", {who: "Marzia"} )}</Text>
+        
+        </View>
+        <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
+            <Text style={styles.btnText}>
+             {t("invite")}
+            </Text>
+        </View>
+        <View style={[styles.treatView, styles.viewPlacement]}>
+         
+            <Text style={styles.titleTreat}>
+               {t("nextTreat")}
+            </Text>
+            <IconButton
+              icon="information"  
+              size={20}
+              onPress={openTreatInfo}
+              style={styles.infoIcon}
+            />
             
-        </View> 
-       <View style={[styles.textView, styles.blue]}>
-            <Text style={styles.textStyle}>Your next treat is about...</Text>
-            <Text style={styles.textStyle}>{treatDescription}</Text>
-        </View> 
-        <View style={[styles.buttonView, styles.orange]}>
-        <Button       
-              onPress={press}
-              disabled={buttonDisabled}
-              accessibilityLabel="Open my Treat"
-              mode="outlined" 
-              uppercase={false}
-              contentStyle={styles.button}
-              style={styles.buttonStyle}
-          >
-            Open my Treat
-          </Button>
-          <Button       
-              onPress={()=>{setInfoDialogOpen(true)}}
-              disabled={buttonDisabled}
-              accessibilityLabel="What's aTreat"
-              uppercase={false}
-              contentStyle={styles.button}
-              style={styles.buttonStyle}
-          >
-            What's a treat?
-          </Button>
-        </View> 
-        { dialogOpen ? <ConsentDialog /> : null}
-        { infoDialogOpen ? <InfoDialog /> : null}
-    </View>
+            <Text style={styles.treatBlurb}>
+                 {treatDescription}
+            </Text>
+            <View style={styles.treatButton}>
+            <LinearGradient
+          // Background Linear Gradient
+              colors={['#FFB1A6', '#FFA497']}
+              start={[0.2041, 0.8561]}
+              style={styles.linearGradient}
+            >
+              <Pressable 
+                disabled={buttonDisabled} 
+                onPress={press}
+                style={({ pressed }) => [   
+                  styles.button
+                ]}>
+                {({ pressed }) => (
+                  <Text style={styles.btnText}>
+                  {t("openTreat")}
+                  </Text>
+                )}
+              </Pressable>
+              </LinearGradient>
+            </View>
+        </View>
+        <View style={[styles.journeysView, styles.viewPlacement]}>
+            <Text style={styles.journeyTitle}>
+               {t("exploreJourneys")}
+            </Text>
+            <IconButton
+              icon="information"  
+              size={20}
+              onPress={openJourneyInfo}
+              style={styles.infoIcon}
+            />
+            <FlatList/>
+        </View>
+        <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
+            <Text style={styles.btnText}>
+                {t("completeProfile")}
+            </Text>
+        </View>
+       
+      </View>
+   
+        { false ? <ConsentDialog /> : null}
+        { infoDialogOpen ? <InfoDialog text={"infoTreat"}/> : null}
+        { journeyInfoDialogOpen ? <InfoDialog text={"infoJourney"}/> : null}
+ 
   
     </SafeAreaView>
     </Background>
@@ -187,64 +230,106 @@ const HomeScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  viewPlacement:{
+    alignSelf: "center",
+    width: viewWidth,
+    borderRadius: viewBorderRadius,
+  },
   welcomeView:{
-    //  width: '100%',
-    //  height: "5%",
-        justifyContent: 'center',
-        alignItems: 'center',
-      color: colors.text,
-      //padding: 20,  
+    flex:1,
+  }, 
+  inviteView:{
+    flex:1,
+    backgroundColor: '#D9E9CB',
   },
-
-  textView:{
-    
-       justifyContent: 'center',
-       alignItems: 'center',
-       color: colors.text,
-       padding: 10,
-       
+  treatView:{
+    flex:2,
+    backgroundColor: '#C4C4C4',
+    marginTop: margin,
   },
-
-  textStyle:{
-    fontSize: 25,
+  journeysView:{
+    flex:2,
+  },
+  centerContent:{
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  intimacyProfileView:{
+    flex:1,
+    backgroundColor: '#D9E9CB',
+    marginTop: margin,
+  },
+  moodCheckView:{
+    flex:1,
+    backgroundColor: 'orange',
+  },
+  treatButton:{
+    position: 'relative',
+    width: 150,
+    left: 20,
+    top: 10,
+    //background: 'linear-gradient(95.18deg, #FFB1A6 20.41%, #FFA497 85.61%)',
+    borderRadius: 24,
+  },
+  linearGradient:{
+    borderRadius: 24,
+  },
+  button: {
+    width: '100%',
+    textAlign: "center",
+    justifyContent: "center",
+    borderRadius: 24,
+    height: 60,
+  },
+  btnText: {
+    color: "black",
+    fontSize: 20,
+    justifyContent: "center",
     textAlign: "center",
   },
-  buttonView:{
- //   width: '60%',
- //   height: "20%",
-    justifyContent: 'center',
-    alignItems: 'center',
- },
- buttonStyle:{
-  justifyContent: 'center',
-  width: '100%',
-  height: "30%",
-  borderRadius: 30,
- },
-  containerView: {
-    flex: 1,
-    flexDirection: 'column',
-  //  alignItems: 'center',
-  //  justifyContent: 'center',
-   // backgroundColor: colors.background,
+  item: {
+    backgroundColor: "#f9c2ff",
+    padding: 20,
+    marginVertical: 8
   },
-  button : {
-    color:"#841584", 
+  header: {
+    fontSize: 25,
+    backgroundColor: "#fff"
+  },
+  title: {
+    fontSize: 24,
+    justifySelf: "center",
+  },
+  titleTreat: {
+    fontSize: 25,
+    marginLeft: 10,
+    padding: 10,
+  },
+  treatBlurb:{
     fontSize: 20,
+    marginLeft: 15
   },
-  orange: {
-    backgroundColor: '#e3aa1a',
-    flex:1
-  },
-  blue: {
-    backgroundColor: '#2196F3',
-    flex:2
-  }
+  title:{
+    fontSize: 25,
+    marginTop: 10
+},
+infoIcon:{
+  position: "absolute",
+  top: 5 ,
+  left: 300
+},
+journeyTitle:{
+  alignSelf: "flex-start",
+  color: "black",
+  fontSize: 25,
+  justifyContent: "center",
   
- 
-
-})
+}
+});
 
 export default HomeScreen;
 
