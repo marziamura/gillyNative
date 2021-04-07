@@ -163,17 +163,24 @@ const HomeScreen = ({navigation}) => {
             </Text>
         </View>
         <View style={[styles.treatView, styles.viewPlacement]}>
-         
-            <Text style={styles.titleTreat}>
-               {t("nextTreat")}
-            </Text>
-            <IconButton
-              icon="information"  
-              size={20}
-              onPress={openTreatInfo}
-              style={styles.infoIcon}
-            />
-            
+          <View style={{flex: 1, width: viewWidth}}>
+              <View style={{flexDirection: "row"}}>
+                <View style={{flex: 5 }}>
+                <Text style={styles.journeyTitle}>
+                  {t("nextTreat")}
+                </Text>
+                </View>
+                <View style={{flex: 1}}>    
+                <IconButton
+                  icon="information"  
+                  size={20}
+                  onPress={openTreatInfo}
+                  style={styles.infoIcon}
+                />
+              </View>
+            </View>
+            </View>
+          <View style={{flex: 3}}>  
             <Text style={styles.treatBlurb}>
                  {treatDescription}
             </Text>
@@ -198,18 +205,29 @@ const HomeScreen = ({navigation}) => {
               </Pressable>
               </LinearGradient>
             </View>
+            </View>
         </View>
         <View style={[styles.journeysView, styles.viewPlacement]}>
-            <Text style={styles.journeyTitle}>
-               {t("exploreJourneys")}
-            </Text>
-            <IconButton
-              icon="information"  
-              size={20}
-              onPress={openJourneyInfo}
-              style={styles.infoIcon}
-            />
+          <View style={{flex: 1, width: viewWidth}}>
+            <View style={{flexDirection: "row",   }}>
+                <View style={{flex: 5   }}>
+                <Text style={styles.journeyTitle}>
+                  {t("exploreJourneys")}
+                </Text>
+                </View>
+                <View style={{flex: 1}}>    
+                <IconButton
+                  icon="information"  
+                  size={20}
+                  onPress={openJourneyInfo}
+                  style={styles.infoIcon}
+                />
+              </View>
+            </View>
+          </View>
+          <View style={{flex: 6}}>
             <FlatList/>
+          </View>
         </View>
         <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
             <Text style={styles.btnText}>
@@ -240,7 +258,7 @@ const styles = StyleSheet.create({
     borderRadius: viewBorderRadius,
   },
   welcomeView:{
-    flex:1,
+    flex:0.5,
   }, 
   inviteView:{
     flex:1,
@@ -253,6 +271,8 @@ const styles = StyleSheet.create({
   },
   journeysView:{
     flex:2,
+ //   backgroundColor: 'orange',
+    marginTop: margin,
   },
   centerContent:{
     alignItems: "center",
@@ -318,9 +338,7 @@ const styles = StyleSheet.create({
     marginTop: 10
 },
 infoIcon:{
-  position: "absolute",
-  top: 5 ,
-  left: 300
+ 
 },
 journeyTitle:{
   alignSelf: "flex-start",

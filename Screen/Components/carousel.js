@@ -4,7 +4,7 @@ import { View, StyleSheet, FlatList, Text,ScrollView, Dimensions  } from 'react-
 export default function FlatListHorizontal()
 {
 let {width, height} = Dimensions.get('window')
-const viewHeight = height * 2 / 7 - 80;
+const viewHeight = height * 2 / 7 - 60;
 const SCREEN_WIDTH = width;
 
 const journeyData =[
@@ -28,12 +28,13 @@ const journeyData =[
 const  _renderItem = ({ item, index }) => {
         return (
             <View
+            
             style={{
           
               padding: 16,
               backgroundColor: '#C4C4C4',
               width: SCREEN_WIDTH / 2,
-              height:viewHeight,
+              //height:viewHeight,
               marginHorizontal: 10,
               borderRadius: 24
             }}>
@@ -44,16 +45,16 @@ const  _renderItem = ({ item, index }) => {
       };
 
 return     <View style={styles.container}>
-<ScrollView  style={{height: viewHeight }}>
+
   <FlatList horizontal
     data={journeyData}
     renderItem={_renderItem}
     pagingEnabled={true}
     keyExtractor={(item)=>{item.key.toString()}}
-    style={{width: SCREEN_WIDTH + 5, height:viewHeight}}
+    style={{width: "100%"}}
     //ItemSeparatorComponent={() => <View style={{margin: 4,  backgroundColor: 'red'}}/>}
   />
-  </ScrollView>
+
 </View>
 
 }
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
      // backgroundColor: 'gray',
       flex: 1, 
       top:10,
+      width: "100%"
     },
     title:{
         fontSize: 30,
