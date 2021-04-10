@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
-//import Button from './Components/Button';
-import { Button}  from 'react-native-paper';
 import Background from './Components/Background';
 
 
@@ -17,11 +15,11 @@ import {
   View,
   StyleSheet,
   Text,
-  ImageBackground
+  Pressable
 } from 'react-native';
 import {getUserInfo} from '../state/userInfo';
 
-
+const viewWidth= '90%';
 
 const SplashScreen = ({navigation}) => {
   const { t } = useTranslation('Splash');
@@ -86,53 +84,46 @@ const SplashScreen = ({navigation}) => {
         });
       }, 10)
     }, []);
-    const button = {
-      color:"#841584", 
-      fontSize: 20,
-      
-    };
-    
-    const button2 = {
-      backgroundColor:"transparent", 
-      width: '100%',
-      borderWidth: 1
-    };  
-    const button3 = {
-      backgroundColor:"transparent", 
-      width: '100%',
-      borderWidth: 0
-    };
 
   return (
     <Background>
       <View style={styles.container}>
-        <Text style={styles.gilly}>
-          Gilly
-        </Text>
-        <Text style={styles.text}>
-          {t("splashText")}
-        </Text>
-       {  showButton &&   <View style={styles.button}>
-                              <Button 
-                                  press = { () => {
-                                    navigation.replace('AboutGillyNavigationRoutes');
-                                        }}
-                                  title = {t("button")}
-                                  styletext={button}
-                                  styleover={button2}
-                                />
-                          </View>
-        }
-        {showButton && <View style={styles.signIn}>
-          <Button
+        <View style={[styles.textView, styles.centerContent]}>
+          <Text style={[styles.gilly,  styles.centerContent]}>
+            Gilly
+          </Text>
+        </View>
+        <View style={[styles.textView,  styles.centerContent]}>
+          <Text style={styles.text}>
+            {t("splashText")}
+          </Text>
+        </View>
+        <View style={styles.buttonView}>
+                         
+                                <Pressable 
+                                
+                                  onPress = { () => {
+                                  console.log('Pressed')
+                                  navigation.replace('AboutGillyNavigationRoutes');
+                                  }}
+                                  style={styles.button}
+                                >
+                                     <Text style={[styles.centerContent, styles.buttonText]}>
+                                     {t("button")}
+                                     </Text>
+                                </Pressable>
+      
+          <Pressable
            onPress={() => {
             navigation.replace('Auth');
            }}
            >
-            {t("signIn")}
-          </Button>
+             <Text style={[styles.centerContent, styles.buttonText]}>
+                {t("signIn")}
+            </Text>
+          </Pressable>
         </View>
-        }
+        
       </View>
    </Background>
   );
@@ -143,9 +134,9 @@ export default connect() (SplashScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:"column",
     alignItems: 'center',
     justifyContent: 'center',
-  //  backgroundColor: '#888888',
   },
   gilly:{
    // fontFamily: 'Roboto',
@@ -154,57 +145,57 @@ const styles = StyleSheet.create({
     fontSize: 36,
     lineHeight: 40,
     textAlign: 'center',
-    position: 'absolute',
+    alignSelf: 'center',
     width: '100%',
-    height: 40,
-  
-    top: 206,
-   // color: '#FFFFFF'
+ //   marginTop: 100,
+  },
+  textView:{
+    flex: 1,
+    marginTop: 100,
+    width: viewWidth,
   },
   text:{
-   // color: '#FFFFFF',
     fontSize: 21,
-  //  fontFamily: 'Roboto',
     fontWeight: "500",
     lineHeight: 28,
-    textAlign: 'center',
-    position: 'absolute',
+    textAlign: 'center',  
     width: 327,
     height: 84,
-
-    top: 372,
   },
-  buttontext:{
-    color: '#000000',
-    fontSize: 21,
+  buttonText:{
+    fontSize: 15,
+    fontWeight: "500",
+    textAlign: 'center',  
+    justifyContent: 'center'
+  },
+
+  buttonView:{
+    flex: 1,
+    width: viewWidth,
+    justifyContent: 'center'
   },
   button:{
-   display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: "absolute",
-    width: '80%',
-    top: "80%",
-    backgroundColor: "#FFF",
-    borderRadius: 16
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 24,
+    width: '100%',
+    height: 40,
+    justifyContent: 'center'
   },
-  button2:{
-    borderWidth: 0
-   },
-
-  signIn:{
-    display: 'flex',
-    flexDirection: 'column',
+  signInView:{
+    flex: 1,
     alignItems: 'center',
-    position: 'absolute',
     width: '80%',
-    top: '87%',
     borderWidth: 0
   },
   backgroundImage: {
     flex: 1,
     width: null,
     alignSelf: 'stretch',
-  }
-  
+  },  
+  centerContent:{
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center"
+  },
 });

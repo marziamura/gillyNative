@@ -24,13 +24,13 @@ import {
 
 
 const ConfirmEmail = ({navigation,dispatch}) => {
-
-  const [userEmail, setUserEmail] = useState('');
+  const userInfo = createStore().getState().userInfo[0];
+  const [userEmail, setUserEmail] = useState(userInfo.email);
   const [userPassword, setUserPassword] = useState('');
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
-  const userInfo = createStore().getState().userInfo[0];
+  
   console.log("ConfirmEmail", userInfo);
 
   const handleSubmitPress = () => {

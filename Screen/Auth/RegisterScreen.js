@@ -25,6 +25,7 @@ import {
 
 const RegisterScreen = (props) => {
   let store = createStore(); 
+  let navigation = props.navigation;
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
@@ -151,6 +152,24 @@ const RegisterScreen = (props) => {
           onPress={handleSubmitButton}>
           <Text style={styles.buttonTextStyle}>Register</Text>
         </TouchableOpacity>
+      
+        <View style={styles.buttonsView}>
+            <Text
+              style={styles.registerTextStyle}
+              onPress={() => navigation.navigate('LoginScreen')}>
+              Already one of us? Login here
+            </Text>
+            <Text
+              style={styles.registerTextStyle}
+              onPress={() => navigation.navigate('ConfirmEmail')}>
+              Confirm Email
+            </Text>
+            <Text
+              style={styles.registerTextStyle}
+              onPress={() => navigation.navigate('ForgotPassword')}>
+              Forgot Password
+            </Text>
+            </View>
       </KeyboardAvoidingView>
     </ScrollView>
   }

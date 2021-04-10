@@ -12,13 +12,14 @@ import * as queries from '../../graphql/queries';
 import * as colors from '../Style/Style';
 import actionSetTreatData from "../../state/actionSetTreatData";
 import {getJourneyInfo} from "../../state/userInfo";
-import { Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Paragraph, Dialog} from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
 import FlatList from '../Components/carousel'
 import { LinearGradient } from 'expo-linear-gradient';
 import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import InfoDialog from '../Components/InfoDialog';
 
 
 console.log("loading HomeScreen");
@@ -77,21 +78,6 @@ const HomeScreen = ({navigation}) => {
             </Dialog>
   }
 
-  function InfoDialog(props){
-    const { t } = useTranslation(props.text);
-    return <Dialog visible={true} onDismiss={() => {
-                                                    setInfoDialogOpen(false);
-                                                    setInJourneyInfoDialogOpen(false)
-                                                  }
-                                            }>
-            <Dialog.Title>{t("title")}</Dialog.Title>
-            <Dialog.Content>
-              <Paragraph>{t("paragraph")}</Paragraph>
-            </Dialog.Content>
-          </Dialog>
-  }
-
- 
   function press(){
     console.log("OnPress");
     navigation.replace("TodaysTreat")
@@ -147,7 +133,11 @@ const HomeScreen = ({navigation}) => {
         }
      }).catch((err)=>console.log("cannot get updated journey info",err));
     },[])
-  
+
+  function closeInfoDialog(){
+        setInfoDialogOpen(false);
+        setInJourneyInfoDialogOpen(false)
+  }
   console.log("******** HomeScreen ******** ", user.lastTreatInJourney, pushNotificationPreferences);
   return (
   <Background>
@@ -238,8 +228,8 @@ const HomeScreen = ({navigation}) => {
       </View>
    
         { false ? <ConsentDialog /> : null}
-        { infoDialogOpen ? <InfoDialog text={"infoTreat"}/> : null}
-        { journeyInfoDialogOpen ? <InfoDialog text={"infoJourney"}/> : null}
+        { infoDialogOpen ? <InfoDialog text={"infoTreat"} callback={closeInfoDialog}/> : null}
+        { journeyInfoDialogOpen ? <InfoDialog text={"infoJourney"} callback={closeInfoDialog}/> : null}
  
   
     </SafeAreaView>

@@ -18,13 +18,13 @@ import SplashScreen from './Screen/SplashScreen';
 
 import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
 import FirstTreatNavigationRoutes from './Screen/FirstTreatNavigationRoutes';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux'
 
 import createStore from './state/store';
 import OnboardingNavigationRoutes from './Screen/OnboardingNavigationRoutes';
 import AboutGillyNavigationRoutes from './Screen/AboutGillyNavigationRoutes';
 import AuthNavigationRoutes from './Screen/AuthNatigationRoutes';
+import AuthNavigationRoutesRegister from './Screen/AuthNatigationRoutesRegister';
 import './i18n';
 import registerForPushNotificationsAsync from './notifications/pushNotifications'
 import * as Notifications from 'expo-notifications';
@@ -112,6 +112,12 @@ const App = () => {
             <Stack.Screen
             name="AboutGillyNavigationRoutes"
             component={AboutGillyNavigationRoutes}
+            // Hiding header for Navigation Drawer
+            options={{headerShown: false}}
+            />
+           <Stack.Screen
+            name="AuthNavigationRoutesRegister"
+            component={AuthNavigationRoutesRegister}
             // Hiding header for Navigation Drawer
             options={{headerShown: false}}
             />

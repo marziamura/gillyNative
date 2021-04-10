@@ -176,7 +176,7 @@ const LoginScreen = ({navigation,dispatch}) => {
               
             </View>
   
-        {   <View style={styles.buttonsView}>
+          <View style={styles.buttonsView}>
             <Button       
               onPress={handleSubmitPress}
               disabled={buttonDisabled}
@@ -203,7 +203,7 @@ const LoginScreen = ({navigation,dispatch}) => {
               onPress={() => navigation.navigate('ForgotPassword')}>
               Forgot Password
             </Text>
-            </View>}
+            </View>
            
      
             </KeyboardAvoidingView>

@@ -32,7 +32,7 @@ const AboutBase = (props) => {
   return (
    
     <View style={styles.container}>
-    <View style={styles.textcontainer}>
+     <View style={styles.textcontainer}>
         <Text style={styles.title}>
             {t("title")}
         </Text>
@@ -65,10 +65,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
   textcontainer:{
-    width: '100%', height: '60%',
+    width: '90%', 
+    height: '60%',
     padding: 10,
   },
   backgroundImage: {
@@ -117,6 +118,6 @@ const styles = StyleSheet.create({
     button : {
       color:"#841584", 
       fontSize: 20,
-      width: 300
+      width: '80%'
     },
 });

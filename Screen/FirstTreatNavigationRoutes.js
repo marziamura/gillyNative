@@ -21,13 +21,21 @@ const FirstTreatNavigationRoutes = (props) => {
   return (
     <Stack.Navigator
       initialRouteName="MessageInABottle"
+      headerTintColor={colors.background}
     >
       <Stack.Screen
         name="MessageInABottle"
         component={MessageInABottle}
         options={{
           title: 'You first gilly treat', //Set Header Title
-        }}
+           headerStyle: {
+              backgroundColor: colors.header, //Set Header color
+            },
+            headerTintColor: colors.text, //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
       />
       <Stack.Screen
         name="FillTheBlanks"
@@ -35,13 +43,30 @@ const FirstTreatNavigationRoutes = (props) => {
         options={{
           title: 'You first gilly treat', //Set Header Title
         }}
+        options={{
+          title: 'You first gilly treat', //Set Header Title
+           headerStyle: {
+              backgroundColor: colors.header, //Set Header color
+            },
+            headerTintColor: colors.text, //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
       />
        <Stack.Screen
         name="ShareMessage"
         component={ShareMessage}
         options={{
           title: 'You first gilly treat', //Set Header Title
-        }}
+           headerStyle: {
+              backgroundColor: colors.header, //Set Header color
+            },
+            headerTintColor: colors.text, //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
       />
     </Stack.Navigator>
   );

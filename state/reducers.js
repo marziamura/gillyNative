@@ -14,14 +14,16 @@ const user = [{
   sex: "xxx",
   gender: "xxx",
   partnerID: "xxx",
-  email: "xxx",
-  password: "xxx",
   primary: true,
   registered: false,
   todaysTreatDone: false,
   lastTreatInJourney: 0,
   pushNotificationToken: "",
   lastActiveDay: 0,
+}]
+const loginData =[{
+  email: "XXXX",
+  password:"YYYY"
 }]
 
 const message =[{

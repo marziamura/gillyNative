@@ -52,7 +52,8 @@ i18n
             title: "Are you in a relationship?",
             text: "This information is not saved until you've finished creating an account",
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still enjoy our treats",
-            button: "Next"
+            button: "Next",
+            PartnerName: "What's your partner's name?"
           },
           Memory:{
             title: "Fill in the blanks",
@@ -72,7 +73,7 @@ i18n
           },
           Home:{
             welcome: "Hi, {{who}}",
-            invite: "Gilly is better in pairs! Invite {{who}} to join",
+            invite: "Gilly is better in pairs! Invite your partner to join",
             nextTreat: "Your Next Treat",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys",
@@ -90,7 +91,12 @@ i18n
           infoJourney:{
             title: "What's a journey",
             paragraph: "A journey is a series of related treats"
+          },
+          infoPartnersName:{
+            title: "Why are we asking this?",
+            paragraph: "To give you a better experience. If you don't want to share it it's fine, we are going to use 'Your partner'"
           }
+      
 
         },
        
