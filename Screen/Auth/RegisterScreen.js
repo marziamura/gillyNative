@@ -243,4 +243,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 30,
   },
+  registerTextStyle: {
+    color: colors.text,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    alignSelf: 'center',
+    paddingBottom: 10,
+    
+  },
 });

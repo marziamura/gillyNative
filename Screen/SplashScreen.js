@@ -9,6 +9,7 @@ import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
 import Background from './Components/Background';
+//import * as colors from './Style/Style'
 
 
 import {
@@ -18,6 +19,7 @@ import {
   Pressable
 } from 'react-native';
 import {getUserInfo} from '../state/userInfo';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const viewWidth= '90%';
 
@@ -166,7 +168,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "500",
     textAlign: 'center',  
-    justifyContent: 'center'
+    justifyContent: 'center',
+  //  color: colors.buttonText
   },
 
   buttonView:{
