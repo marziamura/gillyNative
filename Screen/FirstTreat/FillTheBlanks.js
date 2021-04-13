@@ -12,7 +12,7 @@ import actionUpdateMessage from '../../state/actionUpdateMessage';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import { TextInput } from 'react-native-paper';
-import { Button}  from 'react-native-paper';
+import  Button  from '../Components/Button';
 
 
 
@@ -149,13 +149,9 @@ const FillTheBlanks = ({navigation}) => {
        
             <Button       
               onPress={OnPress}
-              accessibilityLabel={t('button')}
-              mode="outlined" 
-              uppercase={false}
-              style={styles.buttonStyle}
-            >
-            send your message
-          </Button>
+              text={t("button")}
+            />
+            
             </View>
         </View>
          
@@ -228,11 +224,5 @@ const styles = StyleSheet.create({
      marginTop: 10,
    },
   
-  buttonStyle:{
-    justifyContent: 'center',
-    width: '60%',
-    height: "20%",
-    borderRadius: 30,
-   },
 
 });

@@ -36,7 +36,8 @@ const Onboarding2 = ({navigation}) => {
           .then((u)=>{
             console.log("Updated primary user ", u);
             store.dispatch(actionSetUserRegistered(store.getState().userInfo));
-            navigation.replace("FirstTreatNavigationRoutes");
+            naviga
+            lace("FirstTreatNavigationRoutes");
           }).catch((e)=>{
             console.log(e);
             navigation.replace("FirstTreatNavigationRoutes");

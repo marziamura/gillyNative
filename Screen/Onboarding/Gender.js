@@ -19,8 +19,8 @@ import {
 
 const Gender = ({navigation}) => {
  
-  const [gender, setGender] = useState("woman");
-  const [sex, setSex] = useState("vulva");
+  const [gender, setGender] = useState("xxx");
+  const [sex, setSex] = useState("xxx");
   const store = createStore();
 
   const genderItems =[{
@@ -63,14 +63,18 @@ const Gender = ({navigation}) => {
     console.log("Updated userInfo", userInfo);
     userInfo.sex = sex;
     userInfo.gender = gender; 
-    
-    saveUserInfo(userInfo).then((u)=>{
-       console.log("Navigate to FirstTreatNavigationRoutes", userInfo);
-       navigation.replace("FirstTreatNavigationRoutes");
-     }).catch((e)=>{
-       console.log(e);
-       navigation.replace("HomeNavigationRoutes");
-     })
+    console.log("Navigate to FirstTreatNavigationRoutes 0", userInfo);
+    if(userInfo.sex !== "" && userInfo.gender != ""){
+      saveUserInfo(userInfo).then((u)=>{
+        console.log("Navigate to FirstTreatNavigationRoutes 1", userInfo);
+        navigation.replace("RelationshipQuestion");
+      }).catch((e)=>{
+        console.log(e);
+        navigation.replace("RelationshipQuestion");
+      })
+    }else{
+     alert("Please select one option for gender and sex")
+    }
   }
 
   return (

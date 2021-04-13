@@ -7,6 +7,7 @@ import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
 import Background from './Components/Background';
+import Button from './Components/Button';
 import * as colors from './Style/Style'
 
 
@@ -98,20 +99,16 @@ const SplashScreen = ({navigation}) => {
             {t("splashText")}
           </Text>
         </View>
-        <View style={styles.buttonView}>
+        <View style={[styles.buttonView, styles.centerContent]}>
                          
-                                <Pressable 
-                                
-                                  onPress = { () => {
-                                  console.log('Pressed')
-                                  navigation.replace('AboutGillyNavigationRoutes');
-                                  }}
-                                  style={styles.button}
-                                >
-                                     <Text style={[styles.centerContent, styles.buttonText]}>
-                                     {t("button")}
-                                     </Text>
-                                </Pressable>
+
+          <Button
+            onPress = { () => {
+              console.log('Pressed')
+              navigation.replace('AboutGillyNavigationRoutes');
+              }}
+              text = {t("button")}
+          />
       
           <Pressable
            onPress={() => {
@@ -122,6 +119,7 @@ const SplashScreen = ({navigation}) => {
                 {t("signIn")}
             </Text>
           </Pressable>
+          
         </View>
         
       </View>
@@ -162,27 +160,14 @@ const styles = StyleSheet.create({
     width: 327,
     height: 84,
   },
-  buttonText:{
-    fontSize: 15,
-    fontWeight: "500",
-    textAlign: 'center',  
-    justifyContent: 'center',
-    color: colors.buttonText,
-  },
+ 
 
   buttonView:{
     flex: 1,
     width: viewWidth,
     justifyContent: 'center'
   },
-  button:{
-    borderWidth: 1,
-    borderColor: colors.borderColor,
-    borderRadius: 24,
-    width: '100%',
-    height: 40,
-    justifyContent: 'center'
-  },
+
   signInView:{
     flex: 1,
     alignItems: 'center',

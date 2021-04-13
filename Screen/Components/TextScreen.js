@@ -6,7 +6,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
-import Button from '../Components/Button';
+import Button from './Button';
 
 
 
@@ -17,29 +17,25 @@ import {
 
 
 
-const AboutBase = (props) => {
+const TextScreen = (props) => {
   console.log("AboutBase", props, props.navigation)
   const { t } = useTranslation(props.namespace);
-  const buttonText = {
-    color:"#841584", 
-    fontSize: 20,
-  };
-  const buttonArea = {
-    borderWidth: 1,
-    width: '100%'
-  };
 
   return (
    
-    <View style={styles.container}>
-     <View style={styles.textcontainer}>
+    <View style={[styles.container, styles.centerContent]}>
+       
+       <View style={[styles.centerContent, {flex: 1, width: "80%"}]}>
         <Text style={styles.title}>
             {t("title")}
         </Text>
+       </View>
+       <View style={[styles.centerContent, {flex: 3, width: "95%"}]}>
         <Text style={styles.text}>
             {t("text")}
         </Text>
       </View>
+
       <View style={[styles.buttonView, styles.centerContent]}>
 
       <Button
@@ -55,31 +51,16 @@ const AboutBase = (props) => {
   );
 };
 
-export default AboutBase;
+export default TextScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textcontainer:{
-    width: '90%', 
-    height: '60%',
-    padding: 10,
-  },
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    alignSelf: 'stretch',
-  },
-  
+    flexDirection: "column"
+  },  
  
-  title: {
-    position: 'absolute',
+  title:{
     width: '100%',
-    height: 80,
-    top: "20%",
   //  fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
@@ -90,10 +71,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    position: 'absolute',
-    width: '100%',
-    height: 84,
-    top: "60%",
+    width: '80%',
    // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "500",
@@ -105,7 +83,7 @@ const styles = StyleSheet.create({
   buttonView:{
     justifyContent: 'center',
     width: '80%',
-    borderRadius: 30,
+    flex: 2
    },
    centerContent:{
     alignItems: "center",

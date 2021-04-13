@@ -184,11 +184,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    alignSelf: 'stretch',
-  },
   buttontext:{
     fontSize: 21,
     alignSelf: 'flex-start',
@@ -198,9 +193,7 @@ const styles = StyleSheet.create({
   whitebutton:{
     alignItems: 'flex-start',
     justifyContent: 'center',
-   
     height: 40,
-   
     marginBottom: 20,
     borderColor: colors.border,
     borderRadius: 24,
@@ -217,17 +210,16 @@ const styles = StyleSheet.create({
   },
   button:{
      backgroundColor: colors.buttonBackground,
-     borderRadius: 24,
-     borderWidth: 1,
-   //  borderColor: colors.border
+     borderColor: colors.border,
+     color: colors.buttonText,
+     fontSize: 15,
+     fontWeight: "500",
   },
 
   title: {
     position: 'absolute',
     width: '90%',
     left:   10,
-  //  top: "5%",
-  //  fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 36,
@@ -235,8 +227,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
    
   },
-
-
   text: {
     position: 'absolute',
     width: '90%',
@@ -248,8 +238,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 22,
     marginTop: 20,
-  },
-  
+  },  
   disclaimer: {
     width: '90%',
     left:   10,
@@ -259,27 +248,17 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: 'red'
   },
-  buttonStyle:{
-    justifyContent: 'center',
-    width: '100%',
-    height: "30%",
-    borderRadius: 24,
-   },
-    button : {
-      color:"#841584", 
-      fontSize: 20,
-    },
-    textInput:{
+
+ textInput:{
        borderWidth:1,
        borderRadius: 10,
        height: 40,
        borderColor: colors.border,
-     },
-    textinputview:{
+ },
+ textinputview:{
     flex:1,
     width: "80%",
-    padding: 10,
-    
+    padding: 10,   
   },
   
 });

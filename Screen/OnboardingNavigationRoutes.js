@@ -7,8 +7,9 @@ import React from 'react';
 // Import Navigators from React Navigation
 import {createStackNavigator} from '@react-navigation/stack';
 import Gender from './Onboarding/Gender';
-import Onboarding1 from './Onboarding/Onboarding1';
-import Onboarding2 from './Onboarding/Onboarding2';
+import WelcomeScreen from './Onboarding/WelcomeScreen';
+import RelationshipQuestion from './Onboarding/RelationshipQuestion';
+import * as colors from './Style/Style'
 
 
 const Stack = createStackNavigator();
@@ -20,13 +21,29 @@ const OnboardingNavigationRoutes = (props) => {
   console.log("OnboardingNavigationRoutes")
   return (
     <Stack.Navigator
-      initialRouteName="Gender"
+      initialRouteName="Welcome"
+      headerTintColor={colors.background}
     >
+
       <Stack.Screen
-        name="About you"
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{
+          title: 'Welcome', 
+        }}
+      />
+      <Stack.Screen
+        name="Gender"
         component={Gender}
         options={{
           title: 'About you', 
+        }}
+      />
+      <Stack.Screen
+        name="RelationshipQuestion"
+        component={RelationshipQuestion}
+        options={{
+          title: 'Before we begin', //Set Header Title
         }}
       />
     </Stack.Navigator>

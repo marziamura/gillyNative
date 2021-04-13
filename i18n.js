@@ -95,7 +95,12 @@ i18n
           infoPartnersName:{
             title: "Why are we asking this?",
             paragraph: "To give you a better experience. If you don't want to share it it's fine, we are going to use 'Your partner'"
-          }
+          },
+          Welcome:{
+            title: "Welcome to Gilly",
+            text: "You are nearly ready to start your gilly experience. To be able to offer you a more personalized experience, we ask you to give us some more information about yourself",
+            button: "Next"
+          },
       
 
         },

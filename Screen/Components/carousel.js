@@ -8,19 +8,19 @@ const viewHeight = height * 2 / 7 - 60;
 const SCREEN_WIDTH = width;
 
 const journeyData =[
-    { key: 1,
+    { key: "1",
       title: "Sexploration foundation",
       treats: 12 },
-    { key: 2,
+    { key: "2",
       title: "Grooving in sync",
       treats: 15 },
-    { key: 3,
+    { key: "3",
       title: "Love in Lockdown",
       treats: 10  },
-    { key: 4,
+    { key: "4",
       title: "Discovery",
       treats: 16 },
-    { key: 5,
+    { key: "5",
       title: "Who said vanilla?",
       treats: 18 }
 
@@ -50,7 +50,7 @@ return     <View style={styles.container}>
     data={journeyData}
     renderItem={_renderItem}
     pagingEnabled={true}
-    keyExtractor={(item)=>{item.key.toString()}}
+   // keyExtractor={(item)=>{item.title}}
     style={{width: "100%"}}
     //ItemSeparatorComponent={() => <View style={{margin: 4,  backgroundColor: 'red'}}/>}
   />

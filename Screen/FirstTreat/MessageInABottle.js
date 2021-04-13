@@ -7,12 +7,14 @@ import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import { Button}  from 'react-native-paper';
+import Button from '../Components/Button';
+
 
 
 import {
   View,
   StyleSheet,
+  Pressable,
 } from 'react-native';
 
 
@@ -52,16 +54,12 @@ const MessageInABottle = ({navigation}) => {
           <Text style={styles.textBottom}>
             {t("text3")}
           </Text>
-          <Button       
+
+      
+            <Button
+              text={t("button")}
               onPress={OnPress}
-              accessibilityLabel={t('button')}
-              mode="outlined" 
-              uppercase={false}
-              contentStyle={button}
-              style={styles.buttonStyle}
-          >
-            {t('button')}
-          </Button>
+            />
         </View>
           
       </View>
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
-  }
-  
+  },
 
 });

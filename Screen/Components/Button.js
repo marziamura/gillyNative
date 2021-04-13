@@ -12,27 +12,32 @@ function Button(props){
  
     const styles = StyleSheet.create({
         buttontext: {
-            fontSize: 21,
-            alignSelf: 'center',
-            justifyContent:'center',
+           
+            borderColor: colors.border,
             color: colors.buttonText,
-            ...props.styletext
+            fontSize: 15,
+            fontWeight: "500",
+            ...props.pressableStyle
         },
         button: {
-            backgroundColor: "white",
             alignItems: 'center',
-            borderWidth: 1,
-            borderRadius: 16,
+            justifyContent: 'center',
+            width: '80%',
             height: 40,
-            ...props.styleover,
+            borderColor: colors.border,
+            borderRadius: 24,
+            borderWidth: 1,
+            backgroundColor: colors.buttonBackground,
+            ...props.textStyle,
        }
+     
     })
     
     return (
      
-           <Pressable style={styles.button} onPress={props.press} disabled={props.disabled}>
+           <Pressable style={styles.button} onPress={props.onPress} disabled={props.disabled}>
             <Text style={styles.buttontext}> 
-                {props.title}
+                {props.text}
             </Text>
           </Pressable> 
   

@@ -26,7 +26,7 @@ import {
 const ConfirmEmail = ({navigation,dispatch}) => {
   const userInfo = createStore().getState().userInfo[0];
   const [userEmail, setUserEmail] = useState(userInfo.email);
-  const [userPassword, setUserPassword] = useState('');
+  const [confirmCode, setUserPassword] = useState();
   const [errortext, setErrortext] = useState('');
 
   const passwordInputRef = createRef();
@@ -39,8 +39,8 @@ const ConfirmEmail = ({navigation,dispatch}) => {
       alert('Please fill Email');
       return;
     }
-    if (!userPassword) {
-      alert('Please fill Password');
+    if (!confirmCode) {
+      alert('Please fill Code');
       return;
     }
 
@@ -50,9 +50,10 @@ const ConfirmEmail = ({navigation,dispatch}) => {
 
   async function confirmSignUp() {
     try {
-        console.log("Confirm sign up", userEmail, userPassword)
-        await Auth.confirmSignUp(userEmail.toLowerCase(), userPassword);
-        navigation.replace('LoginScreen');
+        console.log("Confirm sign up", userEmail, confirmCode)
+        Auth.confirmSignUp(userEmail.toLowerCase(), confirmCode).then(()=>{
+          navigation.replace('LoginScreen')
+        }).catch((error)=> setErrortext(error.message));
     } catch (error) {
         console.log('error confirming email:', error);
         setErrortext(error.message);

@@ -9,7 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MessageInABottle from './FirstTreat/MessageInABottle'
 import FillTheBlanks from './FirstTreat/FillTheBlanks';
 import ShareMessage from './FirstTreat/ShareMessage';
-import RelationshipQuestion from './Onboarding/RelationshipQuestion';
+
 import { IconButton, Colors } from 'react-native-paper';
 import * as colors from './Style/Style';
 
@@ -24,24 +24,10 @@ const FirstTreatNavigationRoutes = (props) => {
   console.log("FirstTreatNavigationRoutes")
   return (
     <Stack.Navigator
-      initialRouteName="RelationshipQuestion"
+      initialRouteName="MessageInABottle"
       headerTintColor={colors.background}
     >
-    <Stack.Screen
-        name="RelationshipQuestion"
-        component={RelationshipQuestion}
-        options={{
-          title: 'Before we begin', //Set Header Title
-        
-          headerStyle: {
-            backgroundColor: colors.header, //Set Header color
-          },
-          headerTintColor: colors.text, //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
+
       <Stack.Screen
         name="MessageInABottle"
         component={MessageInABottle}

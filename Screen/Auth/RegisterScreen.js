@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import * as colors from '../Style/Style';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
+import Button from '../Components/Button'
 
 import {
   StyleSheet,
@@ -17,9 +18,7 @@ import {
   Text,
   Image,
   KeyboardAvoidingView,
-  ImageBackground,
-  TouchableOpacity,
-  ScrollView,
+  ScrollView
 } from 'react-native';
 
 
@@ -141,18 +140,13 @@ const RegisterScreen = (props) => {
             blurOnSubmit={false}
           />
         </View>
-        {errortext != '' ? (
-          <Text style={styles.errorTextStyle}>
-            {errortext}
-          </Text>
-        ) : null}
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          activeOpacity={0.5}
-          onPress={handleSubmitButton}>
-          <Text style={styles.buttonTextStyle}>Register</Text>
-        </TouchableOpacity>
-      
+        <View style={styles.centerContent}>
+
+        <Button
+          text = "Register"
+          onPress={handleSubmitButton}
+        />
+        </View>
         <View style={styles.buttonsView}>
             <Text
               style={styles.registerTextStyle}
@@ -250,6 +244,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     alignSelf: 'center',
     paddingBottom: 10,
-    
+  },
+  centerContent:{
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center"
   },
 });
