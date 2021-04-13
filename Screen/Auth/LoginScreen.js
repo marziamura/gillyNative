@@ -28,15 +28,14 @@ import {
 
 
 const LoginScreen = ({navigation,dispatch}) => {
-
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  const userInfo = createStore().getState().userInfo[0];
+  const [userEmail, setUserEmail] = useState(userInfo.email);
+  const [userPassword, setUserPassword] = useState(userInfo.email);
  
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const passwordInputRef = createRef();
-  const userInfo = createStore().getState().userInfo[0];
-
+  
   const handleSubmitPress = () => {
   
     if (!userEmail) {
@@ -141,7 +140,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserEmail(UserEmail)
                   }
                 }
-                placeholder="Enter Email" //dummy@abc.com
+                placeholder={userEmail}
                 placeholderTextColor= {colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"

@@ -12,6 +12,7 @@ import InfoDialog from '../Components/InfoDialog';
 
 
 
+
 import {
   View,
   Pressable,
@@ -138,7 +139,7 @@ const RelationshipQuestion = (props) => {
            <Pressable 
              style={styles.nextButton}
               onPress={() => {
-                props.navigation.replace("AuthNavigationRoutesRegister");
+                props.navigation.replace("MessageInABottle");
                }}
               >
               <Text style={styles.button} > 
@@ -262,7 +263,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: "30%",
-    borderRadius: 24.,
+    borderRadius: 24,
    },
     button : {
       color:"#841584", 

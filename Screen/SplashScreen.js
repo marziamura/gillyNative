@@ -1,5 +1,3 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
 import React, {useState, useEffect} from 'react';
@@ -9,7 +7,7 @@ import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
 import Background from './Components/Background';
-//import * as colors from './Style/Style'
+import * as colors from './Style/Style'
 
 
 import {
@@ -19,7 +17,7 @@ import {
   Pressable
 } from 'react-native';
 import {getUserInfo} from '../state/userInfo';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 const viewWidth= '90%';
 
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: 'center',  
     justifyContent: 'center',
-  //  color: colors.buttonText
+    color: colors.buttonText,
   },
 
   buttonView:{
@@ -179,7 +177,7 @@ const styles = StyleSheet.create({
   },
   button:{
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: colors.borderColor,
     borderRadius: 24,
     width: '100%',
     height: 40,

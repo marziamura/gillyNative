@@ -6,7 +6,7 @@ const AboutGilly3 = (props) => {
  
 
   return (
-    <AboutBase namespace="About3" next="RelationshipQuestion" navigation={props.navigation}/>
+    <AboutBase namespace="About3" next="AuthNavigationRoutesRegister" navigation={props.navigation}/>
   );
 };
 

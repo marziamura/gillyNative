@@ -9,7 +9,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AboutGilly1 from './AboutGilly/AboutGilly1';
 import AboutGilly2 from './AboutGilly/AboutGilly2';
 import AboutGilly3 from './AboutGilly/AboutGilly3';
-import RelationshipQuestion from './AboutGilly/RelationshipQuestion';
 import * as colors from './Style/Style';
 
 
@@ -58,20 +57,6 @@ const AboutGillyNavigationRoutes = (props) => {
         component={AboutGilly3}
         options={{
           title: 'Treat yourself...', //Set Header Title
-          headerStyle: {
-            backgroundColor: colors.header, //Set Header color
-          },
-          headerTintColor: colors.text, //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-      <Stack.Screen
-        name="RelationshipQuestion"
-        component={RelationshipQuestion}
-        options={{
-          title: 'Before we begin', //Set Header Title
           headerStyle: {
             backgroundColor: colors.header, //Set Header color
           },

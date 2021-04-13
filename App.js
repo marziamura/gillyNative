@@ -75,8 +75,9 @@ const App = () => {
 
         <NavigationContainer>
         
-          <Stack.Navigator initialRouteName="SplashScreen">
-            {/* SplashScreen which will come once for 5 Seconds */}
+          <Stack.Navigator initialRouteName="SplashScreen"
+          screenOptions={{ headerShown: false }}>
+          
             <Stack.Screen
               name="SplashScreen"
               component={SplashScreen}
@@ -84,7 +85,7 @@ const App = () => {
               options={{headerShown: false}}
             />
             
-            {/* Auth Navigator: Include Login and Signup */}
+         
             <Stack.Screen
               name="AuthNavigationRoutes"
               component={AuthNavigationRoutes}

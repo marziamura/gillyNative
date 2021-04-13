@@ -89,7 +89,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
                 onChangeText={(UserEmail) =>
                   setUserEmail(UserEmail)
                 }
-                placeholder={userInfo.Email || "Email"}
+                placeholder={userEmail || "Email"}
                 placeholderTextColor={colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"

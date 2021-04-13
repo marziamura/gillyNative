@@ -13,6 +13,7 @@ import { Button}  from 'react-native-paper';
 import {
   View,
   StyleSheet,
+  Pressable
 } from 'react-native';
 
 
@@ -40,18 +41,18 @@ const AboutBase = (props) => {
             {t("text")}
         </Text>
       </View>
-      <View style={styles.button}>
-      <Button
-        onPress={() => {
-          props.navigation.replace(props.next);
-         }}
-         mode="outlined" 
-         uppercase={false}
-         contentStyle={styles.button}
-         style={styles.buttonStyle}
-        >
-        {t("button")}
-      </Button>
+      <View style={styles.buttonView}>
+
+      <Pressable 
+          onPress={() => {
+                 props.navigation.replace(props.next);
+          }}
+          style={styles.button}
+      >
+       <Text style={[styles.centerContent, styles.buttonText]}>
+         {t("button")}
+       </Text>
+      </Pressable>
       </View>
       
     </View>
@@ -77,8 +78,11 @@ const styles = StyleSheet.create({
     width: null,
     alignSelf: 'stretch',
   },
-  buttontext:{
-    fontSize: 21,
+   buttonText:{
+    fontSize: 15,
+    fontWeight: "500",
+    textAlign: 'center',  
+    justifyContent: 'center',
     color: colors.buttonText
   },
  
@@ -109,15 +113,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.text
   },
-  buttonStyle:{
+  buttonView:{
     justifyContent: 'center',
-    width: '100%',
-    height: "30%",
+    width: '80%',
     borderRadius: 30,
    },
-    button : {
-      color:"#841584", 
-      fontSize: 20,
-      width: '80%'
+   button : {
+      borderWidth: 1,
+      borderColor: colors.borderColor,
+      borderRadius: 24,
+      width: '100%',
+      height: 40, 
+      justifyContent: 'center'
     },
+  
 });
