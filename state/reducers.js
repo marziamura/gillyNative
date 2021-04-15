@@ -13,13 +13,13 @@ const user = [{
   journey: "Solo",
   sex: "xxx",
   gender: "xxx",
-  partnerID: "xxx",
   primary: true,
   registered: false,
   todaysTreatDone: false,
   lastTreatInJourney: 0,
   pushNotificationToken: "",
   lastActiveDay: 0,
+  partnerName: "Your partner"
 }]
 const loginData =[{
   email: "XXXX",
@@ -52,6 +52,7 @@ const userInfo = (state = user, action) => {
       state[0].id = action.payload.newItem[0].id || state[0].id;
       state[0].partnerID = action.payload.newItem[0].partnerID || state[0].partnerID;
       state[0].userName = action.payload.newItem[0].userName || state[0].userName;
+      state[0].partnerName = action.payload.newItem[0].partnerName || state[0].partnerName;
       state[0].journey = action.payload.newItem[0].journey || state[0].journey;
       state[0].sex = action.payload.newItem[0].sex || state[0].sex;
       state[0].gender = action.payload.newItem[0].gender || state[0].gender;
@@ -64,6 +65,7 @@ const userInfo = (state = user, action) => {
       state[0].pushNotificationToken = action.payload.newItem[0].pushNotificationToken || state[0].pushNotificationToken;
       state[0].lastActiveDay=action.payload.newItem[0].lastActiveDay || state[0].lastActiveDay;
       state[0].lastTreatInJourney=action.payload.newItem[0].lastTreatInJourney || state[0].lastTreatInJourney;
+
       const a = [...state];
  //     console.log("reducer userInfo ", state[0],  state[0].lastTreatInJourney);
     }

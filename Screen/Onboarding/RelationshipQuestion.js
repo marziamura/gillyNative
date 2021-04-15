@@ -2,14 +2,17 @@
 // https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
-import React, {useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
 import Background from '../Components/Background';
 import { IconButton } from 'react-native-paper';
 import InfoDialog from '../Components/InfoDialog';
-
+import createStore from '../../state/store';
+import Button from '../Components/Button';
+import actionSetUserInfo from '../../state/actionSetUserInfo'
+import {updateUserInfo} from '../../state/userInfo'
 
 
 
@@ -31,6 +34,8 @@ const RelationshipQuestion = (props) => {
   const [pressedNo, setPressedNo] = React.useState(false);
   const [name, setName] = React.useState("");
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
+  
+  let store = createStore();
 
   const openInfo = () =>{
     setInfoDialogOpen(true);
@@ -46,18 +51,28 @@ const RelationshipQuestion = (props) => {
  }
  
   
-  const buttonText = {
-    color:"#841584", 
-    fontSize: 20,
-  };
-  const buttonArea = {
-    borderWidth: 1,
-    width: '80%'
-  };
+  
 
+  let onPress = () =>{
+    if(name !== "" ){
+        var userInfo  = store.getState().userInfo[0];
+        userInfo.partnerName = name;
+        store.dispatch(actionSetUserInfo(userInfo, [userInfo]));
+  
+        updateUserInfo(userInfo).then((u)=>{
+        console.log("UserInfo was saved", userInfo);
+         props.navigation.replace("FirstTreatNavigationRoutes");
+        }).catch((e)=>{
+        console.log("Error saving userInfo ", e);
+         props.navigation.replace("FirstTreatNavigationRoutes");
+      })
+    }
+
+  }
+  
   return (
   <Background>
-  <SafeAreaView style={{flex: 1}}>
+ 
    <View style={styles.container}>
      <View style={styles.topView}>
         <View style={styles.textView}>
@@ -136,20 +151,15 @@ const RelationshipQuestion = (props) => {
                     </View>
       }
        <View style={styles.bottomView}>
-           <Pressable 
-             style={styles.nextButton}
-              onPress={() => {
-                props.navigation.replace("MessageInABottle");
-               }}
-              >
-              <Text style={styles.button} > 
-                {t("button")}
-              </Text>
-            </Pressable> 
+         <Button
+             onPress={onPress}
+             text={t("button")}
+         />
+         
         </View>
         { infoDialogOpen ? <InfoDialog text={"infoPartnersName"} callback={closeInfoDialog}/> : null}
     </View>
-    </SafeAreaView>
+
    </Background>
   
   );

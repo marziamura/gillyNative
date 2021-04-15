@@ -7,8 +7,7 @@ import {Text} from 'react-native';
 
 import createStore from '../../state/store';
 import {saveUserInfo} from '../../state/userInfo'
-import * as colors from '../Style/Style'
-import { Button } from 'react-native-paper';
+import  Button  from '../Components/Button'
 import Background from '../Components/Background'
 import Dropdown from '../Components/dropdown'
 
@@ -65,13 +64,17 @@ const Gender = ({navigation}) => {
     userInfo.gender = gender; 
     console.log("Navigate to FirstTreatNavigationRoutes 0", userInfo);
     if(userInfo.sex !== "" && userInfo.gender != ""){
-      saveUserInfo(userInfo).then((u)=>{
+      navigation.replace("RelationshipQuestion");
+    //TODO: uncomment this and delete the line above
+    /*  saveUserInfo(userInfo).then((u)=>{
         console.log("Navigate to FirstTreatNavigationRoutes 1", userInfo);
         navigation.replace("RelationshipQuestion");
       }).catch((e)=>{
-        console.log(e);
-        navigation.replace("RelationshipQuestion");
-      })
+        console.log("Error saving userInfo ", e);
+        updateUserInfo(userInfo).then(()=>
+          navigation.replace("RelationshipQuestion"))
+        .catch(()=>console.log("Error updating userInfo ", e))
+      })*/
     }else{
      alert("Please select one option for gender and sex")
     }
@@ -98,15 +101,9 @@ const Gender = ({navigation}) => {
       <View style={styles.buttonView}>
          <Button       
               onPress={saveInfo}
-             
-              accessibilityLabel="Next"
-              mode="outlined" 
-              uppercase={true}
-              contentStyle={styles.button}
-              style={styles.buttonStyle}
-          >
-          Next
-      </Button>
+               text = "Next"
+          />
+          
      
     </View>
         

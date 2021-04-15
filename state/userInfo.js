@@ -116,7 +116,7 @@ export function getUserInfo () {
     const storedInfo = store.getState().userInfo[0];
     const pushPreferences = store.getState().pushNotificationPreferences[0];
     if(info){
-      currentInfo = info;
+      currentInfo = {...info};
     }else{
    
       currentInfo.id=storedInfo.id
@@ -141,12 +141,13 @@ export function getUserInfo () {
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
     currentInfo.userName = "xxx";
+    currentInfo.email = "xxx";
     delete currentInfo.password;
     delete currentInfo.lastTreatInJourney;
     delete currentInfo.todaysTreatDone;
     currentInfo.tel = "0";
     console.log("Saving User Info 2", currentInfo, pushPreferences, storedInfo.pushNotificationToken);
-    store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
+    //store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
     return currentInfo;
   }
 

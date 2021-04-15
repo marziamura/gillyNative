@@ -3,7 +3,7 @@
 
 // Import React and Component
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import { WebView } from 'react-native-webview';
 import createStore from '../../state/store';
 import Background from '../Components/Background';

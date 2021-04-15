@@ -107,25 +107,26 @@ const FillTheBlanks = ({navigation}) => {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
-          justifyContent: 'center',
+    
           alignContent: 'center',
         }}>
        <KeyboardAvoidingView enabled
             behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={[styles.container, styles.centerContent]}
         >
     
-          <View>
-             <View style={styles.textcontainerview}>
-              <Text style={styles.title}>
-              {t("title")}
-              </Text>
-          
-              <Text style={styles.textTop}>
-                {t("text1", {who: nameOnText, what: answer})}
-              </Text>
+             <View style={[styles.textcontainerview, styles.centerContent]}>
+                <Text style={styles.title}>
+                {t("title")}
+                </Text>
+              </View>
+              <View style={{flex: 1, width: "90%"}}>
+                <Text style={styles.textTop}>
+                  {t("text1", {who: nameOnText, what: answer})}
+                </Text>
 
             </View>
-            <View style={styles.textinputview}>
+            <View style={styles.textinputnameview}>
               <TextInput
                 style={styles.textInput}
                 label="Your partner's name"
@@ -133,13 +134,16 @@ const FillTheBlanks = ({navigation}) => {
                 placeholder={t("name")}
                 value={name}
               />
-            
-  
-                <TextInput
+            </View>
+            <View style={styles.textinputmessageview}>
+             <TextInput
                     style={styles.textInputMultiline}
                     multiline
                     label="Your Message"
                     placeholder={t("suggestion")}
+
+
+                    
                     value={text}
                     onChangeText={OnChangeText}
                 />
@@ -153,7 +157,7 @@ const FillTheBlanks = ({navigation}) => {
             />
             
             </View>
-        </View>
+
          
        </KeyboardAvoidingView>
        </ScrollView>
@@ -164,51 +168,46 @@ const FillTheBlanks = ({navigation}) => {
 export default FillTheBlanks;
 
 const styles = StyleSheet.create({
-  containerview: {
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
   },
   textcontainerview:{
-    paddingTop: 40,
+    flex:1,
+    width: "90%",
   },
-  textinputview:{
-    padding: 10,
-    height: '20%',
+  textinputnameview:{
+    flex: 1,
+    width: "90%",
   },
-  textinputviewmessage:{
-    padding: 10,
-    height: '30%',
+  textinputmessageview:{
+    flex: 1,
+    width: "90%",
   },
+
   bottomview:{
-    height: '40%',
+    flex: 1,
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 10,
   },
 
   title: {
-  //  position: 'absolute',
-    width: '100%',
-   // fontFamily: 'Roboto',
+    //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
-    fontSize: 36,
-    lineHeight: 40,
+    fontSize: 30,
+   
     color: '#383838',
-    paddingTop: 40,
-  //  marginTop: 20,
+    justifyContent: "flex-start",
   },
  
   textTop: {
-    width: '100%',
    // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 21,
     lineHeight: 28,
-    textAlign: 'left',
     color: '#383838',
-    marginTop: 40,
     fontWeight: "500",
   },
   textInput:{
@@ -220,9 +219,13 @@ const styles = StyleSheet.create({
   textInputMultiline:{
     // borderWidth:1,
    //  borderRadius: 10,
-   //  height: 120,
-     marginTop: 10,
+     height: 120,
    },
-  
+  centerContent:{
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center"
+
+  }
 
 });

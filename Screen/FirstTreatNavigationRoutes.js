@@ -43,7 +43,7 @@ const FirstTreatNavigationRoutes = (props) => {
             headerLeft: () => (
               <IconButton
                 icon="arrow-left"
-                onPress={() => props.navigation.navigate("RelationshipQuestion")}
+                onPress={() => props.navigation.navigate("OnboardingNavigationRoutes")}
                 title="Info"
                 color="black"
               />
@@ -86,6 +86,12 @@ const FirstTreatNavigationRoutes = (props) => {
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
+            headerLeft: () => (
+              <IconButton
+                icon="arrow-left"
+                onPress={() => props.navigation.navigate("FillTheBlanks")}
+                color="black"
+            />),
           }}
       />
     </Stack.Navigator>

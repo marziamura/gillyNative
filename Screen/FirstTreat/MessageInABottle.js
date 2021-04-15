@@ -84,17 +84,17 @@ const styles = StyleSheet.create({
     height: "20%",
     borderRadius: 30,
    },
+   
   title: {
-    position: 'absolute',
+
     width: '100%',
     
     //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
-    fontSize: 36,
+    fontSize: 30,
     lineHeight: 40,
     color: '#383838',
-    paddingBottom: 100,
   },
   text: {
     width: '100%',

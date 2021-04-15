@@ -1,19 +1,18 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
+
 import 'react-native-gesture-handler';
 
-// Import React and Component
+
 import React, { useState, useEffect, useRef } from 'react';
 
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
 
 
-// Import Navigators from React Navigation
+n
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-// Import Screens
+
 import SplashScreen from './Screen/SplashScreen';
 
 import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
@@ -81,47 +80,36 @@ const App = () => {
             <Stack.Screen
               name="SplashScreen"
               component={SplashScreen}
-              // Hiding header for Splash Screen
               options={{headerShown: false}}
             />
             
-         
             <Stack.Screen
               name="AuthNavigationRoutes"
               component={AuthNavigationRoutes}
               options={{headerShown: false}}
             />
-            {/* Navigation Drawer as a landing page */}
+    
             <Stack.Screen
               name="HomeNavigationRoutes"
               component={HomeNavigationRoutes}
-              // Hiding header for Navigation Drawer
               options={{headerShown: false}}
             />
             <Stack.Screen
             name="OnboardingNavigationRoutes"
             component={OnboardingNavigationRoutes}
-            // Hiding header for Navigation Drawer
             options={{headerShown: false}}
             />
             <Stack.Screen
             name="FirstTreatNavigationRoutes"
             component={FirstTreatNavigationRoutes}
-            // Hiding header for Navigation Drawer
             options={{headerShown: false}}
             />
             <Stack.Screen
             name="AboutGillyNavigationRoutes"
             component={AboutGillyNavigationRoutes}
-            // Hiding header for Navigation Drawer
             options={{headerShown: false}}
             />
-           <Stack.Screen
-            name="AuthNavigationRoutesRegister"
-            component={AuthNavigationRoutesRegister}
-            // Hiding header for Navigation Drawer
-            options={{headerShown: false}}
-            />
+       
           </Stack.Navigator>
       
         </NavigationContainer>

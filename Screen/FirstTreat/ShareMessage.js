@@ -21,9 +21,10 @@ import {
 
 const ShareMessage = ({navigation}) => {
   const { t } = useTranslation('ShareMessage');
-  const message = createStore().getState().messageInABottle[0];
+  const messageData = createStore().getState().messageInABottle[0];
   console.log("message ", message);
 
+  const message = t("text2", {who: messageData.partnerName, what:messageData.answer});
   const OnShare =() => { 
    const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${message.name}&partner=${message.partnerName}&partneramessage=${message.answer}`
     Share.share({
@@ -40,45 +41,33 @@ const ShareMessage = ({navigation}) => {
     })
   }
 
-  const buttonText = {
-    color: colors.buttonText,
-    fontSize: 20,
-    
-  };
-  const button2 = {
-    backgroundColor:"transparent", 
-    borderWidth: 0,
-    marginTop: 10,
-  };
+
   return (
     <Background>
-      <View style={styles.container}>
+      <View style={[styles.container, styles.centerContent]}>
 
-        <View style={styles.textcontainer}>
+        <View style={styles.titleview}>
           <Text style={styles.title}>
           {t("title")}
           </Text>
-          <View style={{height: '10%'}}/>
+        </View>
+        <View style={[styles.textview, styles.centerContent]}>
           <Text style={styles.textTop}>
             {t("text1")}
           </Text>
           <Text style={styles.text}>
-            {message.message}
+            {message}
           </Text>
         </View>
-        <View style={styles.bottom}>
+        <View style={[styles.bottom, styles.centerContent]}>
           <Button
-            press={OnShare}
-            title={t('button', {who: message.partnerName})}
-            styletext={buttonText}
-            accessibilityLabel="Home"
+            onPress={OnShare}
+            text={t('button', {who: messageData.partnerName})}
+            pressableStyle ={{marginBottom: 10}}
           />
           <Button
-            press={()=> navigation.replace("HomeNavigationRoutes")}
-            title={t('button2', {who: message.partnerName})}
-            styletext={buttonText}
-            styleover={button2}
-            accessibilityLabel="Home"
+            onPress={()=> navigation.replace("HomeNavigationRoutes")}
+            text={t('button2', {who: messageData.partnerName})}
           />
         </View>
           
@@ -95,23 +84,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  textcontainer:{
-    width: '90%', height: '60%',
+  titleview:{
+    width: '90%', 
+    flex: 1,
   },
   title: {
-    position: 'absolute',
-    width: '100%',
-    
    // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
-    fontSize: 36,
+    fontSize: 30,
     lineHeight: 40,
     color: '#383838',
     paddingBottom: 100,
   },
   text: {
-    width: '100%',
+
  //   fontFamily: 'Roboto',
     fontStyle: 'italic',
     fontWeight: "600",
@@ -120,36 +107,21 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#383838',
     marginTop: 20,
-
   },
 
-  textTop: {
-    width: '100%',
-    //fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontSize: 21,
-    lineHeight: 28,
-    textAlign: 'left',
-    color: '#383838',
-    paddingTop: 40,
-    fontWeight: "500",
-  },
-  
-  textBottom: {
-    width: '100%',
-    //fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontSize: 21,
-    lineHeight: 28,
-    textAlign: 'left',
-    color: '#383838',
-    paddingBottom: 40,
-    fontWeight: "800",
+  textview: {
+    flex: 2,
+    width: '90%',
+
   },
 
   bottom:{
-    height: '40%',
-    width: '90%'
-  }
+    flex: 1,
+    width: '90%',
+  }, 
+  centerContent:{
+    alignItems: "center",
+    justifyContent: "center"
+  },
 
 });

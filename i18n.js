@@ -22,6 +22,7 @@ i18n
         en: {
           FirstTreat: {
             title: 'Message in a bottle',
+            introduction: "Sharing a memory",
             text1: "{{name}}, did you know that studies show that couples who share positive memories have happier, more resilient relationships?",
             text2: "No doubt, these current times have been a stressful time for many.",
             text3: "Have a look — what is one positive memory that you will have of your partner from these pandemic times so far?",   
@@ -50,7 +51,7 @@ i18n
           About4:{
             supertitle: "Before we begin",
             title: "Are you in a relationship?",
-            text: "This information is not saved until you've finished creating an account",
+            text: "",
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still enjoy our treats",
             button: "Next",
             PartnerName: "What's your partner's name?"
