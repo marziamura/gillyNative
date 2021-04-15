@@ -8,7 +8,6 @@ import Amplify from 'aws-amplify'
 import config from './aws-exports'
 
 
-n
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -86,6 +85,12 @@ const App = () => {
             <Stack.Screen
               name="AuthNavigationRoutes"
               component={AuthNavigationRoutes}
+              options={{headerShown: false}}
+            />
+        
+            <Stack.Screen
+              name="AuthNavigationRoutesRegister"
+              component={AuthNavigationRoutesRegister}
               options={{headerShown: false}}
             />
     

@@ -29,7 +29,7 @@ import {
 
 const LoginScreen = ({navigation,dispatch}) => {
   const userInfo = createStore().getState().userInfo[0];
-  const [userEmail, setUserEmail] = useState(userInfo.email);
+  const [userEmail, setUserEmail] = useState(userInfo.email || "email");
   const [userPassword, setUserPassword] = useState(userInfo.email);
  
   const [buttonDisabled, setButtonDisabled] = useState(false);

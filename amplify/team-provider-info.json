@@ -69,7 +69,8 @@
         "gillyAuth": {}
       },
       "function": {
-        "saveTFSubmission": {}
+        "saveTFSubmission": {},
+        "sendPushNotifications": {}
       }
     }
   }

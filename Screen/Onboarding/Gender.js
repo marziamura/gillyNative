@@ -64,9 +64,9 @@ const Gender = ({navigation}) => {
     userInfo.gender = gender; 
     console.log("Navigate to FirstTreatNavigationRoutes 0", userInfo);
     if(userInfo.sex !== "" && userInfo.gender != ""){
-      navigation.replace("RelationshipQuestion");
-    //TODO: uncomment this and delete the line above
-    /*  saveUserInfo(userInfo).then((u)=>{
+   //   navigation.replace("RelationshipQuestion");
+    
+      saveUserInfo(userInfo).then((u)=>{
         console.log("Navigate to FirstTreatNavigationRoutes 1", userInfo);
         navigation.replace("RelationshipQuestion");
       }).catch((e)=>{
@@ -74,7 +74,7 @@ const Gender = ({navigation}) => {
         updateUserInfo(userInfo).then(()=>
           navigation.replace("RelationshipQuestion"))
         .catch(()=>console.log("Error updating userInfo ", e))
-      })*/
+      })
     }else{
      alert("Please select one option for gender and sex")
     }
