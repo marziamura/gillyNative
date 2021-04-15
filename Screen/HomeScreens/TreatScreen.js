@@ -30,7 +30,7 @@ const TreatScreen = ({navigation}) => {
                 + "&email=" + user.email
                 + "&journey=" + user.journey;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
-    const s = "http://app.getgilly.com/gth";
+ //   const s = "http://app.getgilly.com/gth";
     console.log("TypeFormLink ->", typeformLink);
  
  /*   function f() {
@@ -89,9 +89,9 @@ const TreatScreen = ({navigation}) => {
         }
       })()`;
       try{
-        return   <WebView   source={{ uri: s }} 
+        return   <WebView   source={{ uri: typeformLink }} 
         style={styles.html}
-        injectedJavaScript={INJECTED_JAVASCRIPT2}
+      //  injectedJavaScript={INJECTED_JAVASCRIPT2}
         onMessage={(m) => alert(m)}
          />    
       }catch(error){
