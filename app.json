@@ -4,7 +4,7 @@
     "slug": "GillyNative",
     "version": "0.0.6",
     "orientation": "portrait",
-    "icon": "./assets/gilly-icon.png",
+    "icon": "./assets/gilly-icon-white.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,12 +18,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.getgilly.gillyapp",
-      "buildNumber": "0.0.6"
+      "bundleIdentifier": "com.getgilly",
+      "buildNumber": "0.0.7"
     },
     "android": {
       "package": "com.getgilly.gillyapp",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/gilly-icon.png",
         "backgroundColor": "#FFFFFF"

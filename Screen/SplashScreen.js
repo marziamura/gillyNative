@@ -60,7 +60,7 @@ const SplashScreen = ({navigation}) => {
                 
                 if (!user || !user.sex){
                   console.log("got user info ", user);
-                  navigation.replace('FirstTreatNavigationRoutes');
+                  navigation.replace('OnboardingNavigationRoutes');
                 }else{
                   if(user.lastTreatInJourney <= 0){
                     console.log("No treats yet ");
@@ -83,7 +83,7 @@ const SplashScreen = ({navigation}) => {
      //     navigation.replace('AboutGillyNavigationRoutes');
         
         });
-      }, 10)
+      }, 2000)
     }, []);
 
   return (
@@ -112,7 +112,7 @@ const SplashScreen = ({navigation}) => {
       
           <Pressable
            onPress={() => {
-            navigation.replace('Auth');
+            navigation.replace('AuthNavigationRoutes');
            }}
            >
              <Text style={[styles.centerContent, styles.buttonText]}>

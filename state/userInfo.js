@@ -140,6 +140,7 @@ export function getUserInfo () {
       }
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
+    store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
     currentInfo.userName = "xxx";
     currentInfo.email = "xxx";
     delete currentInfo.password;
@@ -147,7 +148,6 @@ export function getUserInfo () {
     delete currentInfo.todaysTreatDone;
     currentInfo.tel = "0";
     console.log("Saving User Info 2", currentInfo, pushPreferences, storedInfo.pushNotificationToken);
-    //store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
     return currentInfo;
   }
 

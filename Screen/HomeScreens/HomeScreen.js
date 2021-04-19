@@ -144,7 +144,7 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={{flex: 1}}>
     <View style={styles.container}>
         <View style={[styles.welcomeView, styles.viewPlacement]}>
-        <Text style={styles.title}> {t("welcome", {who: "Marzia"} )}</Text>
+        <Text style={styles.title}> {t("welcome", {who: user.userName} )}</Text>
         
         </View>
         <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>

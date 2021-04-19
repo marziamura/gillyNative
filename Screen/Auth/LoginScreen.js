@@ -5,7 +5,7 @@
 import React, {useState, createRef} from 'react';
 import { Auth } from 'aws-amplify';
 import { connect } from 'react-redux';
-import actionUserLogin from '../../state/actionUserLogin';
+import actionSetUserInfo from '../../state/actionSetUserInfo';
 import createStore from '../../state/store';
 import {getUserInfo} from '../../state/userInfo';
 import * as colors from '../Style/Style';
@@ -64,7 +64,13 @@ const LoginScreen = ({navigation,dispatch}) => {
           journey: cognitoUser.attributes["custom:journey"]
         }]
    
-        dispatch(actionUserLogin(createStore().getState().userInfo,user));
+        userInfo.userName = user.name;
+        userInfo.journey =  user.journey;
+        console.log("---------------->", user)
+        console.log("+++++++++++++++++++++++>", userInfo)
+        dispatch(actionSetUserInfo(userInfo, [userInfo]));
+
+        //dispatch(actionUserLogin(createStore().getState().userInfo,user));
 
         let promiseResolve = (user)=>{
     
@@ -101,8 +107,6 @@ const LoginScreen = ({navigation,dispatch}) => {
     if(userInfo.email !== "xxx" &&  userInfo.password && userInfo.password !== "xxx"){
       console.log("Signing in automatically...");
       setUserEmail(userInfo.email);
- //     userPassword(userInfo.password);
-      signIn();
     }
 
   }, [])
@@ -140,7 +144,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserEmail(UserEmail)
                   }
                 }
-                placeholder={userEmail}
+                placeholder={userEmail === "xxx" ? "email" : userEmail}
                 placeholderTextColor= {colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"

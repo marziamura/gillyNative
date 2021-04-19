@@ -18,7 +18,7 @@ const TreatScreen = ({navigation}) => {
     let store = createStore(); 
     const treatData = store.getState().currentTreat[0];   
     const user = store.getState().userInfo[0]; 
-
+    const webView = React.useRef(null);
     
 
     
@@ -30,7 +30,7 @@ const TreatScreen = ({navigation}) => {
                 + "&email=" + user.email
                 + "&journey=" + user.journey;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
- //   const s = "http://app.getgilly.com/gth";
+  //  const s = "http://app.getgilly.com/gth";
     console.log("TypeFormLink ->", typeformLink);
  
  /*   function f() {
@@ -77,22 +77,32 @@ const TreatScreen = ({navigation}) => {
                 }
         }
       })();`;
-*/
+
       const INJECTED_JAVASCRIPT2 = `(function getClick(){
+        alert("hello");
         var elements = document.getElementById("goHome");
-  
+        
         for (var elem of elements) {
             alert(elem.innerHTML);
             elem.addEventListener("touchend", (event)=> {alert(event))
             elem.addEventListener("pointerup",()=> alert("pointerup"))
           
         }
-      })()`;
+      })()`;*/
+      const handleWebViewNavigationStateChange = (newNavState)=>{
+        const { url } = newNavState;
+        if (url.includes('app.getgilly.com')) {
+          webview.stopLoading();
+          navigation.replace("HomeScreen");
+        }
+      }
+
       try{
         return   <WebView   source={{ uri: typeformLink }} 
         style={styles.html}
-      //  injectedJavaScript={INJECTED_JAVASCRIPT2}
-        onMessage={(m) => alert(m)}
+        ref = {webView}
+        onNavigationStateChange={handleWebViewNavigationStateChange}
+  
          />    
       }catch(error){
         console.log(error);

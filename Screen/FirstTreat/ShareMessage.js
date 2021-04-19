@@ -22,13 +22,11 @@ import {
 const ShareMessage = ({navigation}) => {
   const { t } = useTranslation('ShareMessage');
   const messageData = createStore().getState().messageInABottle[0];
-  console.log("message ", message);
 
-  const message = t("text2", {who: messageData.partnerName, what:messageData.answer});
   const OnShare =() => { 
-   const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${message.name}&partner=${message.partnerName}&partneramessage=${message.answer}`
+   const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${messageData.name}&partner=${messageData.partnerName}&partneramessage=${messageData.answer}`
     Share.share({
-        message: t('IntroMessage', {who: message.name})  + "\n" + typeformLink
+        message: t('IntroMessage', {who: messageData.name})  + "\n" + typeformLink
       }).then((result) => {
       
       if (result.action === Share.sharedAction) {
