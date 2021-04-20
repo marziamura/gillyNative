@@ -102,6 +102,11 @@ i18n
             text: "You are nearly ready to start your gilly experience. To be able to offer you a more personalized experience, we ask you to give us some more information about yourself",
             button: "Next"
           },
+          InvitePartner:{
+            title: "Invite your partner",
+            text: "This cool feature is still under development. How important would it be for your to experience Gilly with your partner?",
+            button: "Go Back To HomeScreen"
+          },
       
 
         },

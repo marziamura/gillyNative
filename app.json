@@ -26,6 +26,8 @@
       "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/gilly-icon.png",
+
+        
         "backgroundColor": "#FFFFFF"
       },
       "permissions": ["CAMERA", "CAMERA_ROLL"],

@@ -9,7 +9,6 @@ import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import * as colors from '../Style/Style';
 import actionSetTreatData from "../../state/actionSetTreatData";
 import {getJourneyInfo} from "../../state/userInfo";
 import { Paragraph, Dialog} from 'react-native-paper';
@@ -148,9 +147,11 @@ const HomeScreen = ({navigation}) => {
         
         </View>
         <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
+          <Pressable  onPress={()=>{navigation.replace("InvitePartner")}}>
             <Text style={styles.btnText}>
              {t("invite")}
             </Text>
+          </Pressable>
         </View>
         <View style={[styles.treatView, styles.viewPlacement]}>
           <View style={{flex: 1, width: viewWidth}}>
@@ -220,9 +221,11 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
         <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
+          <Pressable  onPress={()=>{navigation.replace("IntimacyProfile")}}>
             <Text style={styles.btnText}>
                 {t("completeProfile")}
             </Text>
+            </Pressable>
         </View>
        
       </View>

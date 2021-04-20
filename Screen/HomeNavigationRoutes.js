@@ -64,7 +64,7 @@ const HomeNavigatorRoutes = (props) => {
       backBehavior="initialRoute"
       >
       <Drawer.Screen
-        name="Home Screen" 
+        name="HomeScreen" 
         component={HomeScreenStack}
       />
       <Drawer.Screen

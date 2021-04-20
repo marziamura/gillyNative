@@ -18,7 +18,7 @@ import {
 
 
 const TextScreen = (props) => {
-  console.log("AboutBase", props, props.navigation)
+
   const { t } = useTranslation(props.namespace);
 
   return (

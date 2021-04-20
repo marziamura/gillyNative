@@ -47,7 +47,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
         console.log("request new password", userEmail)
         await Auth.forgotPassword(userEmail)
         .then(data => {
-          navigation.replace('ForgotPasswordSubmit');
+          navigation.replace('ConfirmEmail');
         })
         .catch(err => console.log(err));
     } catch (error) {

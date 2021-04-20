@@ -40,7 +40,7 @@ const CustomSidebarMenu = (props) => {
             </Text>
           }
           onPress={() => {
-             props.navigation.push('Home');
+             props.navigation.push('HomeScreen');
              props.navigation.toggleDrawer();
           }}
         />
