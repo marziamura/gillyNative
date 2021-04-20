@@ -14,11 +14,15 @@ import {getJourneyInfo} from "../../state/userInfo";
 import { Paragraph, Dialog} from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
-import FlatList from '../Components/carousel'
-import { LinearGradient } from 'expo-linear-gradient';
+import ExploreJourneys from '../Components/exploreJourneys'
+
 import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import InfoDialog from '../Components/InfoDialog';
+import ChooseTreat from '../Components/chooseTreat';
+
+
+
 
 
 console.log("loading HomeScreen");
@@ -82,7 +86,10 @@ const HomeScreen = ({navigation}) => {
     navigation.replace("TodaysTreat")
   };
 
-
+  
+  function Divider() {
+    return <View style={{height: 1, backgroundColor:"blue", width: "90%", margin: 5}}/>
+  }
 
   
   React.useEffect(()=>{
@@ -137,7 +144,27 @@ const HomeScreen = ({navigation}) => {
         setInfoDialogOpen(false);
         setInJourneyInfoDialogOpen(false)
   }
-  console.log("******** HomeScreen ******** ", user.lastTreatInJourney, pushNotificationPreferences);
+
+  function ViewTitle(props){
+   return <View style={{flex: 1, width: viewWidth}}>
+    <View style={{flexDirection: "row"}}>
+      <View style={{flex: 5 }}>
+      <Text style={styles.journeyTitle}>
+        {props.text}
+      </Text>
+      </View>
+      <View style={{flex: 1}}>    
+      <IconButton
+        icon="information"  
+        size={20}
+        onPress={props.onPress}
+        style={styles.infoIcon}
+      />
+    </View>
+  </View>
+  </View>
+  }
+
   return (
   <Background>
     <SafeAreaView style={{flex: 1}}>
@@ -153,73 +180,21 @@ const HomeScreen = ({navigation}) => {
             </Text>
           </Pressable>
         </View>
-        <View style={[styles.treatView, styles.viewPlacement]}>
-          <View style={{flex: 1, width: viewWidth}}>
-              <View style={{flexDirection: "row"}}>
-                <View style={{flex: 5 }}>
-                <Text style={styles.journeyTitle}>
-                  {t("nextTreat")}
-                </Text>
-                </View>
-                <View style={{flex: 1}}>    
-                <IconButton
-                  icon="information"  
-                  size={20}
-                  onPress={openTreatInfo}
-                  style={styles.infoIcon}
-                />
-              </View>
-            </View>
-            </View>
-          <View style={{flex: 3}}>  
-            <Text style={styles.treatBlurb}>
-                 {treatDescription}
-            </Text>
-            <View style={styles.treatButton}>
-            <LinearGradient
-          // Background Linear Gradient
-              colors={['#FFB1A6', '#FFA497']}
-              start={[0.2041, 0.8561]}
-              style={styles.linearGradient}
-            >
-              <Pressable 
-                disabled={buttonDisabled} 
-                onPress={press}
-                style={({ pressed }) => [   
-                  styles.button
-                ]}>
-                {({ pressed }) => (
-                  <Text style={styles.btnText}>
-                  {t("openTreat")}
-                  </Text>
-                )}
-              </Pressable>
-              </LinearGradient>
-            </View>
+        <Divider />
+        <View style={[styles.carouselView, styles.viewPlacement]}>
+            <ViewTitle text={t("nextTreat")} onPress={openTreatInfo}/>
+            <View style={{flex: 3, marginTop: 2}}>  
+                <ChooseTreat />
             </View>
         </View>
-        <View style={[styles.journeysView, styles.viewPlacement]}>
-          <View style={{flex: 1, width: viewWidth}}>
-            <View style={{flexDirection: "row",   }}>
-                <View style={{flex: 5   }}>
-                <Text style={styles.journeyTitle}>
-                  {t("exploreJourneys")}
-                </Text>
-                </View>
-                <View style={{flex: 1}}>    
-                <IconButton
-                  icon="information"  
-                  size={20}
-                  onPress={openJourneyInfo}
-                  style={styles.infoIcon}
-                />
-              </View>
-            </View>
-          </View>
-          <View style={{flex: 6}}>
-            <FlatList/>
+        <Divider  />
+        <View style={[styles.carouselView, styles.viewPlacement]}>
+          <ViewTitle text={t("exploreJourneys")} onPress={openJourneyInfo}/>
+          <View style={{flex: 3, marginTop: 2}}>
+            <ExploreJourneys/>
           </View>
         </View>
+        <Divider />
         <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
           <Pressable  onPress={()=>{navigation.replace("IntimacyProfile")}}>
             <Text style={styles.btnText}>
@@ -247,26 +222,22 @@ const styles = StyleSheet.create({
   },
   viewPlacement:{
     alignSelf: "center",
+    alignText: "flex-start",
     width: viewWidth,
     borderRadius: viewBorderRadius,
   },
   welcomeView:{
-    flex:0.5,
+    flex:1,
   }, 
   inviteView:{
     flex:1,
     backgroundColor: '#D9E9CB',
   },
-  treatView:{
+  carouselView:{
     flex:2,
-    backgroundColor: '#C4C4C4',
     marginTop: margin,
   },
-  journeysView:{
-    flex:2,
- //   backgroundColor: 'orange',
-    marginTop: margin,
-  },
+
   centerContent:{
     alignItems: "center",
     justifyContent: "center"
@@ -280,17 +251,7 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: 'orange',
   },
-  treatButton:{
-    position: 'relative',
-    width: 150,
-    left: 20,
-    top: 10,
-    //background: 'linear-gradient(95.18deg, #FFB1A6 20.41%, #FFA497 85.61%)',
-    borderRadius: 24,
-  },
-  linearGradient:{
-    borderRadius: 24,
-  },
+
   button: {
     width: '100%',
     textAlign: "center",
@@ -322,21 +283,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     padding: 10,
   },
-  treatBlurb:{
-    fontSize: 20,
-    marginLeft: 15
-  },
+
   title:{
     fontSize: 25,
     marginTop: 10
-},
-infoIcon:{
- 
-},
+  },
+
 journeyTitle:{
-  alignSelf: "flex-start",
+  alignSelf: "center",
   color: "black",
-  fontSize: 25,
+  fontSize: 18,
   justifyContent: "center",
   
 }

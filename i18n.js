@@ -75,7 +75,7 @@ i18n
           Home:{
             welcome: "Hi, {{who}}",
             invite: "Gilly is better in pairs! Invite your partner to join",
-            nextTreat: "Your Next Treat",
+            nextTreat: "Choose your treat",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys",
             completeProfile: "Discover your intimacy profile",
