@@ -66,6 +66,7 @@ const RegisterScreen = (props) => {
           }).catch ((error)=> {
             setErrorText(error.message);
             console.log('error signing up:', error.message);
+            alert(error.message);
         })
    
     }

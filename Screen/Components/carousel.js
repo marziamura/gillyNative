@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
+import { IconButton } from 'react-native-paper'
+import * as colors from '../Style/Style'
 
 export default function FlatListHorizontal(props)
 {
@@ -11,13 +13,19 @@ treat: ""  }
 
 const [selectedData, setData] = React.useState(nullData);
 
+const [selectedIndex, setIndex] = React.useState();
+
 let {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
 const SCREEN_WIDTH = width;
 
-const executeAction = (index) => {
-    setData(displayData[index])
-    props.callback(index);
+const setCurrentData = (index) => {
+    setData(displayData[index]);
+    setIndex(index);
+}
+
+const executeAction = () => {
+  props.callback(selectedIndex);
 }
 
 const displayData = props.data;
@@ -28,14 +36,14 @@ const  _renderItem = ({ item, index }) => {
             
             style={{
               padding: 10,
-              backgroundColor: '#C4C4C4',
+              backgroundColor: colors.cards,
               width: SCREEN_WIDTH / 2,
-              height: "100%",
+           //   height: "100%",
               //height:viewHeight,
               marginHorizontal: 10,
               borderRadius: 24
             }}>
-            <Pressable onPress={() => executeAction(index)}>  
+            <Pressable onPress={() => setCurrentData(index)}>  
               <Text style={styles.title}>{item.title}</Text>
             </Pressable>
           </View>
@@ -54,7 +62,27 @@ return  <View style={styles.container}>
             />
           </View>
           <View style ={styles.description}>
-            <Text style ={styles.textSmall}>{selectedData.description}</Text>
+           
+        
+            <View style ={styles.row}>
+           
+                <View style={{flex: 4}}>
+                <Text style ={styles.textSmall}>{selectedData.description}</Text>
+                </View>
+                <View style={{flex: 1, widht: 20}}>
+                <Pressable onPress={() => executeAction()}>  
+                {selectedData.description !== "" && <IconButton
+                    icon="arrow-right-bold"  
+                    size={30}
+                    color={colors.icons}
+                    onPress={props.onPress}
+                    style={styles.arrowIcon}
+                  />}
+                  </Pressable>
+                </View>
+                
+            </View>
+      
           </View>  
 </View>
 
@@ -64,9 +92,7 @@ return  <View style={styles.container}>
 
 const styles = StyleSheet.create({
     container: {
-     // backgroundColor: 'gray',
       flex: 1, 
-      top: 10,
       width: "100%"
     },
 
@@ -75,19 +101,22 @@ const styles = StyleSheet.create({
         marginTop: 0
     },
     carousel:{
-        flex:2
+        flex:1
     },
     description:{
       flex:1,
-      alignItems: "center",
-      justifyContent: "center"
     },
     textSmall:{
-      fontSize: 15,
+      fontSize: 20,
     },
     subTitle:{
         fontSize: 20,
         marginTop: 20
+    },
+    row:{
+      flex: 1,
+      flexDirection: "row",
+      marginTop: 5
     }
   });
   

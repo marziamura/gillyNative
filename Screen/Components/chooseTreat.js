@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
 import Carousel from "./carousel"
+import createStore from '../../state/store';
+import actionSetTreatData from '../../state/actionSetTreatData'
 
-export default function ChooseTreat(){
-
+export default function ChooseTreat(props){
+const store = createStore();
 const treatData =[
     { key: "1",
       type: "Sexploration",
@@ -28,13 +30,19 @@ const treatData =[
     { key: "5",
       type: "Flavoured",
       title: "Vanilla?",
-      description: "Play that funcy music, partner!",
+      description: "Play that funky music, partner!",
       treat: "ynPFZe14" }
 
 ]
 
 const showTreat = (selected) =>{
-  alert(selected);
+  console.log(selected)
+  var currentData={
+              id: treatData[selected].treat,
+              description: treatData[selected].description
+  }
+  store.dispatch(actionSetTreatData([currentData])); 
+  props.navigation.replace("TodaysTreat");
 }
 
 return <Carousel data={treatData} callback={showTreat}/>

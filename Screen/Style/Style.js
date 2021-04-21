@@ -1,13 +1,23 @@
-export const background = '#FBFFFA';
+export const albicocca = "#FFB1A6";
+export const lightgreen = "#D9E9CB"
+export const lightviolet = "#99B1FB"
+
+export const background = lightviolet;
 export const white = '#FFFFFF';
 export const border = '#dadae8';
 export const text ='#383838';
 export const textError ='red';
-export const buttonBackground = '#FFFFFF';
+export const buttonBackground = albicocca;
 export const buttonText = "#9D86D1";
 export const placeholderText = "#8b9cb5";
 export const disabled = '#d5d5d5';
-export const header = '#99B1FB';
+export const header = albicocca;
 export const underlineColor = '#f000';
+export const icons = albicocca;
+export const cards = albicocca;
+export const cards2 = lightgreen;
+
+
+
 
  

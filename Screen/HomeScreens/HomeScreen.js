@@ -20,6 +20,7 @@ import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import InfoDialog from '../Components/InfoDialog';
 import ChooseTreat from '../Components/chooseTreat';
+import * as colors from '../Style/Style'
 
 
 
@@ -28,7 +29,7 @@ import ChooseTreat from '../Components/chooseTreat';
 console.log("loading HomeScreen");
 
 const viewWidth= '90%';
-const margin= 20;
+const margin= 5;
 const viewBorderRadius = 20;
 
 
@@ -88,7 +89,7 @@ const HomeScreen = ({navigation}) => {
 
   
   function Divider() {
-    return <View style={{height: 1, backgroundColor:"blue", width: "90%", margin: 5}}/>
+    return <View style={{height: 1, backgroundColor: colors.header, width: "90%", margin: 5}}/>
   }
 
   
@@ -184,14 +185,14 @@ const HomeScreen = ({navigation}) => {
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo}/>
             <View style={{flex: 3, marginTop: 2}}>  
-                <ChooseTreat />
+                <ChooseTreat navigation={navigation}/>
             </View>
         </View>
         <Divider  />
         <View style={[styles.carouselView, styles.viewPlacement]}>
           <ViewTitle text={t("exploreJourneys")} onPress={openJourneyInfo}/>
           <View style={{flex: 3, marginTop: 2}}>
-            <ExploreJourneys/>
+            <ExploreJourneys navigation={navigation}/>
           </View>
         </View>
         <Divider />
@@ -222,16 +223,16 @@ const styles = StyleSheet.create({
   },
   viewPlacement:{
     alignSelf: "center",
-    alignText: "flex-start",
     width: viewWidth,
     borderRadius: viewBorderRadius,
   },
   welcomeView:{
-    flex:1,
+    flex:0.5,
   }, 
   inviteView:{
     flex:1,
     backgroundColor: '#D9E9CB',
+    marginTop: margin
   },
   carouselView:{
     flex:2,
@@ -246,6 +247,7 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#D9E9CB',
     marginTop: margin,
+    marginBottom: margin
   },
   moodCheckView:{
     flex:1,
