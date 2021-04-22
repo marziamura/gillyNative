@@ -12,13 +12,13 @@ export default function FlatListHorizontal(props)
 const nullData =  { key: "0",
 type: "",
 title: "",
-description: "",
+description: props.defaultText,
 treat: ""  }
 
 const [selectedData, setData] = React.useState(nullData);
+const [selectedIndex, setIndex] = React.useState(-1);
 
-const [selectedIndex, setIndex] = React.useState();
-
+const displayData = props.data;
 
 
 const setCurrentData = (index) => {
@@ -31,19 +31,28 @@ const executeAction = () => {
   props.callback(selectedIndex);
 }
 
-const displayData = props.data;
+
+
 const getBGColor = (index) =>   {
-  console.log("background color", index, selectedIndex)
   return {backgroundColor: index === selectedIndex 
     ? colors.cardselected
     : colors.cards
   }
 }
+
+const getTextColor = () => {
+  return {color: -1 === selectedIndex 
+    ? colors.textDisabled
+    : colors.text
+  }
+
+}
+
 const  _renderItem = ({ item, index }) => {
         return (
          <View style={[styles.listElement, getBGColor(index)]} onPress={()=> console.log(index)}> 
-          <Pressable onPress={() => setCurrentData(index) }>  
-            <View>
+          <Pressable onPress={() => setCurrentData(index)} style={[styles.pressable]}>  
+          <View>
             <Text style={styles.title}>{item.title}</Text>
           </View>
           </Pressable>
@@ -65,11 +74,11 @@ return  <View style={styles.container}>
           <View style ={styles.description}>
            <View style={{flex: 4}}>
        
-              <Text style ={styles.textSmall}>{selectedData.description}</Text>
+              <Text style ={[styles.textSmall, getTextColor()]}>{selectedData.description}</Text>
            </View>
            <View style ={{flex: 2}}>
             {
-              selectedData.description !== "" && <Button text={"open treat"} onPress={() => executeAction()}/>
+              selectedIndex !== -1 && <Button text={props.buttonText} onPress={() => executeAction()}/>
             }
             </View>
           </View>
@@ -87,7 +96,8 @@ const styles = StyleSheet.create({
 
     title:{
         fontSize: 20,
-        marginTop: 0
+        marginTop: 0, 
+        textAlign: "center",
     },
     carousel:{
         flex: 1,
@@ -95,11 +105,13 @@ const styles = StyleSheet.create({
     description:{
       flex:1,
       flexDirection: "row",
-   //   textAlign: 'center',
-      flexWrap: 'wrap'
+ 
+      flexWrap: 'wrap',
+      marginTop: 5
     },
     textSmall:{
       fontSize: 20,
+      justifyContent: 'center',
     },
     subTitle:{
         fontSize: 20,
@@ -117,8 +129,19 @@ const styles = StyleSheet.create({
       //height: "100%",
       //height:viewHeight,
       marginHorizontal: 10,
-      borderRadius: 24,
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
+    pressable:{
+      width: SCREEN_WIDTH / 2,
+      height: "100%",
+      //height:viewHeight,
+      marginHorizontal: 10,
+      borderRadius: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
 
   });
   

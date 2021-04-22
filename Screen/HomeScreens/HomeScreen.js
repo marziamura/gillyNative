@@ -148,7 +148,7 @@ const HomeScreen = ({navigation}) => {
 
   function ViewTitle(props){
    return <View style={{flex: 1, width: viewWidth}}>
-    <View style={{flexDirection: "row"}}>
+    <View style={[styles.centerContent,{flexDirection: "row"}]}>
       <View style={{flex: 5 }}>
       <Text style={styles.journeyTitle}>
         {props.text}
@@ -287,9 +287,9 @@ const styles = StyleSheet.create({
   },
 
 journeyTitle:{
-  alignSelf: "center",
+ // alignSelf: "center",
   color: "black",
-  fontSize: 18,
+  fontSize: 23,
   justifyContent: "center",
   
 }

@@ -40,7 +40,7 @@ const doAction = (selected) =>{
   props.navigation.replace("ExploreJourney");
 }
 
-return <Carousel data={treatData} callback={doAction}/>
+return <Carousel data={treatData} callback={doAction}  buttonText={"select journey"} defaultText={"Select a category above"}/>
 
 }
 

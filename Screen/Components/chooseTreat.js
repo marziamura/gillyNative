@@ -40,7 +40,7 @@ const showTreat = (selected) =>{
   props.navigation.replace("TodaysTreat");
 }
 
-return <Carousel data={treatData} callback={showTreat}/>
+return <Carousel data={treatData} callback={showTreat} buttonText={"open treat"} defaultText={"Select a category above"}/>
 
 }
 

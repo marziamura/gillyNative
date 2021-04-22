@@ -1,7 +1,8 @@
 export const albicocca = "#FFB1A6";
 export const lightgreen = "#D9E9CB"
 export const lightviolet = "#99B1FB"
-export const gray = "#DADEDF"
+export const gray = "#999999"
+export const black = "#000000"
 export const lightgray = "#EBECF0"
 
 
@@ -9,6 +10,7 @@ export const background = lightviolet;
 export const white = '#FFFFFF';
 export const border = '#dadae8';
 export const text ='#383838';
+export const textDisabled = gray;
 export const textError ='red';
 export const buttonBackground = lightgray;
 export const buttonText = "#9D86D1";
