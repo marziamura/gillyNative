@@ -8,6 +8,7 @@ import NavigationDrawerHeader from '../Components/NavigationDrawerHeader';
 import TreatScreen from './TreatScreen';
 import InvitePartner from './InvitePartner';
 import IntimacyProfile from './IntimacyProfile';
+import ExploreJourneys from './ExploreJourneys';
 import HomeScreen from './HomeScreen';
 import * as colors from '../Style/Style'
 
@@ -58,7 +59,7 @@ const HomeScreenStack = ({navigation}) => {
         name="InvitePartner"
         component={InvitePartner}
         options={{
-          title: 'InvitePartner', //Set Header Title
+          title: 'Invite Partner', //Set Header Title
           headerLeft: () => (
              <NavigationDrawerHeader navigationProps={navigation} />
           ),
@@ -76,6 +77,23 @@ const HomeScreenStack = ({navigation}) => {
         component={IntimacyProfile}
         options={{
           title: 'Intimacy Profile', //Set Header Title
+          headerLeft: () => (
+             <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: colors.header, //Set Header color
+          },
+          headerTintColor: colors.text, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ExploreJourney"
+        component={ExploreJourneys}
+        options={{
+          title: 'Explore journey', //Set Header Title
           headerLeft: () => (
              <NavigationDrawerHeader navigationProps={navigation} />
           ),

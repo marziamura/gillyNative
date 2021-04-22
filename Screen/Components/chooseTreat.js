@@ -6,39 +6,34 @@ import actionSetTreatData from '../../state/actionSetTreatData'
 
 export default function ChooseTreat(props){
 const store = createStore();
+
 const treatData =[
     { key: "1",
       type: "Sexploration",
-      title: "Sexploration",
+      title: "Connect emotionally",
       description: "Talking Sex",
-      treat: "KDSdf27y"  },
+      typeFormId: "KDSdf27y"  },
     { key: "2",
       type: "Grooving",
-      title: "Grooving",
+      title: "Feel touch",
       description: "Do brains and genitals always agree?",
-      treat: "KQ77DZzj" },
+      typeFormId: "KQ77DZzj" },
     { key: "3",
       type: "Lockdown",
-      title: "In lockdown",
+      title: "Express Love",
       description: "Movie Night",
-      treat: "JYuEQ4sT"},
+      typeFormId: "JYuEQ4sT"},
     { key: "4",
       type: "Discovery",
-      title: "Discovery",
+      title: "Do Nothing",
       description: "I love your love language",
-      treat: "ckk1eLhI" },
-    { key: "5",
-      type: "Flavoured",
-      title: "Vanilla?",
-      description: "Play that funky music, partner!",
-      treat: "ynPFZe14" }
-
+      typeFormId: "ckk1eLhI"}
 ]
 
 const showTreat = (selected) =>{
   console.log(selected)
   var currentData={
-              id: treatData[selected].treat,
+              id: treatData[selected].typeFormId,
               description: treatData[selected].description
   }
   store.dispatch(actionSetTreatData([currentData])); 

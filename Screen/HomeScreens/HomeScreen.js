@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   }, 
   inviteView:{
     flex:1,
-    backgroundColor: '#D9E9CB',
+    backgroundColor: colors.cards2,
     marginTop: margin
   },
   carouselView:{
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
   },
   intimacyProfileView:{
     flex:1,
-    backgroundColor: '#D9E9CB',
+    backgroundColor: colors.cards2,
     marginTop: margin,
     marginBottom: margin
   },
@@ -266,11 +266,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: "center",
     textAlign: "center",
-  },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8
   },
   header: {
     fontSize: 25,

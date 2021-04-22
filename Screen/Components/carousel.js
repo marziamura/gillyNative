@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
-import { IconButton } from 'react-native-paper'
+import Button from './Button'
 import * as colors from '../Style/Style'
+
+var {width, height} = Dimensions.get('window')
+const viewHeight = height * 2 / 7 - 60;
+const SCREEN_WIDTH = width;
 
 export default function FlatListHorizontal(props)
 {
@@ -15,11 +19,10 @@ const [selectedData, setData] = React.useState(nullData);
 
 const [selectedIndex, setIndex] = React.useState();
 
-let {width, height} = Dimensions.get('window')
-const viewHeight = height * 2 / 7 - 60;
-const SCREEN_WIDTH = width;
+
 
 const setCurrentData = (index) => {
+    console.log(index);
     setData(displayData[index]);
     setIndex(index);
 }
@@ -29,24 +32,22 @@ const executeAction = () => {
 }
 
 const displayData = props.data;
-
+const getBGColor = (index) =>   {
+  console.log("background color", index, selectedIndex)
+  return {backgroundColor: index === selectedIndex 
+    ? colors.cardselected
+    : colors.cards
+  }
+}
 const  _renderItem = ({ item, index }) => {
         return (
-            <View
-            
-            style={{
-              padding: 10,
-              backgroundColor: colors.cards,
-              width: SCREEN_WIDTH / 2,
-           //   height: "100%",
-              //height:viewHeight,
-              marginHorizontal: 10,
-              borderRadius: 24
-            }}>
-            <Pressable onPress={() => setCurrentData(index)}>  
-              <Text style={styles.title}>{item.title}</Text>
-            </Pressable>
+         <View style={[styles.listElement, getBGColor(index)]} onPress={()=> console.log(index)}> 
+          <Pressable onPress={() => setCurrentData(index) }>  
+            <View>
+            <Text style={styles.title}>{item.title}</Text>
           </View>
+          </Pressable>
+        </View>
         );
       };
 
@@ -62,28 +63,16 @@ return  <View style={styles.container}>
             />
           </View>
           <View style ={styles.description}>
-           
-        
-            <View style ={styles.row}>
-           
-                <View style={{flex: 4}}>
-                <Text style ={styles.textSmall}>{selectedData.description}</Text>
-                </View>
-                <View style={{flex: 1, widht: 20}}>
-                <Pressable onPress={() => executeAction()}>  
-                {selectedData.description !== "" && <IconButton
-                    icon="arrow-right-bold"  
-                    size={30}
-                    color={colors.icons}
-                    onPress={props.onPress}
-                    style={styles.arrowIcon}
-                  />}
-                  </Pressable>
-                </View>
-                
+           <View style={{flex: 4}}>
+       
+              <Text style ={styles.textSmall}>{selectedData.description}</Text>
+           </View>
+           <View style ={{flex: 2}}>
+            {
+              selectedData.description !== "" && <Button text={"open treat"} onPress={() => executeAction()}/>
+            }
             </View>
-      
-          </View>  
+          </View>
 </View>
 
 }
@@ -101,10 +90,13 @@ const styles = StyleSheet.create({
         marginTop: 0
     },
     carousel:{
-        flex:1
+        flex: 1,
     },
     description:{
       flex:1,
+      flexDirection: "row",
+   //   textAlign: 'center',
+      flexWrap: 'wrap'
     },
     textSmall:{
       fontSize: 20,
@@ -117,6 +109,16 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: "row",
       marginTop: 5
-    }
+    },
+    listElement:{
+      flex: 1, 
+      backgroundColor: colors.cards,
+      width: SCREEN_WIDTH / 2,
+      //height: "100%",
+      //height:viewHeight,
+      marginHorizontal: 10,
+      borderRadius: 24,
+    },
+
   });
   

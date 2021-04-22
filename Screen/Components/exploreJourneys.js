@@ -35,12 +35,12 @@ const treatData =[
 
 ]
 
-const showTreat = (selected) =>{
+const doAction = (selected) =>{
   console.log(selected)
-  props.navigation.replace("InvitePartner");
+  props.navigation.replace("ExploreJourney");
 }
 
-return <Carousel data={treatData} callback={showTreat}/>
+return <Carousel data={treatData} callback={doAction}/>
 
 }
 
