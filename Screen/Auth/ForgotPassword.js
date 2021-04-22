@@ -47,12 +47,12 @@ const ForgotPassword = ({navigation,dispatch}) => {
         console.log("request new password", userEmail)
         await Auth.forgotPassword(userEmail)
         .then(data => {
-          navigation.replace('ConfirmEmail');
+          navigation.replace('ForgotPasswordSubmit');
         })
-        .catch(err => console.log(err));
+        .catch((error)=> alert(error.message));
     } catch (error) {
-        console.log('error confirming email:', error);
-        setErrortext(error.message);
+        console.log('error resetting password:', error);
+        alert(error.message)
     }
   }
 
@@ -96,7 +96,7 @@ const ForgotPassword = ({navigation,dispatch}) => {
                   passwordInputRef.current.focus()
                 }
                 underlineColorAndroid="#f000"
-                blurOnSubmit={false}
+                blurOnSubmit={true}
               />
             </View>
             {errortext != '' ? (
