@@ -12,14 +12,14 @@ console.log("loading TreatScreen");
 
 
 
-const TreatScreen = () => {
+const TreatScreen = ({navigation}) => {
     let store = createStore(); 
     const treatData = store.getState().currentTreat[0];   
     const user = store.getState().userInfo[0]; 
-    
+    console.log("Treat Screen", user);
     var source = "https://getgilly.typeform.com/to/";
     var params = '&userid=' + user.id 
-                + '&firstname=' + user.name
+                + '&firstname=' + user.userName
                 + '&puserid=' + user.partnerID
                 + "&email=" + user.email
                 + "&journey=" + user.journey;
@@ -28,7 +28,7 @@ const TreatScreen = () => {
     console.log("TypeFormLink ->", typeformLink);
     
  
-  return <WebViewScreen url={typeformLink}/>
+  return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"TreatDone"}/>
      
 };
 

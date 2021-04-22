@@ -1,13 +1,14 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
-// Import React and Component
 import React from 'react';
 import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
 import Button from './Button';
 
+/******* props **************
+ * namespace: namespace of strings in translation files
+ * next: screen opened on button press
+*/
 
 
 import {

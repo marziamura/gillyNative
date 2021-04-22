@@ -18,7 +18,7 @@ const IntimacyProfile = ({navigation}) => {
 
   const typeformLink = "https://getgilly.typeform.com/to/OOjWeGZy"
   console.log("TypeFormLink ->", typeformLink);
-  return <WebViewScreen url={typeformLink}/>
+  return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"ThankYou"}/>
 };
 
 

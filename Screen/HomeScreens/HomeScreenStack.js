@@ -9,7 +9,9 @@ import TreatScreen from './TreatScreen';
 import InvitePartner from './InvitePartner';
 import IntimacyProfile from './IntimacyProfile';
 import ExploreJourneys from './ExploreJourneys';
+import TreatDone from './TreatDone';
 import HomeScreen from './HomeScreen';
+import ThankYou from './Thankyou';
 import * as colors from '../Style/Style'
 
 const Stack = createStackNavigator();
@@ -94,6 +96,40 @@ const HomeScreenStack = ({navigation}) => {
         component={ExploreJourneys}
         options={{
           title: 'Explore journey', //Set Header Title
+          headerLeft: () => (
+             <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: colors.header, //Set Header color
+          },
+          headerTintColor: colors.text, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+       <Stack.Screen
+        name="TreatDone"
+        component={TreatDone}
+        options={{
+          title: 'Treat completed', //Set Header Title
+          headerLeft: () => (
+             <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: colors.header, //Set Header color
+          },
+          headerTintColor: colors.text, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+       <Stack.Screen
+        name="ThankYou"
+        component={ThankYou}
+        options={{
+          title: 'Thank you', //Set Header Title
           headerLeft: () => (
              <NavigationDrawerHeader navigationProps={navigation} />
           ),

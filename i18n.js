@@ -107,8 +107,17 @@ i18n
             text: "This cool feature is still under development. How important would it be for your to experience Gilly with your partner?",
             button: "Go Back To HomeScreen"
           },
+          wellDone:{
+            title: "Well Done",
+            text: "You have completed the treat {{title}}",
+            button: "Return to Home Screen"
+          },
+          thankYou:{
+            title: "Thank you for your submission",
+            text: "Your feedback will help us giving you a better experience with Gilly",
+            button: "Return to Home Screen"
+          }
       
-
         },
        
     },
