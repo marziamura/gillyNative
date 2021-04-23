@@ -18,16 +18,7 @@ function AuthNavigationRoutesRegister() {
           name="RegisterScreen"
           component={RegisterScreen}
           options={{headerShown: false}}
-          options={{
-            title: 'Register', //Set Header Title
-            headerStyle: {
-              backgroundColor: colors.header, //Set Header color
-            },
-            headerTintColor: colors.text, //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
+        
         />
 
         <Stack.Screen
@@ -36,7 +27,7 @@ function AuthNavigationRoutesRegister() {
           options={{headerShown: false}}
         />
     
-             <Stack.Screen
+        <Stack.Screen
           name="ForgotPassword"
           component={ForgotPassword}
           options={{
@@ -48,11 +39,13 @@ function AuthNavigationRoutesRegister() {
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
+
           }}
         />
          <Stack.Screen
           name="ForgotPasswordSubmit"
           component={ForgotPasswordSubmit}
+
           options={{
             title: 'Forgot Password', //Set Header Title
             headerStyle: {
@@ -62,6 +55,7 @@ function AuthNavigationRoutesRegister() {
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
+
           }}
         />
          <Stack.Screen

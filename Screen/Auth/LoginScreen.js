@@ -198,7 +198,7 @@ const LoginScreen = ({navigation,dispatch}) => {
             </Text>
             <Text
               style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('ConfirmEmail')}>
+              onPress={() => navigation.replace('ConfirmEmail')}>
               Confirm Email
             </Text>
             <Text

@@ -11,9 +11,9 @@ export default function FlatListHorizontal(props)
 {
 const nullData =  { key: "0",
 type: "",
-title: "",
-description: props.defaultText,
-treat: ""  }
+category: "",
+description: [props.defaultText],
+treat: [""]  }
 
 const [selectedData, setData] = React.useState(nullData);
 const [selectedIndex, setIndex] = React.useState(-1);
@@ -53,7 +53,7 @@ const  _renderItem = ({ item, index }) => {
          <View style={[styles.listElement, getBGColor(index)]} onPress={()=> console.log(index)}> 
           <Pressable onPress={() => setCurrentData(index)} style={[styles.pressable]}>  
           <View>
-            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.title}>{item.category}</Text>
           </View>
           </Pressable>
         </View>
@@ -74,7 +74,7 @@ return  <View style={styles.container}>
           <View style ={styles.description}>
            <View style={{flex: 4}}>
        
-              <Text style ={[styles.textSmall, getTextColor()]}>{selectedData.description}</Text>
+              <Text style ={[styles.textSmall, getTextColor()]}>{selectedData.description[0]}</Text>
            </View>
            <View style ={{flex: 2}}>
             {

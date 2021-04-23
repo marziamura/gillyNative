@@ -3,38 +3,17 @@ import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-
 import Carousel from "./carousel"
 import createStore from '../../state/store';
 import actionSetTreatData from '../../state/actionSetTreatData'
+import treatData from '../../HardCodedData/TreatData'
 
 export default function ChooseTreat(props){
 const store = createStore();
 
-const treatData =[
-    { key: "1",
-      type: "Sexploration",
-      title: "Connect emotionally",
-      description: "Talking Sex",
-      typeFormId: "KDSdf27y"  },
-    { key: "2",
-      type: "Grooving",
-      title: "Feel touch",
-      description: "Do brains and genitals always agree?",
-      typeFormId: "KQ77DZzj" },
-    { key: "3",
-      type: "Lockdown",
-      title: "Express Love",
-      description: "Movie Night",
-      typeFormId: "JYuEQ4sT"},
-    { key: "4",
-      type: "Discovery",
-      title: "Do Nothing",
-      description: "I love your love language",
-      typeFormId: "ckk1eLhI"}
-]
 
 const showTreat = (selected) =>{
   console.log(selected)
   var currentData={
-              id: treatData[selected].typeFormId,
-              description: treatData[selected].description
+              id: treatData[selected].typeFormId[0],
+              description: treatData[selected].description[0]
   }
   store.dispatch(actionSetTreatData([currentData])); 
   props.navigation.replace("TodaysTreat");

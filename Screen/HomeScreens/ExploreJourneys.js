@@ -15,8 +15,7 @@ console.log("loading ExploreJourneys");
 const ExploreJourneys = ({navigation}) => {
 
   const typeformLink = "https://getgilly.typeform.com/to/OtrKn0BU"
-  console.log("TypeFormLink ->", typeformLink);
-  return <WebViewScreen url={typeformLink}/>
+  return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"ThankYou"}/>
 };
 
 

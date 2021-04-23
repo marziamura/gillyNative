@@ -18,7 +18,6 @@ const Stack = createStackNavigator();
 
 
 const HomeScreenStack = ({navigation}) => {
-  console.log("homeScreenStack", navigation);
 
   return (
     <Stack.Navigator initialRouteName="HomeScreen">

@@ -24,8 +24,8 @@ const TreatScreen = ({navigation}) => {
                 + "&email=" + user.email
                 + "&journey=" + user.journey;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
-  //  const s = "http://app.getgilly.com/gth";
-    console.log("TypeFormLink ->", typeformLink);
+ 
+    console.log("Navigation ->", navigation);
     
  
   return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"TreatDone"}/>

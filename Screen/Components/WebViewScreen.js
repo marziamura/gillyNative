@@ -13,7 +13,9 @@ import Background from './Background';
 
 
 const WebViewScreen = (props) => {
-    const webView = React.useRef(null);
+    
+    const webView = React.useRef();
+    const [stopping, setStopping] = React.useState(false);
     
     console.log("WebView Screen ", props);
 
@@ -21,12 +23,14 @@ const WebViewScreen = (props) => {
     function getPageView(){
       const handleWebViewNavigationStateChange = (newNavState)=>{
         const { url } = newNavState;
-        if (url.includes('app.getgilly.com')) {
+        if (url.includes('app.getgilly.com') && !stopping) {
           try{
-         // webView.stopLoading();
+          console.log("Stooooop loading", url);
+          setStopping(true);
+          webView.current.stopLoading();
           props.navigation.replace(props.afterSubmission);
           }catch(error){
-            console.log("error stoploading");
+            console.log("error stoploading", error);
             props.navigation.replace(props.afterSubmission);
           }
         }

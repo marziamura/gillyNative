@@ -80,10 +80,10 @@ const SplashScreen = ({navigation}) => {
         }).catch((error)=>{
           console.log("user not authenticated", error)
           setShowButton(true);
-     //     navigation.replace('AboutGillyNavigationRoutes');
+          navigation.replace('AboutGillyNavigationRoutes');
         
         });
-      }, 2000)
+      }, 3000)
     }, []);
 
   return (
@@ -99,7 +99,7 @@ const SplashScreen = ({navigation}) => {
             {t("splashText")}
           </Text>
         </View>
-        <View style={[styles.buttonView, styles.centerContent]}>
+       {/* <View style={[styles.buttonView, styles.centerContent]}>
                          
 
           <Button
@@ -121,6 +121,7 @@ const SplashScreen = ({navigation}) => {
           </Pressable>
           
         </View>
+          */}
         
       </View>
    </Background>

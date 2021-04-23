@@ -26,8 +26,6 @@ import * as colors from '../Style/Style'
 
 
 
-console.log("loading HomeScreen");
-
 const viewWidth= '90%';
 const margin= 5;
 const viewBorderRadius = 20;
@@ -83,7 +81,7 @@ const HomeScreen = ({navigation}) => {
   }
 
   function press(){
-    console.log("OnPress");
+
     navigation.replace("TodaysTreat")
   };
 
