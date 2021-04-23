@@ -25,10 +25,9 @@ const WebViewScreen = (props) => {
         const { url } = newNavState;
         if (url.includes('app.getgilly.com') && !stopping) {
           try{
-          console.log("Stooooop loading", url);
-          setStopping(true);
-          webView.current.stopLoading();
-          props.navigation.replace(props.afterSubmission);
+            setStopping(true);
+            webView.current.stopLoading();
+            props.navigation.replace(props.afterSubmission);
           }catch(error){
             console.log("error stoploading", error);
             props.navigation.replace(props.afterSubmission);

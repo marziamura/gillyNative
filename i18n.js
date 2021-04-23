@@ -33,6 +33,21 @@ i18n
             button: "Get started",
             signIn: "already one of us? Sign in"
           },
+          Auth:{
+            name: "Enter Name",
+            email: "Enter Email",
+            password: "Enter Password",
+            login: "Login",
+            register: "Register",
+            goToRegister: "New here? Register",
+            goToLogin: "Already one of us? Login here",
+            confirmEmail: "Confirm Email",
+            forgotPassword: "Forgot Password",
+            fillName: "Plese Fill Name",
+            fillEmail: "Please Fill Email",
+            fillPassword: "Please Fill Password",
+            
+          },
           About1:{
             title: "Sex & intimacy",
             text: "are key ingredients for a happy & long lasting relationship",

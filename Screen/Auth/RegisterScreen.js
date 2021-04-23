@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import * as colors from '../Style/Style';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
-import Button from '../Components/Button'
+import Button from '../Components/Button';
+import { useTranslation } from 'react-i18next';
 
 import {
   StyleSheet,
@@ -18,11 +19,13 @@ import {
   Text,
   Image,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  Pressable
 } from 'react-native';
 
 
 const RegisterScreen = (props) => {
+  const { t } = useTranslation('Auth');
   let store = createStore(); 
   let navigation = props.navigation;
   const [userName, setUserName] = useState('');
@@ -37,16 +40,16 @@ const RegisterScreen = (props) => {
   const handleSubmitButton = () => {
           setErrorText('');
           if (!userName) {
-            alert('Please fill Name');
+            alert(t('fillName'));
             return;
           }
           if (!userEmail) {
-            alert('Please fill Email');
+            alert(t('fillEmail'));
             return;
           }
         
           if (!userPassword) {
-            alert('Please fill Password');
+            alert(t('fillPassword'));
             return;
           }
  
@@ -71,31 +74,39 @@ const RegisterScreen = (props) => {
    
     }
 
-  function getView(){
-      return  <ScrollView
+
+  
+  return (
+<Background>
+    <View style={styles.mainBody} >
+  
+    <ScrollView
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={{
+        flex: 1,
         justifyContent: 'center',
         alignContent: 'center',
       }}>
-      <View style={{alignItems: 'center'}}>
-        <Image
-          source={require('../../Image/gilly_logo.png')}
-          style={{
-            width: '50%',
-            height: 100,
-            resizeMode: 'contain',
-            margin: 30,
-          }}
-        />
-      </View>
-      <KeyboardAvoidingView enabled>
-        <View style={styles.SectionStyle}>
+   
+      <View style={{flex: 1}}>
+      <KeyboardAvoidingView enabled style={{flex: 1, justifyContent: "center"}}>
+         <View style={styles.imageView}>
+            <Image
+              source={require('../../Image/gilly_logo.png')}
+              style={{
+                width: '50%',
+                height: "50%",
+                resizeMode: 'contain',
+         
+              }}
+            />
+          </View>
+          <View style={styles.textInputView}>
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserName) => setUserName(UserName)}
            
-            placeholder="Enter Name"
+            placeholder={t("name")}
             placeholderTextColor={colors.placeholderText}
             autoCapitalize="sentences"
             returnKeyType="next"
@@ -104,13 +115,14 @@ const RegisterScreen = (props) => {
             }
             blurOnSubmit={false}
           />
-        </View>
-        <View style={styles.SectionStyle}>
+          </View>
+          <View style={styles.textInputView}>
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserEmail) => setUserEmail(UserEmail)}
        
-            placeholder="Enter Email"
+        
+            placeholder={t("email")}
             placeholderTextColor={colors.placeholderText}
             keyboardType="email-address"
             ref={emailInputRef}
@@ -121,15 +133,15 @@ const RegisterScreen = (props) => {
             }
             blurOnSubmit={false}
           />
-        </View>
-        <View style={styles.SectionStyle}>
+          </View>
+          <View style={styles.textInputView}>
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserPassword) =>
               setUserPassword(UserPassword)
             }
         
-            placeholder="Enter Password"
+            placeholder={t("password")}
             placeholderTextColor= {colors.placeholderText}
             ref={passwordInputRef}
             returnKeyType="next"
@@ -141,42 +153,45 @@ const RegisterScreen = (props) => {
             blurOnSubmit={false}
           />
         </View>
-        <View style={styles.centerContent}>
+        <View style={styles.buttonsView}>
 
         <Button
-          text = "Register"
+          text = {t("register")}
           onPress={handleSubmitButton}
         />
         </View>
-        <View style={styles.buttonsView}>
+        <View style={styles.linksView}>
+        <Pressable  onPress={() => navigation.navigate('LoginScreen')}>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('LoginScreen')}>
-              Already one of us? Login here
+              {t("goToLogin")}
             </Text>
+            </Pressable>
+            <Pressable  onPress={() => navigation.navigate('ConfirmEmail')}>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('ConfirmEmail')}>
-              Confirm Email
+              {t("confirmEmail")}
             </Text>
+            </Pressable>
+            <Pressable  onPress={() => navigation.navigate('ForgotPassword')}>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.navigate('ForgotPassword')}>
-              Forgot Password
+              {t("forgotPassword")}
             </Text>
-            </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
-  }
-  
-  return (
-<Background>
-    <View style={styles.mainBody} >
-  
-      {getView()}
+            </Pressable>
+        </View>
+           
      
-    </View>
-    </Background>
+     
+         </KeyboardAvoidingView>
+
+       </View>
+     </ScrollView>
+   </View>  
+   </Background>
   );
 };
 export default connect() (RegisterScreen);
@@ -185,70 +200,72 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
+ 
+    
   },
-  backgroundImage: {
-    flex: 1,
-    width: null,
-    alignSelf: 'stretch',
+  imageView:{
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  SectionStyle: {
-    flexDirection: 'row',
-    height: 40,
-    marginTop: 20,
-    marginLeft: 35,
-    marginRight: 35,
-    margin: 10,
-  },
-  buttonStyle: {
-    backgroundColor: colors.buttonBackground,
-    borderWidth: 1,
-    color: colors.white,
-    borderColor: colors.border,
-    height: 40,
+  textInputView: {
     alignItems: 'center',
-    borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  buttonTextStyle: {
-    color: colors.text,
-    paddingVertical: 10,
-    fontSize: 16,
-  },
-  inputStyle: {
     flex: 1,
-  //  color: colors.text,
+    width: '90%',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  textErrorView: {
+    alignItems: 'center',
+    height: 10,
+  },
+  buttonsView:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  linksView:{
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+
+  inputStyle: {
+    //flex: 1,
+    color: colors.text,
+    height: '80%',
+    width: '90%',
     paddingLeft: 15,
-    paddingRight: 15,
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 10,
     borderColor: colors.border,
   },
-  errorTextStyle: {
-    color: colors.textError,
-    textAlign: 'center',
-    fontSize: 14,
-  },
-  successTextStyle: {
-    color: colors.white,
-    textAlign: 'center',
-    fontSize: 18,
-    padding: 30,
-  },
+
   registerTextStyle: {
     color: colors.text,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
     alignSelf: 'center',
-    paddingBottom: 10,
   },
-  centerContent:{
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center"
+  errorTextStyle: {
+    color: colors.textError,
+    textAlign: 'center',
+    fontSize: 14,
   },
+  button: {
+    color:"#841584", 
+    fontSize: 20,
+  },
+  buttonStyle:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 200,
+    height: 50,
+    borderRadius: 30,
+   },
+
+
 });

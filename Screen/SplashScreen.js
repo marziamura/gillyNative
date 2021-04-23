@@ -7,15 +7,13 @@ import actionUserLogin from '../state/actionUserLogin';
 import createStore from '../state/store';
 import { useTranslation } from 'react-i18next';
 import Background from './Components/Background';
-import Button from './Components/Button';
-import * as colors from './Style/Style'
+
 
 
 import {
   View,
   StyleSheet,
-  Text,
-  Pressable
+  Text
 } from 'react-native';
 import {getUserInfo} from '../state/userInfo';
 

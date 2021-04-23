@@ -36,7 +36,7 @@ const HomeScreen = ({navigation}) => {
   let store = createStore();
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
-  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+  
   const [treatDescription, setTreatDescription] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
@@ -116,9 +116,7 @@ const HomeScreen = ({navigation}) => {
             id: fId,
             description: data.data.getFormId.description
           }
-        
           store.dispatch(actionSetTreatData([treatData])); 
-          setButtonDisabled(false);
           setTreatDescription(treatData.description || "Ready for your next treat?");
       
         }).catch((error)=>{

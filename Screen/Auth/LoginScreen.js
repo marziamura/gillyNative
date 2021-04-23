@@ -10,26 +10,29 @@ import createStore from '../../state/store';
 import {getUserInfo} from '../../state/userInfo';
 import * as colors from '../Style/Style';
 import Background from '../Components/Background';
-import { Button,  TextInput } from 'react-native-paper';
+import Button from '../Components/Button';
+import { useTranslation } from 'react-i18next';
 
 
 import {
   StyleSheet,
- 
   View,
   Text,
   ScrollView,
   Image,
   Keyboard,
   KeyboardAvoidingView,
-  Alert 
+  Alert,
+  TextInput,
+  Pressable
 } from 'react-native';
 
 
 
 const LoginScreen = ({navigation,dispatch}) => {
+  const { t } = useTranslation('Auth');
   const userInfo = createStore().getState().userInfo[0];
-  const [userEmail, setUserEmail] = useState(userInfo.email || "email");
+  const [userEmail, setUserEmail] = useState(userInfo.email || t("email"));
   const [userPassword, setUserPassword] = useState(userInfo.email);
  
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -121,9 +124,9 @@ const LoginScreen = ({navigation,dispatch}) => {
           justifyContent: 'center',
           alignContent: 'center',
         }}>
-   <View>
-      <KeyboardAvoidingView enabled >
-        
+       <View style={{flex: 1}}>
+      <KeyboardAvoidingView enabled style={{flex: 1}}>
+  
             <View style={styles.imageView}>
               <Image
                 source={require('../../Image/gilly_logo.png')}
@@ -144,7 +147,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserEmail(UserEmail)
                   }
                 }
-                placeholder={userEmail === "xxx" ? "email" : userEmail}
+                placeholder={userEmail === "xxx" ? t("email") : userEmail}
                 placeholderTextColor= {colors.placeholderText}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -166,7 +169,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                   setUserPassword(UserPassword)
                   }
                 }
-                placeholder="Enter Password" //12345
+                placeholder={t("password")}
                 placeholderTextColor={colors.placeholderText}
                 keyboardType="default"
                 ref={passwordInputRef}
@@ -180,32 +183,31 @@ const LoginScreen = ({navigation,dispatch}) => {
             </View>
   
           <View style={styles.buttonsView}>
-            <Button       
-              onPress={handleSubmitPress}
-              disabled={buttonDisabled}
-              accessibilityLabel="Login"
-              mode="outlined" 
-              uppercase={false}
-              contentStyle={styles.button}
-              style={styles.buttonStyle}
-            >
-            Login
-          </Button>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('RegisterScreen')}>
-              New Here? Register
-            </Text>
+            <Button
+               text = {t("login")}
+             onPress={handleSubmitPress}
+            />
+          </View>
+          <View style={styles.linksView}>
+            <Pressable  onPress={() => navigation.navigate('RegisterScreen')}>
+              <Text
+                style={styles.registerTextStyle}
+               >
+              {t("goToRegister")}
+              </Text>
+            </Pressable>
+            <Pressable  onPress={() => navigation.navigate('ConfirmEmail')}>
             <Text
               style={styles.registerTextStyle}
               onPress={() => navigation.replace('ConfirmEmail')}>
-              Confirm Email
+          {t("confirmEmail")}
             </Text>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('ForgotPassword')}>
-              Forgot Password
+            </Pressable>
+            <Pressable  onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text style={styles.registerTextStyle}>
+            {t("forgotPassword")}
             </Text>
+            </Pressable>
             </View>
            
      
@@ -223,17 +225,20 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
+ 
+    
   },
   imageView:{
-    //flex: 1,
-    alignItems: 'center',
-    height: 100,
-    marginBottom: 10,
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textInputView: {
     alignItems: 'center',
-    height: 100,
+    flex: 1,
+    width: '90%',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
   textErrorView: {
     alignItems: 'center',
@@ -244,17 +249,20 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 80,
-    
+  },
+  linksView:{
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 
   inputStyle: {
     //flex: 1,
     color: colors.text,
-   // height: 100,
-    width: 300,
+    height: '80%',
+    width: '90%',
     paddingLeft: 15,
-   // paddingRight: 15,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: colors.border,
@@ -266,8 +274,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     alignSelf: 'center',
-    paddingBottom: 15,
-    paddingTop: 15,
   },
   errorTextStyle: {
     color: colors.textError,
@@ -280,10 +286,10 @@ const styles = StyleSheet.create({
   },
   buttonStyle:{
     justifyContent: 'center',
+    alignItems: 'center',
     width: 200,
     height: 50,
     borderRadius: 30,
    },
-
 
 });
