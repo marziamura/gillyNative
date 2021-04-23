@@ -43,8 +43,8 @@ const pushPreferences =[{
 }]
 
 const userInfo = (state = user, action) => {
-   console.log("call to reducer userInfo state", state[0]);
-   console.log("call to reducer userInfo action.payload", action.payload);
+ //  console.log("call to reducer userInfo state", state[0]);
+ //  console.log("call to reducer userInfo action.payload", action.payload);
     
     if(action.type === SET_USER_INFO){
       console.log("call to reducer userInfo 1", state[0], action.payload, action.payload.newItem[0].userName);
@@ -98,14 +98,14 @@ const currentTreat = (state = treat, action) => {
 }
 
 const pushNotificationPreferences = (state = pushPreferences, action) => {
-  console.log("call to reducer pushNotificationPreferences state", state)
-  console.log("call to reducer pushNotificationPreferences action.payload", action);
+ // console.log("call to reducer pushNotificationPreferences state", state)
+ // console.log("call to reducer pushNotificationPreferences action.payload", action);
   switch (action.type) {
     case SET_PUSH_NOTIFICATION_PREF :
       state[0].consent = action.payload.newItem[0];
       return [...state];
     default:
-      console.log("call to reducer pushNotificationPreferences return default", state);
+  //    console.log("call to reducer pushNotificationPreferences return default", state);
       return  state; 
   }
 }

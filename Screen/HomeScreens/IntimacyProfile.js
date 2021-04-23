@@ -15,8 +15,11 @@ console.log("loading TreatScreen");
 
 
 const IntimacyProfile = ({navigation}) => {
+  const store = createStore();
+  const user = store.getState().userInfo[0]; 
 
-  const typeformLink = "https://getgilly.typeform.com/to/OOjWeGZy"
+  var params = '&userid=' + user.id 
+  const typeformLink = "https://getgilly.typeform.com/to/OOjWeGZy" + params
   console.log("TypeFormLink ->", typeformLink);
   return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"ThankYou"}/>
 };

@@ -11,7 +11,6 @@ import Background from '../Components/Background';
 import actionUpdateMessage from '../../state/actionUpdateMessage';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
-import { TextInput } from 'react-native-paper';
 import  Button  from '../Components/Button';
 
 
@@ -21,6 +20,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  TextInput
 } from 'react-native';
 
 
@@ -72,15 +72,7 @@ const FillTheBlanks = ({navigation}) => {
       answer: answer
     };
     
-    /*type FormSubmission @model @key(fields:["userId", "formId"]){
-      id: ID!,
-      formId:String!,
-      journey: String!,
-      createdAt: AWSDateTime!
-      params: String,
-      refParams: String,
-      userId: String!,
-    }*/
+
     var formData = {
       //id: userInfo.id,
       formId: "0000001",
@@ -131,7 +123,7 @@ const FillTheBlanks = ({navigation}) => {
                 style={styles.textInput}
                 label="Your partner's name"
                 onChangeText={OnChangeName}
-                placeholder={t("name")}
+                placeholder={ userInfo.partnerName ? userInfo.partnerName : t("name")}
                 value={name}
               />
             </View>

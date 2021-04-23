@@ -6,7 +6,7 @@ import React, {useState} from 'react';
 import {Text} from 'react-native';
 
 import createStore from '../../state/store';
-import {saveUserInfo} from '../../state/userInfo'
+import {saveUserInfo, updateUserInfo} from '../../state/userInfo'
 import  Button  from '../Components/Button'
 import Background from '../Components/Background'
 import Dropdown from '../Components/dropdown'
@@ -73,7 +73,10 @@ const Gender = ({navigation}) => {
         console.log("Error saving userInfo ", e);
         updateUserInfo(userInfo).then(()=>
           navigation.replace("RelationshipQuestion"))
-        .catch(()=>console.log("Error updating userInfo ", e))
+        .catch(()=>{
+          console.log("Error updating userInfo ", e)
+          navigation.replace("RelationshipQuestion")
+      })
       })
     }else{
      alert("Please select one option for gender and sex")

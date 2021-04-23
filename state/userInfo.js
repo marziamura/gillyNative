@@ -67,9 +67,7 @@ export function getUserInfo () {
     const currentUser = store.getState().userInfo[0];
     console.log("retrieving user...", currentUser);
     if(currentUser.id === "xxx"){
-      let promise  = new Promise(()=> {});
-      promise.reject()
-      return promise;
+      return Promise.reject("invalid user id ", currentUser.id);
     }
 
     var userId = currentUser.id;

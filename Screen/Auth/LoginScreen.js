@@ -22,20 +22,23 @@ import {
   Image,
   Keyboard,
   KeyboardAvoidingView,
-  Alert,
   TextInput,
-  Pressable
+  Pressable,
+  ActivityIndicator,
+  Dimensions
 } from 'react-native';
 
-
+var {width, height} = Dimensions.get('window')
+const viewHeight = height * 2 / 7 - 60;
+const SCREEN_WIDTH = width;
 
 const LoginScreen = ({navigation,dispatch}) => {
   const { t } = useTranslation('Auth');
   const userInfo = createStore().getState().userInfo[0];
   const [userEmail, setUserEmail] = useState(userInfo.email || t("email"));
   const [userPassword, setUserPassword] = useState(userInfo.email);
- 
   const [buttonDisabled, setButtonDisabled] = useState(false);
+
 
   const passwordInputRef = createRef();
   
@@ -60,16 +63,10 @@ const LoginScreen = ({navigation,dispatch}) => {
       Auth.signIn(dataToSend).then((cognitoUser)=>{
         console.log(cognitoUser);
 
-        const user = [{
-          id: cognitoUser.username,
-          partnerID: cognitoUser.attributes["custom:partnerID"],
-          name: cognitoUser.attributes["name"],
-          journey: cognitoUser.attributes["custom:journey"]
-        }]
-   
-        userInfo.userName = user.name;
-        userInfo.journey =  user.journey;
-        console.log("---------------->", user)
+        userInfo.userName =  cognitoUser.attributes["name"],
+        userInfo.journey = cognitoUser.attributes["custom:journey"]
+        userInfo.id = cognitoUser.username,
+      
         console.log("+++++++++++++++++++++++>", userInfo)
         dispatch(actionSetUserInfo(userInfo, [userInfo]));
 
@@ -90,16 +87,16 @@ const LoginScreen = ({navigation,dispatch}) => {
         let promiseReject = (error)=>{
           setButtonDisabled(false);
           console.log("error", error);
-          Alert.alert("Error", error.message);
+          alert("login error", error);
         }
 
         getUserInfo().then((u)=>{promiseResolve(u)}).catch((u)=>{promiseReject(u)});
         
      }).catch ((error)=> {
-    
- 
-      console.log(error.message);
-      Alert.alert("Error", error.message);
+      let errorMessage =error.message;
+      console.log(errorMessage);
+      
+      alert(errorMessage);
       setButtonDisabled(false);
   
    })
@@ -215,6 +212,13 @@ const LoginScreen = ({navigation,dispatch}) => {
 
         </View>
       </ScrollView>
+      <View style = {styles.container}>
+            <ActivityIndicator
+               animating = {buttonDisabled}
+               color = {colors.violet}
+               size = {100}
+               style = {styles.activityIndicator}/>
+   </View>
     </View>  
     </Background>
   );
@@ -224,10 +228,16 @@ export default connect() (LoginScreen);
 const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
-    justifyContent: 'center',
- 
-    
+    justifyContent: 'center', 
   },
+
+  container: {
+    position: "absolute",
+    alignItems: "center",
+    top: 'center',
+    left: SCREEN_WIDTH/2 - 50
+  },
+  
   imageView:{
     flex: 3,
     justifyContent: 'center',
@@ -291,5 +301,11 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 30,
    },
+   activityIndicator: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100,
+    size:200
+ }
 
 });
