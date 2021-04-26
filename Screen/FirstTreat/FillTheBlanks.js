@@ -12,6 +12,7 @@ import actionUpdateMessage from '../../state/actionUpdateMessage';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import  Button  from '../Components/Button';
+import * as colors from '../Style/Style';
 
 
 
@@ -32,7 +33,7 @@ const FillTheBlanks = ({navigation}) => {
   console.log("userInfo ", userInfo);
   const [name, setName] = React.useState("");
   const [text, setText] = React.useState("");
-  const [nameOnText, setNameOnText] = React.useState("_____");
+  const [nameOnText, setNameOnText] = React.useState( userInfo.partnerName ? userInfo.partnerName : "_____");
   const [answer, setAnswer] = React.useState("_____");
 
 
@@ -118,18 +119,20 @@ const FillTheBlanks = ({navigation}) => {
                 </Text>
 
             </View>
-            <View style={styles.textinputnameview}>
+            <View style={styles.textinputview}>
+              <Text style={{alignSelf:"flex-start"}}> Your partner name </Text>
               <TextInput
-                style={styles.textInput}
+                style={styles.inputStyle}
                 label="Your partner's name"
                 onChangeText={OnChangeName}
                 placeholder={ userInfo.partnerName ? userInfo.partnerName : t("name")}
                 value={name}
               />
             </View>
-            <View style={styles.textinputmessageview}>
+            <View style={styles.textinputview}>
+            <Text style={{alignSelf:"flex-start"}}> Your message </Text>
              <TextInput
-                    style={styles.textInputMultiline}
+                    style={[styles.inputStyle, styles.textInputMultiline]}
                     multiline
                     label="Your Message"
                     placeholder={t("suggestion")}
@@ -167,13 +170,13 @@ const styles = StyleSheet.create({
     flex:1,
     width: "90%",
   },
-  textinputnameview:{
+
+  textinputview: {
+    alignItems: 'center',
     flex: 1,
-    width: "90%",
-  },
-  textinputmessageview:{
-    flex: 1,
-    width: "90%",
+    width: '90%',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 
   bottomview:{
@@ -202,16 +205,19 @@ const styles = StyleSheet.create({
     color: '#383838',
     fontWeight: "500",
   },
-  textInput:{
-   // borderWidth:1,
+
+  inputStyle: {
+    //flex: 1,
+    color: colors.text,
+    width: "100%",
+    paddingLeft: 15,
+    borderWidth: 1,
     borderRadius: 10,
-    height: 60,
-    marginTop: 20,
+    borderColor: colors.border,
   },
+
   textInputMultiline:{
-    // borderWidth:1,
-   //  borderRadius: 10,
-     height: 120,
+     height: '80%',
    },
   centerContent:{
     justifyContent: "center",

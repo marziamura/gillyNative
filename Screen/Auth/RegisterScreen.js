@@ -120,8 +120,7 @@ const RegisterScreen = (props) => {
           <TextInput
             style={styles.inputStyle}
             onChangeText={(UserEmail) => setUserEmail(UserEmail)}
-       
-        
+ 
             placeholder={t("email")}
             placeholderTextColor={colors.placeholderText}
             keyboardType="email-address"

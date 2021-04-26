@@ -31,8 +31,10 @@ import {
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
 const SCREEN_WIDTH = width;
+const SCREEN_HEIGHT = height;
 
 const LoginScreen = ({navigation,dispatch}) => {
+  console.log("Login Screen");
   const { t } = useTranslation('Auth');
   const userInfo = createStore().getState().userInfo[0];
   const [userEmail, setUserEmail] = useState(userInfo.email || t("email"));
@@ -42,13 +44,15 @@ const LoginScreen = ({navigation,dispatch}) => {
 
   const passwordInputRef = createRef();
   
+  const userEmailRef = createRef();
+  
   const handleSubmitPress = () => {
   
-    if (!userEmail) {
+    if (!userEmailRef.current) {
       alert('Please fill Email');
       return;
     }
-    if (!userPassword) {
+    if (!passwordInputRef.current) {
       alert('Please fill Password');
       return;
     }
@@ -102,14 +106,14 @@ const LoginScreen = ({navigation,dispatch}) => {
    })
  }
 
-  React.useEffect(()=>{
+ /* React.useEffect(()=>{
     
     if(userInfo.email !== "xxx" &&  userInfo.password && userInfo.password !== "xxx"){
       console.log("Signing in automatically...");
       setUserEmail(userInfo.email);
     }
 
-  }, [])
+  }, [])*/
   return (
  <Background>
   <View style={styles.mainBody}>
@@ -137,24 +141,22 @@ const LoginScreen = ({navigation,dispatch}) => {
             </View>
             <View style={styles.textInputView}>
               <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserEmail) =>{
-                 
-                  setButtonDisabled(false);
-                  setUserEmail(UserEmail)
-                  }
-                }
-                placeholder={userEmail === "xxx" ? t("email") : userEmail}
-                placeholderTextColor= {colors.placeholderText}
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="next"
-                onSubmitEditing={() =>
-                  passwordInputRef.current &&
-                  passwordInputRef.current.focus()
-                }
-                underlineColorAndroid={colors.underlineColor}
-                blurOnSubmit={false}
+             style={styles.inputStyle}
+             onChangeText={(email) =>{
+
+               setButtonDisabled(false);
+               setUserEmail(email)
+               }
+             }
+             placeholder={t("email")}
+             placeholderTextColor={colors.placeholderText}
+             keyboardType="default"
+             ref={userEmailRef}
+             onSubmitEditing={Keyboard.dismiss}
+             blurOnSubmit={false}
+            
+             underlineColorAndroid={colors.underlineColor}
+             returnKeyType="next"
               />
             </View>
             <View style={styles.textInputView}>
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     alignItems: "center",
-    top: 'center',
+    top: SCREEN_HEIGHT/2 - 50,
     left: SCREEN_WIDTH/2 - 50
   },
   
@@ -304,8 +306,7 @@ const styles = StyleSheet.create({
    activityIndicator: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 100,
-    size:200
+    height: 100
  }
 
 });

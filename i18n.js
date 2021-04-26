@@ -77,7 +77,7 @@ i18n
             text2: "Thank you", 
             button: "Looks good, what's next?",
             name: "You partner's name",
-            suggestion: "E.g., took over meal planning and cooking so that I wasn't overwhelmed with trying to balance the kids and work. "
+            suggestion: " E.g., took over meal planning and cooking so that I wasn't overwhelmed with trying to balance the kids and work. "
           },
           ShareMessage:{
             title: "Share your message",

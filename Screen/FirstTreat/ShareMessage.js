@@ -22,7 +22,8 @@ import {
 const ShareMessage = ({navigation}) => {
   const { t } = useTranslation('ShareMessage');
   const messageData = createStore().getState().messageInABottle[0];
-
+  
+  const message = t("text2", {who: messageData.partnerName, what:messageData.answer});
   const OnShare =() => { 
    const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${messageData.name}&partner=${messageData.partnerName}&partneramessage=${messageData.answer}`
     Share.share({
@@ -30,9 +31,10 @@ const ShareMessage = ({navigation}) => {
       }).then((result) => {
       
       if (result.action === Share.sharedAction) {
+        console.log("share done")
         navigation.replace("HomeNavigationRoutes");
       } else if (result.action === Share.dismissedAction) {
-        
+        console.log("share dismissed")
       }
     }).catch( (error) => {
       console.log(error);
