@@ -25,7 +25,7 @@ const ShareMessage = ({navigation}) => {
   
   const message = t("text2", {who: messageData.partnerName, what:messageData.answer});
   const OnShare =() => { 
-   const typeformLink= `https://getgilly.typeform.com/to/vgIraeta#firstname=${messageData.name}&partner=${messageData.partnerName}&partneramessage=${messageData.answer}`
+   const typeformLink= encodeURI(`https://getgilly.typeform.com/to/vgIraeta#firstname=${messageData.name}&partner=${messageData.partnerName}&partneramessage=${messageData.answer}`);
     Share.share({
         message: t('IntroMessage', {who: messageData.name})  + "\n" + typeformLink
       }).then((result) => {

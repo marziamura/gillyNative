@@ -3,11 +3,17 @@ import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-
 import Carousel from "./carousel"
 import createStore from '../../state/store';
 import actionSetTreatData from '../../state/actionSetTreatData'
-import treatData from '../../HardCodedData/TreatData'
+import Constants from 'expo-constants'
+
+import treatDataDev from '../../HardCodedDataDev/TreatData'
+import treatDataProd from '../../HardCodedDataProd/TreatData'
+
 
 export default function ChooseTreat(props){
 const store = createStore();
+const env = Constants.manifest.extra.env
 
+let treatData = env === "dev" ? treatDataDev : treatDataProd;
 
 const showTreat = (selected) =>{
   console.log(selected)
@@ -18,7 +24,7 @@ const showTreat = (selected) =>{
   store.dispatch(actionSetTreatData([currentData])); 
   props.navigation.replace("TodaysTreat");
 }
-
+ 
 return <Carousel data={treatData} callback={showTreat} buttonText={"open treat"} defaultText={"Select a category above"}/>
 
 }

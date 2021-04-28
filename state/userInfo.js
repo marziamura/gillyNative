@@ -18,7 +18,7 @@ export function getJourneyInfo(user){
         eq: user.id,
       },
       journey:{
-        eq: user.journey
+        eq: user.journey || "Solo"
       }
     },
     sort: {
@@ -26,7 +26,7 @@ export function getJourneyInfo(user){
       order: "DESC"
    }
   })).then((data)=>{
-    console.log("submissions ", data)
+  //  console.log("submissions ", data)
     var submissions = data.data.listFormSubmissions.items;
     user.todaysTreatDone = false;
     if(submissions.length === 0)
@@ -36,9 +36,9 @@ export function getJourneyInfo(user){
       store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
       return user;
     }
-    console.log("before sorting ", submissions)
+   // console.log("before sorting ", submissions)
     submissions.sort((a, b)=>{
-       console.log("sorting ",Date.parse(a.updatedAt) ,Date.parse(b.updatedAt), Date.parse(a.updatedAt) - Date.parse(b.updatedAt) )
+      // console.log("sorting ",Date.parse(a.updatedAt) ,Date.parse(b.updatedAt), Date.parse(a.updatedAt) - Date.parse(b.updatedAt) )
        return  Date.parse(a.updatedAt) - Date.parse(b.updatedAt)
     })
   
@@ -46,12 +46,12 @@ export function getJourneyInfo(user){
 
     var today = new Date();
     var cDay = submissions.length;
-    console.log('Submissions and current Day', submissions.length, cDay,  lastSubmittedDate, today.toLocaleDateString());
+  //  console.log('Submissions and current Day', submissions.length, cDay,  lastSubmittedDate, today.toLocaleDateString());
 
     if(lastSubmittedDate === today.toLocaleDateString()){
       user.todaysTreatDone = true;
     }
-    console.log('Submissions and adjusted current day', store.getState().userInfo[0], user);
+ //   console.log('Submissions and adjusted current day', store.getState().userInfo[0], user);
     user.lastTreatInJourney = cDay;
     store.dispatch(actionUpdateJourneyStatus(store.getState().userInfo, [user]));
     return user;
@@ -65,7 +65,7 @@ export function getJourneyInfo(user){
 export function getUserInfo () { 
     
     const currentUser = store.getState().userInfo[0];
-    console.log("retrieving user...", currentUser);
+  //  console.log("retrieving user...", currentUser);
     if(currentUser.id === "xxx"){
       return Promise.reject("invalid user id ", currentUser.id);
     }
@@ -109,7 +109,7 @@ export function getUserInfo () {
   };
 
   function userInfo(info) {
-    console.log(" call to userInfo");
+    console.log("call to userInfo with ", info);
     let currentInfo = {}
     const storedInfo = store.getState().userInfo[0];
     const pushPreferences = store.getState().pushNotificationPreferences[0];
@@ -128,13 +128,12 @@ export function getUserInfo () {
       currentInfo.password=storedInfo.password;
       currentInfo.primary=storedInfo.primary;
       currentInfo.registered=storedInfo.registered;
-      currentInfo.pushNotificationToken=storedInfo.pushNotificationToken;
-      currentInfo.pushNotificationToken = "";
+    
       if(pushPreferences.consent === "OK"){
         currentInfo.pushNotificationToken= storedInfo.pushNotificationToken;
       }
       if(pushPreferences.consent === "Deny"){
-        currentInfo.pushNotificationToken= "Deny";
+        currentInfo.pushNotificationToken= "";
       }
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
@@ -150,7 +149,7 @@ export function getUserInfo () {
   }
 
   export function updateUserInfo(info){
-    console.log("updateUserInfo 0", currentInfo);
+    console.log("updateUserInfo 0", info);
     let currentInfo = userInfo(info);
     console.log("updateUserInfo 1", currentInfo);
     return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));  

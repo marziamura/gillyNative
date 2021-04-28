@@ -36,7 +36,7 @@ const HomeScreen = ({navigation}) => {
   let store = createStore();
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
-  
+  console.log("Push notification preferences ", pushNotificationPreferences)
   const [treatDescription, setTreatDescription] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
@@ -202,7 +202,7 @@ const HomeScreen = ({navigation}) => {
        
       </View>
    
-        { false ? <ConsentDialog /> : null}
+        { dialogOpen ? <ConsentDialog /> : null}
         { infoDialogOpen ? <InfoDialog text={"infoTreat"} callback={closeInfoDialog}/> : null}
         { journeyInfoDialogOpen ? <InfoDialog text={"infoJourney"} callback={closeInfoDialog}/> : null}
  
