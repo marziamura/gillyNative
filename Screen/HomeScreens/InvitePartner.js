@@ -20,7 +20,7 @@ const InvitePartner = ({navigation}) => {
 
   var params = '&userid=' + user.id 
   var emailDomain = user.email
-  const typeformLink = "https://getgilly.typeform.com/to/Hy3dvuwt" + params;
+  const typeformLink = "https://getgilly.typeform.com/to/Hy3dvuwt" + "#"+ params;
   console.log("TypeFormLink ->", typeformLink);
   return <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"ThankYou"}/>
 };
