@@ -16,10 +16,10 @@ export function getJourneyInfo(user){
     filter:{
       userId: {
         eq: user.id,
-      },
-      journey:{
-        eq: user.journey || "Solo"
       }
+      /*journey:{
+        eq: user.journey || "Solo"
+      }*/
     },
     sort: {
       field : "updatedAt",
@@ -80,15 +80,6 @@ export function getUserInfo () {
     
         return null;
       }
-     /* if(user.journey === 'Solo' && user.partnerID && user.partnerID !== 'none'){ // I am Partner A
-    
-        if (currentUser.journey && currentUser.journey !== "Solo"){
-          user.journey =  currentUser.journey + '-A';
-        }else{
-          user.journey = 'Partnered-A';
-        }
-
-      }*/
       
 
       user.registered = true;
@@ -152,11 +143,15 @@ export function getUserInfo () {
     console.log("updateUserInfo 0", info);
     let currentInfo = userInfo(info);
     console.log("updateUserInfo 1", currentInfo);
+    var dt = new Date();
+    currentInfo.timeZoneOffset = dt.getTimezoneOffset();
     return API.graphql(graphqlOperation(mutations.updateUser, {input: currentInfo}));  
    }
 
  export function saveUserInfo(info){
     let currentInfo = userInfo(info);
+    var dt = new Date();
+    currentInfo.timeZoneOffset = dt.getTimezoneOffset();
     return API.graphql(graphqlOperation(mutations.createUser, {input: currentInfo}));
 }
 

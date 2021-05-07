@@ -20,7 +20,8 @@ import {
   Image,
   KeyboardAvoidingView,
   ScrollView,
-  Pressable
+  Pressable,
+  ActivityIndicator,
 } from 'react-native';
 
 
@@ -32,12 +33,12 @@ const RegisterScreen = (props) => {
   const [userEmail, setUserEmail] = useState('');
 
   const [userPassword, setUserPassword] = useState('');
-  const [errortext, setErrorText] = useState('');
-
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
 
   const handleSubmitButton = () => {
+
           setErrorText('');
           if (!userName) {
             alert(t('fillName'));
@@ -52,7 +53,8 @@ const RegisterScreen = (props) => {
             alert(t('fillPassword'));
             return;
           }
- 
+          
+          setButtonDisabled(true);
           var dataToSend = {
             username: userEmail.toLowerCase(),
             email: userEmail.toLowerCase(),
@@ -61,7 +63,7 @@ const RegisterScreen = (props) => {
               name: userName
             }
           };
-        
+         
           Auth.signUp(dataToSend).then((user)=>{
             console.log("sign up success ", user);  
             props.dispatch(actionSetLoginData(store.getState().userInfo, [dataToSend]));
@@ -70,6 +72,7 @@ const RegisterScreen = (props) => {
             setErrorText(error.message);
             console.log('error signing up:', error.message);
             alert(error.message);
+            setButtonDisabled(false);
         })
    
     }
@@ -160,24 +163,20 @@ const RegisterScreen = (props) => {
         />
         </View>
         <View style={styles.linksView}>
-        <Pressable  onPress={() => navigation.navigate('LoginScreen')}>
+        <Pressable disabled={buttonDisabled} onPress={() => navigation.navigate('LoginScreen')}>
             <Text
               style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('LoginScreen')}>
+            >
               {t("goToLogin")}
             </Text>
             </Pressable>
-            <Pressable  onPress={() => navigation.navigate('ConfirmEmail')}>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('ConfirmEmail')}>
+            <Pressable disabled={buttonDisabled}  onPress={() => navigation.navigate('ConfirmEmail')}>
+            <Text style={styles.registerTextStyle}>
               {t("confirmEmail")}
             </Text>
             </Pressable>
-            <Pressable  onPress={() => navigation.navigate('ForgotPassword')}>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() => navigation.navigate('ForgotPassword')}>
+            <Pressable disabled={buttonDisabled}  onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text style={styles.registerTextStyle}>
               {t("forgotPassword")}
             </Text>
             </Pressable>
@@ -189,6 +188,13 @@ const RegisterScreen = (props) => {
 
        </View>
      </ScrollView>
+     <View style = {styles.container}>
+            <ActivityIndicator
+               animating = {buttonDisabled}
+               color = {colors.violet}
+               size = {100}
+               style = {styles.activityIndicator}/>
+   </View>
    </View>  
    </Background>
   );
@@ -265,6 +271,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 30,
    },
-
-
+   activityIndicator: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100
+ }
 });
