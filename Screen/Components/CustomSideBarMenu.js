@@ -47,6 +47,17 @@ const CustomSidebarMenu = (props) => {
         <DrawerItem
           label={({color}) => 
             <Text style={stylesSidebar.menuText}>
+              Feedback
+            </Text>
+          }
+          onPress={() => {
+             props.navigation.replace('GeneralFeedback');
+             props.navigation.toggleDrawer();
+          }}
+        />
+        <DrawerItem
+          label={({color}) => 
+            <Text style={stylesSidebar.menuText}>
               Logout
             </Text>
           }

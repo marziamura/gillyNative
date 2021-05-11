@@ -137,7 +137,8 @@ i18n
           },
           selectTreat:{
             selectMood:"Select a mood above",
-            treatNotFound: "Sorry, no more treats available for this mood"
+            treatNotFound: "Sorry, no more treats available for this mood",
+            button: "Open treat"
           }
 
       

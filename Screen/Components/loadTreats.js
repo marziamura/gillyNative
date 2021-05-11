@@ -1,0 +1,189 @@
+import React from 'react';
+import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
+import Button from './Button'
+import * as colors from '../Style/Style'
+import { getSubmissionsInJourney } from '../../state/userInfo';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import createStore from '../../state/store';
+import actionSetTreatData from '../../state/actionSetTreatData';
+import { useTranslation } from 'react-i18next';
+import treatData from '../../HardCodedData/TreatData'
+
+var {width, height} = Dimensions.get('window')
+const viewHeight = height * 2 / 7 - 60;
+const SCREEN_WIDTH = width;
+
+export default function FlatListHorizontal(props)
+{
+  const { t } = useTranslation('selectTreat');
+  let store = createStore();
+  const [description, setDescription] = React.useState(t("selectMood"));
+  const [selectedIndex, setIndex] = React.useState(-1);
+
+  const displayData = treatData;
+  const user = props.user;
+
+  const setCurrentData = (index) => {
+      setIndex(-1);
+      getTreatInfo(index);
+  }
+
+  const executeAction = () => {
+    props.navigation.replace("TodaysTreat");
+  }
+
+
+  const getBGColor = (index) =>   {
+    return {backgroundColor: index === selectedIndex 
+      ? colors.cardselected
+      : colors.cards
+    }
+  }
+
+  const getTextColor = () => {
+    return {color: -1 === selectedIndex 
+      ? colors.textDisabled
+      : colors.text
+    }
+
+  }
+
+  const getTreatInfo = (selected) =>{
+    console.log("Selected category: ", selected)
+    var journey = displayData[selected].journey;
+    console.log("selected journey, ", selected, journey);
+    var currentData;
+    getSubmissionsInJourney(user, journey).then((jdata)=>{
+      console.log(jdata);
+      
+      var submissions = jdata.data.listFormSubmissions.items;
+      var nbOfSubmissions = submissions.length;
+      getFormId(nbOfSubmissions, journey).then((tdata)=>{
+        console.log(tdata);
+        if(!tdata.data.getFormId){
+          setDescription(t("treatNotFound"));
+          return;
+        }
+        var fId = tdata.data.getFormId.formId; 
+        console.log("getFormId ", fId,  tdata.data.getFormId.description);
+        currentData={
+          id: fId,
+          description:  tdata.data.getFormId.description,
+          journey: journey,
+        }
+        setDescription(currentData.description);
+        store.dispatch(actionSetTreatData([currentData])); 
+        setIndex(1);
+      }).catch((error)=>{
+        alert(error.message);
+      })
+    }).catch((error)=>{
+      alert(error.message);
+    })
+  }
+
+
+  function getFormId(nb, journey){
+    return API.graphql(graphqlOperation(queries.getFormId,{
+      day: nb,
+      journey: journey,
+    }))
+  }
+
+  const  _renderItem = ({ item, index }) => {
+          return (
+          <View style={[styles.listElement, getBGColor(index)]} onPress={()=> console.log(index)}> 
+            <Pressable onPress={() => setCurrentData(index)} style={[styles.pressable]}>  
+            <View>
+              <Text style={styles.title}>{item.journeyDescription}</Text>
+            </View>
+            </Pressable>
+          </View>
+          );
+        };
+
+  return  <View style={styles.container}>
+            <View style ={styles.carousel}>
+              <FlatList horizontal
+                data={displayData}
+                renderItem={_renderItem}
+                pagingEnabled={true}
+              // keyExtractor={(item)=>{item.title}}
+                style={{width: "100%"}}
+                //ItemSeparatorComponent={() => <View style={{margin: 4,  backgroundColor: 'red'}}/>}
+              />
+            </View>
+            <View style ={styles.description}>
+            <View style={{flex: 4}}>
+                <Text style ={[styles.textSmall, getTextColor()]}>{description}</Text>
+            </View>
+            <View style ={{flex: 2}}>
+              {
+                selectedIndex !== -1 && <Button text={t("button")} onPress={() => executeAction()}/>
+              }
+              </View>
+            </View>
+  </View>
+
+}
+
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1, 
+      width: "100%"
+    },
+
+    title:{
+        fontSize: 20,
+        marginTop: 0, 
+        textAlign: "center",
+    },
+    carousel:{
+        flex: 1,
+    },
+    description:{
+      flex:1,
+      flexDirection: "row",
+ 
+      flexWrap: 'wrap',
+      marginTop: 5
+    },
+    textSmall:{
+      fontSize: 20,
+      justifyContent: 'center',
+    },
+    subTitle:{
+        fontSize: 20,
+        marginTop: 20
+    },
+    row:{
+      flex: 1,
+      flexDirection: "row",
+      marginTop: 5
+    },
+    listElement:{
+      flex: 1, 
+      backgroundColor: colors.cards,
+      width: SCREEN_WIDTH / 2,
+      //height: "100%",
+      //height:viewHeight,
+      marginHorizontal: 10,
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    pressable:{
+      width: SCREEN_WIDTH / 2,
+      height: "100%",
+      //height:viewHeight,
+      marginHorizontal: 10,
+      borderRadius: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+
+  });
+  

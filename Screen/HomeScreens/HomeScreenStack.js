@@ -8,6 +8,7 @@ import NavigationDrawerHeader from '../Components/NavigationDrawerHeader';
 import TreatScreen from './TreatScreen';
 import InvitePartner from './InvitePartner';
 import IntimacyProfile from './IntimacyProfile';
+import GeneralFeedback from './FeedbackForm';
 import ExploreJourneys from './ExploreJourneys';
 import TreatDone from './TreatDone';
 import HomeScreen from './HomeScreen';
@@ -37,7 +38,6 @@ const HomeScreenStack = ({navigation}) => {
             fontWeight: 'bold', //Set Header text style
           },
         }}
-       
       />
        <Stack.Screen
         name="TodaysTreat"
@@ -78,6 +78,23 @@ const HomeScreenStack = ({navigation}) => {
         component={IntimacyProfile}
         options={{
           title: 'Intimacy Profile', //Set Header Title
+          headerLeft: () => (
+             <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: colors.header, //Set Header color
+          },
+          headerTintColor: colors.text, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
+        name="GeneralFeedback"
+        component={GeneralFeedback}
+        options={{
+          title: 'Feedback', //Set Header Title
           headerLeft: () => (
              <NavigationDrawerHeader navigationProps={navigation} />
           ),

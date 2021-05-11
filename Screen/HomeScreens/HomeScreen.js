@@ -12,7 +12,7 @@ import ExploreJourneys from '../Components/exploreJourneys'
 import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import InfoDialog from '../Components/InfoDialog';
-import ChooseTreat from '../Components/chooseTreat';
+import ChooseTreat from '../Components/loadTreats';
 import * as colors from '../Style/Style'
 
 
@@ -30,7 +30,6 @@ const HomeScreen = ({navigation}) => {
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
   console.log("Push notification preferences ", pushNotificationPreferences)
-  const [treatDescription, setTreatDescription] = React.useState("");
   const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
   const [updateInfo, setUpdateInfo] = React.useState(false);
@@ -74,7 +73,6 @@ const HomeScreen = ({navigation}) => {
   }
 
   function press(){
-
     navigation.replace("TodaysTreat")
   };
 
@@ -182,7 +180,7 @@ const styles = StyleSheet.create({
     flex:0.5,
   }, 
   inviteView:{
-    flex:1,
+    flex:0.5,
     backgroundColor: colors.cards2,
     marginTop: margin
   },

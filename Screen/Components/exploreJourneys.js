@@ -1,13 +1,8 @@
 import React from 'react';
 import Carousel from "./carousel";
-import journeyDataDev from '../../HardCodedDataDev/JourneysData';
-import journeyDataProd from '../../HardCodedDataProd/JourneysData';
-import Constants from 'expo-constants'
+import journeyData from '../../HardCodedData/JourneysData';
 export default function ExploreJourneys({navigation}){
 
-//let journeyData = Constants.extra.env === "dev" ? journeyDataDev : journeyDataProd;
-const env = Constants.manifest.extra.env
-let journeyData = env === "dev"? journeyDataDev : journeyDataProd;
 
 const doAction = (selected) =>{
   console.log(selected)
