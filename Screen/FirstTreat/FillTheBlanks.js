@@ -106,51 +106,54 @@ const FillTheBlanks = ({navigation}) => {
        <KeyboardAvoidingView enabled
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={[styles.container, styles.centerContent]}
+            
         >
-        <View style={{flex: 1}}>
-          <View style={[styles.textcontainerview, styles.centerContent]}>
+        
+          <View style={[styles.titleview, styles.centerContent]}>
                 <Text style={styles.title}>
                 {t("title")}
                 </Text>
           </View>
-          <View style={{flex: 1, width: "90%"}}>
+
+          <View style={[styles.messageView]}>
                 <Text style={styles.textTop}>
                   {t("text1", {who: nameOnText, what: answer})}
                 </Text>
-                </View>
           </View>
-          <View style={{flex: 2, width: "90%"}}>
+        
+  
           <View style={styles.textinputviewname}>
-              <Text style={{alignSelf:"flex-start"}}> Your partner's name </Text>
+                  <Text style={{alignSelf:"flex-start"}}> {t('labelName')} </Text>
+                  <TextInput
+                    style={styles.inputStyle}
+                    label="Your partner's name"
+                    onChangeText={OnChangeName}
+                    placeholder={ userInfo.partnerName ? userInfo.partnerName : t("name")}
+                    value={name}
+                  />
+          </View>
+
+          <View style={styles.textinputviewmessage}>
+              <Text > {t('labelMessage')} </Text>
               <TextInput
-                style={styles.inputStyle}
-                label="Your partner's name"
-                onChangeText={OnChangeName}
-                placeholder={ userInfo.partnerName ? userInfo.partnerName : t("name")}
-                value={name}
-              />
-          </View>
-            <View style={styles.textinputviewmessage}>
-            <Text style={{alignSelf:"flex-start"}}> Your message </Text>
-             <TextInput
-                    style={[styles.inputStyle, styles.textInputMultiline]}
-                    multiline
-                    label="Your Message"
-                    placeholder={t("suggestion")}
-                    value={text}
-                    onChangeText={OnChangeText}
+                      style={[styles.inputStyle, styles.textInputMultiline]}
+                      multiline
+                      label="Your Message"
+                      placeholder={t("suggestion")}
+                      value={text}
+                      onChangeText={OnChangeText}
+                  />
+              
+              </View>
+          
+              <View style={styles.bottomview}>
+          
+                <Button       
+                  onPress={OnPress}
+                  text={t("button")}
                 />
-            
-            </View>
-          </View>
-            <View style={styles.bottomview}>
-       
-            <Button       
-              onPress={OnPress}
-              text={t("button")}
-            />
-            
-            </View>
+                
+              </View>
 
          
        </KeyboardAvoidingView>
@@ -165,11 +168,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  textcontainerview:{
+  titleview:{
     flex:1,
     width: "90%",
   },
-
+ 
+  messageView:{
+    flex:2,
+    width: "90%",
+  },
   textinputviewname: {
     flex: 1,
     width: '90%',
@@ -177,10 +184,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   textinputviewmessage: {
-    flex: 3,
+    flex: 2,
     width: '90%',
-    justifyContent: 'center',
-    alignSelf: 'center',
+    justifyContent: 'flex-start',
   },
 
   bottomview:{
@@ -211,18 +217,16 @@ const styles = StyleSheet.create({
 
   inputStyle: {
     //flex: 1,
+    height: '40%',
     color: colors.text,
     width: "100%",
-    height: "100%",
+ 
     paddingLeft: 15,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: colors.border,
   },
 
-  textInputMultiline:{
-     height: '80%',
-   },
   centerContent:{
     justifyContent: "center",
     alignItems: "center",

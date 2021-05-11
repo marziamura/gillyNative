@@ -9,6 +9,8 @@ import createStore from '../../state/store';
 import Background from '../Components/Background';
 import Button from '../Components/Button';
 import * as colors from '../Style/Style';
+import * as fonts from '../Style/Fonts';
+
 
 
 import {
@@ -46,20 +48,32 @@ const ShareMessage = ({navigation}) => {
     <Background>
       <View style={[styles.container, styles.centerContent]}>
 
-        <View style={styles.titleview}>
+        <View style={[styles.titleview]}>
           <Text style={styles.title}>
           {t("title")}
           </Text>
         </View>
-        <View style={[styles.textview, styles.centerContent]}>
-          <Text style={styles.textTop}>
-            {t("text1")}
-          </Text>
+ 
+        <View style={[styles.textview]}>
           <Text style={styles.text}>
             {message}
           </Text>
         </View>
+       
+        <View style={[styles.textview]}>  
+          <Text style={styles.text2}>
+            {t("text1")}
+          </Text>
+        </View>
+     
+        <View style={{width: "90%"}}>
+        <Text style={styles.texthint}>
+             {t("hint", {who: messageData.partnerName})}
+            
+        </Text>
+        </View>
         <View style={[styles.bottom, styles.centerContent]}>
+   
           <Button
             onPress={OnShare}
             text={t('button', {who: messageData.partnerName})}
@@ -81,38 +95,48 @@ export default ShareMessage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    
   },
   titleview:{
     width: '90%', 
-    flex: 1,
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
   title: {
-   // fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: "800",
-    fontSize: 30,
+    fontSize: fonts.titleSize,
     lineHeight: 40,
     color: '#383838',
-    paddingBottom: 100,
   },
   text: {
-
- //   fontFamily: 'Roboto',
     fontStyle: 'italic',
-    fontWeight: "600",
-    fontSize: 21,
+    fontWeight: "bold",
+    fontSize: fonts.normalSize,
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    marginTop: 20,
   },
-
+  text2: {
+    fontSize: fonts.normalSize,
+    lineHeight: 28,
+    textAlign: 'center',
+    color: '#383838',
+  },
+  texthint: {
+    fontSize: fonts.smallSize,
+    textAlign: 'center',
+  },
   textview: {
-    flex: 2,
+    flex: 1,
+    justifyContent: 'center',
     width: '90%',
-
+  },
+  textviewhint: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '90%',
+    backgroundColor: 'red'
   },
 
   bottom:{

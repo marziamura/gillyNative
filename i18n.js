@@ -77,7 +77,9 @@ i18n
             text2: "Thank you", 
             button: "Looks good, what's next?",
             name: "You partner's name",
-            suggestion: " E.g., took over meal planning and cooking so that I wasn't overwhelmed with trying to balance the kids and work. "
+            suggestion: " E.g., took over meal planning and cooking so that I wasn't overwhelmed with trying to balance the kids and work. ",
+            labelName: "Your partner's name, or nickname ;)",
+            labelMessage: "Your message"
           },
           ShareMessage:{
             title: "Share your message",
@@ -85,7 +87,8 @@ i18n
             text2 : "{{who}}, years from now when we look back on this time, I will always remember how you {{what}}. Thank you.",
             button: "Send to {{who}}",
             button2: "I don't want to send it to {{who}} now",
-            IntroMessage:"{{who}} has shared a special message with you through gilly. Open the link to read it"
+            IntroMessage:"{{who}} has shared a special message with you through gilly. Open the link to read it",
+            hint: "{{who}} will not have to install the app to see your message"
           },
           Home:{
             welcome: "Hi, {{who}}",

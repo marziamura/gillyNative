@@ -40,7 +40,7 @@
       "config": "./rn-cli.config.js"
     },
     "extra":{
-      "env": "prod"
+      "env": "dev"
     }
   }
 }
