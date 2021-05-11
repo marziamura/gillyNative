@@ -36,26 +36,28 @@ const MessageInABottle = ({navigation}) => {
   return (
     <Background>
       <View style={styles.container}>
-
-        <View style={styles.textcontainer}>
-          <Text style={styles.title}>
-          {t("introduction")}
+      <View style={styles.titleview}>
+        <Text style={styles.title}>
+        {t("introduction")}
           </Text>
-          
-          <View style={{height: '10%'}}/>
+        </View>
+        <View style={styles.textview}>
+         
           <Text style={styles.textTop}>
             {t("text1", {name:userInfo.userName})}
           </Text>
           <Text style={styles.text}>
+          
             {t("text2")}
           </Text>
         </View>
-        <View style={styles.bottom}>
+        <View style={styles.bottomview}>
           <Text style={styles.textBottom}>
             {t("text3")}
+          
           </Text>
-
-      
+        </View>
+        <View style={styles.button}>
             <Button
               text={t("button")}
               onPress={OnPress}
@@ -73,29 +75,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
   },
-  textcontainer:{
-    width: '90%', height: '60%',
-  },
-  buttonStyle:{
-    justifyContent: 'center',
-    width: '60%',
-    height: "20%",
-    borderRadius: 30,
-   },
-   
-  title: {
 
+  textview:{
+    width: '90%',
+    flex: 2,
+    justifyContent: "space-evenly" ,
+  },
+
+  titleview:{
+    flex:1,
+    justifyContent: "center" ,
+  },
+  
+  title: {
     width: '100%',
-    
-    //fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: 30,
     lineHeight: 40,
     color: '#383838',
   },
+
   text: {
     width: '100%',
    // fontFamily: 'Roboto',
@@ -114,7 +115,6 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    paddingTop: 40,
     fontWeight: "500",
   },
   
@@ -126,14 +126,20 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     textAlign: 'left',
     color: '#383838',
-    paddingBottom: 40,
     fontWeight: "800",
   },
 
-  bottom:{
-    height: '40%',
+  bottomview:{
+    flex: 2,
     width: '90%',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  button:{
+    flex: 1,
+    width: '90%',
+   // justifyContent: 'flex-start',
     alignItems: 'center',
   },
 

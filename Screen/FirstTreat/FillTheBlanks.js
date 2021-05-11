@@ -107,20 +107,21 @@ const FillTheBlanks = ({navigation}) => {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={[styles.container, styles.centerContent]}
         >
-    
-             <View style={[styles.textcontainerview, styles.centerContent]}>
+        <View style={{flex: 1}}>
+          <View style={[styles.textcontainerview, styles.centerContent]}>
                 <Text style={styles.title}>
                 {t("title")}
                 </Text>
-              </View>
-              <View style={{flex: 1, width: "90%"}}>
+          </View>
+          <View style={{flex: 1, width: "90%"}}>
                 <Text style={styles.textTop}>
                   {t("text1", {who: nameOnText, what: answer})}
                 </Text>
-
-            </View>
-            <View style={styles.textinputview}>
-              <Text style={{alignSelf:"flex-start"}}> Your partner name </Text>
+                </View>
+          </View>
+          <View style={{flex: 2, width: "90%"}}>
+          <View style={styles.textinputviewname}>
+              <Text style={{alignSelf:"flex-start"}}> Your partner's name </Text>
               <TextInput
                 style={styles.inputStyle}
                 label="Your partner's name"
@@ -128,22 +129,20 @@ const FillTheBlanks = ({navigation}) => {
                 placeholder={ userInfo.partnerName ? userInfo.partnerName : t("name")}
                 value={name}
               />
-            </View>
-            <View style={styles.textinputview}>
+          </View>
+            <View style={styles.textinputviewmessage}>
             <Text style={{alignSelf:"flex-start"}}> Your message </Text>
              <TextInput
                     style={[styles.inputStyle, styles.textInputMultiline]}
                     multiline
                     label="Your Message"
                     placeholder={t("suggestion")}
-
-
-                    
                     value={text}
                     onChangeText={OnChangeText}
                 />
             
             </View>
+          </View>
             <View style={styles.bottomview}>
        
             <Button       
@@ -171,9 +170,14 @@ const styles = StyleSheet.create({
     width: "90%",
   },
 
-  textinputview: {
-    alignItems: 'center',
+  textinputviewname: {
     flex: 1,
+    width: '90%',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  textinputviewmessage: {
+    flex: 3,
     width: '90%',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -184,7 +188,6 @@ const styles = StyleSheet.create({
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 10,
   },
 
   title: {
@@ -210,6 +213,7 @@ const styles = StyleSheet.create({
     //flex: 1,
     color: colors.text,
     width: "100%",
+    height: "100%",
     paddingLeft: 15,
     borderWidth: 1,
     borderRadius: 10,
