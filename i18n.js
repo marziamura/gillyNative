@@ -134,7 +134,12 @@ i18n
             title: "Thank you for your submission",
             text: "Your feedback will help us giving you a better experience with Gilly",
             button: "Return to Home Screen"
+          },
+          selectTreat:{
+            selectMood:"Select a mood above",
+            treatNotFound: "Sorry, no more treats available for this mood"
           }
+
       
         },
        

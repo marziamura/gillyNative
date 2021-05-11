@@ -1,16 +1,9 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
-
-// Import React and Component
 import React from 'react';
 import {View, StyleSheet, SafeAreaView, Text, Pressable} from 'react-native';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
-import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
-import actionSetTreatData from "../../state/actionSetTreatData";
-import {getJourneyInfo} from "../../state/userInfo";
+
 import { Paragraph, Dialog} from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
@@ -98,44 +91,7 @@ const HomeScreen = ({navigation}) => {
     }
   }, [updateInfo])
   
-  function getFormId(){
 
-        var formIdNb = user.lastTreatInJourney - 1;
-        console.log("Getting formId", formIdNb);  
-        if(!user || !user.journey)
-          return;
-        
-        API.graphql(graphqlOperation(queries.getFormId,{
-          day: formIdNb,
-          journey: user.journey,
-        })).then((data)=>{
-          console.log("getFormId ", data);
-          var fId = data.data.getFormId.formId; 
-          console.log("getFormId ", fId);
-          var treatData={
-            id: fId,
-            description: data.data.getFormId.description
-          }
-          store.dispatch(actionSetTreatData([treatData])); 
-          setTreatDescription(treatData.description || "Ready for your next treat?");
-      
-        }).catch((error)=>{
-          console.log("formId error retrieving form information ", error, formIdNb, user.journey);
-          // setFormId(null);
-        });
-  }
-
-
-  React.useEffect(()=>{
-     console.log("getting updated journey info with user", user);
-     var oldTreatNumber = user.lastTreatInJourney;
-     getJourneyInfo(user).then((newUserData)=>{
-        if(oldTreatNumber !== newUserData.lastTreatInJourney || !treatDescription)
-        {
-          getFormId()
-        }
-     }).catch((err)=>console.log("cannot get updated journey info",err));
-    },[])
 
   function closeInfoDialog(){
         setInfoDialogOpen(false);
@@ -181,7 +137,7 @@ const HomeScreen = ({navigation}) => {
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo}/>
             <View style={{flex: 3, marginTop: 2}}>  
-                <ChooseTreat navigation={navigation}/>
+                <ChooseTreat navigation={navigation} user={user}/>
             </View>
         </View>
         <Divider  />

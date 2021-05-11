@@ -35,7 +35,8 @@ const message =[{
 const treat = [{
   id: null,
   description: "",
-  toBeRefreshed: true
+  toBeRefreshed: true,
+  journey: ""
 }]
 
 const pushPreferences =[{
@@ -87,6 +88,7 @@ const currentTreat = (state = treat, action) => {
     case SET_TREAT:
       state[0].id = action.payload.newItem[0].id;
       state[0].description = action.payload.newItem[0].description;
+      state[0].journey = action.payload.newItem[0].journey;
       return [...state,];
     default:
       return  state; 

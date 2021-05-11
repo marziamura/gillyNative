@@ -1,25 +1,23 @@
 
 let treatData = [
     { key: "1",
-      type: "touch",
-      category: "For touch",
-      description: ["Six Seconds in heavean ;)"],
-      typeFormId: ["bbwIuAVg"]  },
+      journey: "touch",
+      journeyDescription: "For touch",
+   },
     { key: "2",
-      type: "connect",
-      category: "To connect emotionally",
-      description: ["Exploring how you express and receive love"],
-      typeFormId: ["kpXyXn0z"]},
+      journey: "connect",
+      journeyDescription: "To connect emotionally",
+    },
     { key: "3",
-      type: "express love",
+    journey: "express love",
       category: "To express love",
-      description: ["Going in and out... no no! It's not what you think ;)"],
-      typeFormId: ["gJ6YGH9F"]},
+      journeyDescription: "Express love",
+   },
     { key: "4",
-      type: "nothing",
-      category: "Do Nothing",
-      description: ["It's the small things that count!"],
-      typeFormId: ["YrquTz9y"] },
+      journey: "nothing",
+      journeyDescription: "Do Nothing",
+  },
 ]
 
 export default treatData
+

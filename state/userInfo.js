@@ -9,18 +9,24 @@ import actionSetInitialPushNotificationPreferences from "./actionSetInitialPushN
 
 const store = createStore();
 
-export function getJourneyInfo(user){
+export function getSubmissionsInJourney(user, journey){
+
+  console.log("getting journey Info... ", user, journey)
+  return API.graphql(graphqlOperation(queries.listFormSubmissions, {
+    userId: user.id,
+    filter:{
+      journey: {
+        eq: journey,
+      }
+    },
+  }))
+}
+
+export function getAllSubmissions(user){
   
   console.log("getting journey Info... ", user.journey)
   return API.graphql(graphqlOperation(queries.listFormSubmissions, {
-    filter:{
-      userId: {
-        eq: user.id,
-      }
-      /*journey:{
-        eq: user.journey || "Solo"
-      }*/
-    },
+    userId: user.id,
     sort: {
       field : "updatedAt",
       order: "DESC"
@@ -90,7 +96,7 @@ export function getUserInfo () {
       console.log("User with updated journey info", user, " token#", PNToken,"#");
       store.dispatch(actionSetInitialPushNotificationPreferences(store.getState().pushNotificationPreferences, [PNToken]));
 
-      return getJourneyInfo(user);
+      return getAllSubmissions(user);
        
     }).catch((error)=>{
       console.log(error);

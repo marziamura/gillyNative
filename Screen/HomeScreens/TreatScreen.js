@@ -22,7 +22,7 @@ const TreatScreen = ({navigation}) => {
                 + '&firstname=' + user.userName
                 + '&puserid=' + user.partnerID
                 + "&email=" + user.email
-                + "&journey=" + user.journey;
+                + "&journey=" + treatData.journey;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
  
     console.log("Navigation ->", navigation);
