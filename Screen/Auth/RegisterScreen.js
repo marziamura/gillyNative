@@ -39,7 +39,6 @@ const RegisterScreen = (props) => {
 
   const handleSubmitButton = () => {
 
-          setErrorText('');
           if (!userName) {
             alert(t('fillName'));
             return;
@@ -69,7 +68,6 @@ const RegisterScreen = (props) => {
             props.dispatch(actionSetLoginData(store.getState().userInfo, [dataToSend]));
             props.navigation.replace('ConfirmEmail');
           }).catch ((error)=> {
-            setErrorText(error.message);
             console.log('error signing up:', error.message);
             alert(error.message);
             setButtonDisabled(false);

@@ -19,7 +19,7 @@ const journeyData =[
       name: "Libido & Desire III",
       description: "Practice, practice, practice (not just about sex)",
     },
-    { key: "5",
+    { key: "6",
       name: "Foundation: Sexploration",
       description: "Explore & broaden your sexual repretoire",
    }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Text, Pressable} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Text, Pressable, TouchableHighlight} from 'react-native';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
@@ -30,7 +30,7 @@ const HomeScreen = ({navigation}) => {
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
   console.log("Push notification preferences ", pushNotificationPreferences)
-  const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None" && user.lastTreatInJourney === 2);
+  const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None");
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
   const [updateInfo, setUpdateInfo] = React.useState(false);
   const [journeyInfoDialogOpen, setInJourneyInfoDialogOpen] = React.useState(false);
@@ -73,7 +73,7 @@ const HomeScreen = ({navigation}) => {
   }
 
   function press(){
-    navigation.replace("TodaysTreat")
+    navigation.push("TodaysTreat")
   };
 
   
@@ -125,11 +125,14 @@ const HomeScreen = ({navigation}) => {
         
         </View>
         <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
-          <Pressable  onPress={()=>{navigation.replace("InvitePartner")}}>
-            <Text style={styles.btnText}>
+          <TouchableHighlight 
+            activeOpacity={0.6}
+            underlayColor="#DDDDDD"
+            onPress={()=>{navigation.push("InvitePartner")}}>
+            <Text style={styles.inviteText}>
              {t("invite")}
             </Text>
-          </Pressable>
+          </TouchableHighlight>
         </View>
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
@@ -147,7 +150,7 @@ const HomeScreen = ({navigation}) => {
         </View>
         <Divider />
         <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
-          <Pressable  onPress={()=>{navigation.replace("IntimacyProfile")}}>
+          <Pressable  onPress={()=>{navigation.push("IntimacyProfile")}}>
             <Text style={styles.btnText}>
                 {t("completeProfile")}
             </Text>
@@ -181,7 +184,6 @@ const styles = StyleSheet.create({
   }, 
   inviteView:{
     flex:0.5,
-    backgroundColor: colors.cards2,
     marginTop: margin
   },
   carouselView:{
@@ -217,6 +219,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
+  
+  inviteText: {
+    color: "blue",
+    textDecorationLine: 'underline',
+    fontSize: 15,
+    justifyContent: "center",
+    textAlign: "center",
+  },
+
   header: {
     fontSize: 25,
     backgroundColor: "#fff"

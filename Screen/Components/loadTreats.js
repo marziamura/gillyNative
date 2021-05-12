@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
+import { View, StyleSheet, FlatList, Text, Pressable, Dimensions, ActivityIndicator } from 'react-native';
 import Button from './Button'
 import * as colors from '../Style/Style'
 import { getSubmissionsInJourney } from '../../state/userInfo';
@@ -20,17 +20,20 @@ export default function FlatListHorizontal(props)
   let store = createStore();
   const [description, setDescription] = React.useState(t("selectMood"));
   const [selectedIndex, setIndex] = React.useState(-1);
+  const [loading, setLoading] = React.useState(true);
 
   const displayData = treatData;
   const user = props.user;
 
   const setCurrentData = (index) => {
-      setIndex(-1);
+      setLoading(true);  
+      setIndex(index);
+      setDescription("");
       getTreatInfo(index);
   }
 
   const executeAction = () => {
-    props.navigation.replace("TodaysTreat");
+    props.navigation.push("TodaysTreat");
   }
 
 
@@ -74,7 +77,8 @@ export default function FlatListHorizontal(props)
         }
         setDescription(currentData.description);
         store.dispatch(actionSetTreatData([currentData])); 
-        setIndex(1);
+        setLoading(false);
+      
       }).catch((error)=>{
         alert(error.message);
       })
@@ -120,7 +124,10 @@ export default function FlatListHorizontal(props)
             </View>
             <View style ={{flex: 2}}>
               {
-                selectedIndex !== -1 && <Button text={t("button")} onPress={() => executeAction()}/>
+                !loading && <Button text={t("button")} onPress={() => executeAction()}/>
+              }
+              {
+                (loading && selectedIndex !== -1) && <ActivityIndicator  size="small" color="#0000ff"/>
               }
               </View>
             </View>

@@ -25,7 +25,7 @@ i18n
             introduction: "Sharing a memory",
             text1: "{{name}}, did you know that studies show that couples who share positive memories have happier, more resilient relationships?",
             text2: "No doubt, these current times have been a stressful time for many.",
-            text3: "Have a look — what is one positive memory that you will have of your partner from these pandemic times so far?",   
+            text3: "Think back — what is one positive memory that you will have of your partner from these pandemic times so far?",   
             button: "Write my memory",
           },
           Splash: {
