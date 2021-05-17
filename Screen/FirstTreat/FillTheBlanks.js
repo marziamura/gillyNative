@@ -47,23 +47,7 @@ const FillTheBlanks = ({navigation}) => {
     setAnswer(text);
   }
 
-  function saveMessageAsTreat(){
-        let formData = {
-            formId: "00000000001",
-            journey: "Solo",
-            params:"pname=" + name + "&response=" + answer,
-            refParams: "",
-            userId: userInfo.id,
-        };
 
-       return API.graphql(graphqlOperation(mutations.createFormSubmission,{input: formData})).then((data)=>{
-            console.log("Data was saved ", data);
-            return (true)
-          }).catch( error =>{
-            console.log(error);
-            return false;
-          })
-  }
 
   function OnPress(){
     

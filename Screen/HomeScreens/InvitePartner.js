@@ -47,14 +47,23 @@ const FillTheBlanks = ({navigation}) => {
     setAnswer(text);
   }
 
+  function getCoupleId(){
+    var id = Math.random().toString(36).slice(-5);
+    console.log("Couple ID", Math.random().toString(36).slice(-5));
+    return  id;
+  }
+
   function OnPress(){
     
     var data= {
       name: userInfo.userName,
       partnerName: nameOnText, 
-      answer: answer
+      answer: answer,
+      coupleId: getCoupleId()
     };
     
+    var message  = text
+                 + t("code", {code: data.coupleId}) 
 
     var formData = {
       //id: userInfo.id,
@@ -62,17 +71,16 @@ const FillTheBlanks = ({navigation}) => {
       journey: "Solo",
       userId: userInfo.id,
       createdAt: new Date().toISOString(),
-      params: "partnerName=" + data.partnerName + "&message=" + t("text1", {who: nameOnText, what: answer})
+      params: "partnerName=" + data.partnerName + "&message=" + message
     };
 
-    console.log("FillTheBlanks OnPress", data);
-    store.dispatch(actionUpdateMessage(store.getState().messageInABottle, [data]));
+  /*  store.dispatch(actionUpdateMessage(store.getState().messageInABottle, [data]));
     API.graphql(graphqlOperation(mutations.createFormSubmission, {input: formData})).then((form)=>{
-      console.log("Invite message bottle saved on DB ", form);  
+      console.log("Invite partner message saved on DB ", form);  
     }).catch((error)=>{
       console.log("error saving invite message  on gilly's db ", error);
-    });
-    navigation.push("HomeScreen");
+    });*/
+    alert(message);
   }
 
   

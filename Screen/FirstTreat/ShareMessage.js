@@ -24,6 +24,7 @@ import {
 const ShareMessage = ({navigation}) => {
   const { t } = useTranslation('ShareMessage');
   const messageData = createStore().getState().messageInABottle[0];
+  const [shared, setShared] = React.useState(false);
   
   const message = t("text2", {who: messageData.partnerName, what:messageData.answer});
   const OnShare =() => { 
@@ -34,7 +35,7 @@ const ShareMessage = ({navigation}) => {
       
       if (result.action === Share.sharedAction) {
         console.log("share done")
-        navigation.replace("HomeNavigationRoutes");
+        setShared(true);
       } else if (result.action === Share.dismissedAction) {
         console.log("share dismissed")
       }
@@ -73,16 +74,25 @@ const ShareMessage = ({navigation}) => {
         </Text>
         </View>
         <View style={[styles.bottom, styles.centerContent]}>
-   
-          <Button
-            onPress={OnShare}
-            text={t('button', {who: messageData.partnerName})}
-            pressableStyle ={{marginBottom: 10}}
-          />
+        {shared && <React.Fragment>
           <Button
             onPress={()=> navigation.replace("HomeNavigationRoutes")}
-            text={t('button2', {who: messageData.partnerName})}
+            text={t('next')}
           />
+          </React.Fragment>
+        }
+        {!shared && <React.Fragment>
+            <Button
+              onPress={OnShare}
+              text={t('button', {who: messageData.partnerName})}
+              pressableStyle ={{marginBottom: 10}}
+            />
+            <Button
+              onPress={()=> navigation.replace("HomeNavigationRoutes")}
+              text={t('button2', {who: messageData.partnerName})}
+            />
+          </React.Fragment>
+        }
         </View>
           
       </View>

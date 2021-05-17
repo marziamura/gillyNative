@@ -90,7 +90,8 @@ i18n
             button: "Send to {{who}}",
             button2: "I don't want to send it to {{who}} now",
             IntroMessage:"{{who}} has shared a special message with you through gilly. Open the link to read it",
-            hint: "{{who}} will not have to install the app to see your message"
+            hint: "{{who}} will not have to install the app to see your message",
+            next: "Next"
           },
           Home:{
             welcome: "Hi, {{who}}",
@@ -122,11 +123,7 @@ i18n
             text: "You are nearly ready to start your gilly experience. To be able to offer you a more personalized experience, we ask you to give us some more information about yourself",
             button: "Next"
           },
-          InvitePartner:{
-            title: "Invite your partner",
-            text: "This cool feature is still under development. How important would it be for your to experience Gilly with your partner?",
-            button: "Go Back To HomeScreen"
-          },
+  
           wellDone:{
             title: "Well Done",
             text: "You have completed the treat {{title}}",
@@ -144,8 +141,8 @@ i18n
           },
           invitePartner:{
             title:"Invite {{who}} to join you on Gilly",
-            text1: "Gilly is better together, send {{who}} a personalized message",
-            text2: "Bobobobboboboobobobbobbbooboboboobob",
+            text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner,",
+            code: " enter this code when asked {{code}}",
             button: "Send invite",
             partnerName: "Your partner's name",
             suggestion: "a nice message",
