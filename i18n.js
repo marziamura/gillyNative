@@ -69,7 +69,8 @@ i18n
             text: "",
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still enjoy our treats",
             button: "Next",
-            PartnerName: "What's your partner's name?"
+            PartnerName: "What's your partner's name?",
+            NameSuggestion: "You can also use a nickname ;)"
           },
           Memory:{
             title: "Fill in the blanks",
@@ -113,7 +114,7 @@ i18n
           },
           infoPartnersName:{
             title: "Why are we asking this?",
-            paragraph: "To give you a better experience. If you don't want to share it it's fine, we are going to use 'Your partner'"
+            paragraph: "To give you a better experience. We are not going to send anything to your partner without you knowing. If you don't want to give a name here, we are just going to say 'Your partner' in the rest of the app"
           },
           Welcome:{
             title: "Welcome to Gilly",
@@ -139,7 +140,17 @@ i18n
             selectMood:"Select a mood above",
             treatNotFound: "Sorry, no more treats available for this mood",
             button: "Open treat"
-          }
+          },
+          invitePartner:{
+            title:"Invite {{who}} to join you on Gilly",
+            text1: "Gilly is better together, send {{who}} a personalized message",
+            text2: "Bobobobboboboobobobbobbbooboboboobob",
+            button: "Send invite",
+            partnerName: "Your partner's name",
+            suggestion: "a nice message",
+            labelMessage: "Your message",
+            labelName: "Your partner's name, or nickname ;)",
+          },
 
       
         },

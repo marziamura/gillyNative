@@ -13,6 +13,7 @@ import createStore from '../../state/store';
 import Button from '../Components/Button';
 import actionSetUserInfo from '../../state/actionSetUserInfo'
 import {updateUserInfo} from '../../state/userInfo'
+import * as Fonts from '../Style/Fonts'
 
 
 
@@ -20,8 +21,10 @@ import {
   View,
   Pressable,
   TextInput,
-  SafeAreaView,
-  StyleSheet
+  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform
 } from 'react-native';
 
 console.log("Loading File RelationshipQuestion");
@@ -72,17 +75,25 @@ const RelationshipQuestion = (props) => {
   
   return (
   <Background>
+  <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+         flex: 1,
+         alignContent: 'center',
+    }}>
+       <KeyboardAvoidingView enabled
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={[styles.container]}
+            
+        >
  
-   <View style={styles.container}>
-     <View style={styles.topView}>
+     
         <View style={styles.textView}>
    
             <Text style={styles.title}>
                 {t("title")}
             </Text>
-            <Text style={styles.text}>
-                {t("text")}
-            </Text>
+            
         </View>
         <View style={styles.buttonView}>
           <Pressable  style={({pressed}) => [
@@ -120,21 +131,23 @@ const RelationshipQuestion = (props) => {
             </Pressable> 
            
         </View>
-        <Text style={styles.disclaimer}> 
+
+      
+      
+      <View style={styles.textinputview}>
+      <Text style={styles.disclaimer}> 
                 {disclaimer}
-        </Text>
-       
-      </View>
-      {pressedYes && <View style={styles.textinputview}>
+      </Text>
+      {pressedYes && <React.Fragment>
                             <Text> {t("PartnerName")}</Text>
-                      <View style={{flexDirection: "row",  justifyContent:"center", alignContent:"center"}}>
+                      <View style={styles.row}>
                             <View style={{flex: 5}}>
                                
-                                    <TextInput
+                              <TextInput
                                     style={styles.textInput}
                                     label={t("PartnerName")}
                                     onChangeText={OnChangeName}
-                                    placeholder={t("PartnerName")}
+                                    placeholder={t("NameSuggestion")}
                                     value={name}
                                   />
                               </View>
@@ -148,8 +161,9 @@ const RelationshipQuestion = (props) => {
                               />
                             </View>    
                         </View>
-                    </View>
+            </React.Fragment>
       }
+      </View>
        <View style={styles.bottomView}>
          <Button
              onPress={onPress}
@@ -158,8 +172,9 @@ const RelationshipQuestion = (props) => {
          
         </View>
         { infoDialogOpen ? <InfoDialog text={"infoPartnersName"} callback={closeInfoDialog}/> : null}
-    </View>
-
+  
+    </KeyboardAvoidingView>
+    </ScrollView>
    </Background>
   
   );
@@ -173,22 +188,21 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
-  topView:{
-      flex: 4,
-      width: '100%',
-      margin: 10,
-  },
+
   textView: {
-    width: '90%', 
+    padding: 10,
     flex: 1,
+    justifyContent: 'center',
   },
   buttonView: {
     width: '60%',
     flex: 1,
+    justifyContent: 'flex-end',
+    marginLeft: 10
   },
 
   bottomView: {
-    flex: 2,
+    flex: 1,
     width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -209,34 +223,15 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     borderWidth: 1
   },
-  nextButton:{
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '80%',
-    height: 40,
-    borderColor: colors.border,
-    borderRadius: 24,
-    borderWidth: 1
-  },
-  button:{
-     backgroundColor: colors.buttonBackground,
-     borderColor: colors.border,
-     color: colors.buttonText,
-     fontSize: 15,
-     fontWeight: "500",
-  },
 
   title: {
-    position: 'absolute',
     width: '90%',
-    left:   10,
     fontStyle: 'normal',
-    fontWeight: "800",
-    fontSize: 36,
-    lineHeight: 40,
-    marginTop: 10,
-   
+    fontWeight: Fonts.titleWeight,
+    fontSize:  Fonts.titleSize,
+
   },
+
   text: {
     position: 'absolute',
     width: '90%',
@@ -262,13 +257,21 @@ const styles = StyleSheet.create({
  textInput:{
        borderWidth:1,
        borderRadius: 10,
-       height: 40,
+       height: "100%",
        borderColor: colors.border,
+       padding: 10, 
  },
  textinputview:{
-    flex:1,
+    flex:2,
     width: "80%",
     padding: 10,   
+    justifyContent:"center", 
   },
+  row:{
+    flexDirection: "row", 
+  ///  justifyContent:"center", 
+    alignItems:"center",
+    height: "30%"
+  }
   
 });
