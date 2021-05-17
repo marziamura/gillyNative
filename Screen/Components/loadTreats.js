@@ -9,6 +9,7 @@ import createStore from '../../state/store';
 import actionSetTreatData from '../../state/actionSetTreatData';
 import { useTranslation } from 'react-i18next';
 import treatData from '../../HardCodedData/TreatData'
+import * as Fonts from "../Style/Fonts"
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
@@ -113,9 +114,9 @@ export default function FlatListHorizontal(props)
                 data={displayData}
                 renderItem={_renderItem}
                 pagingEnabled={true}
-              // keyExtractor={(item)=>{item.title}}
-                style={{width: "100%"}}
-                //ItemSeparatorComponent={() => <View style={{margin: 4,  backgroundColor: 'red'}}/>}
+              // keyExtractor={(item)=>{item.title}} 
+            
+                ItemSeparatorComponent={() => <View style={{margin: 10}}/>}
               />
             </View>
             <View style ={styles.description}>
@@ -137,14 +138,65 @@ export default function FlatListHorizontal(props)
 
 
 
-const styles = StyleSheet.create({
+const styles3 = StyleSheet.create({
+    container: {
+      flex: 1, 
+      width: "100%",
+  
+    },
+    carousel:{
+      flex: 1,
+   },
+
+    title:{
+      fontSize: Fonts.smallSize,
+        marginTop: 0, 
+        textAlign: "center",
+    },
+  
+    description:{
+      flex:1,
+      flexDirection: "row",
+      flexWrap: 'wrap',
+      marginTop: 5
+    },
+
+    textSmall:{
+      fontSize: Fonts.smallSize,
+      justifyContent: 'center',
+    },
+    subTitle:{
+        fontSize: Fonts.smallSize,
+        marginTop: 20
+    },
+
+    listElement:{
+      flex: 1, 
+      backgroundColor: colors.cards,
+      width: SCREEN_WIDTH / 2,
+      borderRadius: 15,
+      marginHorizontal: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    pressable:{
+      width: SCREEN_WIDTH / 2,
+      height: "100%",
+      marginHorizontal: 10,
+      borderRadius: 24,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+
+  });
+  const styles = StyleSheet.create({
     container: {
       flex: 1, 
       width: "100%"
     },
 
     title:{
-        fontSize: 20,
+        fontSize: Fonts.smallSize,
         marginTop: 0, 
         textAlign: "center",
     },
@@ -159,24 +211,17 @@ const styles = StyleSheet.create({
       marginTop: 5
     },
     textSmall:{
-      fontSize: 20,
+      fontSize: Fonts.smallSize,
       justifyContent: 'center',
     },
     subTitle:{
-        fontSize: 20,
+        fontSize: Fonts.smallSize,
         marginTop: 20
-    },
-    row:{
-      flex: 1,
-      flexDirection: "row",
-      marginTop: 5
     },
     listElement:{
       flex: 1, 
       backgroundColor: colors.cards,
       width: SCREEN_WIDTH / 2,
-      //height: "100%",
-      //height:viewHeight,
       marginHorizontal: 10,
       borderRadius: 15,
       alignItems: 'center',
@@ -193,4 +238,5 @@ const styles = StyleSheet.create({
     }
 
   });
+  
   

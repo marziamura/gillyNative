@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
 import Button from './Button'
-import * as colors from '../Style/Style'
+import * as colors from '../Style/Style';
+import * as Fonts from "../Style/Fonts"
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     },
 
     title:{
-        fontSize: 20,
+        fontSize: Fonts.smallSize,
         marginTop: 0, 
         textAlign: "center",
     },
@@ -110,24 +111,17 @@ const styles = StyleSheet.create({
       marginTop: 5
     },
     textSmall:{
-      fontSize: 20,
+      fontSize: Fonts.smallSize,
       justifyContent: 'center',
     },
     subTitle:{
-        fontSize: 20,
+        fontSize: Fonts.smallSize,
         marginTop: 20
-    },
-    row:{
-      flex: 1,
-      flexDirection: "row",
-      marginTop: 5
     },
     listElement:{
       flex: 1, 
       backgroundColor: colors.cards,
       width: SCREEN_WIDTH / 2,
-      //height: "100%",
-      //height:viewHeight,
       marginHorizontal: 10,
       borderRadius: 15,
       alignItems: 'center',
