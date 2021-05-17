@@ -33,6 +33,7 @@ const RelationshipQuestion = (props) => {
   console.log("Loading RelationshipQuestion");
   const { t } = useTranslation("About4");
   const [disclaimer, setDisclaimerText] = React.useState("");
+  const [yesText, setYesText] = React.useState("");
   const [pressedYes, setPressedYes] = React.useState(false);
   const [pressedNo, setPressedNo] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -106,6 +107,7 @@ const RelationshipQuestion = (props) => {
                 setPressedNo(false)
                 setPressedYes(true)
                 setDisclaimerText("");
+                setYesText(t("yesText"));
               }}
               >
                 <Text style={styles.buttontext}> 
@@ -123,6 +125,7 @@ const RelationshipQuestion = (props) => {
                 setPressedNo(true);
                 setPressedYes(false);
                 setDisclaimerText(t("disclaimer"));
+                setYesText(t(""));
               }}
               >
                 <Text style={styles.buttontext}> 
@@ -138,8 +141,11 @@ const RelationshipQuestion = (props) => {
       <Text style={styles.disclaimer}> 
                 {disclaimer}
       </Text>
+      <Text style={styles.yesText}> 
+                {yesText}
+      </Text>
       {pressedYes && <React.Fragment>
-                            <Text> {t("PartnerName")}</Text>
+                     <Text style={{includeFontPadding : true}}> {t("PartnerName")}</Text>
                       <View style={styles.row}>
                             <View style={{flex: 5}}>
                                
@@ -254,16 +260,25 @@ const styles = StyleSheet.create({
     color: 'red'
   },
 
+  yesText:{
+    left:   10,
+    fontStyle: 'normal',
+    fontWeight: "500",
+    fontSize: 18,
+    marginBottom: 10
+  },
+
  textInput:{
        borderWidth:1,
        borderRadius: 10,
        height: "100%",
+       fontSize: 20,
        borderColor: colors.border,
        padding: 10, 
  },
  textinputview:{
     flex:2,
-    width: "80%",
+    width: "90%",
     padding: 10,   
     justifyContent:"center", 
   },

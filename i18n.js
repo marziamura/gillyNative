@@ -70,7 +70,8 @@ i18n
             disclaimer: "Please note that Gilly is primarily meant for couples, but you can still enjoy our treats",
             button: "Next",
             PartnerName: "What's your partner's name?",
-            NameSuggestion: "You can also use a nickname ;)"
+            NameSuggestion: "You can also use a nickname ;)",
+            yesText: "Great! If you want, you can enter your partner's name, so that we can use it in the app. Nothing will be shared with your partner without you knowing."
           },
           Memory:{
             title: "Fill in the blanks",
