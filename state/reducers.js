@@ -19,7 +19,8 @@ const user = [{
   lastTreatInJourney: 0,
   pushNotificationToken: "",
   lastActiveDay: 0,
-  partnerName: "Your partner"
+  partnerName: "Your partner",
+  coupleId: null,
 }]
 const loginData =[{
   email: "XXXX",

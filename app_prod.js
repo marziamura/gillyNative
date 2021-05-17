@@ -14,7 +14,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import SplashScreen from './Screen/SplashScreen';
 
-import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
+//import HomeNavigationRoutes from './Screen/HomeNavigationRoutes';
+import HomeNavigationRoutes from './Screen/HomeTabNavigator';
 import FirstTreatNavigationRoutes from './Screen/FirstTreatNavigationRoutes';
 import { Provider } from 'react-redux'
 
