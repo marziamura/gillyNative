@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import HomeScreen from './HomeScreens/HomeScreen';
+import HomeScreenStack from './HomeScreens/HomeScreenStack';
 import Feedback from './HomeScreens/FeedbackForm'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -13,7 +13,7 @@ const Tab = createMaterialBottomTabNavigator();
 function HomeTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen}
+      <Tab.Screen name="Home" component={HomeScreenStack}
       options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (

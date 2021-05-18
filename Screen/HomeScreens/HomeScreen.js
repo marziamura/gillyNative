@@ -78,10 +78,6 @@ const HomeScreen = ({navigation}) => {
             </Dialog>
   }
 
-  function press(){
-    navigation.push("TodaysTreat")
-  };
-
   
   function Divider() {
     return <View style={{height: 1, backgroundColor: colors.header, width: "90%", margin: 5}}/>

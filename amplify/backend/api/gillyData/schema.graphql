@@ -15,7 +15,8 @@ type User  @model @key(fields:["id"]){
   preferences: String,
   partnerName: String,
   pushNotificationToken: String,
-  timeZoneOffset: Int
+  timeZoneOffset: Int,
+  coupleId: String
 }
 
 
@@ -45,7 +46,8 @@ type registeredEmail @model {
   primary: Boolean
 }
 
-type couple @model {
+type couple @model @key(fields:["id"]){
+  id: String!
   partnerAId : String!
   partnerBId : String
 }
