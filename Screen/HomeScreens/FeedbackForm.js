@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: fonts.titleSize,
-   
     color: colors.text,
     justifyContent: "flex-start",
   },

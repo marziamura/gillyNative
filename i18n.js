@@ -156,6 +156,9 @@ i18n
             partner: "Your partner's nickname: {{name}}",
             withPartner: "You are connected with your partner",
             withoutPartner: "You are not connected with your partner",
+          },
+          treat:{
+            button: "exit"
           }
 
       

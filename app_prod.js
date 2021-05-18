@@ -29,6 +29,8 @@ import registerForPushNotificationsAsync from './notifications/pushNotifications
 import * as Notifications from 'expo-notifications';
 import actionSetPushNotificationToken from './state/actionSetPustNotificationToken'
 import { Provider as PaperProvider } from 'react-native-paper';
+import { StatusBar } from 'react-native';
+
 Amplify.configure(config)
 
 const Stack = createStackNavigator();
@@ -72,6 +74,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <StatusBar hidden={true} />
       <PaperProvider>
 
         <NavigationContainer>

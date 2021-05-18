@@ -6,7 +6,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import NavigationDrawerHeader from '../Components/NavigationDrawerHeader';
 import TreatScreen from './TreatScreen';
-import InvitePartner from './InvitePartner';
+import InvitePartner from './InvitePartnerTF';
 import IntimacyProfile from './IntimacyProfile';
 import GeneralFeedback from './FeedbackForm';
 import ExploreJourneys from './ExploreJourneys';
@@ -22,10 +22,9 @@ const HomeScreenStack = ({navigation}) => {
 
   return (
     <Stack.Navigator initialRouteName="HomeScreen"
-    screenOptions={{
+     screenOptions={{
       headerShown: false
-    }}
-    >
+    }}>
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
@@ -34,6 +33,19 @@ const HomeScreenStack = ({navigation}) => {
        <Stack.Screen
         name="TodaysTreat"
         component={TreatScreen}
+        options={{
+          title: 'Treat', //Set Header Title
+          headerLeft: () => (
+             <NavigationDrawerHeader navigationProps={navigation} />
+          ),
+          headerStyle: {
+            backgroundColor: colors.header, //Set Header color
+          },
+          headerTintColor: colors.text, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
       
       />
       <Stack.Screen
@@ -64,7 +76,6 @@ const HomeScreenStack = ({navigation}) => {
        <Stack.Screen
         name="ThankYou"
         component={ThankYou}
-     
       />
     </Stack.Navigator>
   );
