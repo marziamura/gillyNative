@@ -149,7 +149,7 @@ i18n
             labelName: "Your partner's name, or nickname ;)",
           },
           profile:{
-            title: "Hi {{who}}",
+            title: "Hi, {{who}}",
             button: "Logout",
             gender: "Your gender: {{gender}}",
             sex: "Your anatomy: {{sex}}",

@@ -42,6 +42,28 @@ const Profile = ({navigation}) => {
     navigation.replace('AuthNavigationRoutes');
   }
 
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+  
+  function Info(props){
+ 
+    return (
+      <View style={{flexDirection: 'row', justifyContent: "center", alignItems: "center"}}>
+      <View style={{flex: 2}}>
+        <Text style={styles.textDescription}>
+                  {t(props.text)}
+        </Text>
+      </View>
+      <View style={{flex: 1}}>
+        <Text style={styles.textInfo}>
+             {capitalize(props.info)}
+        </Text>
+      </View>  
+    </View>
+    )
+  }
   return (
     <Background>
          <ScrollView
@@ -57,29 +79,21 @@ const Profile = ({navigation}) => {
             
         >
         
-          <View style={[styles.titleview, styles.centerContent]}>
+         <View style={[styles.titleview, styles.centerContent]}>
                 <Text style={styles.title}>
-                {t("title", {who: userInfo.userName})}
-                </Text>
-          </View>
-
-          <View style={[styles.infoView]}>
-                <Text style={styles.textTop}>
-                  {t("gender", {gender: userInfo.gender})}
+                {t("title", {who: capitalize(userInfo.userName)})}
                 </Text>
                 
-          
-                <Text style={styles.textTop}>
-                  {t("sex", {sex: userInfo.sex})}
-                </Text>
-          
-                <Text style={styles.textTop}>
-                  {t("partner", {name: userInfo.partnerName})}
-                </Text>
+         </View>
+         <View style={{flex: 6, width: "90%"}}>
+          <View style={[styles.infoView]}>
+            <Info text="gender" info = {userInfo.gender} />
+            <Info text="sex" info = {userInfo.sex} />
+            <Info text="partner" info = {userInfo.partnerName} />
 
-                <Text style={styles.textBottom}>
+            <Text style={styles.textBottom}>
                   {withPartner}
-                </Text>
+            </Text>
           </View>
 
 
@@ -95,7 +109,7 @@ const Profile = ({navigation}) => {
                 
            </View>
 
-         
+         </View>
        </KeyboardAvoidingView>
        </ScrollView>
     </Background>
@@ -132,7 +146,7 @@ const styles = StyleSheet.create({
 
   bottomview:{
     flex: 1,
-    width: '90%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -147,13 +161,21 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
  
-  textTop: {
+ textDescription : {
    // fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: fonts.normalSize,
     lineHeight: 28,
     color: colors.text,
   },
+  
+  textInfo: {
+     fontFamily: 'Roboto',
+     fontStyle: 'italic',
+     fontSize: fonts.smallSize,
+     lineHeight: 28,
+     color: colors.text,
+   },
 
   textBottom: {
     // fontFamily: 'Roboto',

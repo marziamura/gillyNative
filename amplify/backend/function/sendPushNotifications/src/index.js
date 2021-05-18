@@ -3,6 +3,7 @@ const https = require('https')
 const URL = require('url')
 const AWS = require('aws-sdk'); 
 
+var tableName = process.env.TABLENAME;
 
 let callback = function(response) {
   var str = ''
@@ -15,13 +16,17 @@ let callback = function(response) {
   });
 }
 
+
 async function request(token) {
    
+let resolve = function(r){
+  console.log("RESOLVED");  
+};
     let headers = { 'host': 'exp.host',
                     'accept': 'application/json',
                     'accept-encoding': 'gzip, deflate',
                     'content-type': 'application/json'
-    }
+    };
     let options = {
          host: 'exp.host',
          path: '/--/api/v2/push/send',
@@ -31,19 +36,19 @@ async function request(token) {
     let body = [{
                 "to": token,
                 "sound": "default",
-                "body": "Message from Gilly"
-              }]
- 
+                "body": "A gentle nudge to take time for you & your partner today... Choose a treat and enjoy :)"
+              }];
+    
     return new Promise((resolve, reject) => {
         var req = https.request(options, callback);
         //This is the data we are posting, it needs to be a string or a buffer
         req.write(JSON.stringify(body));
         req.end();
-    })
+    });
 }
 
 let fetchPushNotificationTokens = async function(context){
-    console.log("fetchPushNotificationTokens");
+ 
     const docClient = new AWS.DynamoDB.DocumentClient();
     
     let timestamp = Date.now();
@@ -59,17 +64,17 @@ let fetchPushNotificationTokens = async function(context){
       },
       ProjectionExpression: '#pNT',
       FilterExpression: '#LAD < :d',
-      TableName: 'User-okocdpar6fc7fc7xrcbnjtwt54-dev'
+      TableName: tableName
     };
     let res;
     console.log("fetchPushNotificationTokens 2");
     await docClient.scan(params, function(err, data){
-       console.log("fetchPushNotificationTokens 3");
+ 
       if(err){
-         console.log("fetchPushNotificationTokens error", data);
+ 
        //   context.done('error','reading dynamodb failed: '+err);
       }else{
-          console.log("fetchPushNotificationTokens success", data);
+ 
           res = data;
         //  context.done(null, "OK");
      }
@@ -78,15 +83,28 @@ let fetchPushNotificationTokens = async function(context){
     return res.Items;
 }
 
-
+async function sendRequest(element){
+  
+      await request(element);
+  
+}
 
 exports.handler = async (event, context) => {
   
-    let res =  await fetchPushNotificationTokens(context);
-    res.forEach((element)=>{
-      request[element.pushNotificationToken];
-    })
-    const response = {
+   let res =  await fetchPushNotificationTokens(context);
+  var i;
+   var requestPromises = [];
+  for (i = 0; i < res.length; i++) {
+    var element = res[i];
+    console.log("token ", element.pushNotificationToken);
+    if(element.pushNotificationToken){
+      console.log("sending push notification... ", element.pushNotificationToken);
+      requestPromises.push(request(element.pushNotificationToken));
+    }
+  }
+  
+  await Promise.all(requestPromises);
+  const response = {
         statusCode: 200,
         body: JSON.stringify('Push Notifications Sent'),
     };

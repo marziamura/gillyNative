@@ -3,7 +3,8 @@ import { BottomNavigation, Text } from 'react-native-paper';
 import HomeScreen from './HomeScreens/HomeScreen';
 import Feedback from './HomeScreens/FeedbackForm'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import ProfileScreen from './HomeScreens/Profile'
 
 
@@ -16,7 +17,7 @@ function HomeTabs() {
       options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={26} />
+          <MaterialIcons name="home" color={color} size={26} />
         ),
       }}
        />
@@ -24,7 +25,7 @@ function HomeTabs() {
           options={{
             tabBarLabel: 'Feedback',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="message" color={color} size={26} />
+              <MaterialIcons name="feedback" color={color} size={26} />
             ),
           }}
       />
@@ -32,7 +33,7 @@ function HomeTabs() {
           options={{
             tabBarLabel: 'Profile',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="face" color={color} size={26} />
+              <Ionicons name="person" color={color} size={26} />
             ),
           }}
       />
