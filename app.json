@@ -2,7 +2,7 @@
   "expo": {
     "name": "GillyNative",
     "slug": "GillyNative",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "orientation": "portrait",
     "icon": "./assets/gilly-icon-white.png",
     "splash": {
@@ -19,11 +19,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.getgilly",
-      "buildNumber": "0.0.15"
+      "buildNumber": "0.0.16"
     },
     "android": {
       "package": "com.getgilly.gillyapp",
-      "versionCode": 15,
+      "versionCode": 16,
       "adaptiveIcon": {
         "foregroundImage": "./assets/gilly-icon.png",
 
