@@ -19,7 +19,7 @@ const user = [{
   lastTreatInJourney: 0,
   pushNotificationToken: "",
   lastActiveDay: 0,
-  partnerName: "Your partner",
+  partnerName: "your partner",
   coupleId: null,
 }]
 const loginData =[{
@@ -63,9 +63,10 @@ const userInfo = (state = user, action) => {
       state[0].pushNotificationToken = action.payload.newItem[0].pushNotificationToken || state[0].pushNotificationToken;
       state[0].lastActiveDay=action.payload.newItem[0].lastActiveDay || state[0].lastActiveDay;
       state[0].lastTreatInJourney=action.payload.newItem[0].lastTreatInJourney || state[0].lastTreatInJourney;
+      state[0].coupleId=action.payload.newItem[0].coupleId || state[0].coupleId;
 
       const a = [...state];
- //     console.log("reducer userInfo ", state[0],  state[0].lastTreatInJourney);
+      console.log("reducer userInfo ", state[0],  state[0].coupleId);
     }
 
   return [...state];

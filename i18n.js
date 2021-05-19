@@ -141,17 +141,13 @@ i18n
           },
           invitePartner:{
             title:"Invite {{who}} to join you on Gilly",
-<<<<<<< HEAD
-            text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner,",
-            code: " enter this code when asked {{code}}",
-=======
-            text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner, enter this code when asked {{code}}",
->>>>>>> master
+            text1: "Hi{{who}}, I've tried Gilly and I think you should try it too! To join as my partner, install Gilly from {{link}} and enter this code when asked: ",
             button: "Send invite",
             partnerName: "Your partner's name",
             suggestion: "a nice message",
             labelMessage: "Your message",
             labelName: "Your partner's name, or nickname ;)",
+            intro: "This is the message we will be sending for you:"
           },
           profile:{
             title: "Hi, {{who}}",

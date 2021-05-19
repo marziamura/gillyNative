@@ -6,7 +6,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import NavigationDrawerHeader from '../Components/NavigationDrawerHeader';
 import TreatScreen from './TreatScreen';
-import InvitePartner from './InvitePartnerTF';
+import InvitePartner from './InvitePartner';
 import IntimacyProfile from './IntimacyProfile';
 import GeneralFeedback from './FeedbackForm';
 import ExploreJourneys from './ExploreJourneys';
