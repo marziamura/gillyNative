@@ -30,6 +30,7 @@ const FillTheBlanks = ({navigation}) => {
   const { t } = useTranslation('invitePartner');
   const store = createStore();
   const userInfo = store.getState().userInfo[0];
+  const coupleId = userInfo.coupleId || getCoupleId();
   console.log("userInfo ", userInfo);
   const [name, setName] = React.useState("");
   const [text, setText] = React.useState("");
@@ -59,11 +60,11 @@ const FillTheBlanks = ({navigation}) => {
       name: userInfo.userName,
       partnerName: nameOnText, 
       answer: answer,
-      coupleId: getCoupleId()
+      coupleId: coupleId
     };
     
     var message  = text
-                 + t("code", {code: data.coupleId}) 
+                 + t("code", {code: coupleId}) 
 
     var formData = {
       //id: userInfo.id,

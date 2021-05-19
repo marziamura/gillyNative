@@ -141,14 +141,30 @@ i18n
           },
           invitePartner:{
             title:"Invite {{who}} to join you on Gilly",
+<<<<<<< HEAD
             text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner,",
             code: " enter this code when asked {{code}}",
+=======
+            text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner, enter this code when asked {{code}}",
+>>>>>>> master
             button: "Send invite",
             partnerName: "Your partner's name",
             suggestion: "a nice message",
             labelMessage: "Your message",
             labelName: "Your partner's name, or nickname ;)",
           },
+          profile:{
+            title: "Hi, {{who}}",
+            button: "Logout",
+            gender: "Your gender: {{gender}}",
+            sex: "Your anatomy: {{sex}}",
+            partner: "Your partner's nickname: {{name}}",
+            withPartner: "You are connected with your partner",
+            withoutPartner: "You are not connected with your partner",
+          },
+          treat:{
+            button: "exit"
+          }
 
       
         },

@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import InfoDialog from '../Components/InfoDialog';
 import ChooseTreat from '../Components/loadTreats';
 import * as colors from '../Style/Style'
+import * as fonts from '../Style/Fonts'
 
 
 
@@ -41,6 +42,11 @@ const HomeScreen = ({navigation}) => {
   }
   const openJourneyInfo = () =>{
     setInJourneyInfoDialogOpen(true);
+  }
+
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
   }
 
   function ConsentDialog(props){
@@ -71,10 +77,6 @@ const HomeScreen = ({navigation}) => {
               </Dialog.Actions>
             </Dialog>
   }
-
-  function press(){
-    navigation.push("TodaysTreat")
-  };
 
   
   function Divider() {
@@ -120,10 +122,11 @@ const HomeScreen = ({navigation}) => {
   <Background>
     <SafeAreaView style={{flex: 1}}>
     <View style={styles.container}>
-        <View style={[styles.welcomeView, styles.viewPlacement]}>
-        <Text style={styles.title}> {t("welcome", {who: user.userName} )}</Text>
         
+        <View style={[styles.welcomeView, styles.viewPlacement]}>
+           <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
+        <View style={{flex: 6}}>
         <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
           <TouchableHighlight 
             activeOpacity={0.6}
@@ -156,7 +159,7 @@ const HomeScreen = ({navigation}) => {
             </Text>
             </Pressable>
         </View>
-       
+       </View>
       </View>
    
         { dialogOpen ? <ConsentDialog /> : null}
@@ -180,11 +183,13 @@ const styles = StyleSheet.create({
     borderRadius: viewBorderRadius,
   },
   welcomeView:{
-    flex:0.5,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   }, 
   inviteView:{
     flex:0.5,
-    marginTop: margin
+    justifyContent: "center"
   },
   carouselView:{
     flex:2,
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   intimacyProfileView:{
-    flex:1,
+    flex:0.5,
     backgroundColor: colors.cards2,
     marginTop: margin,
     marginBottom: margin
@@ -233,8 +238,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   title: {
-    fontSize: 24,
-    justifySelf: "center",
+    //fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: "800",
+    fontSize: fonts.titleSize,
+   
+    color: colors.text,
+    justifyContent: "flex-start",
   },
   titleTreat: {
     fontSize: 25,
@@ -242,10 +252,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  title:{
-    fontSize: 25,
-    marginTop: 10
-  },
 
 journeyTitle:{
  // alignSelf: "center",

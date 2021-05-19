@@ -3,6 +3,7 @@ const https = require('https')
 const URL = require('url')
 const AWS = require('aws-sdk'); 
 
+var tableName = process.env.TABLENAME;
 
 let callback = function(response) {
   var str = ''
@@ -15,7 +16,6 @@ let callback = function(response) {
   });
 }
 
-var tableName = process.env.TABLENAME;
 async function request(token) {
    
 let resolve = function(r){

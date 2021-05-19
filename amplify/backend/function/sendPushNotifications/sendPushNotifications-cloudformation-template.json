@@ -70,7 +70,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-gilly-dev-103945-deployment",
-          "S3Key": "amplify-builds/sendPushNotifications-313962796e61512f4b47-build.zip"
+          "S3Key": "amplify-builds/sendPushNotifications-79346649664f41523144-build.zip"
         }
       }
     },
