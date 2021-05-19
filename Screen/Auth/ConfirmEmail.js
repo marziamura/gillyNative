@@ -24,7 +24,7 @@ import {
 
 
 const ConfirmEmail = ({navigation,dispatch}) => {
-  const userInfo = createStore().getState().userInfo[0];
+  const userInfo = createStore().getState().loginData[0];
   const [userEmail, setUserEmail] = useState(userInfo.email);
   const [confirmCode, setUserPassword] = useState();
   const [errortext, setErrortext] = useState('');

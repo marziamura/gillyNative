@@ -71,9 +71,9 @@ const InvitePartner = ({navigation}) => {
       message: message
     }).then((result) => {
       console.log("share result", result)
-    if (result.action === Share.sharedAction) {
+    if (result && result.action === Share.sharedAction) {
       console.log("share done")
-    } else if (result.action === Share.dismissedAction) {
+    } else if (result && result.action === Share.dismissedAction) {
       console.log("share dismissed")
     }
     }).catch( (error) => {

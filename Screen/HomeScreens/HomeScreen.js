@@ -84,13 +84,13 @@ const HomeScreen = ({navigation}) => {
   }
 
   
-  React.useEffect(()=>{
+/*  React.useEffect(()=>{
     if(updateInfo){
       updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
       .catch(error=> console.log(error))
     }
   }, [updateInfo])
-  
+  */
 
 
   function closeInfoDialog(){

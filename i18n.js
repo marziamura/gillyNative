@@ -71,7 +71,9 @@ i18n
             button: "Next",
             PartnerName: "What's your partner's name?",
             NameSuggestion: "You can also use a nickname ;)",
-            yesText: "Great! If you want, you can enter your partner's name, so that we can use it in the app. Nothing will be shared with your partner without you knowing."
+            yesText: "Great! If you want, you can enter your partner's name, so that we can use it in your app. Nothing will be shared with your partner without you knowing.",
+            coupleCode: "If you have received a code from your partner, enter it here:",
+            partnerCode: "Code"
           },
           Memory:{
             title: "Fill in the blanks",
@@ -155,7 +157,7 @@ i18n
             gender: "Your gender: {{gender}}",
             sex: "Your anatomy: {{sex}}",
             partner: "Your partner's nickname: {{name}}",
-            withPartner: "You are connected with your partner",
+            withPartner: "You are connected with {{who}}",
             withoutPartner: "You are not connected with your partner",
           },
           treat:{

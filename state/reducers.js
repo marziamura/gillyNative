@@ -1,15 +1,19 @@
 import { combineReducers } from 'redux'
 
-import {SET_USER_INFO} from './messages'
-import {UPDATE_MESSAGE}  from './messages'
-import {SET_TREAT}  from './messages'
-import {SET_PUSH_NOTIFICATION_PREF} from './messages'
+import {
+  SET_USER_INFO, 
+  SET_TREAT,
+  LOGIN_DATA,
+  UPDATE_MESSAGE,
+  SET_PUSH_NOTIFICATION_PREF
+} from './messages'
+
 
 
 const user = [{
   id: "xxx",
-  partnerID: "zzzz",
-  userName: "xxxxx",
+  partnerID: null,
+  userName: null,
   journey: "Solo",
   sex: "xxx",
   gender: "xxx",
@@ -22,9 +26,9 @@ const user = [{
   partnerName: "your partner",
   coupleId: null,
 }]
-const loginData =[{
-  email: "XXXX",
-  password:"YYYY"
+const login =[{
+  email: null,
+  password: null
 }]
 
 const message =[{
@@ -72,6 +76,18 @@ const userInfo = (state = user, action) => {
   return [...state];
 }
 
+const loginData = (state = login, action) => {
+  //console.log("call to reducer messageInABottle", state[0], action.payload);
+  switch (action.type) {
+    case LOGIN_DATA:
+      state[0].email = action.payload.newItem[0].email;
+      state[0].password = action.payload.newItem[0].password;
+      return [...state,];
+    default:
+      return  state; 
+  }
+}
+
 const messageInABottle = (state = message, action) => {
   //console.log("call to reducer messageInABottle", state[0], action.payload);
   switch (action.type) {
@@ -111,6 +127,6 @@ const pushNotificationPreferences = (state = pushPreferences, action) => {
   }
 }
 
-const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat, pushNotificationPreferences});
+const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat, pushNotificationPreferences, loginData});
 
 export default rootReducer;

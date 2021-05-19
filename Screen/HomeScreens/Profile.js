@@ -33,7 +33,7 @@ const Profile = ({navigation}) => {
   const store = createStore();
   const userInfo = store.getState().userInfo[0];
   const coupleId = userInfo.coupleId;
-  const withPartner = coupleId ? t("withPartner") : t("withoutPartner");
+  const withPartner = coupleId ? t("withPartner", {who: userInfo.partnerName}) : t("withoutPartner");
   console.log("userInfo ", userInfo);
   
 

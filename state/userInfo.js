@@ -86,11 +86,10 @@ export function getUserInfo () {
     
         return null;
       }
-      
+       
 
       user.registered = true;
-      user.userName = currentUser.userName;
-
+    
       store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
       var PNToken = user.pushNotificationToken || "";
       console.log("User with updated journey info", user, " token#", PNToken,"#");
@@ -113,30 +112,15 @@ export function getUserInfo () {
     if(info){
       currentInfo = {...info};
     }else{
-   
-      currentInfo.id=storedInfo.id
-      currentInfo.partnerID=storedInfo.partnerID;
-      currentInfo.userName=storedInfo.userName;
-      currentInfo.journey=storedInfo.journey;
-      currentInfo.sex=storedInfo.sex;
-      currentInfo.gender=storedInfo.gender;
-      currentInfo.partnerID=storedInfo.partnerID;
-      currentInfo.email=storedInfo.email;
-      currentInfo.password=storedInfo.password;
-      currentInfo.primary=storedInfo.primary;
-      currentInfo.registered=storedInfo.registered;
-    
-      if(pushPreferences.consent === "OK"){
-        currentInfo.pushNotificationToken= storedInfo.pushNotificationToken;
-      }
+      currentInfo = {...storedInfo};
       if(pushPreferences.consent === "Deny"){
-        currentInfo.pushNotificationToken= "";
+        currentInfo.pushNotificationToken= "Deny";
       }
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
     store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
-    currentInfo.userName = "xxx";
-    currentInfo.email = "xxx";
+    currentInfo.userName = "";
+    currentInfo.email = "";
     delete currentInfo.password;
     delete currentInfo.lastTreatInJourney;
     delete currentInfo.todaysTreatDone;
@@ -155,6 +139,7 @@ export function getUserInfo () {
    }
 
  export function saveUserInfo(info){
+  console.log("SAVE USERINFO", info);
     let currentInfo = userInfo(info);
     var dt = new Date();
     currentInfo.timeZoneOffset = dt.getTimezoneOffset();
