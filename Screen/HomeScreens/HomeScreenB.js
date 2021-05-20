@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Text, Pressable, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Text, Pressable} from 'react-native';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
@@ -7,7 +7,6 @@ import { updateUserInfo } from '../../state/userInfo';
 import { Paragraph, Dialog} from 'react-native-paper';
 import { Button as RNPButton} from 'react-native-paper';
 import actionSetPushNotificationPreferences from '../../state/actionSetPushNotificationPreferences'
-import ExploreJourneys from '../Components/exploreJourneys'
 
 import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -15,9 +14,6 @@ import InfoDialog from '../Components/InfoDialog';
 import ChooseTreat from '../Components/exploreTreats';
 import * as colors from '../Style/Style'
 import * as fonts from '../Style/Fonts'
-
-
-
 
 
 const viewWidth= '90%';
@@ -31,7 +27,8 @@ const HomeScreen = ({navigation}) => {
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
   console.log("Push notification preferences ", pushNotificationPreferences)
-  const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None");
+ // const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None");
+ const [dialogOpen, setDialogOpen] = React.useState(false);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);
   const [updateInfo, setUpdateInfo] = React.useState(false);
   const [journeyInfoDialogOpen, setInJourneyInfoDialogOpen] = React.useState(false);
@@ -99,10 +96,11 @@ const HomeScreen = ({navigation}) => {
   }
 
   function ViewTitle(props){
-   return <View style={{flex: 1, width: viewWidth}}>
+    const textStyle = props.enabled ? styles.textEnabled : styles.textDisabled;
+   return <View style={{flex: 0.5, width: viewWidth}}>
     <View style={[styles.centerContent,{flexDirection: "row"}]}>
       <View style={{flex: 5 }}>
-      <Text style={styles.journeyTitle}>
+      <Text style={textStyle}>
         {props.text}
       </Text>
       </View>
@@ -126,29 +124,20 @@ const HomeScreen = ({navigation}) => {
         <View style={[styles.welcomeView, styles.viewPlacement]}>
            <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
-        <View style={{flex: 6}}>
-        <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
-          <TouchableHighlight 
-            activeOpacity={0.6}
-            underlayColor="#DDDDDD"
-            onPress={()=>{navigation.push("InvitePartner")}}>
-            <Text style={styles.inviteText}>
-             {t("invite")}
-            </Text>
-          </TouchableHighlight>
-        </View>
+        <View style={{flex: 9}}>
+    
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
-            <ViewTitle text={t("nextTreat")} onPress={openTreatInfo}/>
-            <View style={{flex: 3, marginTop: 2}}>  
-                <ChooseTreat navigation={navigation} user={user}/>
+            <ViewTitle text={t("nextTreat")} onPress={openTreatInfo} enabled={true}/>
+            <View style={{flex: 4, marginTop: 2}}>  
+                <ChooseTreat navigation={navigation} user={user} enabled={true}/>
             </View>
         </View>
         <Divider  />
         <View style={[styles.carouselView, styles.viewPlacement]}>
-          <ViewTitle text={t("exploreJourneys")} onPress={openJourneyInfo}/>
+          <ViewTitle text={t("withPartner")} onPress={openJourneyInfo} enabled={false}/>
           <View style={{flex: 3, marginTop: 2}}>
-            <ExploreJourneys navigation={navigation}/>
+              <ChooseTreat navigation={navigation} user={user} enabled={false} partnerName={user.partnerName}/>
           </View>
         </View>
         <Divider />
@@ -185,12 +174,9 @@ const styles = StyleSheet.create({
   welcomeView:{
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   }, 
-  inviteView:{
-    flex:0.5,
-    justifyContent: "center"
-  },
+ 
   carouselView:{
     flex:2,
     marginTop: margin,
@@ -202,7 +188,7 @@ const styles = StyleSheet.create({
   },
   intimacyProfileView:{
     flex:0.5,
-    backgroundColor: colors.cards2,
+    backgroundColor: colors.cards,
     marginTop: margin,
     marginBottom: margin
   },
@@ -224,17 +210,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
-  
-  inviteText: {
-    color: "blue",
-    textDecorationLine: 'underline',
-    fontSize: 15,
-    justifyContent: "center",
-    textAlign: "center",
-  },
 
   header: {
-    fontSize: 25,
+    fontSize: fonts.headerSize,
     backgroundColor: "#fff"
   },
   title: {
@@ -247,19 +225,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   titleTreat: {
-    fontSize: 25,
+    fontSize: fonts.titleSize,
     marginLeft: 10,
     padding: 10,
   },
 
 
-journeyTitle:{
+textEnabled:{
  // alignSelf: "center",
-  color: "black",
-  fontSize: 23,
+  color: colors.textEnabled,
+  fontSize: fonts.normalSize,
   justifyContent: "center",
   
-}
+},
+textDisabled:{
+  // alignSelf: "center",
+   color: colors.textDisabled,
+   fontSize: fonts.normalSize,
+   justifyContent: "center",
+   
+ }
 });
 
 export default HomeScreen;

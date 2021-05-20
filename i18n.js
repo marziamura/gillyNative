@@ -95,10 +95,10 @@ i18n
           },
           Home:{
             welcome: "Hi, {{who}}",
-            invite: "Gilly is better in pairs! Invite your partner to join",
-            nextTreat: "Choose your treat:",
+            nextTreat: "Discover on your own:",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys:",
+            withPartner: "Discover with your partner:",
             completeProfile: "Discover your intimacy profile",
           },
           Notifications:{
@@ -137,7 +137,8 @@ i18n
           selectTreat:{
             selectMood:"Select a mood above",
             treatNotFound: "Sorry, no more treats available for this mood",
-            button: "Open treat"
+            button: "Open treat",
+            invite: "Invite {{who}} to unlock!",
           },
           invitePartner:{
             title:"Invite {{who}} to join you on Gilly",

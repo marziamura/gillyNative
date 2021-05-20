@@ -11,7 +11,7 @@ import IntimacyProfile from './IntimacyProfile';
 import GeneralFeedback from './FeedbackForm';
 import ExploreJourneys from './ExploreJourneys';
 import TreatDone from './TreatDone';
-import HomeScreen from './HomeScreen';
+import HomeScreen from './HomeScreenB';
 import ThankYou from './Thankyou';
 import * as colors from '../Style/Style'
 
