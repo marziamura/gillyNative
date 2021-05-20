@@ -97,7 +97,6 @@ i18n
           },
           Home:{
             welcome: "Hi, {{who}}",
-            invite: "Gilly is better in pairs! Invite your partner to join",
             nextTreat: "Choose your treat:",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys:",
@@ -159,6 +158,9 @@ i18n
             partner: "Your partner's nickname: {{name}}",
             withPartner: "You are connected with {{who}}",
             withoutPartner: "You are not connected with your partner",
+            pendingInvite: "{{who}} has not accepted your invite yet.",
+            invite: "Gilly is better in pairs! Invite your partner to join",
+            inviteAgain: "Send invite again",
           },
           treat:{
             button: "exit"

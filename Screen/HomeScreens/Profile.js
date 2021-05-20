@@ -24,6 +24,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  TouchableHighlight
 } from 'react-native';
 
 
@@ -33,8 +34,20 @@ const Profile = ({navigation}) => {
   const store = createStore();
   const userInfo = store.getState().userInfo[0];
   const coupleId = userInfo.coupleId;
-  const withPartner = coupleId ? t("withPartner", {who: userInfo.partnerName}) : t("withoutPartner");
-  console.log("userInfo ", userInfo);
+  var withPartner = "";
+  var inviteText = null;
+ 
+  if(coupleId){
+   if(userInfo.partnerID){
+      withPartner = t("withPartner", {who: userInfo.partnerName}); 
+    }else{
+      withPartner = t("pendingInvite");
+      inviteText =t("inviteAgain")
+    }
+  }else{
+    withPartner = t("withoutPartner");
+    inviteText= t("invite");
+  }
   
 
   function OnPress(){
@@ -94,6 +107,18 @@ const Profile = ({navigation}) => {
             <Text style={styles.textBottom}>
                   {withPartner}
             </Text>
+            {inviteText &&
+              <View style={[styles.centerContent]}>
+                <TouchableHighlight 
+                  activeOpacity={0.6}
+                  underlayColor="#DDDDDD"
+                  onPress={()=>{navigation.push("InvitePartner")}}>
+                  <Text style={styles.inviteText}>
+                    {inviteText}
+                  </Text>
+                </TouchableHighlight>
+              </View>
+            }
           </View>
 
 
@@ -131,17 +156,6 @@ const styles = StyleSheet.create({
     flex:3,
     width: "90%",
     justifyContent: "space-between"
-  },
-  textinputviewname: {
-    flex: 1,
-    width: '90%',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  textinputviewmessage: {
-    flex: 2,
-    width: '90%',
-    justifyContent: 'flex-start',
   },
 
   bottomview:{
@@ -186,24 +200,18 @@ const styles = StyleSheet.create({
      fontWeight: "500",
    },
 
-   
-  inputStyle: {
-    //flex: 1,
-    height: '40%',
-    color: colors.text,
-    width: "100%",
- 
-    paddingLeft: 15,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: colors.border,
-  },
-
   centerContent:{
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center"
 
-  }
+  }, 
+  inviteText: {
+    color: "blue",
+    textDecorationLine: 'underline',
+    fontSize: 15,
+    justifyContent: "center",
+    textAlign: "center",
+  },
 
 });
