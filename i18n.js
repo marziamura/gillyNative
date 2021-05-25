@@ -100,6 +100,8 @@ i18n
             exploreJourneys: "Explore Journeys:",
             withPartner: "Discover with your partner:",
             completeProfile: "Discover your intimacy profile",
+            status: "You have completed {{nb}} treats on your {{journey}} journey",
+            openNextTreat: "Open Next Treat"
           },
           Notifications:{
             title: "Push Notifications",
@@ -135,8 +137,8 @@ i18n
             button: "Return to Home Screen"
           },
           selectTreat:{
-            selectMood:"Select a mood above",
-            treatNotFound: "Sorry, no more treats available for this mood",
+            selectMood:"Select an intention above",
+            treatNotFound: "Sorry, no more treats available for this intention",
             button: "Open treat",
             invite: "Invite {{who}} to unlock!",
           },

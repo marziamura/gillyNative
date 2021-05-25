@@ -14,11 +14,13 @@ import InfoDialog from '../Components/InfoDialog';
 import ChooseTreat from '../Components/exploreTreats';
 import * as colors from '../Style/Style'
 import * as fonts from '../Style/Fonts'
+import JourneyInfo from '../Components/JourneyStatus'
+import * as params from '../Style/Params'
 
 
-const viewWidth= '90%';
-const margin= 5;
-const viewBorderRadius = 20;
+const viewWidth= params.viewWidth;
+const margin= params.margin;
+const viewBorderRadius = params.viewBorderRadius;
 
 
 const HomeScreen = ({navigation}) => {
@@ -125,7 +127,7 @@ const HomeScreen = ({navigation}) => {
            <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
         <View style={{flex: 9}}>
-    
+            <JourneyInfo user={user}/>
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo} enabled={true}/>
@@ -192,29 +194,14 @@ const styles = StyleSheet.create({
     marginTop: margin,
     marginBottom: margin
   },
-  moodCheckView:{
-    flex:1,
-    backgroundColor: 'orange',
-  },
 
-  button: {
-    width: '100%',
-    textAlign: "center",
-    justifyContent: "center",
-    borderRadius: 24,
-    height: 60,
-  },
   btnText: {
-    color: "black",
+    color: colors.text,
     fontSize: 20,
     justifyContent: "center",
     textAlign: "center",
   },
 
-  header: {
-    fontSize: fonts.headerSize,
-    backgroundColor: "#fff"
-  },
   title: {
     //fontFamily: 'Roboto',
     fontStyle: 'normal',

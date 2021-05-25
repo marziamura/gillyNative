@@ -4,6 +4,7 @@ import { View, StyleSheet, FlatList, Text, Pressable, Dimensions, ActivityIndica
 import Button from './Button'
 import * as colors from '../Style/Style'
 import { getSubmissionsInJourney } from '../../state/userInfo';
+import {getFormId} from '../../state/getUserInfo'
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import createStore from '../../state/store';
@@ -58,7 +59,7 @@ export default function FlatListHorizontal(props)
       : colors.cards
       }
     }else{
-      color=colors.carddisabled;
+      color = {backgroundColor: colors.carddisabled}
     }
   
     return color;
@@ -72,48 +73,37 @@ export default function FlatListHorizontal(props)
 
   }
  
+  function formIdCallback(tdata){
+    console.log("formId Callback ", tdata);
+    if(!tdata.formId){
+      setDescription(t("treatNotFound"));
+      return;
+    }
+    var fId = tdata.formId; 
+    console.log("getFormId ", fId,  tdata.description);
+    let  currentData={
+      id: fId,
+      description:  tdata.description,
+      journey: tdata.journey,
+    }
+    setDescription(currentData.description);
+    store.dispatch(actionSetTreatData([currentData])); 
+    setLoading(false);
+  
+  }
+
   const getTreatInfo = (selected) =>{
     console.log("Selected category: ", selected)
     var journey = displayData[selected].journey;
     console.log("selected journey, ", selected, journey);
-    var currentData;
     getSubmissionsInJourney(user, journey).then((jdata)=>{
-      console.log(jdata);
-      
+      console.log(jdata);    
       var submissions = jdata.data.listFormSubmissions.items;
       var nbOfSubmissions = submissions.length;
-      getFormId(nbOfSubmissions, journey).then((tdata)=>{
-        console.log(tdata);
-        if(!tdata.data.getFormId){
-          setDescription(t("treatNotFound"));
-          return;
-        }
-        var fId = tdata.data.getFormId.formId; 
-        console.log("getFormId ", fId,  tdata.data.getFormId.description);
-        currentData={
-          id: fId,
-          description:  tdata.data.getFormId.description,
-          journey: journey,
-        }
-        setDescription(currentData.description);
-        store.dispatch(actionSetTreatData([currentData])); 
-        setLoading(false);
-      
-      }).catch((error)=>{
-        alert(error.message);
-      })
-    }).catch((error)=>{
-      alert(error.message);
-    })
-  }
+      getFormId(nbOfSubmissions, journey, formIdCallback, (error)=>{alert(error.message)});
+    }).catch((error)=>{alert(error.message)})
+ }
 
-
-  function getFormId(nb, journey){
-    return API.graphql(graphqlOperation(queries.getFormId,{
-      day: nb,
-      journey: journey,
-    }))
-  }
 
   const  _renderItem = ({ item, index }) => {
           const textStyle = props.enabled ? styles.titleEnabled : styles.title;
@@ -223,7 +213,7 @@ export default function FlatListHorizontal(props)
     listElement: {
       margin: PRODUCT_ITEM_OFFSET,
       overflow: 'hidden',
-      borderRadius: 3,
+      borderRadius: 10,
       width: (SCREEN_WIDTH - PRODUCT_ITEM_MARGIN) / numColumns -
         PRODUCT_ITEM_MARGIN,
       height: PRODUCT_ITEM_HEIGHT,

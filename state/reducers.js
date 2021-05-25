@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
-import {SET_USER_INFO} from './messages'
-import {UPDATE_MESSAGE}  from './messages'
-import {SET_TREAT}  from './messages'
-import {SET_PUSH_NOTIFICATION_PREF} from './messages'
+import {SET_USER_INFO, 
+        UPDATE_MESSAGE,
+        SET_TREAT,
+        SET_PUSH_NOTIFICATION_PREF,
+        ADD_TREAT} from './messages'
+
 
 
 const user = [{
@@ -37,8 +39,11 @@ const treat = [{
   id: null,
   description: "",
   toBeRefreshed: true,
-  journey: ""
+  journey: "",
+  nb: null,
 }]
+
+const treatList = [];
 
 const pushPreferences =[{
   consent : "None"
@@ -110,6 +115,18 @@ const pushNotificationPreferences = (state = pushPreferences, action) => {
   }
 }
 
-const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat, pushNotificationPreferences});
+const treatsCache = (state = treatList, action) => {
+  switch (action.type) {
+    case ADD_TREAT:
+      state.push(action.payload.newItem);
+      return [...state,];
+    default:
+      return  state; 
+  }
+}
+
+const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat,
+                                     pushNotificationPreferences,
+                                     treatsCache});
 
 export default rootReducer;

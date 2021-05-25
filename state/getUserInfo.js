@@ -1,9 +1,34 @@
-import { connect } from "react-redux";
 import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
 import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
+import actionAddTreat from '../state/actionAddTreat'
+
+
+export function getFormId(nb, journey, successCallback, errorCallback){
+  const store = createStore();
+  const cache = store.getState().treatsCache;
+  console.log("getting form id from cache", cache)
+  const found = cache.find((element)=>{return element.day === nb && element.journey === journey}); 
+  console.log("treat info from cache", found)
+  if (found){
+    successCallback(found);
+    return;
+  }
+  console.log("getting form id from db ", nb, journey)
+  
+  API.graphql(graphqlOperation(queries.getFormId,{
+    day: nb,
+    journey: journey,
+  })).then((info)=>{
+    console.log("getFormId ", info);
+    let treatData={...info.data.getFormId}
+    store.dispatch(actionAddTreat(cache, treatData));
+    successCallback(treatData);
+  }).catch((error)=>{errorCallback(error)});
+  
+}
 
 export function getJourneyInfo(user){
   

@@ -35,7 +35,7 @@ const FillTheBlanks = ({navigation}) => {
   const [text, setText] = React.useState("");
   const [nameOnText, setNameOnText] = React.useState( userInfo.partnerName ? userInfo.partnerName : "_____");
   const [answer, setAnswer] = React.useState("_____");
-
+  const treatID = "000001"
 
   function OnChangeName(text){
     setName(text);
@@ -49,8 +49,8 @@ const FillTheBlanks = ({navigation}) => {
 
   function saveMessageAsTreat(){
         let formData = {
-            formId: "00000000001",
-            journey: "Solo",
+            formId: treatID,
+            journey: "Onboarding",
             params:"pname=" + name + "&response=" + answer,
             refParams: "",
             userId: userInfo.id,
@@ -76,8 +76,8 @@ const FillTheBlanks = ({navigation}) => {
 
     var formData = {
       //id: userInfo.id,
-      formId: "0000001",
-      journey: "Solo",
+      formId: treatID,
+      journey: "Onboarding",
       userId: userInfo.id,
       createdAt: new Date().toISOString(),
       params: "partnerName=" + data.partnerName + "&message=" + t("text1", {who: nameOnText, what: answer})

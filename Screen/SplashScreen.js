@@ -81,7 +81,7 @@ const SplashScreen = ({navigation}) => {
           navigation.replace('AboutGillyNavigationRoutes');
         
         });
-      }, 3000)
+      }, 30)
     }, []);
 
   return (
