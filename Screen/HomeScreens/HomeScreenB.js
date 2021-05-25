@@ -127,7 +127,7 @@ const HomeScreen = ({navigation}) => {
            <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
         <View style={{flex: 9}}>
-            <JourneyInfo user={user}/>
+            <JourneyInfo user={user} navigation={navigation}/>
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo} enabled={true}/>

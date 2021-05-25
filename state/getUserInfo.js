@@ -73,9 +73,9 @@ export function getJourneyInfo(user){
     var cDay = submissions.length;
     console.log('Submissions and current Day', submissions.length, cDay,  lastSubmittedDate, today.toLocaleDateString());
 
-    if(lastSubmittedDate === today.toLocaleDateString() && partnerDay <= cDay){
+  /*  if(lastSubmittedDate === today.toLocaleDateString() && partnerDay <= cDay){
       user.todaysTreatDone = true;
-    }
+    }*/
     console.log('Submissions and adjusted current day', submissions.length, cDay);
     user.lastTreatInJourney = cDay;
     store.dispatch(actionUpdateJourneyStatus(user));
