@@ -2,8 +2,8 @@ import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
-import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
-import actionAddTreat from '../state/actionAddTreat'
+import actionUpdateJourneyStatus from './actionUpdateJourneyStatus'
+import actionAddTreat from './actionAddTreat'
 
 
 export function getFormId(nb, journey, successCallback, errorCallback){

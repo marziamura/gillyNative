@@ -1,7 +1,4 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
-// Import React and Component
 import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
@@ -17,38 +14,6 @@ import {
 } from 'react-native';
 
 
-/*const user = [{
-  id: "xxx",
-  partnerID: "zzzz",
-  userName: "xxxxx",
-  journey: "zzzzz",
-  sex: "xxx",
-  gender: "xxx",
-  partnerID: "xxx",
-  email: "xxx",
-  password: "xxx",
-  primary: true,
-  registered: false,
-  todaysTreatDone: false,
-  lastTreatInJourney: 0
-}]
-type User  @model @key(fields:["id"]){
-  id: ID!,	
-  partnerID: ID,	
-  userName: String!,	
-  primary: Boolean!,	
-  registered: Boolean,	
-  email: String!,	
-  tel: String!,	
-  activeDays: Int,
-  lastActiveDay: AWSDate,
-  journey: String,
-  sex: String,
-  gender: String,
-  preferences: String,
-  partnerName: String,
-  
-}*/
 
 const Children = ({navigation}) => {
  

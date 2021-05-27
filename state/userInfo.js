@@ -1,13 +1,37 @@
-import { connect } from "react-redux";
+
 import { API, graphqlOperation } from 'aws-amplify';
 import actionSetUserInfo from "./actionSetUserInfo"
 import createStore from "./store"
 import * as queries from '../graphql/queries';
-import actionUpdateJourneyStatus from './actionUpdateJourneyStatus';
 import * as mutations from '../graphql/mutations';
 import actionSetInitialPushNotificationPreferences from "./actionSetInitialPushNotificationPreferences";
+import actionUpdateJourneyStatus from '../state/actionUpdateJourneyStatus'
+import actionAddTreat from '../state/actionAddTreat'
 
 const store = createStore();
+export function getFormId(nb, journey, successCallback, errorCallback){
+  const store = createStore();
+  const cache = store.getState().treatsCache;
+  console.log("getting form id from cache", cache)
+  const found = cache.find((element)=>{return element.day === nb && element.journey === journey}); 
+  console.log("treat info from cache", found)
+  if (found){
+    successCallback(found);
+    return;
+  }
+  console.log("getting form id from db ", nb, journey)
+  
+  API.graphql(graphqlOperation(queries.getFormId,{
+    day: nb,
+    journey: journey,
+  })).then((info)=>{
+    console.log("getFormId ", info);
+    let treatData={...info.data.getFormId}
+    store.dispatch(actionAddTreat(cache, treatData));
+    successCallback(treatData);
+  }).catch((error)=>{errorCallback(error)});
+  
+}
 
 export function getSubmissionsInJourney(user, journey){
 
@@ -86,11 +110,10 @@ export function getUserInfo () {
     
         return null;
       }
-      
+       
 
       user.registered = true;
-      user.userName = currentUser.userName;
-
+    
       store.dispatch(actionSetUserInfo(store.getState().userInfo, [user]));
       var PNToken = user.pushNotificationToken || "";
       console.log("User with updated journey info", user, " token#", PNToken,"#");
@@ -113,30 +136,15 @@ export function getUserInfo () {
     if(info){
       currentInfo = {...info};
     }else{
-   
-      currentInfo.id=storedInfo.id
-      currentInfo.partnerID=storedInfo.partnerID;
-      currentInfo.userName=storedInfo.userName;
-      currentInfo.journey=storedInfo.journey;
-      currentInfo.sex=storedInfo.sex;
-      currentInfo.gender=storedInfo.gender;
-      currentInfo.partnerID=storedInfo.partnerID;
-      currentInfo.email=storedInfo.email;
-      currentInfo.password=storedInfo.password;
-      currentInfo.primary=storedInfo.primary;
-      currentInfo.registered=storedInfo.registered;
-    
-      if(pushPreferences.consent === "OK"){
-        currentInfo.pushNotificationToken= storedInfo.pushNotificationToken;
-      }
+      currentInfo = {...storedInfo};
       if(pushPreferences.consent === "Deny"){
-        currentInfo.pushNotificationToken= "";
+        currentInfo.pushNotificationToken= "Deny";
       }
       console.log("Saving User Info", currentInfo, pushPreferences, "#",storedInfo.pushNotificationToken,"#");
     } 
     store.dispatch(actionSetUserInfo(store.getState().userInfo, [currentInfo]));
-    currentInfo.userName = "xxx";
-    currentInfo.email = "xxx";
+    currentInfo.userName = "";
+    currentInfo.email = "";
     delete currentInfo.password;
     delete currentInfo.lastTreatInJourney;
     delete currentInfo.todaysTreatDone;
@@ -155,6 +163,7 @@ export function getUserInfo () {
    }
 
  export function saveUserInfo(info){
+  console.log("SAVE USERINFO", info);
     let currentInfo = userInfo(info);
     var dt = new Date();
     currentInfo.timeZoneOffset = dt.getTimezoneOffset();

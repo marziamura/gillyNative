@@ -1,17 +1,21 @@
 import { combineReducers } from 'redux'
 
-import {SET_USER_INFO, 
-        UPDATE_MESSAGE,
-        SET_TREAT,
-        SET_PUSH_NOTIFICATION_PREF,
-        ADD_TREAT} from './messages'
+
+import {
+  SET_USER_INFO, 
+  SET_TREAT,
+  LOGIN_DATA,
+  UPDATE_MESSAGE,
+  SET_PUSH_NOTIFICATION_PREF,
+  ADD_TREAT
+} from './messages'
 
 
 
 const user = [{
   id: "xxx",
-  partnerID: "zzzz",
-  userName: "xxxxx",
+  partnerID: null,
+  userName: null,
   journey: "Solo",
   sex: "xxx",
   gender: "xxx",
@@ -21,12 +25,12 @@ const user = [{
   lastTreatInJourney: 0,
   pushNotificationToken: "",
   lastActiveDay: 0,
-  partnerName: "Your partner",
+  partnerName: "your partner",
   coupleId: null,
 }]
-const loginData =[{
-  email: "XXXX",
-  password:"YYYY"
+const login =[{
+  email: null,
+  password: null
 }]
 
 const message =[{
@@ -68,12 +72,25 @@ const userInfo = (state = user, action) => {
       state[0].pushNotificationToken = action.payload.newItem[0].pushNotificationToken || state[0].pushNotificationToken;
       state[0].lastActiveDay=action.payload.newItem[0].lastActiveDay || state[0].lastActiveDay;
       state[0].lastTreatInJourney=action.payload.newItem[0].lastTreatInJourney || state[0].lastTreatInJourney;
+      state[0].coupleId=action.payload.newItem[0].coupleId || state[0].coupleId;
 
       const a = [...state];
- //     console.log("reducer userInfo ", state[0],  state[0].lastTreatInJourney);
+      console.log("reducer userInfo ", state[0],  state[0].coupleId);
     }
 
   return [...state];
+}
+
+const loginData = (state = login, action) => {
+  //console.log("call to reducer messageInABottle", state[0], action.payload);
+  switch (action.type) {
+    case LOGIN_DATA:
+      state[0].email = action.payload.newItem[0].email;
+      state[0].password = action.payload.newItem[0].password;
+      return [...state,];
+    default:
+      return  state; 
+  }
 }
 
 const messageInABottle = (state = message, action) => {
@@ -102,15 +119,15 @@ const currentTreat = (state = treat, action) => {
 }
 
 const pushNotificationPreferences = (state = pushPreferences, action) => {
-  console.log("call to reducer pushNotificationPreferences state", state)
+  
  // console.log("call to reducer pushNotificationPreferences action.payload", action);
   switch (action.type) {
     case SET_PUSH_NOTIFICATION_PREF :
       state[0].consent = action.payload.newItem[0].consent;
-      console.log("call to reducer pushNotificationPreferences return data ", state);
+  
       return [...state];
     default:
-     console.log("call to reducer pushNotificationPreferences return default", state);
+  
       return  state; 
   }
 }
@@ -127,6 +144,7 @@ const treatsCache = (state = treatList, action) => {
 
 const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat,
                                      pushNotificationPreferences,
-                                     treatsCache});
+                                     treatsCache,
+                                     loginData});
 
 export default rootReducer;

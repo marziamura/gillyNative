@@ -70,8 +70,14 @@
         "gillyAuth": {}
       },
       "function": {
-        "saveTFSubmission": {},
-        "sendPushNotifications": {}
+        "saveTFSubmission": {
+          "deploymentBucketName": "amplify-gilly-prod-162003-deployment",
+          "s3Key": "amplify-builds/saveTFSubmission-6971596b356275694d50-build.zip"
+        },
+        "sendPushNotifications": {
+          "deploymentBucketName": "amplify-gilly-prod-162003-deployment",
+          "s3Key": "amplify-builds/sendPushNotifications-2f48484275447053586d-build.zip"
+        }
       }
     }
   }

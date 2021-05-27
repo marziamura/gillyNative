@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as params from '../Style/Params';
-import {getJourneyInfo, getFormId} from '../../state/getUserInfo';
+import {getJourneyInfo, getFormId} from '../../state/userInfo';
 import Button from '../Components/Button';
 import createStore from "../../state/store";
 import actionSetTreatData from '../../state/actionSetTreatData';
+import * as colors from '../Style/Style'
+import * as fonts from '../Style/Fonts'
 
 
 import {
@@ -19,14 +21,14 @@ function JourneyStatus(props) {
     const { t } = useTranslation('Home');
     let [nextTreat, setNextTreat] = React.useState(0);
       
-    React.useEffect(()=>{
+  /*  React.useEffect(()=>{
       console.log("====> Getting updated journey Info: ");
       getJourneyInfo(user).then((user)=>{ 
         console.log("JourneyInfo", user)
         setNextTreat(user.lastTreatInJourney);
       }).catch(error=> console.log(error))
     
-    }, [nextTreat])
+    }, [nextTreat])*/
 
     function formIdCallback(tdata){
       console.log("formId Callback ", tdata);
@@ -82,6 +84,10 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   inviteText:{
-
+      // alignSelf: "center",
+       color: colors.textEnabled,
+       fontSize: fonts.smallSize,
+       justifyContent: "center",
+       
   }
 })

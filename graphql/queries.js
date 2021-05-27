@@ -20,6 +20,7 @@ export const getUser = /* GraphQL */ `
       partnerName
       pushNotificationToken
       timeZoneOffset
+      coupleId
       createdAt
       updatedAt
     }
@@ -57,6 +58,7 @@ export const listUsers = /* GraphQL */ `
         partnerName
         pushNotificationToken
         timeZoneOffset
+        coupleId
         createdAt
         updatedAt
       }
@@ -190,7 +192,7 @@ export const listRegisteredEmails = /* GraphQL */ `
   }
 `;
 export const getCouple = /* GraphQL */ `
-  query GetCouple($id: ID!) {
+  query GetCouple($id: String!) {
     getCouple(id: $id) {
       id
       partnerAId
@@ -202,11 +204,19 @@ export const getCouple = /* GraphQL */ `
 `;
 export const listCouples = /* GraphQL */ `
   query ListCouples(
+    $id: String
     $filter: ModelcoupleFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listCouples(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCouples(
+      id: $id
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
         id
         partnerAId

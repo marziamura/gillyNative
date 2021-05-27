@@ -3,10 +3,7 @@ import { View, StyleSheet, FlatList, Text, Pressable, Dimensions, ActivityIndica
   , TouchableHighlight, Platform } from 'react-native';
 import Button from './Button'
 import * as colors from '../Style/Style'
-import { getSubmissionsInJourney } from '../../state/userInfo';
-import {getFormId} from '../../state/getUserInfo'
-import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
+import { getSubmissionsInJourney, getFormId } from '../../state/userInfo';
 import createStore from '../../state/store';
 import actionSetTreatData from '../../state/actionSetTreatData';
 import { useTranslation } from 'react-i18next';

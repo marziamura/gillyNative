@@ -28,7 +28,7 @@ const HomeScreen = ({navigation}) => {
   let store = createStore();
   const user = store.getState().userInfo[0];
   const pushNotificationPreferences = store.getState().pushNotificationPreferences;
-  console.log("Push notification preferences ", pushNotificationPreferences)
+  console.log("User ====> ", user)
  // const [dialogOpen, setDialogOpen] = React.useState(pushNotificationPreferences[0].consent === "None");
  const [dialogOpen, setDialogOpen] = React.useState(false);
   const [infoDialogOpen, setInfoDialogOpen] = React.useState(false);

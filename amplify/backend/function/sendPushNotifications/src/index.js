@@ -16,7 +16,6 @@ let callback = function(response) {
   });
 }
 
-
 async function request(token) {
    
 let resolve = function(r){

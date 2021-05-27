@@ -36,9 +36,11 @@ const SCREEN_HEIGHT = height;
 const LoginScreen = ({navigation,dispatch}) => {
   console.log("Login Screen");
   const { t } = useTranslation('Auth');
-  const userInfo = createStore().getState().userInfo[0];
-  const [userEmail, setUserEmail] = useState(userInfo.email || t("email"));
-  const [userPassword, setUserPassword] = useState(userInfo.email);
+  var loginData = createStore().getState().loginData[0];
+  console.log("Login Screen ", loginData);
+  var email = (loginData.email === "") || (loginData.email=== "xxx") ? t("email") : loginData.email;
+  const [userEmail, setUserEmail] = useState(email);
+  const [userPassword, setUserPassword] = useState(loginData.password);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
 
@@ -66,7 +68,7 @@ const LoginScreen = ({navigation,dispatch}) => {
  
       Auth.signIn(dataToSend).then((cognitoUser)=>{
         console.log(cognitoUser);
-
+        const userInfo = createStore().getState().userInfo[0];
         userInfo.userName =  cognitoUser.attributes["name"],
         userInfo.journey = cognitoUser.attributes["custom:journey"]
         userInfo.id = cognitoUser.username,
@@ -106,14 +108,7 @@ const LoginScreen = ({navigation,dispatch}) => {
    })
  }
 
- /* React.useEffect(()=>{
-    
-    if(userInfo.email !== "xxx" &&  userInfo.password && userInfo.password !== "xxx"){
-      console.log("Signing in automatically...");
-      setUserEmail(userInfo.email);
-    }
 
-  }, [])*/
   return (
  <Background>
   <View style={styles.mainBody}>
@@ -140,7 +135,7 @@ const LoginScreen = ({navigation,dispatch}) => {
               />
             </View>
             <View style={styles.textInputView}>
-              <TextInput
+           <TextInput
              style={styles.inputStyle}
              onChangeText={(email) =>{
 
@@ -154,9 +149,9 @@ const LoginScreen = ({navigation,dispatch}) => {
              ref={userEmailRef}
              onSubmitEditing={Keyboard.dismiss}
              blurOnSubmit={false}
-            
              underlineColorAndroid={colors.underlineColor}
              returnKeyType="next"
+             value={userEmail}
               />
             </View>
             <View style={styles.textInputView}>
@@ -176,6 +171,7 @@ const LoginScreen = ({navigation,dispatch}) => {
                 blurOnSubmit={false}
                 secureTextEntry={true}
                 underlineColorAndroid={colors.underlineColor}
+                value={userPassword}
                 returnKeyType="next"
               />
               

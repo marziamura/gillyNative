@@ -1,7 +1,4 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
-// Import React and Component
 import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -23,13 +20,13 @@ const Onboarding2 = ({navigation}) => {
   const store = createStore();
   function saveUserInfo(){
       let userInfo = store.getState().userInfo[0];
-      if(userInfo){ //I need to set myself as partner on my partner's
+      if(userInfo){ 
         userInfo.journey = 'Solo';
         delete userInfo.password;
         userInfo.userName = 'xxx';
         userInfo.email = "xxx@yyy";
         userInfo.tel = "012345678";
-        userInfo.partnerID = "none";
+        userInfo.partnerID = null;
         console.log("saving user data", userInfo);
         if(userInfo.registered){
           API.graphql(graphqlOperation(mutations.updateUser, {input: userInfo}))

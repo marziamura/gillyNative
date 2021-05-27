@@ -1,5 +1,11 @@
 {
   "files.exclude": {
+    "**/.expo/*": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/executionlog.txt": true,
+    "**/node_modules/*/**": true,
     "amplify/.config": true,
     "amplify/**/*-parameters.json": true,
     "amplify/**/amplify.state": true,
@@ -9,6 +15,10 @@
     "amplify/backend/awscloudformation": true
   },
   "search.exclude": {
-    "**/node_modules": false
+    "**/.expo/*/*": true,
+    "**/.git/objects/**": true,
+    "**/.hg/store/**": true,
+    "**/node_modules": false,
+    "**/node_modules/*/**": true
   }
 }

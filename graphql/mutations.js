@@ -23,6 +23,7 @@ export const createUser = /* GraphQL */ `
       partnerName
       pushNotificationToken
       timeZoneOffset
+      coupleId
       createdAt
       updatedAt
     }
@@ -50,6 +51,7 @@ export const updateUser = /* GraphQL */ `
       partnerName
       pushNotificationToken
       timeZoneOffset
+      coupleId
       createdAt
       updatedAt
     }
@@ -77,6 +79,7 @@ export const deleteUser = /* GraphQL */ `
       partnerName
       pushNotificationToken
       timeZoneOffset
+      coupleId
       createdAt
       updatedAt
     }

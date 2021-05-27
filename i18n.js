@@ -71,7 +71,9 @@ i18n
             button: "Next",
             PartnerName: "What's your partner's name?",
             NameSuggestion: "You can also use a nickname ;)",
-            yesText: "Great! If you want, you can enter your partner's name, so that we can use it in the app. Nothing will be shared with your partner without you knowing."
+            yesText: "Great! If you want, you can enter your partner's name, so that we can use it in your app. Nothing will be shared with your partner without you knowing.",
+            coupleCode: "If you have received a code from your partner, enter it here:",
+            partnerCode: "Code"
           },
           Memory:{
             title: "Fill in the blanks",
@@ -95,7 +97,8 @@ i18n
           },
           Home:{
             welcome: "Hi, {{who}}",
-            nextTreat: "Discover on your own:",
+            onYourOwn: "Discover on your own:",
+            nextTreat: "Choose your treat:",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys:",
             withPartner: "Discover with your partner:",
@@ -144,12 +147,13 @@ i18n
           },
           invitePartner:{
             title:"Invite {{who}} to join you on Gilly",
-            text1: "Hi {{who}}, I've tried Gilly and I think you should try it too! To join as my partner, enter this code when asked {{code}}",
+            text1: "Hi{{who}}, I've tried Gilly and I think you should try it too! To join as my partner, install Gilly from {{link}} and enter this code when asked: ",
             button: "Send invite",
             partnerName: "Your partner's name",
             suggestion: "a nice message",
             labelMessage: "Your message",
             labelName: "Your partner's name, or nickname ;)",
+            intro: "This is the message we will be sending for you:"
           },
           profile:{
             title: "Hi, {{who}}",
@@ -157,8 +161,11 @@ i18n
             gender: "Your gender: {{gender}}",
             sex: "Your anatomy: {{sex}}",
             partner: "Your partner's nickname: {{name}}",
-            withPartner: "You are connected with your partner",
+            withPartner: "You are connected with {{who}}",
             withoutPartner: "You are not connected with your partner",
+            pendingInvite: "{{who}} has not accepted your invite yet.",
+            invite: "Gilly is better in pairs! Invite your partner to join",
+            inviteAgain: "Send invite again",
           },
           treat:{
             button: "exit"

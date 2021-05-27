@@ -84,13 +84,13 @@ const HomeScreen = ({navigation}) => {
   }
 
   
-  React.useEffect(()=>{
+/*  React.useEffect(()=>{
     if(updateInfo){
       updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
       .catch(error=> console.log(error))
     }
   }, [updateInfo])
-  
+  */
 
 
   function closeInfoDialog(){
@@ -127,16 +127,7 @@ const HomeScreen = ({navigation}) => {
            <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
         <View style={{flex: 6}}>
-        <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
-          <TouchableHighlight 
-            activeOpacity={0.6}
-            underlayColor="#DDDDDD"
-            onPress={()=>{navigation.push("InvitePartner")}}>
-            <Text style={styles.inviteText}>
-             {t("invite")}
-            </Text>
-          </TouchableHighlight>
-        </View>
+
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo}/>
