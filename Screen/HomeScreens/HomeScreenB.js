@@ -137,21 +137,9 @@ const HomeScreen = ({navigation}) => {
                 <ChooseTreat navigation={navigation} user={user} enabled={true}/>
             </View>
         </View>
-        <Divider  />
-        <View style={[styles.carouselView, styles.viewPlacement]}>
-          <ViewTitle text={t("withPartner")} onPress={openJourneyInfo} enabled={false}/>
-          <View style={{flex: 3, marginTop: 2}}>
-              <ChooseTreat navigation={navigation} user={user} enabled={false} partnerName={user.partnerName}/>
-          </View>
-        </View>
+
         <Divider />
-        <View style={[styles.intimacyProfileView, styles.viewPlacement, styles.centerContent]}>
-          <Pressable  onPress={()=>{navigation.push("IntimacyProfile")}}>
-            <Text style={styles.btnText}>
-                {t("completeProfile")}
-            </Text>
-            </Pressable>
-        </View>
+
        </View>
       </View>
    

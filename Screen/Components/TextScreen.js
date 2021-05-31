@@ -27,7 +27,7 @@ const TextScreen = (props) => {
     <View style={[styles.container, styles.centerContent]}>
        
        <View style={[styles.centerContent, {flex: 1, width: "80%"}]}>
-        <Text style={styles.title} >
+        <Text style={styles.title}>
             {t("title")}
         </Text>
        </View>

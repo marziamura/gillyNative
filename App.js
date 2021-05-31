@@ -6,6 +6,7 @@ import {
   Montserrat_400Regular as montserrat,
 } from '@expo-google-fonts/montserrat';
 
+//import CApp from  "./app_exp.js"
 import CApp from  "./app_prod.js"
 
 const App = () => {

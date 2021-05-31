@@ -10,8 +10,7 @@ import { useTranslation } from 'react-i18next';
 import treatData from '../../HardCodedData/TreatData'
 import * as Fonts from "../Style/Fonts"
 import * as Colors from "../Style/Style"
-
-
+import Table from '../Components/Table'
 import Text from "../Components/GillyText"
 
 var {width, height} = Dimensions.get('window')
@@ -148,7 +147,7 @@ export default function FlatListHorizontal(props)
   }
 
   function ListFooter(){
-    return props.enabled ? <TreatDescription/> : <InvitePartner/>
+    return <Table/>
   }
 
   return  <View style={styles.container}>

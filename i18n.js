@@ -104,7 +104,7 @@ i18n
             withPartner: "Discover with your partner:",
             completeProfile: "Discover your intimacy profile",
             status: "You have completed {{nb}} treats on your {{journey}} journey",
-            openNextTreat: "Open Next Treat"
+            openNextTreat: "Continue journey..."
           },
           Notifications:{
             title: "Push Notifications",

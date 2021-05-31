@@ -10,8 +10,6 @@ import {
   ADD_TREAT
 } from './messages'
 
-
-
 const user = [{
   id: "xxx",
   partnerID: null,
@@ -47,11 +45,19 @@ const treat = [{
   nb: null,
 }]
 
-const treatList = [];
+const treatList =  [
+];
 
 const pushPreferences =[{
   consent : "None"
 }]
+
+const treatCat = [
+  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
+  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
+  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
+  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
+];
 
 const userInfo = (state = user, action) => {
     
@@ -142,9 +148,14 @@ const treatsCache = (state = treatList, action) => {
   }
 }
 
+const treatsCat = (state = treatCat, action) => {
+      return  state; 
+}
+
 const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat,
                                      pushNotificationPreferences,
                                      treatsCache,
-                                     loginData});
+                                     loginData,
+                                     treatsCat});
 
 export default rootReducer;
