@@ -11,24 +11,29 @@ export const blue1= "#BCE6FF";
 export const blue2= "#88CDF6";
 export const blue3= "#2D82B5";
 
+export const tfbutton = "#6042BE";
+export const tfbuttontext = "white";
+export const tfbuttonselected = "#3B2974";
+export const tftext = "#333333";
+
 
 export const background = blue2;
 export const white = '#FFFFFF';
 export const border = '#dadae8';
-export const text ='#383838';
-export const textEnabled = darkviolet;
+export const text = tftext;
+export const textEnabled = tftext;
 export const textDisabled = gray;
 export const textError ='red';
-export const buttonBackground = blue1;
-export const buttonText = violet;
+export const buttonBackground = tfbutton;
+export const buttonText = tfbuttontext;
 export const placeholderText = "#8b9cb5";
 export const disabled = '#d5d5d5';
 export const header = lightviolet;
 export const underlineColor = '#f000';
 export const icons = albicocca;
-export const cards = blue1;
+export const cards = tfbutton;
 export const carddisabled = lightgray;
-export const cardselected = blue2;
+export const cardselected = tfbuttonselected;
 
 
 

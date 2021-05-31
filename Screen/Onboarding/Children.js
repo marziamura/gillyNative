@@ -1,6 +1,5 @@
 
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import createStore from '../../state/store';
 import {saveUserInfo} from '../../state/userInfo'
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 
 
+import Text from "../Components/GillyText";
 
 const Children = ({navigation}) => {
  

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Text} from 'react-native';
+import {Text} from '../Components/GillyText';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
 import Button from './Button';
@@ -27,7 +27,7 @@ const TextScreen = (props) => {
     <View style={[styles.container, styles.centerContent]}>
        
        <View style={[styles.centerContent, {flex: 1, width: "80%"}]}>
-        <Text style={styles.title}>
+        <Text style={styles.title} >
             {t("title")}
         </Text>
        </View>

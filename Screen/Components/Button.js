@@ -1,5 +1,9 @@
 import React from 'react';
-
+import AppLoading from 'expo-app-loading';
+import {
+    useFonts,
+    Montserrat_400Regular as montserrat,
+  } from '@expo-google-fonts/montserrat';
 
 import {
   StyleSheet,
@@ -10,12 +14,15 @@ import * as colors from '../Style/Style';
 
 function Button(props){
  
+
     const styles = StyleSheet.create({
         buttontext: { 
             borderColor: colors.border,
             color: colors.buttonText,
-            fontSize: 15,
-            fontWeight: "500",  
+            fontSize: 17,
+            fontFamily: "montserrat",
+            fontWeight: "700",  
+          
         },
     
         button: {
@@ -24,7 +31,7 @@ function Button(props){
             width: '80%',
             height: 40,
             borderColor: colors.border,
-            borderRadius: 24,
+            borderRadius: 8,
             borderWidth: 1,
             backgroundColor: colors.buttonBackground,
         }

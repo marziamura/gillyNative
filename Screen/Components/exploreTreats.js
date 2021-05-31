@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Pressable, Dimensions, ActivityIndicator
+import { View, StyleSheet, FlatList, Pressable, Dimensions, ActivityIndicator
   , TouchableHighlight, Platform } from 'react-native';
 import Button from './Button'
 import * as colors from '../Style/Style'
@@ -11,6 +11,8 @@ import treatData from '../../HardCodedData/TreatData'
 import * as Fonts from "../Style/Fonts"
 import * as Colors from "../Style/Style"
 
+
+import Text from "../Components/GillyText"
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
@@ -178,14 +180,14 @@ export default function FlatListHorizontal(props)
         fontSize: Fonts.smallSize,
         marginTop: 0, 
         textAlign: "center",
-        color: Colors.text
+        color: Colors.buttonText
     },
     
     titleEnabled:{
       fontSize: Fonts.smallSize,
       marginTop: 0, 
       textAlign: "center",
-      color: Colors.textEnabled
+      color: Colors.buttonText
     },
     carousel:{
         flex: 3,
@@ -210,10 +212,12 @@ export default function FlatListHorizontal(props)
     listElement: {
       margin: PRODUCT_ITEM_OFFSET,
       overflow: 'hidden',
-      borderRadius: 10,
+      borderRadius: 5,
       width: (SCREEN_WIDTH - PRODUCT_ITEM_MARGIN) / numColumns -
         PRODUCT_ITEM_MARGIN,
       height: PRODUCT_ITEM_HEIGHT,
+      alignItems: "center",
+      justifyContent: "center",
       flexDirection: 'column',
       ...Platform.select({
         ios: {

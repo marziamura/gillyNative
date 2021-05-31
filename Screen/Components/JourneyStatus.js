@@ -11,9 +11,10 @@ import * as fonts from '../Style/Fonts'
 
 import {
   StyleSheet,
-  View ,
-  Text
+  View 
 } from 'react-native';
+
+import Text from "../Components/GillyText";
 
 function JourneyStatus(props) {
     const user = props.user;

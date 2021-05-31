@@ -3,7 +3,7 @@
 
 // Import React and Component
 import React from 'react';
-import {Text, KeyboardAvoidingView, Platform } from 'react-native';
+import {KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import createStore from '../../state/store';
 import Background from '../Components/Background';
@@ -11,13 +11,6 @@ import { Auth } from 'aws-amplify';
 import  Button  from '../Components/Button';
 import * as colors from '../Style/Style';
 import * as fonts from '../Style/Fonts';
-
-/*
-   button: "Logout",
-            gender: "Your Gender",
-            sex: "Your anatomy",
-            partner: "Partner given name"
-            */
 
 
 import {
@@ -27,6 +20,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Text from "../Components/GillyText";
 
 
 const Profile = ({navigation}) => {

@@ -20,12 +20,12 @@ import {updateUserInfo} from '../../state/userInfo'
 import {
   View,
   StyleSheet,
-  Text,
   Platform,
   Share
 } from 'react-native';
 
 
+import Text from "../Components/GillyText";
 
 const InvitePartner = ({navigation}) => {
   const { t } = useTranslation('invitePartner');

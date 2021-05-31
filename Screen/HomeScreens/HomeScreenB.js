@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Text, Pressable} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Pressable} from 'react-native';
 import Background from '../Components/Background'
 import createStore from '../../state/store';
 import { updateUserInfo } from '../../state/userInfo';
@@ -12,11 +12,11 @@ import { IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import InfoDialog from '../Components/InfoDialog';
 import ChooseTreat from '../Components/exploreTreats';
-import * as colors from '../Style/Style'
-import * as fonts from '../Style/Fonts'
-import JourneyInfo from '../Components/JourneyStatus'
-import * as params from '../Style/Params'
-
+import * as colors from '../Style/Style';
+import * as fonts from '../Style/Fonts';
+import JourneyInfo from '../Components/JourneyStatus';
+import * as params from '../Style/Params';
+import Text from '../Components/GillyText';
 
 const viewWidth= params.viewWidth;
 const margin= params.margin;
@@ -24,6 +24,7 @@ const viewBorderRadius = params.viewBorderRadius;
 
 
 const HomeScreen = ({navigation}) => {
+  
   const { t } = useTranslation('Home');
   let store = createStore();
   const user = store.getState().userInfo[0];
@@ -98,9 +99,10 @@ const HomeScreen = ({navigation}) => {
   }
 
   function ViewTitle(props){
-    const textStyle = props.enabled ? styles.textEnabled : styles.textDisabled;
-   return <View style={{flex: 0.5, width: viewWidth}}>
-    <View style={[styles.centerContent,{flexDirection: "row"}]}>
+   const textStyle = props.enabled ? styles.textEnabled : styles.textDisabled;
+   
+   return <View style={{flex: 0.5, width: viewWidth, marginBottom: 5}}>
+    <View style={[styles.centerContent, {flexDirection: "row"}]}>
       <View style={{flex: 5 }}>
       <Text style={textStyle}>
         {props.text}
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
 
   centerContent:{
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   intimacyProfileView:{
     flex:0.5,
@@ -207,7 +209,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: "800",
     fontSize: fonts.titleSize,
-   
     color: colors.text,
     justifyContent: "flex-start",
   },
@@ -221,16 +222,17 @@ const styles = StyleSheet.create({
 textEnabled:{
  // alignSelf: "center",
   color: colors.textEnabled,
-  fontSize: fonts.normalSize,
+  fontSize: fonts.smallSize,
   justifyContent: "center",
+  fontFamily: "montserrat" 
   
 },
 textDisabled:{
   // alignSelf: "center",
    color: colors.textDisabled,
-   fontSize: fonts.normalSize,
+   fontSize: fonts.smallSize,
    justifyContent: "center",
-   
+   fontFamily: "montserrat" 
  }
 });
 

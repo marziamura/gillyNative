@@ -14,9 +14,10 @@ import { useTranslation } from 'react-i18next';
 
 import {
   View,
-  StyleSheet,
-  Text
+  StyleSheet
 } from 'react-native';
+
+import Text from "../Components/GillyText"
 
 console.log("loading TreatScreen");
 

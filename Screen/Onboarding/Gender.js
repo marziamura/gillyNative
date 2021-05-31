@@ -1,17 +1,16 @@
 
 import React, {useState} from 'react';
-import {Text} from 'react-native';
-
 import createStore from '../../state/store';
 import {saveUserInfo, updateUserInfo} from '../../state/userInfo'
 import  Button  from '../Components/Button'
 import Background from '../Components/Background'
 import Dropdown from '../Components/dropdown'
-
 import {
   View,
   StyleSheet,
 } from 'react-native';
+
+import Text from "../Components/GillyText";
 
 const Gender = ({navigation}) => {
  

@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Pressable, Dimensions  } from 'react-native';
+import { View, StyleSheet, FlatList, Pressable, Dimensions  } from 'react-native';
 import Button from './Button'
 import * as colors from '../Style/Style';
 import * as Fonts from "../Style/Fonts"
+
+import Text from "../Components/GillyText";
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;

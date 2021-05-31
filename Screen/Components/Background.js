@@ -11,7 +11,7 @@ function Background({children}){
  // return <React.Fragment> {children} </React.Fragment>
  //source={require('../../assets/background_gradient.png')}
     return (
-        <ImageBackground    style={styles.backgroundImage}>
+        <ImageBackground    source={require('../../Image/background.png')}  style={styles.backgroundImage}>
             {children}
         </ImageBackground>
     )
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
       flex: 1,
       width: null,
       alignSelf: 'stretch',
+     
     }
 })
 

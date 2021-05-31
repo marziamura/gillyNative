@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import {Text, Button} from 'react-native';
+import {Button} from 'react-native';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import createStore from '../../state/store';
@@ -11,6 +11,9 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
+
+import Text from "../Components/GillyText"
+
 import actionSetUserRegistered from '../../state/actionSetUserRegistered';
 
 
@@ -20,6 +23,7 @@ const Onboarding2 = ({navigation}) => {
   const store = createStore();
   function saveUserInfo(){
       let userInfo = store.getState().userInfo[0];
+      console.log
       if(userInfo){ 
         userInfo.journey = 'Solo';
         delete userInfo.password;

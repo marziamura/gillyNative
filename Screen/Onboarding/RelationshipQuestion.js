@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
 import Background from '../Components/Background';
@@ -23,6 +22,8 @@ import {
   ScrollView,
   Platform
 } from 'react-native';
+
+import Text from "../Components/GillyText";
 
 console.log("Loading File RelationshipQuestion");
 

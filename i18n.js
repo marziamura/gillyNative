@@ -98,7 +98,7 @@ i18n
           Home:{
             welcome: "Hi, {{who}}",
             onYourOwn: "Discover on your own:",
-            nextTreat: "Choose your treat:",
+            nextTreat: "I am in the mood of:",
             openTreat: "Open treat",
             exploreJourneys: "Explore Journeys:",
             withPartner: "Discover with your partner:",
@@ -168,7 +168,7 @@ i18n
             inviteAgain: "Send invite again",
           },
           treat:{
-            button: "exit"
+            button: "Exit"
           }
 
       
