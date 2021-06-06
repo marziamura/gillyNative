@@ -7,7 +7,10 @@ import {
   LOGIN_DATA,
   UPDATE_MESSAGE,
   SET_PUSH_NOTIFICATION_PREF,
-  ADD_TREAT
+  ADD_TREAT,
+  ADD_TREAT_EXPRESS,
+  ADD_TREAT_TOUCH,
+  ADD_TREAT_CONNECT
 } from './messages'
 
 const user = [{
@@ -52,12 +55,11 @@ const pushPreferences =[{
   consent : "None"
 }]
 
-const treatCat = [
-  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
-  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
-  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
-  [{type:"text", description:"SixSeconds in Heaven", id: "A"},{type:"icon", id:"AA", status:1}, {type:"icon", id:"AB", status:0}, {type:"icon", id:"AC", status:2}],
-];
+let treatsDataTouch =[];
+
+let treatsDataExpress = [];
+
+let treatsDataConnect = [];
 
 const userInfo = (state = user, action) => {
     
@@ -148,14 +150,49 @@ const treatsCache = (state = treatList, action) => {
   }
 }
 
-const treatsCat = (state = treatCat, action) => {
-      return  state; 
+const treatsTouch = (state = treatsDataTouch, action) => {
+
+  switch (action.type) {
+    case ADD_TREAT_TOUCH:
+      console.log("State touch", state)
+      treatsDataTouch = [...state, action.payload.newItem];
+      state = treatsDataTouch;
+      console.log("State touch 1", state)
+      return [...state];
+    default:
+      console.log("Returning List of treats ", state)
+      return state;
+  }
+}
+const treatsExpress = (state = treatsDataExpress, action) => {
+  switch (action.type) {
+    case ADD_TREAT_EXPRESS:
+      treatsDataExpress = [...state, action.payload.newItem];
+      state = treatsDataExpress;
+      return [...state,];
+    default:
+      return state;
+  }
+}
+const treatsConnect = (state = treatsDataConnect, action) => {
+  console.log("Connect state ", state, treatsDataConnect);
+  switch (action.type) {
+    case ADD_TREAT_CONNECT:
+      treatsDataConnect = [...state, action.payload.newItem];
+      state = treatsDataConnect;
+      console.log("Connect state ", state.length, state)
+      return [...state,];
+    default:
+      return  state;
+  }
 }
 
 const rootReducer = combineReducers({userInfo, messageInABottle, currentTreat,
                                      pushNotificationPreferences,
                                      treatsCache,
                                      loginData,
-                                     treatsCat});
+                                     treatsTouch,
+                                     treatsConnect,
+                                     treatsExpress});
 
 export default rootReducer;

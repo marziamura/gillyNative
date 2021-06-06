@@ -1,7 +1,7 @@
 import React from 'react';
 
-import COMP from './Screen/HomeScreens/Mocks'
-//import COMP from './Screen/Onboarding/RelationshipQuestion.js'
+//import COMP from './Screen/HomeScreens/Mocks'
+import COMP from './Screen/Onboarding/RelationshipQuestion.js'
 //import COMP from './Screen/HomeScreens/InvitePartner'
 //import COMP from './Screen/Onboarding/RelationshipQuestion.js'
 //import COMP from './Screen/Components/loadTreats.js'

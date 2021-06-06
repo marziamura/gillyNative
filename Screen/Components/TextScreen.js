@@ -1,8 +1,9 @@
 
 import React from 'react';
-import {Text} from '../Components/GillyText';
+//import {Text} from '../Components/GillyText';
 import { useTranslation } from 'react-i18next';
 import * as colors from '../Style/Style';
+import Background from '../Components/Background'
 import Button from './Button';
 
 /******* props **************
@@ -13,7 +14,8 @@ import Button from './Button';
 
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native';
 
 
@@ -23,7 +25,7 @@ const TextScreen = (props) => {
   const { t } = useTranslation(props.namespace);
 
   return (
-   
+   <Background>
     <View style={[styles.container, styles.centerContent]}>
        
        <View style={[styles.centerContent, {flex: 1, width: "80%"}]}>
@@ -48,6 +50,7 @@ const TextScreen = (props) => {
       </View>
       
     </View>
+    </Background>
   
   );
 };

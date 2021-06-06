@@ -52,7 +52,7 @@ const ConfirmEmail = ({navigation,dispatch}) => {
     try {
         console.log("Confirm sign up", userEmail, confirmCode)
         Auth.confirmSignUp(userEmail.toLowerCase(), confirmCode).then(()=>{
-          navigation.replace('LoginScreen')
+          navigation.push('LoginScreen')
         }).catch((error)=> setErrortext(error.message));
     } catch (error) {
         console.log('error confirming email:', error);

@@ -42,6 +42,17 @@ type formId @model @key(fields:["day", "journey"]){
   description: String,
 }
 
+type formIdByWeek @model {
+  week: Int!,
+  p1formId: String,
+  p2FormId: String,
+  p3FormId: String,
+  refFormId: String,
+  category: String!,
+  hformId: String,
+  description: String,
+}
+
 type registeredEmail @model {
   email: String!
   primary: Boolean

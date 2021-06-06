@@ -120,6 +120,8 @@ export const onCreateFormId = /* GraphQL */ `
     onCreateFormId {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
@@ -136,6 +138,8 @@ export const onUpdateFormId = /* GraphQL */ `
     onUpdateFormId {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
@@ -152,10 +156,63 @@ export const onDeleteFormId = /* GraphQL */ `
     onDeleteFormId {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
       sameUser
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateFormIdByWeek = /* GraphQL */ `
+  subscription OnCreateFormIdByWeek {
+    onCreateFormIdByWeek {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateFormIdByWeek = /* GraphQL */ `
+  subscription OnUpdateFormIdByWeek {
+    onUpdateFormIdByWeek {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteFormIdByWeek = /* GraphQL */ `
+  subscription OnDeleteFormIdByWeek {
+    onDeleteFormIdByWeek {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
       hformId
       description
       createdAt

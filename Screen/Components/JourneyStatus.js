@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as params from '../Style/Params';
-import {getJourneyInfo, getFormId} from '../../state/userInfo';
+import {getSubmissionsInJourney, getFormId} from '../../state/userInfo';
 import Button from '../Components/Button';
 import createStore from "../../state/store";
 import actionSetTreatData from '../../state/actionSetTreatData';
@@ -45,7 +45,7 @@ function JourneyStatus(props) {
     }
   
     const getTreatInfo = () =>{
-      getJourneyInfo(user).then((user)=>{ 
+      getSubmissionsInJourney(user, user.journeynp).then((user)=>{ 
         console.log("JourneyInfo", user)
         getFormId(user.lastTreatInJourney, user.journey, formIdCallback, (error)=>{alert(error.message)});
         setNextTreat(user.lastTreatInJourney);

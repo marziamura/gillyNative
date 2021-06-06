@@ -141,6 +141,8 @@ export const createFormId = /* GraphQL */ `
     createFormId(input: $input, condition: $condition) {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
@@ -160,6 +162,8 @@ export const updateFormId = /* GraphQL */ `
     updateFormId(input: $input, condition: $condition) {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
@@ -179,10 +183,72 @@ export const deleteFormId = /* GraphQL */ `
     deleteFormId(input: $input, condition: $condition) {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
       sameUser
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createFormIdByWeek = /* GraphQL */ `
+  mutation CreateFormIdByWeek(
+    $input: CreateFormIdByWeekInput!
+    $condition: ModelformIdByWeekConditionInput
+  ) {
+    createFormIdByWeek(input: $input, condition: $condition) {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateFormIdByWeek = /* GraphQL */ `
+  mutation UpdateFormIdByWeek(
+    $input: UpdateFormIdByWeekInput!
+    $condition: ModelformIdByWeekConditionInput
+  ) {
+    updateFormIdByWeek(input: $input, condition: $condition) {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteFormIdByWeek = /* GraphQL */ `
+  mutation DeleteFormIdByWeek(
+    $input: DeleteFormIdByWeekInput!
+    $condition: ModelformIdByWeekConditionInput
+  ) {
+    deleteFormIdByWeek(input: $input, condition: $condition) {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
       hformId
       description
       createdAt

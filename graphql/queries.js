@@ -114,6 +114,8 @@ export const getFormId = /* GraphQL */ `
     getFormId(day: $day, journey: $journey) {
       day
       formId
+      p1FormId
+      p3FormId
       refFormId
       journey
       partner
@@ -145,10 +147,53 @@ export const listFormIds = /* GraphQL */ `
       items {
         day
         formId
+        p1FormId
+        p3FormId
         refFormId
         journey
         partner
         sameUser
+        hformId
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getFormIdByWeek = /* GraphQL */ `
+  query GetFormIdByWeek($id: ID!) {
+    getFormIdByWeek(id: $id) {
+      id
+      week
+      p1formId
+      p2FormId
+      p3FormId
+      refFormId
+      category
+      hformId
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listFormIdByWeeks = /* GraphQL */ `
+  query ListFormIdByWeeks(
+    $filter: ModelformIdByWeekFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFormIdByWeeks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        week
+        p1formId
+        p2FormId
+        p3FormId
+        refFormId
+        category
         hformId
         description
         createdAt

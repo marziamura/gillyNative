@@ -90,6 +90,13 @@ const HomeScreen = ({navigation}) => {
       .catch(error=> console.log(error))
     }
   }, [updateInfo])
+
+  React.useEffect(()=>{
+    if(updateInfo){
+      updateUserInfo().then((info) => console.log("updated pushNotification Token", info))
+      .catch(error=> console.log(error))
+    }
+  }, [updateInfo])
   
 
 
@@ -101,7 +108,7 @@ const HomeScreen = ({navigation}) => {
   function ViewTitle(props){
    const textStyle = props.enabled ? styles.textEnabled : styles.textDisabled;
    
-   return <View style={{flex: 0.5, width: viewWidth, marginBottom: 5}}>
+   return <View style={{flex: 0.2, width: viewWidth, marginBottom: 5}}>
     <View style={[styles.centerContent, {flexDirection: "row"}]}>
       <View style={{flex: 5 }}>
       <Text style={textStyle}>
@@ -129,7 +136,7 @@ const HomeScreen = ({navigation}) => {
            <Text style={styles.title}> {t("welcome", {who: capitalize(user.userName)} )}</Text>
         </View>
         <View style={{flex: 9}}>
-            <JourneyInfo user={user} navigation={navigation}/>
+          
         <Divider />
         <View style={[styles.carouselView, styles.viewPlacement]}>
             <ViewTitle text={t("nextTreat")} onPress={openTreatInfo} enabled={true}/>
@@ -156,7 +163,7 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+  
   },
   viewPlacement:{
     alignSelf: "center",

@@ -59,7 +59,7 @@ const RelationshipQuestion = (props) => {
   
  function Buttons()
  {
-  return <View style={styles.buttonRowView}>
+  return ( <React.Fragment>
      <View style={styles.buttonView}>
           <Pressable  style={({pressed}) => [
                 {
@@ -98,42 +98,11 @@ const RelationshipQuestion = (props) => {
                   {t("No")}
                 </Text>
             </Pressable> 
-           
-        </View>
   </View>
+  </React.Fragment>)
   }
  
-  
-
- /* let onPress = () =>{
-    var userInfo  = store.getState().userInfo[0];
-    if(name !== "" || coupleId ){
-       
-        userInfo.partnerName = name;
-        userInfo.coupleId = coupleId;
-        store.dispatch(actionSetUserInfo(userInfo, [userInfo]));
-    
-        updateUserInfo(userInfo).then((u)=>{
-        console.log("UserInfo was saved", userInfo);
-        if(coupleId){
-            var coupleData ={
-              id: coupleId,
-              partnerBId: userInfo.id  
-            }
-            API.graphql(graphqlOperation(mutations.updateCouple, {input: coupleData})).then((data)=>{
-              console.log("updated Data for Couple ", data);  
-            }).catch((error)=>{
-              console.log("updating Data failed", error);
-            });
-        }
-         props.navigation.replace("FirstTreatNavigationRoutes");
-        }).catch((e)=>{
-        console.log("Error saving userInfo ", e);
-         props.navigation.replace("FirstTreatNavigationRoutes");
-      })
-    }
-
-  }*/
+ 
   function udpateUserInfo(userInfo){
    
     store.dispatch(actionSetUserInfo(userInfo, [userInfo]));
@@ -160,18 +129,18 @@ const RelationshipQuestion = (props) => {
               userInfo.coupleId = coupleId;
               userInfo.partnerID = data.data.updateCouple.partnerAId;
               udpateUserInfo(userInfo)
-              props.navigation.replace("FirstTreatNavigationRoutes");
+              props.navigation.push("FirstTreatNavigationRoutes");
             }).catch((error)=>{
               alert("invalid code");
             });
         }else{
           if(name !== ""){
             udpateUserInfo(userInfo);
-            props.navigation.replace("FirstTreatNavigationRoutes");
+            props.navigation.push("FirstTreatNavigationRoutes");
           }
         }
     }else{
-      props.navigation.replace("FirstTreatNavigationRoutes");
+      props.navigation.push("FirstTreatNavigationRoutes");
     }
 
   }
@@ -185,7 +154,7 @@ const RelationshipQuestion = (props) => {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
          flex: 1,
-         alignContent: 'center',
+
     }}>
        <KeyboardAvoidingView enabled
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -199,21 +168,24 @@ const RelationshipQuestion = (props) => {
                 {t("title")}
             </Text>
         </View>
-
-             <Buttons/>
-
-
-      
+        <View style={styles.buttonRowView}>
+           <Buttons/>
+        </View>
       
       <View style={styles.textinputview}>
-          <Text style={styles.disclaimer}> 
-                    {disclaimer}
+        {!pressedYes && <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                          <Text style={styles.disclaimer}> 
+                              {disclaimer}
           </Text>
-          <Text style={styles.yesText}> 
-                    {yesText}
-          </Text>
-          {pressedYes && <React.Fragment>
-                        <Text> {t("PartnerName")}</Text>
+        </View>  }
+        
+      
+          {pressedYes && <View style={{flex: 1}}>
+                     
+                         <View style={{flex: 1, justifyContent:"flex-end"}}>
+                            <Text style={styles.label}> {t("PartnerName")}</Text>
+                          </View>
+                          
                           <View style={styles.row}>
                                 <View style={{flex: 5}}>
                                   
@@ -234,8 +206,11 @@ const RelationshipQuestion = (props) => {
                                       style={styles.infoIcon}
                                   />
                                 </View>    
+                          
                           </View>
-                          <Text style={{includeFontPadding : true}}> {t("coupleCode")}</Text>
+                          <View style={{flex: 1, justifyContent:"flex-end"}}>
+                          <Text style={styles.label}>{t("coupleCode")}</Text>
+                          </View>
                           <View style={styles.row}>
                                   
                                   <TextInput
@@ -246,7 +221,7 @@ const RelationshipQuestion = (props) => {
                                         value={coupleId}
                                   />
                         </View>
-                </React.Fragment>
+                </View>
           }
       </View>
        <View style={styles.bottomView}>
@@ -255,7 +230,7 @@ const RelationshipQuestion = (props) => {
              text={t("button")}
          />
          
-        </View>
+      </View>
         { infoDialogOpen ? <InfoDialog text={"infoPartnersName"} callback={closeInfoDialog}/> : null}
   
     </KeyboardAvoidingView>
@@ -320,7 +295,9 @@ const styles = StyleSheet.create({
     fontWeight: Fonts.titleWeight,
     fontSize:  Fonts.titleSize,
   },
-
+  label:{
+    fontSize:  Fonts.smallSize,
+  },
   disclaimer: {
     width: '90%',
     left:   10,
@@ -342,21 +319,19 @@ const styles = StyleSheet.create({
  textInput:{
        borderWidth:1,
        borderRadius: 10,
-       height: "100%",
+       height: "30%",
        fontSize: 20,
-       borderColor: colors.border,
-       padding: 10, 
+       borderColor: colors.border, 
  },
+ 
  textinputview:{
     flex:2,
     width: "90%",
-    justifyContent:"space-between", 
   },
   row:{
+    flex: 4,
     flexDirection: "row", 
-  ///  justifyContent:"center", 
-    alignItems:"center",
-   
+    alignItems:"flex-start",
   }
   
 });

@@ -2,21 +2,17 @@
 let treatData = [
     { key: "1",
       journey: "touch",
-      journeyDescription: "For touch",
+      journeyDescription: "Touching",
    },
     { key: "2",
       journey: "connect",
-      journeyDescription: "To connect emotionally",
+      journeyDescription: "Connecting emotionally",
     },
     { key: "3",
     journey: "express love",
       category: "To express love",
-      journeyDescription: "Express love",
-   },
-    { key: "4",
-      journey: "nothing",
-      journeyDescription: "Do Nothing",
-  },
+      journeyDescription: "Expressing love",
+   }
 ]
 
 export default treatData

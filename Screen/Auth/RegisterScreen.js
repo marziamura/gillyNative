@@ -55,14 +55,19 @@ const RegisterScreen = (props) => {
           
           setButtonDisabled(true);
           var dataToSend = {
+            username: userEmail.toLowerCase(),
             email: userEmail.toLowerCase(),
             password: userPassword,
+            attributes:{
+              name: userName
+            }
           };
-         
+
+         console.log("Signing up as ", dataToSend )
           Auth.signUp(dataToSend).then((user)=>{
             console.log("sign up success ", user);  
             props.dispatch(actionSetLoginData(store.getState().loginData, [dataToSend]));
-            props.navigation.replace('ConfirmEmail');
+            props.navigation.push('ConfirmEmail');
           }).catch ((error)=> {
             console.log('error signing up:', error.message);
             alert(error.message);
