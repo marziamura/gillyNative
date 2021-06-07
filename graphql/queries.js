@@ -168,12 +168,18 @@ export const getFormIdByWeek = /* GraphQL */ `
       id
       week
       p1formId
-      p2FormId
-      p3FormId
-      refFormId
+      p2formId
+      p3formId
+      refformId
       category
       hformId
       description
+      min1
+      min2
+      min3
+      clothes1
+      clothes2
+      clothes3
       createdAt
       updatedAt
     }
@@ -190,12 +196,18 @@ export const listFormIdByWeeks = /* GraphQL */ `
         id
         week
         p1formId
-        p2FormId
-        p3FormId
-        refFormId
+        p2formId
+        p3formId
+        refformId
         category
         hformId
         description
+        min1
+        min2
+        min3
+        clothes1
+        clothes2
+        clothes3
         createdAt
         updatedAt
       }

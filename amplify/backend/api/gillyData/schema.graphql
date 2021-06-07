@@ -45,12 +45,18 @@ type formId @model @key(fields:["day", "journey"]){
 type formIdByWeek @model {
   week: Int!,
   p1formId: String,
-  p2FormId: String,
-  p3FormId: String,
-  refFormId: String,
+  p2formId: String,
+  p3formId: String,
+  refformId: String,
   category: String!,
   hformId: String,
   description: String,
+  min1: Int,
+  min2: Int,
+  min3: Int,
+  clothes1: Boolean,
+  clothes2: Boolean,
+  clothes3: Boolean,
 }
 
 type registeredEmail @model {

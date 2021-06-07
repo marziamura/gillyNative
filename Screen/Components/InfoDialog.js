@@ -9,6 +9,7 @@ function InfoDialog(props){
             <Dialog.Title>{t("title")}</Dialog.Title>
             <Dialog.Content>
               <Paragraph>{t("paragraph")}</Paragraph>
+              {props.children}
             </Dialog.Content>
           </Dialog>
 }

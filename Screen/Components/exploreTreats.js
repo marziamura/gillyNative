@@ -32,18 +32,11 @@ export default function FlatListHorizontal(props)
   const { t } = useTranslation('selectTreat');
   let store = createStore();
   const [selectedIndex, setIndex] = React.useState(-1);
-  const [loading, setLoading] = React.useState(true);
-  const [fetchList, setFetchList] = React.useState(true);
-
-
-  
- 
   const displayData = treatData;
   const user = props.user;
 
   const setCurrentData = (index) => {
       setIndex(index);
-  //    getTreatInfo(index);
   }
 
   const getBGColor = (index, enabled) =>  {
@@ -89,7 +82,7 @@ export default function FlatListHorizontal(props)
             <TouchableHighlight 
               activeOpacity={0.6}
               underlayColor="#DDDDDD"
-              onPress={()=>{props.navigation.push("InvitePartner")}}>
+              onPress={()=>{props.navigation.goBack()}}>
               <Text style={styles.inviteText}>
               {t("invite", {who: props.partnerName})}
               </Text>
@@ -132,7 +125,6 @@ export default function FlatListHorizontal(props)
      
      getTreatList().then((data)=>{
     
-       setFetchList(false);
        const treatData = data.data.listFormIdByWeeks.items;
        console.log('received treats list ', treatData)
        treatData.map((currentTreat)=>{
@@ -141,11 +133,11 @@ export default function FlatListHorizontal(props)
           let treatParts = [];
           let description = {type: "text", description: currentTreat.description};
           treatParts.push(description);
-          let part1 = {type: "learn", id: currentTreat.p1formId, status: getStatus(currentTreat.p1formId)};
+          let part1 = {type: "learn", id: currentTreat.p1formId, status: getStatus(currentTreat.p1formId), min: currentTreat.min1};
           treatParts.push(part1);
-          let part2 = {type: "solo", id: currentTreat.p2formId, status: getStatus(currentTreat.p2formId)};
+          let part2 = {type: "solo", id: currentTreat.p2formId,  status: getStatus(currentTreat.p2formId), min: currentTreat.min2};
           treatParts.push(part2);
-          let part3 = {type: "couple", id: currentTreat.p3formId, status: 4};
+          let part3 = {type: "couple", id: currentTreat.p3formId,                                status: 4, min: currentTreat.min3};
           treatParts.push(part3);
 
           if(currentTreat.category === "touch"){   

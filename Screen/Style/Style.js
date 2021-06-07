@@ -10,6 +10,7 @@ export const darkviolet = "#8436a1"
 export const blue1= "#BCE6FF";
 export const blue2= "#88CDF6";
 export const blue3= "#2D82B5";
+export const gillyGreen ="#1DE7C0";
 
 export const tfbutton = "#6042BE";
 export const tfbuttontext = "white";

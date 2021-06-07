@@ -4,13 +4,20 @@ import createStore from '../../state/store';
 import { Avatar } from 'react-native-elements';
 import * as colors from '../Style/Style';
 import actionSetTreatData from '../../state/actionSetTreatData';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableHighlight} from 'react-native';
+import InfoDialog from './InfoDialog'
+
 
 
 export default function Table(props) {
-  
+    let [invitePartner, setInvitePartner] = React.useState(false);
+    const store = createStore();
+    const userInfo = store.getState().userInfo[0];
+    const coupleId = userInfo.coupleId;
+    const isSolo = !(coupleId && userInfo.partnerID);
+    console.log("User Info ", userInfo, isSolo)
     function getCellData(data){
-      console.log(data)
+      console.log("Cell Data ", data)
       if(data.type === "text"){
           return <React.Fragment/>
       }
@@ -18,7 +25,7 @@ export default function Table(props) {
         return <View>
               <TouchableOpacity  onPress={() => { openTreat(data)}}>
                 <TreatButton icon='book-outline' status={data.status}  description={"Learn"}/>
-                    <Text>min.: {data.time}</Text>
+                    <Text>min.: {data.min}</Text>
                    </TouchableOpacity>
                 </View>
           
@@ -27,7 +34,7 @@ export default function Table(props) {
         return <View>
            <TouchableOpacity  onPress={() => { openTreat(data)}}>
                     <TreatButton icon="person-outline" status={data.status}  description={"Solo"}/>
-                    <Text>min.: {data.time}</Text>
+                    <Text>min.: {data.min}</Text>
                     </TouchableOpacity>
                 </View>
       }
@@ -35,7 +42,7 @@ export default function Table(props) {
         return  <View>
                       <TouchableOpacity  onPress={() => { openTreat(data)}}>
                       <TreatButton icon="people-outline" status={data.status} description={"Partner"}/>
-                      <Text> {data.time} min</Text>
+                      <Text>{data.min} min</Text>
                       <Text>{data.clothes === 0 ? "clothes on" : "clothes off"}</Text>
                       </TouchableOpacity>
                 </View>
@@ -54,14 +61,14 @@ export default function Table(props) {
     function Row({ column }) {  
         console.log("data", column)
         const ids=["a","b","c",4,5,6];
-        
+        let i = 0;
         return (
           <View style={styles.card} id={Math.floor(Math.random())}>
             <Text>{column[0].description}</Text>
-            <View style={styles.rowStyle} id={Math.floor(Math.random())}>
+            <View style={styles.rowStyle} >
             {column.slice(1).map((data) => {
                     
-                    return <Cell data={data} key={Math.floor(Math.random())}/>
+                    return <Cell data={data} key={ids[i++]}/>
             })}
             </View>
           </View>
@@ -85,9 +92,9 @@ export default function Table(props) {
         }
 
         return <Avatar
-        size="small"
+        size="medium"
         rounded
-        icon={{name: tData.icon, color: 'orange', type: 'ionicon'}}
+        icon={{name: tData.icon, color: colors.gillyGreen, type: 'ionicon'}}
         overlayContainerStyle={{backgroundColor: colors.violet}}
         onPress={() => { openTreat(tData)}}
         activeOpacity={0.7}
@@ -103,11 +110,18 @@ export default function Table(props) {
         </Avatar>
       }
     
+    function closeInvitePartnerDialog(){
+      setInvitePartner(false);
+    }
 
     function openTreat(tdata){
+        console.log(" open treat ", isSolo, tdata)
+        if(isSolo && tdata.status === 4){
+          setInvitePartner(true);
+          return;
+        }
+
         console.log("formId Callback ", tdata);
-        alert("Open Treat");
-        const store = createStore();
         var fId = tdata.id; 
         console.log("getFormId ", fId,  tdata.description);
         let  currentData={
@@ -123,13 +137,25 @@ export default function Table(props) {
 
     console.log("Rendering table ", props)
     const data = props.data || [];
-    
+    const ids=["a","b","c",4,5,6];
+    let i = 0;
     return (
       <View style={styles.gridContainer}>
-    
         {data.map((column) => (
-          <Row column={column} key={Math.floor(Math.random())}/>
+          <Row column={column} key={ids[i++]}/>
         ))}
+        {invitePartner && <InfoDialog callback={closeInvitePartnerDialog}>
+        <View style={[styles.centerContent]}>
+                <TouchableHighlight 
+                  activeOpacity={0.6}
+                  underlayColor="#DDDDDD"
+                  onPress={()=>{props.navigation.push("InvitePartner")}}>
+                  <Text style={styles.inviteText}>
+                    invite your partner
+                  </Text>
+                </TouchableHighlight>
+              </View>
+                          </InfoDialog>}
       </View>
     );
   }
