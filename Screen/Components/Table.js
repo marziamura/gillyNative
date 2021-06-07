@@ -16,6 +16,7 @@ export default function Table(props) {
     const coupleId = userInfo.coupleId;
     const isSolo = !(coupleId && userInfo.partnerID);
     console.log("User Info ", userInfo, isSolo)
+   
     function getCellData(data){
       console.log("Cell Data ", data)
       if(data.type === "text"){
@@ -32,7 +33,7 @@ export default function Table(props) {
       }
       if (data.type === "solo"){
         return <View>
-           <TouchableOpacity  onPress={() => { openTreat(data)}}>
+     <TouchableOpacity  onPress={() => { openTreat(data)}}>
                     <TreatButton icon="person-outline" status={data.status}  description={"Solo"}/>
                     <Text>min.: {data.min}</Text>
                     </TouchableOpacity>
@@ -40,7 +41,7 @@ export default function Table(props) {
       }
       if (data.type === "couple"){
         return  <View>
-                      <TouchableOpacity  onPress={() => { openTreat(data)}}>
+                     <TouchableOpacity  onPress={() => { openTreat(data)}}>
                       <TreatButton icon="people-outline" status={data.status} description={"Partner"}/>
                       <Text>{data.min} min</Text>
                       <Text>{data.clothes === 0 ? "clothes on" : "clothes off"}</Text>
@@ -96,7 +97,6 @@ export default function Table(props) {
         rounded
         icon={{name: tData.icon, color: colors.gillyGreen, type: 'ionicon'}}
         overlayContainerStyle={{backgroundColor: colors.violet}}
-        onPress={() => { openTreat(tData)}}
         activeOpacity={0.7}
         >
           <Avatar.Accessory
@@ -123,13 +123,13 @@ export default function Table(props) {
 
         console.log("formId Callback ", tdata);
         var fId = tdata.id; 
-        console.log("getFormId ", fId,  tdata.description);
+      
         let  currentData={
           id: fId,
           description:  tdata.description,
           journey: tdata.journey,
         }
-        
+        console.log("Setting treat data ", tdata, currentData);
         store.dispatch(actionSetTreatData([currentData])); 
         props.navigation.push("TodaysTreat");  
       
