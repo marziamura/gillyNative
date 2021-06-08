@@ -40,6 +40,7 @@ export default function Table(props) {
                 </View>
       }
       if (data.type === "couple"){
+        data.status = isSolo ? statusCodes.LOCKED : data.status;
         return  <View>
                      <TouchableOpacity  onPress={() => { openTreat(data)}}>
                       <TreatButton icon="people-outline" status={data.status} description={"Partner"}/>
@@ -120,7 +121,7 @@ export default function Table(props) {
 
     function openTreat(tdata){
         console.log(" open treat ", isSolo, tdata)
-        if(isSolo && tdata.status === 4){
+        if(isSolo && tdata.status === statusCodes.LOCKED){
           setInvitePartner(true);
           return;
         }
