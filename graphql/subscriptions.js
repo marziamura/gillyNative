@@ -304,3 +304,36 @@ export const onDeleteCouple = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTreatStatus = /* GraphQL */ `
+  subscription OnCreateTreatStatus {
+    onCreateTreatStatus {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTreatStatus = /* GraphQL */ `
+  subscription OnUpdateTreatStatus {
+    onUpdateTreatStatus {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTreatStatus = /* GraphQL */ `
+  subscription OnDeleteTreatStatus {
+    onDeleteTreatStatus {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;

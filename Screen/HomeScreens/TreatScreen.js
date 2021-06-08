@@ -1,26 +1,24 @@
-// Example of Splash, Login and Sign Up in React Native
-// https://aboutreact.com/react-native-login-and-signup/
 
 // Import React and Component
 import React from 'react';
-
+import { API, graphqlOperation } from 'aws-amplify';
 import  WebViewScreen  from '../Components/WebViewScreen';
 import createStore from '../../state/store';
-import Background from '../Components/Background';
 import * as fonts from '../Style/Fonts'
 import * as colors from '../Style/Style'
-import  Button  from '../Components/Button';
 import { useTranslation } from 'react-i18next'; 
-
+import * as mutations from '../../graphql/mutations';
+import Background from '../Components/Background';
+import Button from '../Components/Button';
+import * as statusCodes from '../Components/statusCodes'
 import {
   View,
   StyleSheet
 } from 'react-native';
-
+import actionUpdateTreatStatus from '../../state/actionUpdateTreatStatus';
 import Text from "../Components/GillyText"
 
 console.log("loading TreatScreen");
-
 
 
 const TreatScreen = ({navigation}) => {
@@ -39,6 +37,25 @@ const TreatScreen = ({navigation}) => {
  
     console.log("Navigation ->", navigation);
     
+  React.useEffect(()=>{     
+      console.log("Updating treat data... ", user)
+      const toBeSavedData = {
+        userId: user.id,
+        formId: treatData.id,
+        status: statusCodes.STARTED,
+      }
+      API.graphql(graphqlOperation(mutations.createTreatStatus,{input: toBeSavedData})).then((data)=>{
+        console.log("Data was saved ", data);
+        toBeSavedData.category = treatData.journey;
+        console.log("Saving Locally ", toBeSavedData);
+        store.dispatch(actionUpdateTreatStatus(null, toBeSavedData));
+        return (true)
+      }).catch( error =>{
+        console.log(error);
+        return false;
+      })
+  },[treatData])
+
   return  <Background>
     <View style={styles.container}>
           <View style={styles.titleview}>
@@ -52,7 +69,7 @@ const TreatScreen = ({navigation}) => {
                 />
           </View>
           <View style={{flex: 6}}>
-              <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"ThankYou"}/>
+              <WebViewScreen url={typeformLink} navigation={navigation} afterSubmission={"TreatDone"}/>
           </View>
     </View>
   </Background>

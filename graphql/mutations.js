@@ -358,3 +358,45 @@ export const deleteCouple = /* GraphQL */ `
     }
   }
 `;
+export const createTreatStatus = /* GraphQL */ `
+  mutation CreateTreatStatus(
+    $input: CreateTreatStatusInput!
+    $condition: ModeltreatStatusConditionInput
+  ) {
+    createTreatStatus(input: $input, condition: $condition) {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTreatStatus = /* GraphQL */ `
+  mutation UpdateTreatStatus(
+    $input: UpdateTreatStatusInput!
+    $condition: ModeltreatStatusConditionInput
+  ) {
+    updateTreatStatus(input: $input, condition: $condition) {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTreatStatus = /* GraphQL */ `
+  mutation DeleteTreatStatus(
+    $input: DeleteTreatStatusInput!
+    $condition: ModeltreatStatusConditionInput
+  ) {
+    deleteTreatStatus(input: $input, condition: $condition) {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;

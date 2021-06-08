@@ -285,3 +285,42 @@ export const listCouples = /* GraphQL */ `
     }
   }
 `;
+export const getTreatStatus = /* GraphQL */ `
+  query GetTreatStatus($userId: String!, $formId: String!) {
+    getTreatStatus(userId: $userId, formId: $formId) {
+      userId
+      formId
+      status
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTreatStatuss = /* GraphQL */ `
+  query ListTreatStatuss(
+    $userId: String
+    $formId: ModelStringKeyConditionInput
+    $filter: ModeltreatStatusFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listTreatStatuss(
+      userId: $userId
+      formId: $formId
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        userId
+        formId
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

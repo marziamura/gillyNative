@@ -69,3 +69,9 @@ type couple @model @key(fields:["id"]){
   partnerAId : String!
   partnerBId : String
 }
+
+type treatStatus @model @key (fields:["userId", "formId"]){
+  userId: String!
+  formId: String!
+  status: Int!
+}

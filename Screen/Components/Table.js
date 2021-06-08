@@ -6,7 +6,7 @@ import * as colors from '../Style/Style';
 import actionSetTreatData from '../../state/actionSetTreatData';
 import { TouchableOpacity, TouchableHighlight} from 'react-native';
 import InfoDialog from './InfoDialog'
-
+import * as statusCodes from './statusCodes'
 
 
 export default function Table(props) {
@@ -79,15 +79,19 @@ export default function Table(props) {
       function TreatButton(tData){
         let icon = ""
         let colorI = ""
-        if (tData.status === 1){
+        if (tData.status === statusCodes.UNOPEN){
           icon = "checkmark-outline";
           colorI = "red";
         }
-        if (tData.status === 2 ){
+        if (tData.status === statusCodes.STARTED ){
+          icon = "checkmark-done-outline";
+          colorI = "yellow";
+        }
+        if (tData.status === statusCodes.COMPLETED ){
           icon = "checkmark-done-outline";
           colorI = "green";
         }
-        if (tData.status === 4 ){
+        if (tData.status === statusCodes.LOCKED ){
           icon = "lock-closed-outline";
           colorI = "gray";
         }
@@ -125,7 +129,7 @@ export default function Table(props) {
         var fId = tdata.id; 
       
         let  currentData={
-          id: fId,
+          id: fId.trim(),
           description:  tdata.description,
           journey: tdata.journey,
         }

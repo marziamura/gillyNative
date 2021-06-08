@@ -9,9 +9,6 @@ import Background from './Background';
 
 
 
-
-
-
 const WebViewScreen = (props) => {
     
     const webView = React.useRef();

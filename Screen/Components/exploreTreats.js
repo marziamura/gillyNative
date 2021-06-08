@@ -1,7 +1,7 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { View, StyleSheet, FlatList, Pressable, Dimensions, ActivityIndicator
-  , TouchableHighlight, Platform } from 'react-native';
+  ,  Platform } from 'react-native';
 import * as colors from '../Style/Style'
 import createStore from '../../state/store';
 import actionSetTreatDataTouch from '../../state/actionAddTreatTouch'; 
@@ -14,7 +14,7 @@ import * as Colors from "../Style/Style"
 import Table from '../Components/Table'
 import Text from "../Components/GillyText"
 import * as queries from '../../graphql/queries';
-import { getNextTriggerDateAsync } from 'expo-notifications';
+import * as statusCodes from './statusCodes'
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
@@ -77,21 +77,7 @@ export default function FlatListHorizontal(props)
         };
 
         
-  function InvitePartner() {
-    return <View style={[styles.inviteView, styles.centerContent, , styles.viewPlacement]}>
-            <TouchableHighlight 
-              activeOpacity={0.6}
-              underlayColor="#DDDDDD"
-              onPress={()=>{props.navigation.goBack()}}>
-              <Text style={styles.inviteText}>
-              {t("invite", {who: props.partnerName})}
-              </Text>
-            </TouchableHighlight>
-          </View>
-  }
-
   function getTreatList(){
-     
       console.log("getting Treats List... ", user)
       return API.graphql(graphqlOperation(queries.listFormIdByWeeks, {
         filter:{
@@ -102,8 +88,12 @@ export default function FlatListHorizontal(props)
       }))
   }
 
-  function getStatus(formId){
-    return 1;
+  function getStatus(formId, userTreats){
+    console.log("UserTreats ", userTreats);
+    var found = userTreats.items.find((elem)=>{
+      return elem.formId === formId;
+    });
+    return found ? found.status : statusCodes.UNOPEN;
   }
 
   function getData(){
@@ -118,43 +108,51 @@ export default function FlatListHorizontal(props)
        return store.getState().treatsExpress;
 
   }
+  
+  function fillUpTreatListWithStatus(data){
+    
+      const treatData = data.data.listFormIdByWeeks.items;
+      console.log('received treats list ', treatData)
+      API.graphql(graphqlOperation(queries.listTreatStatuss, {
+        filter:{
+          userId: {
+            eq: user.id,
+          }
+        },
+      })).then((retrievedData)=>{
+          var statusData = retrievedData.data.listTreatStatuss;
+          console.log("Status data ", statusData);
+          treatData.map((currentTreat)=>{
+          console.log('Map ', currentTreat)
+            const status = 1;
+            let treatParts = [];
+            let description = {type: "text", description: currentTreat.description};
+            treatParts.push(description);
+            let part1 = {type: "learn", id: currentTreat.p1formId,  status: getStatus(currentTreat.p1formId, statusData), min: currentTreat.min1};
+            treatParts.push(part1);
+            let part2 = {type: "solo", id: currentTreat.p2formId,   status: getStatus(currentTreat.p2formId, statusData), min: currentTreat.min2};
+            treatParts.push(part2);
+            let part3 = {type: "couple", id: currentTreat.p3formId, status: getStatus(currentTreat.p3formId, statusData), min: currentTreat.min3};
+            treatParts.push(part3);
+
+            if(currentTreat.category === "touch"){   
+              store.dispatch(actionSetTreatDataTouch(store.getState().treatsTouch, treatParts)); 
+            }
+            if(currentTreat.category === "express"){
+              store.dispatch(actionSetTreatDataExpress( store.getState().treatsExpress, treatParts)); 
+            }
+            if(currentTreat.category === "connect"){
+              store.dispatch(actionSetTreatDataConnect( store.getState().treatsConnect, treatParts)); 
+            }
+          })
+      })
+  }
+  
 
   React.useEffect(()=>{
     console.log("fetching list", store.getState().treatsTouch);
     if(store.getState().treatsTouch.length === 0){
-     
-     getTreatList().then((data)=>{
-    
-       const treatData = data.data.listFormIdByWeeks.items;
-       console.log('received treats list ', treatData)
-       treatData.map((currentTreat)=>{
-        console.log('Map ', currentTreat)
-          const status = 1;
-          let treatParts = [];
-          let description = {type: "text", description: currentTreat.description};
-          treatParts.push(description);
-          let part1 = {type: "learn", id: currentTreat.p1formId, status: getStatus(currentTreat.p1formId), min: currentTreat.min1};
-          treatParts.push(part1);
-          let part2 = {type: "solo", id: currentTreat.p2formId,  status: getStatus(currentTreat.p2formId), min: currentTreat.min2};
-          treatParts.push(part2);
-          let part3 = {type: "couple", id: currentTreat.p3formId,                                status: 4, min: currentTreat.min3};
-          treatParts.push(part3);
-
-          if(currentTreat.category === "touch"){   
-            store.dispatch(actionSetTreatDataTouch(store.getState().treatsTouch, treatParts)); 
-          }
-          if(currentTreat.category === "express"){
-            store.dispatch(actionSetTreatDataExpress( store.getState().treatsExpress, treatParts)); 
-          }
-          if(currentTreat.category === "connect"){
-            store.dispatch(actionSetTreatDataConnect( store.getState().treatsConnect, treatParts)); 
-          }
-       })
-      // store.dispatch(actionSetTreatDataTouch(store.getState().treatsTouch, touchList)); 
-      // console.log("Saved treat list T ", store.getState().treatsTouch);
-      // console.log("Saved treat list  C", store.getState().treatsConnect);
-      // console.log("Saved treat list  E", store.getState().treatsExpress)
-     });
+     getTreatList().then(fillUpTreatListWithStatus).catch((e)=>{console.warn("error getting treat list, ", e.message)});
     }
 
   }, [])

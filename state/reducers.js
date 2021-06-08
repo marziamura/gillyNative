@@ -10,8 +10,10 @@ import {
   ADD_TREAT,
   ADD_TREAT_EXPRESS,
   ADD_TREAT_TOUCH,
-  ADD_TREAT_CONNECT
-} from './messages'
+  ADD_TREAT_CONNECT,
+  UPDATE_TREAT_EXPRESS,
+  UPDATE_TREAT_TOUCH,
+  UPDATE_TREAT_CONNECT} from "./messages";
 
 const user = [{
   id: "xxx",
@@ -60,7 +62,14 @@ let treatsDataTouch =[];
 let treatsDataExpress = [];
 
 let treatsDataConnect = [];
-
+/*
+  {
+   type: learn/solo/partner,
+   id: typeForm Id, 
+   status: 1/2/4, 
+   min: min
+  };
+*/
 const userInfo = (state = user, action) => {
     
     if(action.type === SET_USER_INFO){
@@ -150,6 +159,10 @@ const treatsCache = (state = treatList, action) => {
   }
 }
 
+function findTreatInList(treat, value){
+  return treat.id === value;
+}
+
 const treatsTouch = (state = treatsDataTouch, action) => {
 
   switch (action.type) {
@@ -158,6 +171,10 @@ const treatsTouch = (state = treatsDataTouch, action) => {
       treatsDataTouch = [...state, action.payload.newItem];
       state = treatsDataTouch;
       console.log("State touch 1", state)
+      return [...state];
+    case UPDATE_TREAT_TOUCH:
+      var index = state.find(findTreatInList, action.treatStatus);
+      state[index].status = action.treatStatus.status;
       return [...state];
     default:
       console.log("Returning List of treats ", state)
@@ -170,6 +187,10 @@ const treatsExpress = (state = treatsDataExpress, action) => {
       treatsDataExpress = [...state, action.payload.newItem];
       state = treatsDataExpress;
       return [...state,];
+    case UPDATE_TREAT_EXPRESS:
+      var index = state.find(findTreatInList, action.treatStatus);
+      state[index].status = action.treatStatus.status;
+      return [...state];
     default:
       return state;
   }
@@ -182,6 +203,10 @@ const treatsConnect = (state = treatsDataConnect, action) => {
       state = treatsDataConnect;
       console.log("Connect state ", state.length, state)
       return [...state,];
+    case UPDATE_TREAT_CONNECT:
+      var index = state.find(findTreatInList, action.treatStatus);
+      state[index].status = action.treatStatus.status;
+      return [...state];
     default:
       return  state;
   }

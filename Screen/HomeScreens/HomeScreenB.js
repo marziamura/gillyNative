@@ -40,9 +40,7 @@ const HomeScreen = ({navigation}) => {
   const openTreatInfo = () =>{
     setInfoDialogOpen(true);
   }
-  const openJourneyInfo = () =>{
-    setInJourneyInfoDialogOpen(true);
-  }
+ 
 
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
