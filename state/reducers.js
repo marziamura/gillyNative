@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-
+import * as treatsCategories from "../Screen/Components/treatsCategories"
 
 import {
   SET_USER_INFO, 
@@ -14,6 +14,8 @@ import {
   UPDATE_TREAT_EXPRESS,
   UPDATE_TREAT_TOUCH,
   UPDATE_TREAT_CONNECT} from "./messages";
+
+ 
 
 const user = [{
   id: "xxx",
@@ -46,7 +48,7 @@ const treat = [{
   id: null,
   description: "",
   toBeRefreshed: true,
-  journey: "",
+  category: treatsCategories.sUNDEFINED,
   nb: null,
 }]
 
@@ -67,7 +69,8 @@ let treatsDataConnect = [];
    type: learn/solo/partner,
    id: typeForm Id, 
    status: 1/2/4, 
-   min: min
+   min: min,
+   category: TOUCH/CONNECT/EXPRESS
   };
 */
 const userInfo = (state = user, action) => {
@@ -128,7 +131,7 @@ const currentTreat = (state = treat, action) => {
     case SET_TREAT:
       state[0].id = action.payload.newItem[0].id;
       state[0].description = action.payload.newItem[0].description;
-      state[0].journey = action.payload.newItem[0].journey;
+      state[0].category = action.payload.newItem[0].category;
       return [...state,];
     default:
       return  state; 

@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import actionUpdateTreatStatus from '../../state/actionUpdateTreatStatus';
 import Text from "../Components/GillyText"
+import * as treatsCategories from '../Components/treatsCategories'
 
 console.log("loading TreatScreen");
 
@@ -26,17 +27,16 @@ const TreatScreen = ({navigation}) => {
     let store = createStore(); 
     const treatData = store.getState().currentTreat[0];   
     const user = store.getState().userInfo[0]; 
-    console.log("Treat Screen", user);
+    console.log("Treat Screen with treatData", treatData);
     var source = "https://getgilly.typeform.com/to/";
     var params = '&userid=' + user.id 
                 + '&firstname=' + user.userName
                 + '&puserid=' + user.partnerID
                 + '&partner=' + user.partnerName
-                + "&journey=" + treatData.journey;
+                + "&journey=" + treatData.category;
     const typeformLink = source + treatData.id + "#" + params;// + "&" + previousAnswers;
  
-    console.log("Navigation ->", navigation);
-    
+
   React.useEffect(()=>{     
       console.log("Updating treat data... ", user)
       const toBeSavedData = {
@@ -46,7 +46,7 @@ const TreatScreen = ({navigation}) => {
       }
       API.graphql(graphqlOperation(mutations.createTreatStatus,{input: toBeSavedData})).then((data)=>{
         console.log("Data was saved ", data);
-        toBeSavedData.category = treatData.journey;
+        toBeSavedData.category = treatData.category;
         console.log("Saving Locally ", toBeSavedData);
         store.dispatch(actionUpdateTreatStatus(null, toBeSavedData));
         return (true)

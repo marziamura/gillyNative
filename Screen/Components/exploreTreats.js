@@ -15,6 +15,7 @@ import Table from '../Components/Table'
 import Text from "../Components/GillyText"
 import * as queries from '../../graphql/queries';
 import * as statusCodes from './statusCodes'
+import * as treatsCategories from './treatsCategories'
 
 var {width, height} = Dimensions.get('window')
 const viewHeight = height * 2 / 7 - 60;
@@ -31,7 +32,7 @@ export default function FlatListHorizontal(props)
 {
   const { t } = useTranslation('selectTreat');
   let store = createStore();
-  const [selectedIndex, setIndex] = React.useState(-1);
+  const [selectedIndex, setIndex] = React.useState(treatsCategories.UNDEFINED);
   const displayData = treatData;
   const user = props.user;
 
@@ -54,7 +55,7 @@ export default function FlatListHorizontal(props)
   }
 
   const getTextColor = () => {
-    return {color: -1 === selectedIndex 
+    return {color: treatsCategories.UNDEFINED === selectedIndex 
       ? colors.textDisabled
       : colors.text
     }
@@ -91,7 +92,7 @@ export default function FlatListHorizontal(props)
   function getStatus(formId, userTreats){
     console.log("UserTreats ", userTreats);
     var found = userTreats.items.find((elem)=>{
-      return elem.formId === formId;
+      return elem.formId.trim() === formId.trim();
     });
     return found ? found.status : statusCodes.UNOPEN;
   }
@@ -100,11 +101,11 @@ export default function FlatListHorizontal(props)
      
     console.log("With treat list ", store.getState())
 
-    if(selectedIndex === 0)
+    if(selectedIndex === treatsCategories.TOUCH)
        return store.getState().treatsTouch;
-    if(selectedIndex === 1)
+    if(selectedIndex === treatsCategories.EXPRESS)
        return store.getState().treatsConnect;
-    if(selectedIndex === 2)
+    if(selectedIndex === treatsCategories.CONNECT)
        return store.getState().treatsExpress;
 
   }
@@ -128,20 +129,20 @@ export default function FlatListHorizontal(props)
             let treatParts = [];
             let description = {type: "text", description: currentTreat.description};
             treatParts.push(description);
-            let part1 = {type: "learn", id: currentTreat.p1formId,  status: getStatus(currentTreat.p1formId, statusData), min: currentTreat.min1};
+            let part1 = {type: "learn", id: currentTreat.p1formId.trim(),  status: getStatus(currentTreat.p1formId, statusData), min: currentTreat.min1};
             treatParts.push(part1);
-            let part2 = {type: "solo", id: currentTreat.p2formId,   status: getStatus(currentTreat.p2formId, statusData), min: currentTreat.min2};
+            let part2 = {type: "solo", id: currentTreat.p2formId.trim(),   status: getStatus(currentTreat.p2formId, statusData), min: currentTreat.min2};
             treatParts.push(part2);
-            let part3 = {type: "couple", id: currentTreat.p3formId, status: getStatus(currentTreat.p3formId, statusData), min: currentTreat.min3};
+            let part3 = {type: "couple", id: currentTreat.p3formId.trim(), status: getStatus(currentTreat.p3formId, statusData), min: currentTreat.min3};
             treatParts.push(part3);
 
-            if(currentTreat.category === "touch"){   
+            if(currentTreat.category === treatsCategories.sTOUCH){   
               store.dispatch(actionSetTreatDataTouch(store.getState().treatsTouch, treatParts)); 
             }
-            if(currentTreat.category === "express"){
+            if(currentTreat.category === treatsCategories.sEXPRESS){
               store.dispatch(actionSetTreatDataExpress( store.getState().treatsExpress, treatParts)); 
             }
-            if(currentTreat.category === "connect"){
+            if(currentTreat.category === treatsCategories.sCONNECT){
               store.dispatch(actionSetTreatDataConnect( store.getState().treatsConnect, treatParts)); 
             }
           })
@@ -166,7 +167,7 @@ export default function FlatListHorizontal(props)
                 columnWrapperStyle=""
               // keyExtractor={(item)=>{item.title}} 
                 numColumns= {1}
-                ListFooterComponent = {<Table data={getData()} navigation={props.navigation}/>}
+                ListFooterComponent = {<Table data={getData()} category={selectedIndex} navigation={props.navigation}/>}
                 //ItemSeparatorComponent={() => <View style={{margin: 5}}/>}
               />
             </View>

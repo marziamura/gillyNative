@@ -22,7 +22,7 @@ const TreatDone = ({navigation}) => {
     }
     API.graphql(graphqlOperation(mutations.updateTreatStatus,{input: toBeSavedData})).then((data)=>{
       console.log("Treat Status was updated ", data);
-      toBeSavedData.category = treatData.journey;
+      toBeSavedData.category = treatData.category;
       console.log("Saving Locally ", toBeSavedData);
       store.dispatch(actionUpdateTreatStatus(toBeSavedData));
       return (true)

@@ -14,39 +14,3 @@ export default function actionAddTreat(state, newItem){
     
 }
 }
-
-export function actionAddTreatExpress(state, newItem){
-  console.log("call to actionAddTreatExpress", state, newItem);
-  return {
-      type: ADD_TREAT_EXPRESS,
-      payload: {
-        state,
-        newItem
-     }
-    
-}
-}
-
-export function actionAddTreatTouch(state, newItem){
-  console.log("call to actionAddTreatTouch", state, newItem);
-  return {
-      type: ADD_TREAT_TOUCH,
-      payload: {
-        state,
-        newItem
-     }
-    
-}
-}
-
-export function actionAddTreatConnect(state, newItem){
-  console.log("call to actionAddTreatConnect", state, newItem);
-  return {
-      type: ADD_TREAT_CONNECT,
-      payload: {
-        state,
-        newItem
-     }
-    
-}
-}

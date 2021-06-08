@@ -131,7 +131,8 @@ export default function Table(props) {
         let  currentData={
           id: fId.trim(),
           description:  tdata.description,
-          journey: tdata.journey,
+          category: props.category,
+          type: tdata.type
         }
         console.log("Setting treat data ", tdata, currentData);
         store.dispatch(actionSetTreatData([currentData])); 
