@@ -1,5 +1,5 @@
 
-type User  @model @key(fields:["id"]){
+type User @model @key(fields:["id"]){
   id: ID!,	
   partnerID: ID,	
   userName: String!,	
@@ -74,4 +74,6 @@ type treatStatus @model @key (fields:["userId", "formId"]){
   userId: String!
   formId: String!
   status: Int!
+  message: String
 }
+
