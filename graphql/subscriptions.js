@@ -310,6 +310,7 @@ export const onCreateTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }
@@ -321,6 +322,7 @@ export const onUpdateTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }
@@ -332,6 +334,7 @@ export const onDeleteTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }

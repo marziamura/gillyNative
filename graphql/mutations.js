@@ -367,6 +367,7 @@ export const createTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }
@@ -381,6 +382,7 @@ export const updateTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }
@@ -395,6 +397,7 @@ export const deleteTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }

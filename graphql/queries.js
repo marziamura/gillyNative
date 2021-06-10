@@ -291,6 +291,7 @@ export const getTreatStatus = /* GraphQL */ `
       userId
       formId
       status
+      message
       createdAt
       updatedAt
     }
@@ -317,6 +318,7 @@ export const listTreatStatuss = /* GraphQL */ `
         userId
         formId
         status
+        message
         createdAt
         updatedAt
       }
